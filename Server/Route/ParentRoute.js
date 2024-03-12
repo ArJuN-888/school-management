@@ -76,5 +76,24 @@ catch(error)
 
 
 })
+router.get("/getallparent",async(req,res)=>{
+    try{
+    const data = await parentModel.find({})
+    res.status(200).json({parent:data})
+    }
+    catch(error){
+        return res.status(400).json({message:"Unable to fetch parent"})
+    }
+})
+router.get("/find/:id",async(req,res)=>{
+    try{
+        console.log("id",req.params.id)
+       const User = await parentModel.findById(req.params.id)
+        res.status(200).json({parent:User})
+    }
+    catch(error){
+        res.status(400).json({message:"Unable to fetch doctor",error})
+    }
+})
 
 module.exports=router

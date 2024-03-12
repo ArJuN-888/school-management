@@ -29,6 +29,10 @@ export const useFetchRecipient = (chat, userID) => {
           if (doctorresponse.data.doctor !== null) {
             setRecipientUser(doctorresponse.data.doctor);
           }
+          const parentresponse = await axios.get(`${baseURL}/Parent/find/${recipientid}`);
+          if (parentresponse.data.parent !== null) {
+            setRecipientUser(parentresponse.data.parent);
+          }
         }
       } catch (error) {
         console.log(error);

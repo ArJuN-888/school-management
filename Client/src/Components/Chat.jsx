@@ -10,10 +10,12 @@ import Spinner from 'react-bootstrap/Spinner';
 import PotentialChats from './Chat/PotentialChats'
 import GetadminID from './Hooks/GetadminID'
 import GetdoctorID from './Hooks/GetdoctorID'
+import GetParentID from './Hooks/GetParentID'
 export default function Chat() {
   const teacherID = GetTID()
   const doctorID = GetdoctorID()
    const adminID = GetadminID()
+   const parentID = GetParentID()
    const {baseURL,setPotentialChats,chat,setChat,currentChat,setCurrentChat,messages,setMessages,userID} = useContext(mycontext)
     
   //  const [allusers,setAllusers] = useState([])
@@ -37,6 +39,10 @@ useEffect(()=>{
   else if(doctorID === userID)
   {
     fetchdoctorchat()
+  }
+  else if(parentID===userID)
+  {
+    fetchdparentchat()
   }
 },[userID,doctorID])
     useEffect(()=>{
@@ -77,7 +83,6 @@ useEffect(()=>{
     try{
         
         const response = await axios.get(`${baseURL}/Chat/${doctorID}`)
-        console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww")
         setChat(response.data)
         setLoading(false)
     }
@@ -85,6 +90,19 @@ useEffect(()=>{
   {
     alert(error.response.data.message)
   }
+}
+//parent chat 
+const fetchdparentchat = async() =>{
+  try{
+      
+      const response = await axios.get(`${baseURL}/Chat/${parentID}`)
+      setChat(response.data)
+      setLoading(false)
+  }
+catch(error)
+{
+  alert(error.response.data.message)
+}
 }
     //user current chat
     const fetchMessages = async() =>{
@@ -102,20 +120,27 @@ useEffect(()=>{
   const getUsers = async () => {
   
     try {
-   
+      let newTeachers =[];
+      let newParents = [];
       
          const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`);
   
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
+
+      const responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
       // Extract users from the responses
-      let newTeachers =[];
+     
       const newDoctors = responseDoctor.data.doctor
       if(!teacherID)
       {
          newTeachers = responseTeachers.data.teacher;
       }
-     
+      if(!parentID)
+      {
+        newParents = responseParent.data.parent
+      }
+    
       const newAdmins = responseAdmins.data.admin;
   
       // Check for existing users in allusers and avoid duplication
@@ -127,7 +152,7 @@ useEffect(()=>{
       //   return [...prevUsers, ...filteredTeachers, ...filteredAdmins,...filteredDoctors];
       // });
   
-      const pchats = [...newTeachers, ...newAdmins,...newDoctors].filter((u) => {
+      const pchats = [...newParents,...newTeachers, ...newAdmins,...newDoctors].filter((u) => {
         let isChatCreated = false;
         if (userID === u._id) return false;
         if (chat) {
