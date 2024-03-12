@@ -23,7 +23,7 @@ function App() {
     //common logid container
     const [userID,setUserID] = useState(null)
     console.log("logoutuser id state  ",userID)
-    const [teacherregisterdata,setteacherRegisterdata] = useState({username:"",classname:"",email:"",password:"",status:""})
+    const [teacherregisterdata,setteacherRegisterdata] = useState({username:"",classname:"",email:"",password:"", batch:"",status:""})
     const [teacherloginData,setteacherLogindata] = useState({email:"",password:""})
     const [socket,setSocket] = useState(null)
     //not assigned a chat mainly new users

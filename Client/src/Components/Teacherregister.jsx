@@ -16,19 +16,14 @@ export default function Register() {
         }
     };
   return (
-    <div>  <label>register</label>
+    <div>  <label>Teachers- Account -Creation </label>
     <input
         type='text'
         value={teacherregisterdata.username}
         placeholder='username...'
         onChange={(e) => handleChange("username", e.target.value)}
     />
-    <input
-        type='text'
-        value={teacherregisterdata.classname}
-        placeholder='Classname...'
-        onChange={(e) => handleChange("classname", e.target.value)}
-    />
+   
      <input
         type='text'
         value={teacherregisterdata.email}
@@ -40,6 +35,12 @@ export default function Register() {
         value={teacherregisterdata.password}
         placeholder='Password...'
         onChange={(e) => handleChange("password", e.target.value)}
+    />
+       <input
+        type='text'
+        value={teacherregisterdata.batch}
+        placeholder='Batch....'
+        onChange={(e) => handleChange("batch", e.target.value)}
     />
      <input
         type='text'

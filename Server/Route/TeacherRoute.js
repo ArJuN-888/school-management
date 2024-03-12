@@ -10,11 +10,11 @@ const txt = /.com/;
 
 router.post("/register", async (req, res) => {
     try {
-      const { username, email, password, status, classname } = req.body;
+      const { username, email, password,batch, status } = req.body;
   
       console.log("reqbdy", req.body);
   
-      if (!username || !email || !password || !classname || !status) {
+      if (!username || !email || !password||!batch || !status) {
         return res.status(400).json({ message: "Empty Fields !!!" });
       }
   
@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
         return res.status(400).json({ message: "Email already in use !!!" });
       }
   
-      const isExistClass = await teacherModel.findOne({ classname });
+      const isExistClass = await teacherModel.findOne({ batch });
       console.log("classname", isExistClass);
   
       if (isExistClass) {
@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newTeacher = new teacherModel({ email, password: hashedPassword, classname, username, status });
+      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status });
       await newTeacher.save();
   
       res.status(200).json({ message: "Faculty Registration Successful" });
