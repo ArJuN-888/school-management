@@ -1,6 +1,6 @@
 const express=require("express")
 const router=express.Router()
-const {leaveModel}=require('../Models/LeaveLetter.js')
+const {leaveModel}=require('../Model/LeaveLetter.js')
 
 router.post('/add',async(req,res)=>{
     try
