@@ -7,8 +7,8 @@ const parentSchema=new mongoose.Schema({
     password:{type:String,required:true},
     roll:{type:String,required:true,unique:true},
     studentname:{type:String,required:true},
-    studentclass:{type:String,required:true}
-    
+    studentclass:{type:String,required:true},
+    status:{type:String,required:true},
 })
 
 const parentModel=mongoose.model("parents",parentSchema)

@@ -15,11 +15,13 @@ import DoctorLogin from "./Components/DoctorLogin";
 import DoctorRegister from "./Components/DoctorRegister"
 import GetdoctorID from "./Components/Hooks/GetdoctorID";
 import ParentRegistration from "./Components/ParentRegistration";
+import ParentLogin from "./Components/ParentLogin";
+import GetParentID from "./Components/Hooks/GetParentID";
 function App() {
   const adminID = GetadminID()
   const teacherID = GetTID()
   const doctorID = GetdoctorID()
-
+const parentID = GetParentID()
     //common logid container
     const [userID,setUserID] = useState(null)
     console.log("logoutuser id state  ",userID)
@@ -52,6 +54,10 @@ function App() {
         else if(doctorID)
         {
           setUserID(doctorID)
+        }
+        else if(parentID)
+        {
+          setUserID(parentID)
         }
       },[adminID,teacherID,doctorID])
     useEffect(()=>{
@@ -125,6 +131,8 @@ const contextdata = {
             <Route path="/Adminlogin" element={<AdminLogin/>}/>
             <Route path="/Dlogin" element={<DoctorLogin/>}/>
             <Route path="/Dregister" element={<DoctorRegister/>}/>
+            <Route path="/Pregister" element={<ParentRegistration/>}/>
+            <Route path="/Plogin" element={<ParentLogin/>}/>
          </Routes>
          </mycontext.Provider>
          </BrowserRouter> 

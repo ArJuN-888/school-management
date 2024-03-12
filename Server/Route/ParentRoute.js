@@ -11,10 +11,10 @@ const passuser=/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/
 router.post("/register",async(req,res)=>{
 try
 {
-    const {username,email,password,roll,studentname,studentclass}=req.body;
+    const {username,email,password,roll,studentname,studentclass,status}=req.body;
 
     const parent=await parentModel.findOne({email})
-    if(!username || !email || !password || !studentclass || !roll || !studentname)
+    if(!username || !email || !password || !studentclass || !roll || !studentname || !status)
     {
         return res.json({message:" Empty Fields !!!"})
     }
@@ -34,7 +34,7 @@ try
         return res.status(400).json({message:" Password should contain Minimum 8 charactersAt least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newParent=new parentModel({email,password:hashedPassword,username,studentclass,roll,studentname})
+    const newParent=new parentModel({email,password:hashedPassword,username,studentclass,roll,studentname,status})
     await newParent.save()
     res.json({message:"Parent registration successfull "})
 }
@@ -67,7 +67,7 @@ router.post("/login",async(req,res)=>{
     }
 
     const token = JWT.sign({id : parent._id},"secret")
-   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id})
+   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id,parentName:parent.username})
 }
 catch(error)
 {

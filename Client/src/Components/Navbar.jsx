@@ -9,6 +9,8 @@ import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import GetdoctorID from './Hooks/GetdoctorID';
 import Getdoctorname from './Hooks/Getdoctorname';
+import GetParentID from './Hooks/GetParentID';
+import GetPname from './Hooks/GetParentName';
 export default function Navbar() {
   const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats} = useContext(mycontext)
     const teacherID = GetTID()
@@ -17,6 +19,8 @@ export default function Navbar() {
     const adminName = Getadminname()
     const  doctorID = GetdoctorID()
     const doctorName = Getdoctorname()
+  const parentID = GetParentID()
+  const parentName = GetPname()
     const nav = useNavigate()
     const Logststate = () =>{
      if(teacherID)
@@ -91,6 +95,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/">Create classroom</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -100,6 +105,7 @@ export default function Navbar() {
         }}>{teacherName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Pregister">Add parent</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
@@ -111,10 +117,20 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
-        {(!adminID && !teacherID && !doctorID) && <>
+        {parentID &&<>
+        <li>Logged in as <label style={{
+            color:'green',
+            fontWeight:"bolder"
+        }}>{parentName}</label></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+        </>}
+        {(!adminID && !teacherID && !doctorID && !parentID) && <>
         <li><Link style={{textDecoration:"none"}} to="/Tlogin">Teacher-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Adminlogin">Admin-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Dlogin">Doctor-Login</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Plogin">Parent-Login</Link></li>
         </> }
         
      
