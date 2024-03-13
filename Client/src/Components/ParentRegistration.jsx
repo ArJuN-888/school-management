@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import mycontext from '../Context/Context'
+import GetTID from './Hooks/Getteacherid'
 export default function ParentRegistration() {
   const {baseURL} = useContext(mycontext)
+  const teacherID = GetTID()
   const [Parentregister,setparentRegister] = useState({
    username:"",
    email:"",
@@ -18,12 +20,16 @@ export default function ParentRegistration() {
   }
 const handleSubmit = async() =>{
 try{
-const response = await axios.post(`${baseURL}/Parent/register`,Parentregister)
+const response = await axios.post(`${baseURL}/Parent/register`,Parentregister,{
+  params:{
+    teacherid : teacherID
+  }
+})
 alert(response.data.message)
 }
 catch(error)
 {
-console.log(error.response.data.message)
+alert(error.response.data.message)
 }
 }
   return (

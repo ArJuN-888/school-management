@@ -122,13 +122,22 @@ catch(error)
     try {
       let newTeachers =[];
       let newParents = [];
-      
-         const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`);
-  
+       let responseParent;
+      const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`);
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
-
-      const responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
+      if(teacherID)
+      {
+        responseParent = await axios.get(`${baseURL}/Parent/getallparent`,{
+          params:{
+            teacherid:teacherID
+          }
+        });
+      }
+      else{
+        responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
+      }
+      
       // Extract users from the responses
      
       const newDoctors = responseDoctor.data.doctor
@@ -140,7 +149,10 @@ catch(error)
       {
         newParents = responseParent.data.parent
       }
-    
+    // if(teacherID)
+    // {
+    //   newParents = responseParent.data.parent.filter((cname)=> cname.studentclass === responseTeachers.data.teacher.batch )
+    // }
       const newAdmins = responseAdmins.data.admin;
   
       // Check for existing users in allusers and avoid duplication

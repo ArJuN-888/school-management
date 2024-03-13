@@ -69,6 +69,23 @@ export default function Navbar() {
 
     
     }
+    const Logparentstate = () =>{
+      if(parentID)
+      {
+        setPotentialChats([])
+         setCurrentChat(null)
+         setMessages(null)
+         setUserID(null)
+         setChat([])
+       
+         localStorage.removeItem("parentName")
+         localStorage.removeItem("parentID")
+         nav("/Plogin")
+        //  location.reload()
+      }
+
+    
+    }
   return (
     <>
     <nav style={{
@@ -124,7 +141,7 @@ export default function Navbar() {
         }}>{parentName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID) && <>
         <li><Link style={{textDecoration:"none"}} to="/Tlogin">Teacher-Login</Link></li>
