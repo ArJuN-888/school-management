@@ -123,7 +123,11 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Teacherhome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
+
         <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
+
+        <li><Link style={{textDecoration:"none"}} to="/Studentattendence">Record Students attendemce</Link></li>
+
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>

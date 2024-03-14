@@ -8,7 +8,10 @@ const messageRoute = require("./Route/MessageRoute")
 const adminRoute = require('./Route/AdminRoute.js')
 const parentRoute = require("./Route/ParentRoute.js")
 const leaveRoute = require("./Route/LeaveLetter.js")
+
 const announcementShema = require("./Route/AnnounceRoute.js")
+const attendenceRoute = require("./Route/AttendenceRoute.js")
+
 const app = express();
 const PORT = 5000;
 app.use(express.json())
@@ -29,7 +32,11 @@ app.use("/Parent",parentRoute)
 app.use("/Chat",chatRoute)
 app.use("/Message",messageRoute)
 app.use("/Leave",leaveRoute)
+
 app.use("/Announcement",announcementShema)
+
+app.use("/attendence",attendenceRoute)
+
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);
