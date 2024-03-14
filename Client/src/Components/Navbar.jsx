@@ -123,6 +123,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Teacherhome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
@@ -132,6 +133,7 @@ export default function Navbar() {
         }}>{doctorName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {parentID &&<>
@@ -141,6 +143,7 @@ export default function Navbar() {
         }}>{parentName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID) && <>
