@@ -14,7 +14,7 @@ export const AdminLogin = () => {
             alert(response.data.message)
            localStorage.setItem("adminID",response.data.adminID)
            localStorage.setItem("adminName",response.data.admin.username)
-           nav("/Home")
+           nav("/AdminHome")
             setEmail("")
             setPassword("")
         }

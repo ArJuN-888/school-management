@@ -7,15 +7,16 @@ const {teacherModel} = require("../Model/TeacherSchema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
-const passuser=/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/
+
 
 router.post("/register",async(req,res)=>{
 try
 {
-    const {username,email,password,roll,studentname,studentclass,status}=req.body;
+    const {studentname,parentname, email,classteacher, health ,password,batch,status,parentphone}=req.body
+    console.log("req body",req.body)
    const teacherid = req.query.teacherid
   
-    if(!username || !email || !password || !studentclass || !roll || !studentname || !status)
+    if(!studentname || !parentname || !email || !classteacher || !health || !batch || !password || !status || !parentphone)
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
@@ -24,10 +25,7 @@ try
         return res.status(400).json({message:" email already in use !!!"})
     }
    
-    if(!username.match(passuser))
-    {
-        return res.status(400).json({message:" Password should contain Minimum 8 characters,Only contains alphanumeric characters, underscore and dot.Underscore and dot can't be at the end or start of a username.Underscore and dot can't be next to each other.Underscore or dot can't be used multiple times in a row .",}); 
-    }
+    
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {
         return res.status(400).json({ message: "Enter a valid email" });
@@ -37,18 +35,19 @@ try
         return res.status(400).json({message:" Password should contain Minimum 8 charactersAt least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
     }
     const classname =await teacherModel.findById(teacherid)
-    console.log("classnameteacher",classname.batch,"batchofstd",studentclass)
-    if(classname.batch !== studentclass )
+    console.log("classnameteacher",classname.batch,"batchofstd",batch)
+    if(classname.batch !== batch )
     {
         return res.status(400).json({message:"you have no right to add to this Provided division"})
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newParent=new parentModel({email,password:hashedPassword,username,studentclass,roll,studentname,status})
+    const newParent=new parentModel({studentname,parentname,email, classteacher,health,password:hashedPassword,batch,status,parentphone})
     await newParent.save()
     res.status(200).json({message:"Parent registration successfull "})
 }
 catch(error)
 {
+    console.log("error faced",error)
     return res.status(400).json({message:"Error in Parent Registration"})
 }
 
@@ -93,7 +92,7 @@ router.get("/getallparent",async(req,res)=>{
             const teacherid = req.query.teacherid
             const teacher = await teacherModel.findById(teacherid)
              
-            const data = await parentModel.find({studentclass:teacher.batch})
+            const data = await parentModel.find({batch:teacher.batch})
             res.status(200).json({parent:data})
         }
         else{

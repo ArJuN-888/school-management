@@ -17,6 +17,7 @@ import GetdoctorID from "./Components/Hooks/GetdoctorID";
 import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
+import AdminHome from "./Components/AdminHome";
 function App() {
   const adminID = GetadminID()
   const teacherID = GetTID()
@@ -26,7 +27,21 @@ const parentID = GetParentID()
     const [userID,setUserID] = useState(null)
     console.log("logoutuser id state  ",userID)
     const [teacherregisterdata,setteacherRegisterdata] = useState({username:"",classname:"",email:"",password:"", batch:"",status:""})
-    const [teacherloginData,setteacherLogindata] = useState({email:"",password:""})
+    const [teacherloginData,setteacherLogindata] = useState({email:"",password:"",batch:""})
+    const [Parentregister,setparentRegister] = useState({
+      studentname:"",
+      parentname:"",
+      classteacher:"",
+      email:"",
+      batch:"",
+      health:"",
+      password:"",
+      parentphone:"",
+      status:""
+   
+     })
+     //Loged in Techer Students...
+     const [loggedteacherStudents,setLoggedinTeacherStudents]=useState([])
     const [socket,setSocket] = useState(null)
     //not assigned a chat mainly new users
     const [potentialChats,setPotentialChats] = useState([])
@@ -114,7 +129,10 @@ const contextdata = {
     messages,setMessages,
     newMessage,setNewMessage,
     onlineUsers,setOnlineUsers,
-    baseURL
+    baseURL,Parentregister,
+    setparentRegister,
+    loggedteacherStudents,
+    setLoggedinTeacherStudents
 }
     return (
         <>
@@ -126,13 +144,17 @@ const contextdata = {
          <Routes>
          <Route path="/Tlogin" element={<Login/>}/>
             <Route path="/Tregister" element={<Register/>}/>
+    
             <Route path="/Home" element={<Home/>}/>
+          
             <Route path="/Chat" element={<Chat/>}/>
             <Route path="/Adminlogin" element={<AdminLogin/>}/>
             <Route path="/Dlogin" element={<DoctorLogin/>}/>
             <Route path="/Dregister" element={<DoctorRegister/>}/>
             <Route path="/Pregister" element={<ParentRegistration/>}/>
             <Route path="/Plogin" element={<ParentLogin/>}/>
+            <Route path="/AdminHome" element={<AdminHome/>}/>
+
          </Routes>
          </mycontext.Provider>
          </BrowserRouter> 

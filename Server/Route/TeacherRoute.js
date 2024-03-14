@@ -58,15 +58,19 @@ router.post("/register", async (req, res) => {
 
 router.post("/login",async(req,res)=>{
     try{
-    const {email,password} = req.body
+    const {email,password,batch} = req.body
     const teacher=await teacherModel.findOne({email})
-    if(!email || !password)
+    if(!email || !password|| !batch)
     {
         return res.status(400).json({message:"empty fields"})
     }
    
     if(!teacher){
         return res.status(400).json({message:"Invalid Account !!!"})
+    }
+
+    if(teacher.batch!==batch){
+      return res.status(400).json({message:"incorrect batch"})
     }
    
     const isPasswordValid= await bcrypt.compare(password,teacher.password)

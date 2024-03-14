@@ -32,6 +32,13 @@ console.log("lgindt",teacherloginData)
                 placeholder='Email...'
                 onChange={(e) => handleLoginChange("email", e.target.value)}
             />
+            
+            <input
+                type='text'
+                value={teacherloginData.batch}
+                placeholder='batch...'
+                onChange={(e) => handleLoginChange("batch", e.target.value)}
+            />
             <input
                 type='text'
                 value={teacherloginData.password}

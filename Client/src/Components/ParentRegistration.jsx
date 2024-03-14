@@ -1,20 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import mycontext from '../Context/Context'
 import GetTID from './Hooks/Getteacherid'
 export default function ParentRegistration() {
   const {baseURL} = useContext(mycontext)
   const teacherID = GetTID()
-  const [Parentregister,setparentRegister] = useState({
-   username:"",
-   email:"",
-   password:"",
-   roll:"",
-   studentname:"",
-   studentclass:"",
-   status:""
-
-  })
+  const{Parentregister,setparentRegister}=useContext(mycontext)
   const handleChange = (key,value) =>{
   setparentRegister({...Parentregister,[key]:value})
   }
@@ -34,35 +25,45 @@ alert(error.response.data.message)
 }
   return (
     <div>
+      <input
+     value={Parentregister.studentname}
+     placeholder='studentname...'
+     onChange={(e)=>handleChange("studentname",e.target.value)}
+     />
      <input
-     value={Parentregister.username}
-     placeholder='Username...'
-     onChange={(e)=>handleChange("username",e.target.value)}
+     value={Parentregister.parentname}
+     placeholder='parentname...'
+     onChange={(e)=>handleChange("parentname",e.target.value)}
+     />
+      <input
+      value={Parentregister.classteacher}
+      placeholder='classteacher...'
+      onChange={(e)=>handleChange("classteacher",e.target.value)}
      />
      <input
       value={Parentregister.email}
       placeholder='Email...'
       onChange={(e)=>handleChange("email",e.target.value)}
      />
+      <input
+      value={Parentregister.batch}
+      placeholder='Batch...'
+      onChange={(e)=>handleChange("batch",e.target.value)}
+     />
+      <input
+      value={Parentregister.health}
+      placeholder='health...'
+      onChange={(e)=>handleChange("health",e.target.value)}
+     />
      <input
         value={Parentregister.password}
         placeholder='Password...'
         onChange={(e)=>handleChange("password",e.target.value)}
      />
-     <input
-       value={Parentregister.roll}
-       placeholder='Roll...'
-       onChange={(e)=>handleChange("roll",e.target.value)}
-     />
-     <input
-       value={Parentregister.studentname}
-       placeholder='Studentname...'
-       onChange={(e)=>handleChange("studentname",e.target.value)}
-     />
-     <input
-       value={Parentregister.studentclass}
-       placeholder='StudentClass'
-       onChange={(e)=>handleChange("studentclass",e.target.value)}
+      <input
+      value={Parentregister.parentphone}
+      placeholder='Parentphone...'
+      onChange={(e)=>handleChange("parentphone",e.target.value)}
      />
       <input
        value={Parentregister.status}

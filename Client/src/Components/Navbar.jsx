@@ -109,7 +109,7 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{adminName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/AdminHome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/">Create classroom</Link></li>
@@ -122,7 +122,7 @@ export default function Navbar() {
         }}>{teacherName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Pregister">Add parent</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
