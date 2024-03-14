@@ -5,6 +5,6 @@ const AttendenceControler = require("../Controler/AttendenceControler")
 const attendenceRoute= express.Router()
 
 attendenceRoute.post("/attendencemark",AttendenceControler.Markattendence)
-attendenceRoute.get("/attendence/:studentid",AttendenceControler.getattendenceRecord)
+attendenceRoute.get("/record/:studentid",AttendenceControler.getattendenceRecord)
 
 module.exports= attendenceRoute
