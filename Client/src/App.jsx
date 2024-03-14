@@ -19,7 +19,11 @@ import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
+<<<<<<< HEAD
 import Leaveletter from "./Components/Leaveletter";
+=======
+import Studentattendence from "./Components/Studentattendence";
+>>>>>>> 6a7f77fe01f4501bf12ced67138b67e9303d1bb8
 function App() {
   const adminID = GetadminID()
   const teacherID = GetTID()
@@ -157,7 +161,11 @@ const contextdata = {
             <Route path="/Plogin" element={<ParentLogin/>}/>
             <Route path="/AdminHome" element={<AdminHome/>}/>
             <Route path="/Teacherhome" element={<TeacherHome/>}/>
+<<<<<<< HEAD
             <Route path="/leaveletter" element={<Leaveletter/>}/>
+=======
+            <Route path="/Studentattendence" element={<Studentattendence/>}/>
+>>>>>>> 6a7f77fe01f4501bf12ced67138b67e9303d1bb8
          </Routes>
          </mycontext.Provider>
          </BrowserRouter> 
