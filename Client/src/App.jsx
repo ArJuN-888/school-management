@@ -19,7 +19,13 @@ import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
+
 import Announcements from "./Components/Announcements";
+import Studentattendence from "./Components/Studentattendence";
+
+
+import Leaveletter from "./Components/Leaveletter";
+
 import Studentattendence from "./Components/Studentattendence";
 
 function App() {
@@ -160,7 +166,13 @@ const contextdata = {
             <Route path="/AdminHome" element={<AdminHome/>}/>
             <Route path="/Teacherhome" element={<TeacherHome/>}/>
 
+
             <Route path="/Announcements" element={<Announcements/>}/>
+
+            <Route path="/Studentattendence" element={<Studentattendence/>}/>
+
+
+            <Route path="/leaveletter" element={<Leaveletter/>}/>
 
             <Route path="/Studentattendence" element={<Studentattendence/>}/>
 

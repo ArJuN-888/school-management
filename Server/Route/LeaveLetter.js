@@ -2,11 +2,10 @@ const express=require("express")
 const router=express.Router()
 const {leaveModel}=require('../Model/LeaveLetter.js')
 
-router.post('/add',async(req,res)=>{
+router.post('/add/:id',async(req,res)=>{
     try
     {
         const{studentname,rollno,days,startdate,reason,studentclass,parentid}= req.body
-
         if(!parentid)
         {
             return res.status(400).json({message:"Parent Login Required"})
