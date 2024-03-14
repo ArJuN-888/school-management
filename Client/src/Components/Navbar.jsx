@@ -141,6 +141,7 @@ export default function Navbar() {
         }}>{parentName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID) && <>
