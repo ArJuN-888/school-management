@@ -31,6 +31,9 @@ const {onlineUsers,} = useContext(mycontext)
 {recipientUser && recipientUser.username && (
   <div className='name ' style={{letterSpacing:"2px",fontSize:"18px"}}>{recipientUser.username}</div>
 )}
+{recipientUser && recipientUser.parentname && (
+  <div className='name fs-5 '>{recipientUser.parentname}</div>
+)}
 {recipientUser && recipientUser.classname && (
   <div className='name fs-5 '>class : {recipientUser.classname}</div>
 )}
@@ -39,6 +42,9 @@ const {onlineUsers,} = useContext(mycontext)
 )}
  {recipientUser && recipientUser.batch && (
   <div className='name d-flex '>class : {recipientUser.batch}</div>
+)}
+  {recipientUser && recipientUser.status && recipientUser.parentname && recipientUser.studentname && (
+  <div className='name  p-1   d-flex '>{recipientUser.status} {` of ${recipientUser.studentname}`}</div>
 )}
   {recipientUser && recipientUser.status && (
   <div className='name  p-1   d-flex '>stat : {recipientUser.status}</div>

@@ -14,7 +14,7 @@ export default function TeacherHome() {
     if (userID===teacherID) {
       getStudents();
     }
-  }, []);
+  }, [teacherID]);
 
   const getStudents = async () => {
     const response = await axios.get(`${baseURL}/Parent/getallparent`,{

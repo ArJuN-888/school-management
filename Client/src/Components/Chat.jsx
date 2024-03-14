@@ -44,7 +44,7 @@ useEffect(()=>{
   {
     fetchdparentchat()
   }
-},[userID,doctorID])
+},[userID,doctorID,teacherID,adminID,parentID])
     useEffect(()=>{
       fetchMessages()
     },[currentChat])
