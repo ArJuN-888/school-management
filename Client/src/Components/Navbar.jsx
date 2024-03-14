@@ -120,7 +120,7 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{teacherName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Teacherhome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 

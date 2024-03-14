@@ -28,8 +28,8 @@ catch(error)
             {potentialChats && potentialChats.map((u,index)=>{
                 return(
 <div className="single-user" key={index} onClick={()=>{Createchat(userID,u._id)}}>
-     <div><RiMessage2Fill fontSize="20px" style={{ color:"white"}}/> {u.username}</div>
-     <div>{[u.classname] && [u.classname]}</div>
+     <div><RiMessage2Fill fontSize="20px" style={{ color:"white"}}/> {u.username} {u.parentname && u.parentname}</div>
+     <div>{[u.batch] && [u.batch]}</div>
      <div>{u.status}  {u.studentname &&`of ${u.studentname} `}</div>
    <div>{onlineUsers.some((user)=>user?.userID === u._id) ? <HiOutlineStatusOnline style={{fontSize:"20px",color:"yellow"}} /> : ""}</div>
 </div>

@@ -3,6 +3,7 @@ const router=express.Router()
 const JWT=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
 const {teacherModel} = require('../Model/TeacherSchema')
+const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
@@ -92,8 +93,18 @@ catch(error)
 })
 router.get("/getallteachers",async(req,res)=>{
     try{
-    const data = await teacherModel.find({})
-    res.status(200).json({teacher:data})
+      if(req.query.parentid)
+      {
+        const parent = await parentModel.findById(req.query.parentid)
+        //teacher of the student of that particular parent based on batch provided by parent
+        const data = await teacherModel.find({batch:parent.batch})
+        res.status(200).json({teacher:data})
+      }
+      else{
+        const data = await teacherModel.find({})
+        res.status(200).json({teacher:data})
+      }
+    
     }
     catch(error){
         return res.status(400).json({message:"Unable to fetch teachers"})

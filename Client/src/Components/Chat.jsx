@@ -123,9 +123,23 @@ catch(error)
       let newTeachers =[];
       let newParents = [];
        let responseParent;
-      const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`);
+       let responseTeachers;
+     
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
+      //when parent logs in we need to sort the childrens based on the batch provided by the teacher or by teacher name
+  if(parentID)
+  {
+    responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`,{
+      params:{
+        parentid:parentID
+      }
+    });
+  }
+  else{
+    responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
+  }
+      //when teacher logs in we need to sort the childrens of that particular teacher
       if(teacherID)
       {
         responseParent = await axios.get(`${baseURL}/Parent/getallparent`,{

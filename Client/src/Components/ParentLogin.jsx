@@ -27,10 +27,12 @@ export default function ParentLogin() {
         <label>Parent login</label>
         <input
         value={plogindata.email}
+        placeholder='email...'
         onChange={(e)=>handleChange("email",e.target.value)}
         />
         <input
          value={plogindata.password}
+         placeholder='password...'
          onChange={(e)=>handleChange("password",e.target.value)}
         />
         <button onClick={Login}>Login</button>

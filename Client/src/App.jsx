@@ -18,6 +18,7 @@ import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
+import TeacherHome from "./Components/TeacherHome";
 function App() {
   const adminID = GetadminID()
   const teacherID = GetTID()
@@ -154,7 +155,7 @@ const contextdata = {
             <Route path="/Pregister" element={<ParentRegistration/>}/>
             <Route path="/Plogin" element={<ParentLogin/>}/>
             <Route path="/AdminHome" element={<AdminHome/>}/>
-
+            <Route path="/Teacherhome" element={<TeacherHome/>}/>
          </Routes>
          </mycontext.Provider>
          </BrowserRouter> 
