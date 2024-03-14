@@ -15,7 +15,7 @@ console.log("lgindt",teacherloginData)
             alert(response.data.message);
             localStorage.setItem("teacherID",response.data.tID)
             localStorage.setItem("teacherName",response.data.tname)
-            nav("/Home")
+            nav("/Teacherhome")
            
         } catch (error) {
             alert(error.response.data.message);
