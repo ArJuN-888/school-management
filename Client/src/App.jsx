@@ -21,7 +21,6 @@ import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
 
 import Announcements from "./Components/Announcements";
-import Studentattendence from "./Components/Studentattendence";
 
 
 import Leaveletter from "./Components/Leaveletter";
