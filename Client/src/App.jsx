@@ -75,7 +75,7 @@ const parentID = GetParentID()
         {
           setUserID(parentID)
         }
-      },[adminID,teacherID,doctorID])
+      },[adminID,teacherID,doctorID,parentID])
     useEffect(()=>{
         //establishing socket io connection
   const newSocket = io("http://localhost:8080")

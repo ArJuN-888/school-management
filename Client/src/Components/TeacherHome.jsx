@@ -5,13 +5,13 @@ import axios from "axios";
 import mycontext from "../Context/Context";
 import "./Styles/Home.css"
 export default function TeacherHome() {
-  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents,userID} = useContext(mycontext);
+  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents} = useContext(mycontext);
   console.log("logged in teacher students",loggedteacherStudents)
   const teachername = getteachername();
   const teacherID = GetTID();
 
   useEffect(() => {
-    if (userID===teacherID) {
+    if (teacherID) {
       getStudents();
     }
   }, [teacherID]);
