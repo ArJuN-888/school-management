@@ -2,27 +2,30 @@ const express=require("express")
 const router=express.Router()
 const {leaveModel}=require('../Model/LeaveLetter.js')
 
-router.post('/add/:id',async(req,res)=>{
-    try
-    {
-        const{studentname,rollno,days,startdate,reason,studentclass,parentid}= req.body
-        if(!parentid)
-        {
-            return res.status(400).json({message:"Parent Login Required"})
+router.post('/add', async (req, res) => {
+    try {
+        const { studentname, rollno, days, startdate, reason, studentclass, parentid, grant } = req.body;
+
+        console.log("Received request with body:", req.body);
+
+        if (!parentid) {
+            return res.status(400).json({ message: "Parent ID is required" });
         }
-        if(!studentname || !rollno || !days || startdate || !reason || !studentclass)
-        {
-            return res.status(400).json({message:"All Fields are Mandatory"})
+
+        if (!studentname || !rollno || !days || !startdate || !reason || !studentclass ) {
+            return res.status(400).json({ message: "All Fields are Mandatory" });
         }
-        const leave= new leaveModel({studentname,rollno,days,startdate,reason,studentclass,parentid})
-        await leave.save()
-        return res.json({message:"Leave Letter Submitted Successfully.."})
+
+
+        const leave = new leaveModel({ studentname, rollno, days, startdate, reason, studentclass, parentid, grant });
+        await leave.save();
+        return res.json({ message: "Leave Letter Submitted Successfully.." });
+    } catch (error) {
+        console.error("Error occurred:", error);
+        return res.status(400).json({ message: "Unable To Send Leave Letter" });
     }
-    catch(error)
-    {
-        return res.status(400).json({message:"Unable To Send Leave Letter"})
-    }
-})
+});
+
 
 router.get('/getallletters',async(req,res)=>{
     try{

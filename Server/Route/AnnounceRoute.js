@@ -19,10 +19,11 @@ router.post("/post",async(req,res)=>{
 })
 router.get("/gatherpost",async(req,res)=>{
     try{
-    
+    const announcement = await announceModel.find({})
+    res.status(200).json({anouncement:announcement})
     }
     catch(error){
-        
+        res.status(400).json({message:"Unable to fetch"})
     }
 })
 module.exports = router

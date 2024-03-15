@@ -19,7 +19,7 @@ import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
-
+import GetTname from "./Components/Hooks/Getteachername";
 import Announcements from "./Components/Announcements";
 
 import Leaveletter from "./Components/Leaveletter";
@@ -32,6 +32,7 @@ function App() {
   const teacherID = GetTID();
   const doctorID = GetdoctorID();
   const parentID = GetParentID();
+  const teacherName = GetTname()
   //common logid container
   const [userID, setUserID] = useState(null);
   console.log("logoutuser id state  ", userID);
@@ -51,7 +52,7 @@ function App() {
   const [Parentregister, setparentRegister] = useState({
     studentname: "",
     parentname: "",
-    classteacher: "",
+    classteacher: teacherName,
     email: "",
     batch: "",
     health: "",

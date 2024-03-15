@@ -19,7 +19,7 @@ console.log("id",parentID);
 const leaveSubmit = async()=>{
     try
     {
-        const response = await axios.post(`${baseURL}/Leave/add`,{studenname:sname,rollno,days,startdate:sdate,reason,studentclass:sclass,parentID})
+        const response = await axios.post(`${baseURL}/Leave/add`,{studentname:sname,rollno,days,startdate:sdate,reason,studentclass:sclass,parentid:parentID,grant:false})
         console.log("res",response);
         alert(response.data.message);
         setSname("")

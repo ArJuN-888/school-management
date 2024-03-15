@@ -9,10 +9,10 @@ const leaveSchema=new mongoose.Schema({
     reason:{type:String,required:true},
     studentclass:{type:String,required:true},
     parentid:{type:mongoose.Schema.Types.ObjectId,ref:"parents",required:true},
-    grant:{type:Boolean,default:false}
+    grant:{type:Boolean}
 })
 
-const leaveModel=mongoose.model("leave letters",leaveSchema)
+const leaveModel=mongoose.model("leaveletter",leaveSchema)
 
 
 module.exports={leaveModel}

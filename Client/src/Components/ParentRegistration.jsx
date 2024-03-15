@@ -35,11 +35,7 @@ alert(error.response.data.message)
      placeholder='parentname...'
      onChange={(e)=>handleChange("parentname",e.target.value)}
      />
-      <input
-      value={Parentregister.classteacher}
-      placeholder='classteacher...'
-      onChange={(e)=>handleChange("classteacher",e.target.value)}
-     />
+
      <input
       value={Parentregister.email}
       placeholder='Email...'
