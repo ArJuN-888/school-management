@@ -6,7 +6,10 @@ const router = express.Router()
 router.post("/post",Multerstore,async(req,res)=>{
     try{
    const {adminID,status,note} = req.body
-
+ if(!adminID)
+ {
+    res.status(400).json({message:"inavlid id..."})
+ }
    const response = new announceModel({adminID,filename:req.file.filename,status,note})
    await response.save()
     res.status(200).json({message:"Successfully added an announcement"})

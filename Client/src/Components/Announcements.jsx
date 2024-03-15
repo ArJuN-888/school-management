@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GetadminID from './Hooks/GetadminID'
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
@@ -111,19 +112,22 @@ catch(error)
 <div><h1>Upload announcements</h1></div>
 <input
 value={announce.note}
+className='inp'
 placeholder='note...'
 onChange={(e)=>handleChange("note",e.target.value)}
 />
 <input
 value={announce.status}
 placeholder='status...'
+className='inp'
 onChange={(e)=>handleChange("status",e.target.value)}
 />
       <input
       type='file'
      onChange={handleFile}
       />
-      <button onClick={HandleSubmit}>Post</button>
+      < Button  style={{letterSpacing:"2px",backgroundColor:"green",border:"none",
+    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
 { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld'>
 
