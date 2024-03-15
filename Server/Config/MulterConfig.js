@@ -20,7 +20,12 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  cb(null, true); // Accept all files
+  if (file.size === 0) {
+    // If file is empty, reject it with an error
+    cb(new Error('File is empty'), false);
+  } else {
+    cb(null, true); // Accept all other files
+  }
 };
 
 module.exports = multer({

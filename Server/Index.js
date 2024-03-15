@@ -24,6 +24,7 @@ const corsOptions = {
   };
   
 app.use(cors(corsOptions));
+app.use(express.static("./public"));
 //main Routes
 app.use("/Doctor",doctorRoute)
 app.use("/Admin",adminRoute)
@@ -32,9 +33,7 @@ app.use("/Parent",parentRoute)
 app.use("/Chat",chatRoute)
 app.use("/Message",messageRoute)
 app.use("/Leave",leaveRoute)
-
 app.use("/Announcement",announcementShema)
-
 app.use("/attendence",attendenceRoute)
 
 // Start the HTTP server
