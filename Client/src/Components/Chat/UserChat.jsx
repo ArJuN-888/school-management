@@ -23,9 +23,9 @@ const {onlineUsers,} = useContext(mycontext)
  <div className='d-flex' >
    
 <div className='me-2'>
-<FaUser style={{
+<FaUser  style={{
   fontSize:"30px",
-  color:"black",
+  color:"#ADD8E6",
   
 }} />
 </div>
