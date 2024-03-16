@@ -3,7 +3,8 @@ import GetTID from './Hooks/Getteacherid'
 import GetTname from './Hooks/Getteachername'
 import mycontext from '../Context/Context'
 import axios from 'axios'
-
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 const AttendenceViewing = () => {
     const teacherID=GetTID()
     const teacherName= GetTname()
@@ -42,8 +43,13 @@ const AttendenceViewing = () => {
           console.log(error);
         }
       };
+      const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            View Attendence tab
+        </Tooltip>
+    );
   return (
-    <div>
+    <div className='m-2' style={{letterSpacing:"2px"}}>
         <div className='heading'>
            <h2>You Can view Student's Attendence Here</h2>
         </div>
@@ -64,7 +70,13 @@ const AttendenceViewing = () => {
                 <tr key={index}>
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
+                  <OverlayTrigger
+                                placement="left"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}
+                            >
                   <td onClick={() => viewAttendence(student._id)} style={{cursor:"pointer"}}>view</td>
+                  </OverlayTrigger>
                 </tr>
               
               ))

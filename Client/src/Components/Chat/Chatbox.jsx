@@ -51,7 +51,7 @@ export default function Chatbox() {
     }>{recipientUser?.username} {recipientUser?.teachername} {recipientUser?.parentname}</label> <BiChat style={{color:"black"}} />  
    </div>
    <Stack gap={3} className='messages' ref={scrollRef}>
-  {messages && messages.map((message,index)=><Stack   key={index} className={`${message?.senderId === userID ? "message-s bg-secondary p-2 me-3 self align-self-end  flex-grow-0" : 
+  {messages && messages.map((message,index)=><Stack   key={index} className={`${message?.senderId === userID ? "message-s  p-2 me-3 self align-self-end  flex-grow-0" : 
    "message-r  p-2 ms-3 self align-self-start flex-grow-0" }` }>
     <span style={{fontSize:"18px"}}>{message.text}</span>
     <span style={{fontSize:"12px"}}>{moment(message.createdAt).calendar()}</span>

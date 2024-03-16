@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import "../Components/Styles/Home.css";
-import { PiStudentLight } from "react-icons/pi";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import mycontext from '../Context/Context';
 import { VscClose } from "react-icons/vsc";
+import { FaBookBookmark } from "react-icons/fa6";
+import { FaUserGraduate } from "react-icons/fa6";
 export default function Classroom() {
     const { baseURL } = useContext(mycontext);
     const [teachers, setTeachers] = useState([]);
@@ -62,9 +62,12 @@ export default function Classroom() {
     );
 
     return (
+        <>
+                      <h3 className='ms-2 mt-4 mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>Registered Classrooms...</h3>
         <div className='main'>
+
             {teachers.map((data, index) => (
-                <div className='data' key={index}>
+                <div className='data' style={{letterSpacing:"2px"}} key={index}>
                     {(toggle === 1 && data._id === togid) ? (
                         <>
                             <div>Name: {data.username}</div>
@@ -81,33 +84,39 @@ export default function Classroom() {
                                     boxShadow: "0px 0px 4px 0px",
                                     margin: "2px",
                                     borderRadius: "5px",
-                                    backgroundColor: "transparent"
+                                    backgroundColor: "#00A36C"
                                 }}>
-                                    <PiStudentLight style={{ fontSize: "30px" }} />
+                                    <FaUserGraduate style={{ fontSize: "30px" ,color:"white"}} />
                                 </button>
                             </OverlayTrigger>
                         </>
                     ) : (
                         <div className='d'>
                             <button style={{
-                                padding: "30px",
+                                padding: "10px 25px 10px 25px",
+                                position:"relative",
                                 border: "none",
-                                boxShadow: "0px 0px 4px 0px",
-                                backgroundColor: "transparent",
+                                letterSpacing:"2px",
+                                boxShadow: "0px 0px 4px 0px grey",
+                                backgroundColor: "Highlight",
+                                color:"white",
                                 margin: "2px",
                                 borderRadius: "5px",
                             }} onClick={() => handleToggle(data._id)}>
                                 {data.batch}
+                                  <div><FaBookBookmark /></div>
                             </button>
+                            
                         </div>
                     )}
                 </div>
             ))}
             <div className=''>
+            {ptog===1 && <h3 className='ms-2  mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>Registered Students...</h3>}
                 {parents.map((data, index) => (
                     <div  key={index}>
                         {(ptog === 1 && data.batch === batch) ? (
-                            <div className='details-sub'>
+                            <div className='details-sub ' style={{letterSpacing:"2px"}}>
                                 <div>Student Name: {data.studentname}</div>
                                 <div>Parent Name: {data.parentname}</div>
                                 <div>Batch: {data.batch}</div>
@@ -131,5 +140,6 @@ export default function Classroom() {
                  
             </div>
         </div>
+        </>
     );
 }

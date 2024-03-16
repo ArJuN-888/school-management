@@ -3,7 +3,7 @@ import React from 'react'
 const AdminHome = () => {
   return (
     <div>
-      <h1> this is admin Home page</h1>
+      <h1 className='fs-2' style={{letterSpacing:"2px"}}>admin Home...</h1>
     </div>
   )
 }

@@ -26,11 +26,11 @@ export default function TeacherHome() {
     setLoggedinTeacherStudents(response.data.parent)
   };
   return (
-    <div className="main">
+    <div className="main d-block m-2">
       <div className="heading">
-        <h3>Welcome {teachername} this is your class Room</h3>
+        <h3 style={{letterSpacing:"2px"}} >Welcome {teachername}, to your classRoom</h3>
       </div>
-      <div className="table fs-5">
+      <div className="table fs-5" style={{letterSpacing:"2px"}}>
         <table>
           <thead>
             <tr>

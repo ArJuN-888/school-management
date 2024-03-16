@@ -179,7 +179,7 @@ function App() {
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/viewattendence" element={<AttendenceViewing />} />
             <Route path="/Classroom" element={<Classroom />} />
-           {(teacherID || doctorID || parentID) && <Route path="/Broadcasts" element={<Broadcasts />} />} 
+          <Route path="/Broadcasts" element={<Broadcasts />} />
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

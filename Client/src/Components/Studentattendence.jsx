@@ -50,9 +50,9 @@ const Studentattendence = () => {
   };
 
   return (
-    <div>
+    <div className="m-2" style={{letterSpacing:"2px"}}>
       <div className="heading">
-        <h1>Record Your Class Attendance Here</h1>
+        <h1 className="fs-3">Record Your Class Attendance Here</h1>
       </div>
       <div className="table fs-5">
         <table>
@@ -72,7 +72,7 @@ const Studentattendence = () => {
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
                   <td>
-                    <DatePicker selected={date} onChange={(date) => setDate(date)} maxDate={new Date()} />
+                    <DatePicker placeholderText="Select the date..." selected={date} onChange={(date) => setDate(date)} maxDate={new Date()} />
                   </td>
                   <td>
                     <select
@@ -87,10 +87,11 @@ const Studentattendence = () => {
                       <option value="" disabled>CHOOSE</option>
                       <option value="PRESENT">PRESENT</option>
                       <option value="ABSENT">ABSENT</option>
+                      <option value="ABSENT">HALFDAY</option>
                     </select>
                   </td>
                   <td>
-                    <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey"}} onClick={() => markAttendance(student._id, student.status)}>Mark Attendance</Button>
+                    <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={() => markAttendance(student._id, student.status)}>Mark Attendance</Button>
                   </td>
                 </tr>
               ))

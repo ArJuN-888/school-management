@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useFetchRecipient } from '../Hooks/FetchRecipient'
-import { FaUser } from "react-icons/fa";
+import { BiSolidChat } from "react-icons/bi";
 import { HiOutlineStatusOnline } from "react-icons/hi";
 import mycontext from '../../Context/Context';
 const UserChat = ({chat,userID}) => {
@@ -23,9 +23,9 @@ const {onlineUsers,} = useContext(mycontext)
  <div className='d-flex' >
    
 <div className='me-2'>
-<FaUser  style={{
+<BiSolidChat  style={{
   fontSize:"30px",
-  color:"#ADD8E6",
+  color:"#4e72f7",
   
 }} />
 </div>

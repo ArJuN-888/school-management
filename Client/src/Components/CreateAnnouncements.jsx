@@ -110,7 +110,7 @@ catch(error)
 }
   return (
     <div>
-<div><h1>Upload announcements</h1></div>
+<div><h1 className='fs-2' style={{letterSpacing:"2px"}}>Upload announcements...</h1></div>
 <input
 value={announce.note}
 className='inp'
@@ -129,6 +129,7 @@ onChange={(e)=>handleChange("status",e.target.value)}
       />
       < Button  style={{letterSpacing:"2px",backgroundColor:"green",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
+    <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
 { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
 <span style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>

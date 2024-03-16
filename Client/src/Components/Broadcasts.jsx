@@ -4,16 +4,25 @@ import moment from "moment"
 import { Button } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
+import GetParentID from './Hooks/GetParentID';
 import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
 export default function Broadcasts() {
   const [reqURL,] = useState('http://localhost:5000/uploads');
-  useEffect(()=>{
-    getAnnouncements()
-    },[])
+ 
     const teacherID = GetTID()
+    const parentID = GetParentID()
+    useEffect(()=>{
+      getAnnouncements()
+      if(parentID)
+      {
+        getbroadcast()
+      }
+      
+      },[])
   const {baseURL} = useContext(mycontext)
   const [broadcast,setbroadcast] = useState([])
+  const [broadcastmess,setbroadcastmess] = useState([])
   const getAnnouncements = async() =>{
     try{
       const response = await axios.get(`${baseURL}/Announcement/gatherpost`)
@@ -34,9 +43,21 @@ export default function Broadcasts() {
       saveAs(new Blob([response.data]), filename);
     });
   };
+  const getbroadcast = async() =>{
+const response = await axios.get(`${baseURL}/allbroadcastmess`,{
+  params:{
+    parentid:parentID
+  }
+
+})
+setbroadcastmess(response.data.bmess)
+  }
+  const postbroadcastmessage = async() =>{
+
+  }
   return (
     <div className='brdiv'>
-      <h3 style={{letterSpacing:"2px"}} className='ms-1'>Latest announcements</h3>
+      <h3 style={{letterSpacing:"2px"}} className='ms-1'>Announcements</h3>
       {broadcast.length === 0  && <div>No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld mt-4' style={{backgroundColor:"transparent"}}>
@@ -50,24 +71,30 @@ export default function Broadcasts() {
             </div>
 
 ))}
- <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Broadcast a message</h3>
-{teacherID && <div className='d-flex gap-3 mt-4 m-1'>
- 
+
+{teacherID && <div className='d-block  mt-4 m-1 '>
+<h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Broadcast a message</h3>
   <input
+  className='me-2'
   style={{
    letterSpacing:"2px",
    width:"50%"
   }}
   placeholder='Enter your message here...'
   />
-  <select>
-    <option value="select" disabled>Select your Batch</option>
+  <select className='me-2'>
+    <option value="select" >Select your Batch</option>
     <option value="10A">10A</option>
     <option value="10B">10B</option>
     <option value="10C">10C</option>
   </select>
-  <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
+  <Button onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
   </div>}
+  <div>
+    {parentID && <div>
+      <h3>broadcast by teacher</h3>
+      </div>}
+  </div>
     </div>
   )
 }

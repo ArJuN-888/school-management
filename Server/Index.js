@@ -8,7 +8,7 @@ const messageRoute = require("./Route/MessageRoute")
 const adminRoute = require('./Route/AdminRoute.js')
 const parentRoute = require("./Route/ParentRoute.js")
 const leaveRoute = require("./Route/LeaveLetter.js")
-
+const broadcastRoute = require("./Route/BroadcastRoute.js")
 const announcementShema = require("./Route/AnnounceRoute.js")
 const attendenceRoute = require("./Route/AttendenceRoute.js")
 
@@ -35,7 +35,7 @@ app.use("/Message",messageRoute)
 app.use("/Leave",leaveRoute)
 app.use("/Announcement",announcementShema)
 app.use("/attendence",attendenceRoute)
-
+app.use("/Broadcast",broadcastRoute)
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);
