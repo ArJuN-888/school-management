@@ -52,7 +52,7 @@ const Studentattendence = () => {
   return (
     <div>
       <div className="heading">
-        <h1>{Tname} Record Your Class Attendance Here</h1>
+        <h1>Record Your Class Attendance Here</h1>
       </div>
       <div className="table">
         <table>

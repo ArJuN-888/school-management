@@ -30,7 +30,7 @@ export default function TeacherHome() {
       <div className="heading">
         <h3>Welcome {teachername} this is your class Room</h3>
       </div>
-      <div className="table">
+      <div className="table fs-5">
         <table>
           <thead>
             <tr>

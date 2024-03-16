@@ -16,18 +16,20 @@ const {onlineUsers,} = useContext(mycontext)
         cursor:"pointer",
         color:"black",
         fontSize:"15px",
+       
         boxShadow:"0px 0px 6px 0px grey",
         borderRadius:"10px"
-    }} className='user-card  align-items-center p-2  justify-content-between'>
- <div className='d-flex'>
+    }} className='user-card  align-items-center p-2  justify-content-between fs-6'>
+ <div className='d-flex' >
    
 <div className='me-2'>
 <FaUser style={{
   fontSize:"30px",
-  color:"black"
+  color:"black",
+  
 }} />
 </div>
-<div className='text-content'>
+<div className='text-content ' >
 {recipientUser && recipientUser.username && (
   <div className='name ' style={{letterSpacing:"2px",fontSize:"18px"}}>{recipientUser.username}</div>
 )}

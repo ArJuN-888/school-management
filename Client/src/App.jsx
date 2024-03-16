@@ -20,10 +20,10 @@ import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
 import GetTname from "./Components/Hooks/Getteachername";
-import Announcements from "./Components/Announcements";
+import CreateAnnouncements from "./Components/CreateAnnouncements";
 import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
-
+import Broadcasts from "./Components/Broadcasts";
 import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 
@@ -173,12 +173,13 @@ function App() {
             <Route path="/Plogin" element={<ParentLogin />} />
             <Route path="/AdminHome" element={<AdminHome />} />
             <Route path="/Teacherhome" element={<TeacherHome />} />
-            <Route path="/Announcements" element={<Announcements />} />
+            <Route path="/createAnnouncements" element={<CreateAnnouncements />} />
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/leaveletter" element={<Leaveletter />} />
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/viewattendence" element={<AttendenceViewing />} />
             <Route path="/Classroom" element={<Classroom />} />
+           {(teacherID || doctorID || parentID) && <Route path="/Broadcasts" element={<Broadcasts />} />} 
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GetadminID from './Hooks/GetadminID'
 import axios from 'axios';
+import moment from "moment"
 import { Button } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
-export default function Announcements() {
+export default function CreateAnnouncements() {
   const {baseURL} = useContext(mycontext)
   const [selectedfile,setSelectedfile] = useState(null)
   const [broadcast,setbroadcast] = useState([])
@@ -129,8 +130,8 @@ onChange={(e)=>handleChange("status",e.target.value)}
       < Button  style={{letterSpacing:"2px",backgroundColor:"green",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
 { broadcast && broadcast.map((an,index)=>(
-<div key={index} className='grp-dwld'>
-
+<div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
+<span style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
 <div><label style={{letterSpacing:"2px"}}>{an.status}</label></div>
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>

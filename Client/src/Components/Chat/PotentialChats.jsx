@@ -27,9 +27,10 @@ catch(error)
            <div> <label style={{margin:"10px 0px 11.6px 0px"}} className=' fs-5'>Start a new chat...  <TbMessage2Plus /></label></div>
             {potentialChats && potentialChats.map((u,index)=>{
                 return(
+                    // <RiMessage2Fill fontSize="20px" style={{ color:"white"}}/>
 <div className="single-user" key={index} onClick={()=>{Createchat(userID,u._id)}}>
-     <div><RiMessage2Fill fontSize="20px" style={{ color:"white"}}/> {u.username} {u.parentname && u.parentname}</div>
-     <div>{[u.batch] && [u.batch]}</div>
+     <div> {u.username} {u.parentname && u.parentname}</div>
+      <div> {[u.batch] && [u.batch]}</div>
      <div>{u.status}  {u.studentname &&`of ${u.studentname} `}</div>
    <div>{onlineUsers.some((user)=>user?.userID === u._id) ? <HiOutlineStatusOnline style={{fontSize:"20px",color:"yellow"}} /> : ""}</div>
 </div>

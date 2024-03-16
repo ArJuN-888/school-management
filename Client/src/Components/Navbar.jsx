@@ -113,7 +113,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Announcements">Create Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -124,9 +124,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Teacherhome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
-
-        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
-
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Studentattendence">RecordStudentsAttendence</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/viewattendence">ViewAttendenceRecord</Link></li>
 
@@ -139,7 +137,7 @@ export default function Navbar() {
         }}>{doctorName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {parentID &&<>
@@ -149,8 +147,7 @@ export default function Navbar() {
         }}>{parentName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-
-        <li><Link style={{textDecoration:"none"}} to="/Announcements">Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
 
         <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
 

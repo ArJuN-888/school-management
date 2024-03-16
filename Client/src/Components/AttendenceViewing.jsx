@@ -47,7 +47,7 @@ const AttendenceViewing = () => {
         <div className='heading'>
            <h2> {teacherName} You Can view Studence Attendence Here</h2>
         </div>
-        <div className='table'>
+        <div className='table fs-5'>
         <table>
           <thead>
             <tr>
@@ -62,7 +62,7 @@ const AttendenceViewing = () => {
                 <tr key={index}>
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
-                  <td onClick={() => viewAttendence(student._id)}>view</td>
+                  <td onClick={() => viewAttendence(student._id)} style={{cursor:"pointer"}}>view</td>
                 </tr>
               ))
             ) : (

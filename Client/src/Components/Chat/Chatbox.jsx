@@ -48,7 +48,7 @@ export default function Chatbox() {
         {
             color:"black"
         }
-    }>{recipientUser?.username}</label> <BiChat style={{color:"black"}} />  
+    }>{recipientUser?.username} {recipientUser?.teachername} {recipientUser?.parentname}</label> <BiChat style={{color:"black"}} />  
    </div>
    <Stack gap={3} className='messages' ref={scrollRef}>
   {messages && messages.map((message,index)=><Stack   key={index} className={`${message?.senderId === userID ? "message-s bg-secondary p-2 me-3 self align-self-end  flex-grow-0" : 
