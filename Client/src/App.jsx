@@ -21,7 +21,7 @@ import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
 import GetTname from "./Components/Hooks/Getteachername";
 import Announcements from "./Components/Announcements";
-
+import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
 
 import Studentattendence from "./Components/Studentattendence";
@@ -173,16 +173,12 @@ function App() {
             <Route path="/Plogin" element={<ParentLogin />} />
             <Route path="/AdminHome" element={<AdminHome />} />
             <Route path="/Teacherhome" element={<TeacherHome />} />
-
             <Route path="/Announcements" element={<Announcements />} />
-
             <Route path="/Studentattendence" element={<Studentattendence />} />
-
             <Route path="/leaveletter" element={<Leaveletter />} />
-
             <Route path="/Studentattendence" element={<Studentattendence />} />
-
             <Route path="/viewattendence" element={<AttendenceViewing />} />
+            <Route path="/Classroom" element={<Classroom />} />
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

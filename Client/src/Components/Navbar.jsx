@@ -112,7 +112,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/AdminHome">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/">classroom</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Announcements">Create Announcements</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
