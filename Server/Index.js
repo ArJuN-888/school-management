@@ -11,6 +11,7 @@ const leaveRoute = require("./Route/LeaveLetter.js")
 const broadcastRoute = require("./Route/BroadcastRoute.js")
 const announcementShema = require("./Route/AnnounceRoute.js")
 const attendenceRoute = require("./Route/AttendenceRoute.js")
+const marksheetRoute = require("./Route/marklistRoute.js")
 
 const app = express();
 const PORT = 5000;
@@ -36,6 +37,7 @@ app.use("/Leave",leaveRoute)
 app.use("/Announcement",announcementShema)
 app.use("/attendence",attendenceRoute)
 app.use("/Broadcast",broadcastRoute)
+app.use("/marksheetadd",marksheetRoute)
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);

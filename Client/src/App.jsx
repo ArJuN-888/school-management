@@ -26,7 +26,8 @@ import Leaveletter from "./Components/Leaveletter";
 import Broadcasts from "./Components/Broadcasts";
 import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
-
+import StudentMarklist from "./Components/StudentMarklist";
+import ViewMarklist from "./Components/ViewMarklist";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -179,7 +180,9 @@ function App() {
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/viewattendence" element={<AttendenceViewing />} />
             <Route path="/Classroom" element={<Classroom />} />
-          <Route path="/Broadcasts" element={<Broadcasts />} />
+            <Route path="/Broadcasts" element={<Broadcasts />} />
+            <Route path="/marklist" element={<StudentMarklist/>}/>
+            <Route path="/viewmarklist" element={<ViewMarklist/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
