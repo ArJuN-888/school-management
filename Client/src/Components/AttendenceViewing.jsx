@@ -45,7 +45,7 @@ const AttendenceViewing = () => {
   return (
     <div>
         <div className='heading'>
-           <h2> {teacherName} You Can view Studence Attendence Here</h2>
+           <h2>You Can view Student's Attendence Here</h2>
         </div>
         <div className='table fs-5'>
         <table>
@@ -57,13 +57,16 @@ const AttendenceViewing = () => {
             </tr>
           </thead>
           <tbody>
+
           {loggedteacherStudents.length > 0 ? (
               loggedteacherStudents.map((student, index) => (
+             
                 <tr key={index}>
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
                   <td onClick={() => viewAttendence(student._id)} style={{cursor:"pointer"}}>view</td>
                 </tr>
+              
               ))
             ) : (
               <tr>
@@ -72,10 +75,12 @@ const AttendenceViewing = () => {
             )}
           </tbody>
           </table>
-          <div className=''>
+          <div className='mt-5'>
           {attendence.length > 0 ? (
-            <table>
+            
+            <table className='mt-6'>
               <thead>
+              <h3 className='mb-4'>Attendence History</h3>
                 <tr>
                   <th>Studentid</th>
                   <th>Date</th>

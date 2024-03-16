@@ -125,8 +125,8 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studentattendence">RecordStudentsAttendence</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/viewattendence">ViewAttendenceRecord</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studentattendence">Mark-Attendence</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/viewattendence">Attendence-Record</Link></li>
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}

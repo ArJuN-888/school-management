@@ -5,7 +5,7 @@ import mycontext from "../Context/Context";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { Button } from "react-bootstrap";
 const Studentattendence = () => {
   const Tname = GetTname();
   const teacherID = GetTID();
@@ -54,7 +54,7 @@ const Studentattendence = () => {
       <div className="heading">
         <h1>Record Your Class Attendance Here</h1>
       </div>
-      <div className="table">
+      <div className="table fs-5">
         <table>
           <thead>
             <tr>
@@ -90,7 +90,7 @@ const Studentattendence = () => {
                     </select>
                   </td>
                   <td>
-                    <button onClick={() => markAttendance(student._id, student.status)}>Mark Attendance</button>
+                    <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey"}} onClick={() => markAttendance(student._id, student.status)}>Mark Attendance</Button>
                   </td>
                 </tr>
               ))
