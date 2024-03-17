@@ -8,7 +8,8 @@ import Chat from "./Components/Chat";
 import GetTID from "./Components/Hooks/Getteacherid";
 import GetadminID from "./Components/Hooks/GetadminID";
 import Home from "./Components/Home";
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AdminLogin } from "./Components/AdminLogin";
 import DoctorLogin from "./Components/DoctorLogin";
@@ -19,7 +20,6 @@ import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
 import TeacherHome from "./Components/TeacherHome";
-import GetTname from "./Components/Hooks/Getteachername";
 import CreateAnnouncements from "./Components/CreateAnnouncements";
 import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
@@ -33,7 +33,6 @@ function App() {
   const teacherID = GetTID();
   const doctorID = GetdoctorID();
   const parentID = GetParentID();
-  const teacherName = GetTname()
   //common logid container
   console.log()
   const [userID, setUserID] = useState(null);
@@ -51,7 +50,9 @@ function App() {
     password: "",
     batch: "",
   });
-
+useEffect(()=>{
+  fetchallUsers()
+},[])
   //Loged in Techer Students...
   const [loggedteacherStudents, setLoggedinTeacherStudents] = useState([]);
   const [socket, setSocket] = useState(null);
@@ -68,6 +69,17 @@ function App() {
   //online users
   const [onlineUsers, setOnlineUsers] = useState([]);
   console.log("Online users", onlineUsers);
+  const [notifications,setNotifications] = useState([])
+  console.log("notification",notifications)
+  const [allUsers,setallUsers] = useState([])
+   console.log("alluserssajhghgfhdgf",allUsers)
+  const fetchallUsers = async() =>{
+    const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
+    const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
+    const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
+   const  responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
+   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher])
+  }
   //getting id of log
   useEffect(() => {
     if (teacherID) {
@@ -109,7 +121,7 @@ function App() {
     const recipientId = currentChat?.members?.find((id) => id !== userID);
     socket.emit("sendMessage", { ...newMessage, recipientId });
   }, [newMessage]);
-  //recieve message to recipient via socket
+  //recieve message to recipient via socket /notifications
   useEffect(() => {
     //event triggering
     if (socket === null) return;
@@ -117,10 +129,27 @@ function App() {
       if (currentChat?._id !== res.chatId) return;
       setMessages((prev) => [...prev, res]);
     });
+    socket.on("getNotification",(res)=>{
+      const isChatOpen = currentChat?.members.some((id) => id === res.senderId)
+      if(isChatOpen)
+      {
+        setNotifications((prev) => [{...res,isRead:true},...prev])
+      }
+      else{
+        setNotifications((prev) => [res, ...prev])
+      }
+    })
     return () => {
       socket.off("getMessage");
+      socket.off("getNotification")
     };
   }, [socket, currentChat]);
+  const markAllNotificationsAsread = useCallback((notifications)=>{
+    const mNotifications = notifications.map((n)=>{
+      return {...n, isRead: true}
+    })
+    setNotifications(mNotifications)
+  })
   const contextdata = {
     userID,
     setUserID,
@@ -143,6 +172,9 @@ function App() {
     baseURL,
     loggedteacherStudents,
     setLoggedinTeacherStudents,
+    notifications,setNotifications,
+    allUsers,
+    markAllNotificationsAsread
   };
   return (
     <>
