@@ -1,11 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import axios from 'axios'
 import mycontext from '../Context/Context'
 import GetTID from './Hooks/Getteacherid'
+import GetTname from './Hooks/Getteachername'
 export default function ParentRegistration() {
   const {baseURL} = useContext(mycontext)
   const teacherID = GetTID()
-  const{Parentregister,setparentRegister}=useContext(mycontext)
+  const teacherName = GetTname()
+  const [Parentregister, setparentRegister] = useState({
+    studentname: "",
+    parentname: "",
+    classteacher: teacherName,
+    email: "",
+    batch: "",
+    health: "",
+    password: "",
+    parentphone: "",
+    status: "",
+  });
   console.log("parent",Parentregister)
   const handleChange = (key,value) =>{
   setparentRegister({...Parentregister,[key]:value})

@@ -35,6 +35,7 @@ function App() {
   const parentID = GetParentID();
   const teacherName = GetTname()
   //common logid container
+  console.log()
   const [userID, setUserID] = useState(null);
   console.log("logoutuser id state  ", userID);
   const [teacherregisterdata, setteacherRegisterdata] = useState({
@@ -50,17 +51,7 @@ function App() {
     password: "",
     batch: "",
   });
-  const [Parentregister, setparentRegister] = useState({
-    studentname: "",
-    parentname: "",
-    classteacher: teacherName,
-    email: "",
-    batch: "",
-    health: "",
-    password: "",
-    parentphone: "",
-    status: "",
-  });
+
   //Loged in Techer Students...
   const [loggedteacherStudents, setLoggedinTeacherStudents] = useState([]);
   const [socket, setSocket] = useState(null);
@@ -150,8 +141,6 @@ function App() {
     onlineUsers,
     setOnlineUsers,
     baseURL,
-    Parentregister,
-    setparentRegister,
     loggedteacherStudents,
     setLoggedinTeacherStudents,
   };

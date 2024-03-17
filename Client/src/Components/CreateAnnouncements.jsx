@@ -117,12 +117,12 @@ className='inp'
 placeholder='note...'
 onChange={(e)=>handleChange("note",e.target.value)}
 />
-<input
-value={announce.status}
-placeholder='status...'
-className='inp'
-onChange={(e)=>handleChange("status",e.target.value)}
-/>
+<select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
+    <option value="Status" >Status</option>
+    <option value="Important">Important</option>
+    <option value="Notify">Notify</option>
+    <option value="Keeptrack">Keeptrack</option>
+  </select>
       <input
       type='file'
      onChange={handleFile}
@@ -132,9 +132,9 @@ onChange={(e)=>handleChange("status",e.target.value)}
     <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
 { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
-<span style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
+<span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
-<div><label style={{letterSpacing:"2px"}}>{an.status}</label></div>
+<div><label className='text-warning fs-5' style={{letterSpacing:"2px"}}>{an.status}</label></div>
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>
 <PiDownloadSimpleLight style={{fontSize:"30px"}} />
             </button>

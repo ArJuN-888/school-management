@@ -83,13 +83,13 @@ catch(error)
   }
   return (
     <div className='brdiv'>
-      <h3 style={{letterSpacing:"2px"}} className='ms-1'>Announcements</h3>
+      <h3 style={{letterSpacing:"2px"}} className='ms-1 mb-3'>Announcements</h3>
       {broadcast.length === 0  && <div>No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
-<div key={index} className='grp-dwld mt-4' style={{backgroundColor:"transparent"}}>
-<span style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
+<div key={index} className='grp-dwld mt-2 flex-wrap' style={{backgroundColor:"transparent"}}>
+<span className='fs-6 text-success' style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
-<div><label style={{letterSpacing:"2px"}}>{an.status}</label></div>
+<div><label className='text-warning' style={{letterSpacing:"2px"}}>{an.status}</label></div>
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>
 <PiDownloadSimpleLight style={{fontSize:"30px"}} />
             </button>
@@ -128,12 +128,11 @@ catch(error)
     {parentID && <div>
       <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Class Routines</h3>
       {broadcastmess && broadcastmess.map((data,index)=>(
-        <div key={index}>
-          <span style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
-          {data.text}
-          {data.batch}
-          {data.teachername}
-          {data.status}
+        <div key={index} className='routines-parent'>
+          <span className='text-success fs-6 me-5'  style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
+         <div style={{letterSpacing:"1px"}}> {data.text}</div>
+         <div><sub className='fs-4 text-danger me-5'>-{data.teachername}</sub> </div>
+          <div className='text-warning'>{data.status}</div>
           </div>
       ))}
       </div>}

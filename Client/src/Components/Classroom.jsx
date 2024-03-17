@@ -98,7 +98,7 @@ export default function Classroom() {
                                 border: "none",
                                 letterSpacing:"2px",
                                 boxShadow: "0px 0px 4px 0px grey",
-                                backgroundColor: "Highlight",
+                                backgroundColor: "dodgerblue",
                                 color:"white",
                                 margin: "2px",
                                 borderRadius: "5px",

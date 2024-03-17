@@ -36,18 +36,17 @@ export default function Register() {
         placeholder='Password...'
         onChange={(e) => handleChange("password", e.target.value)}
     />
-       <input
-        type='text'
-        value={teacherregisterdata.batch}
-        placeholder='Batch....'
-        onChange={(e) => handleChange("batch", e.target.value)}
-    />
-     <input
-        type='text'
-        value={teacherregisterdata.status}
-        placeholder='Status...'
-        onChange={(e) => handleChange("status", e.target.value)}
-    />
+       <select className='me-2' onChange={(e)=>handleChange("batch",e.target.value)}>
+    <option value="select" >Select your Batch</option>
+    <option value="10A">10A</option>
+    <option value="10B">10B</option>
+    <option value="10C">10C</option>
+  </select>
+     <select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
+    <option value="Status" >Status</option>
+    <option value="Class teacher">Class teacher</option>
+   
+  </select>
     <button onClick={()=>{register()}}>Register</button>
     </div>
   )

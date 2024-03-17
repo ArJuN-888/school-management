@@ -68,7 +68,7 @@ const ViewMarklist = () => {
               ))
             ) : (
               <div>
-                <h4>nothing to show</h4>
+                <h4>Mark list is not initiated...</h4>
               </div>
             )}
           </tbody>
@@ -112,7 +112,7 @@ const ViewMarklist = () => {
                 ))
               ) : (
                 <div>
-                  <h3>No data available</h3>
+                  <h3 className='ms-2'>No data available...</h3>
                 </div>
               )}
             </tbody>
