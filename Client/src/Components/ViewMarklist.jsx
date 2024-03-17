@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GetTname from './Hooks/Getteachername'
-import GetParentID from './Hooks/GetParentID'
+import GetTID from './Hooks/Getteacherid'
 import mycontext from '../Context/Context'
 import axios from 'axios'
 const ViewMarklist = () => {
     const teacherName=GetTname()
-    const teacherID=GetParentID()
+    const teacherID=GetTID()
     const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents} = useContext(mycontext)
     const [mark,setMark]=useState([])
 
@@ -63,7 +63,7 @@ const ViewMarklist = () => {
                 <tr key={index}>
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
-                  <td onClick={() => handleview(student._id)}>view</td>
+                  <td style={{cursor:"pointer"}} onClick={() => handleview(student._id)}>view</td>
                 </tr>
               ))
             ) : (
