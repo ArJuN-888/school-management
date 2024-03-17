@@ -20,9 +20,11 @@ export default function Broadcasts() {
       }
       
       },[])
+      const [notmessage,setNotmessage] = useState("")
   const {baseURL} = useContext(mycontext)
   const [broadcast,setbroadcast] = useState([])
   const [broadcastmess,setbroadcastmess] = useState([])
+  console.log("broadcastmess",broadcastmess)
   const getAnnouncements = async() =>{
     try{
       const response = await axios.get(`${baseURL}/Announcement/gatherpost`)
@@ -44,13 +46,15 @@ export default function Broadcasts() {
     });
   };
   const getbroadcast = async() =>{
-const response = await axios.get(`${baseURL}/allbroadcastmess`,{
+const response = await axios.get(`${baseURL}/Broadcast/allbroadcastmess`,{
   params:{
     parentid:parentID
   }
 
 })
 setbroadcastmess(response.data.bmess)
+setNotmessage(response.data.message)
+console.log("mss",response.data.message)
   }
   const postbroadcastmessage = async() =>{
 
@@ -92,8 +96,18 @@ setbroadcastmess(response.data.bmess)
   </div>}
   <div>
     {parentID && <div>
-      <h3>broadcast by teacher</h3>
+      <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Class Routines</h3>
+      {broadcastmess && broadcastmess.map((data,index)=>(
+        <div key={index}>
+          <span style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
+          {data.text}
+          {data.batch}
+          {data.teachername}
+          {data.status}
+          </div>
+      ))}
       </div>}
+      {notmessage && notmessage}
   </div>
     </div>
   )

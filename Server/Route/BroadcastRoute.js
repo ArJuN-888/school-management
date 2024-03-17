@@ -5,11 +5,11 @@ const express = require("express")
 const router = express.Router()
 
 //Create chat
-router.post("/broadcast",async(req,res)=>{
+router.post("/addbroadcast",async(req,res)=>{
     try{
-        const {text,batch} = req.body
+        const {text,batch,status,teachername} = req.body
         const teacherid = req.query.teacherid
-       if(!text || !batch)
+       if(!text || !batch || !teachername || !status)
        {
         return   res.status(400).json({message:"Empty fields..."})
        }
@@ -19,7 +19,7 @@ router.post("/broadcast",async(req,res)=>{
         return   res.status(400).json({message:"Invalid  batch..."})
       }
         const newbroadcast = new broadMessModel({
-           text,batch
+           text,batch,status,teachername
         })
         await newbroadcast.save()
      res.status(200).json({message:"Successfully send.."})
@@ -37,12 +37,16 @@ try{
       const data = await broadMessModel.find({
         batch: {$in : parent.batch }
       })
-      if(data)
+      console.log("datafrombroad",data)
+      if(data.length !== 0)
       {
         return res.status(200).json({bmess:data})
       }
+       else 
+       {
+        return   res.status(200).json({message:"No messages available..."})
+       }
 
-    return   res.status(200).json({message:"No messages available..."})
 }
     
    catch(error){

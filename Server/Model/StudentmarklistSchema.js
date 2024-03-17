@@ -24,6 +24,9 @@ const model = new mongoose.Schema({
         }
     }],
    
+},
+{
+    timestamps:true
 });
 
 const studentmarklistSchema = mongoose.model("studentmarklistSchema", model);
