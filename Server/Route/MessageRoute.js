@@ -10,7 +10,7 @@ router.post("/",async(req,res)=>{
    res.status(200).json(response)
     }
     catch(error){
-        res.status(500).json({message:"Unable to create message",error})
+        res.status(400).json({message:"Unable to create message"})
     }
 })
 //getmessages
@@ -21,7 +21,7 @@ router.get("/:chatId",async(req,res)=>{
    res.status(200).json(messages)
     }
     catch(error){
-        res.status(500).json({message:"Unable to create message",error})
+        res.status(400).json({message:"Unable to create message"})
     }
 })
 module.exports = router

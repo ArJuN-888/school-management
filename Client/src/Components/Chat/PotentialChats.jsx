@@ -36,8 +36,9 @@ export default function PotentialChats() {
                     <div><label style={{ margin: "10px 0px 11.6px 0px" }} className=' fs-5'>Start a new chat...  <TbMessage2Plus /></label></div>
                     <div className="batch-filter">
                        
-                       {(adminID || doctorID) && (<> <span>Show users from batch:</span><select value={selectedBatch} onChange={(e) => handleBatchSelect(e.target.value)}>
-                            <option value="">All</option>
+                       {(adminID || doctorID) && (<> <span className=' fs-6'>Sort users from batch </span><select className='mb-3 fs-5' style={{border:"none",backgroundColor:"transparent",
+                    outline:"none"}} value={selectedBatch} onChange={(e) => handleBatchSelect(e.target.value)}>
+                            <option  value="">All</option>
                             {/* Render unique batch values */}
                             {uniqueBatchValues.map((batch, index) => (
                                 <option key={index} value={batch}>{batch}</option>
@@ -49,7 +50,7 @@ export default function PotentialChats() {
                         .map((u, index) => {
                             return (
                                 <div className="single-user" key={index} onClick={() => { Createchat(userID, u._id) }}>
-                                    <div> {u.username} {u.parentname && u.parentname}</div>
+                                    <div > {u.username} {u.parentname && u.parentname}</div>
                                     <div> {[u.batch] && [u.batch]}</div>
                                     <div>{u.status}  {u.studentname && `of ${u.studentname} `}</div>
                                     <div>{onlineUsers.some((user) => user?.userID === u._id) ? <HiOutlineStatusOnline style={{ fontSize: "20px", color: "yellow" }} /> : ""}</div>

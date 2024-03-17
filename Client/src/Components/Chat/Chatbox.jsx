@@ -16,6 +16,9 @@ export default function Chatbox() {
    const {recipientUser} = useFetchRecipient(currentChat,userID)
   const scrollRef = useRef()
   useEffect(()=>{
+scrollRef.current?.scrollIntoView({behavior:"smooth"})
+  },[messages])
+  useEffect(()=>{
     if (scrollRef.current) {
         scrollRef.current.scrollIntoView({ behavior: "smooth" });
       }
@@ -37,7 +40,7 @@ export default function Chatbox() {
     }
     catch(error)
     {
-        // alert(error.response.data.message)
+        alert(error.response.data.message)
     }
   
    }
@@ -50,9 +53,11 @@ export default function Chatbox() {
         }
     }>{recipientUser?.username} {recipientUser?.teachername} {recipientUser?.parentname}</label> <BiChat style={{color:"black"}} />  
    </div>
-   <Stack gap={3} className='messages' ref={scrollRef}>
-  {messages && messages.map((message,index)=><Stack   key={index} className={`${message?.senderId === userID ? "message-s  p-2 me-3 self align-self-end  flex-grow-0" : 
-   "message-r  p-2 ms-3 self align-self-start flex-grow-0" }` }>
+   <Stack gap={3} className='messages' >
+  {messages && messages.map((message,index)=><Stack   key={index} className={`${message?.senderId === userID ? "message-s  p-2 me-3 mb-1 self align-self-end  flex-grow-0" : 
+   "message-r  p-2 ms-3 self align-self-start flex-grow-0" }` }
+   ref={scrollRef}
+   >
     <span style={{fontSize:"18px"}}>{message.text}</span>
     <span style={{fontSize:"12px"}}>{moment(message.createdAt).calendar()}</span>
   </Stack>)}

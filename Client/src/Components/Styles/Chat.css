@@ -8,7 +8,8 @@
     
         &::-webkit-scrollbar-thumb {
             background-color: rgb(193, 187, 187); /* Color of the thumb */
-            border-radius: 6px; /* Radius of the thumb */
+            border-radius: 7px; /* Radius of the thumb */
+           
         }
     
         &::-webkit-scrollbar-track {
@@ -44,6 +45,9 @@ body{
 .single-user{
     cursor: pointer;
     display: flex;
+    width: fit-content;
+    width: 100%;
+    flex-wrap: wrap;
     justify-content: space-between;
     border-radius: 6px;
         padding: 10px;
@@ -51,6 +55,8 @@ body{
         margin: 0px 0px 6px 2px;
         letter-spacing: 2px;
         box-shadow: 0px 0px 4px 0px grey;
+       box-sizing: border-box;
+      
     }
 .user-card{
     background-color: rgb(255, 255, 255); 
@@ -104,10 +110,9 @@ color: black;
 }
 .all-users{
     box-sizing: border-box;
-    padding: 5px;
-    overflow-y: scroll;
+    padding: 10px 14px 10px 10px;
     display: block;
-    width: 480px;
+    width: 500px;
     justify-content: space-between;
     height: 79.2vh;
     text-align: center;
@@ -115,8 +120,8 @@ color: black;
     box-shadow: 0px 0px 5px 0px grey;
    justify-content: center;
     font-family:cursive;
-
-    
+   overflow-y: scroll;
+   overflow-x: hidden;
 }
 
 @media screen and (max-width:815px) {
