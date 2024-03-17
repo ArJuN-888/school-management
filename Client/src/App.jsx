@@ -146,6 +146,7 @@ useEffect(()=>{
   }, [socket, currentChat]);
   const markAllNotificationsAsread = useCallback((notifications)=>{
     const mNotifications = notifications.map((n)=>{
+      alert("successfully read...")
       return {...n, isRead: true}
     })
     setNotifications(mNotifications)

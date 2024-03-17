@@ -11,7 +11,6 @@ import GetdoctorID from './Hooks/GetdoctorID';
 import Getdoctorname from './Hooks/Getdoctorname';
 import GetParentID from './Hooks/GetParentID';
 import GetPname from './Hooks/GetParentName';
-import Notification from './Notifications';
 export default function Navbar() {
   const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats} = useContext(mycontext)
     const teacherID = GetTID()
@@ -115,7 +114,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
-        <Notification/>
+       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -131,7 +130,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/viewattendence">Attendence-Record</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/marklist">Add-Students-mark</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/viewmarklist">View-mark-list</Link></li>
-        <Notification/>
+        
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
@@ -142,7 +141,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
-        <Notification/>
+      
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {parentID &&<>
@@ -155,7 +154,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
 
         <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
-<Notification/>
+
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID) && <>
