@@ -7,9 +7,10 @@ import { saveAs } from 'file-saver';
 import GetParentID from './Hooks/GetParentID';
 import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
+import GetTname from './Hooks/Getteachername';
 export default function Broadcasts() {
   const [reqURL,] = useState('http://localhost:5000/uploads');
- 
+   const teachername = GetTname()
     const teacherID = GetTID()
     const parentID = GetParentID()
     useEffect(()=>{
@@ -24,6 +25,9 @@ export default function Broadcasts() {
   const {baseURL} = useContext(mycontext)
   const [broadcast,setbroadcast] = useState([])
   const [broadcastmess,setbroadcastmess] = useState([])
+  const [status,setStatus] = useState("")
+  const [batch,setBatch] = useState("")
+  const [text,setText] = useState("")
   console.log("broadcastmess",broadcastmess)
   const getAnnouncements = async() =>{
     try{
@@ -46,18 +50,36 @@ export default function Broadcasts() {
     });
   };
   const getbroadcast = async() =>{
-const response = await axios.get(`${baseURL}/Broadcast/allbroadcastmess`,{
-  params:{
-    parentid:parentID
-  }
+    try{
 
-})
-setbroadcastmess(response.data.bmess)
-setNotmessage(response.data.message)
-console.log("mss",response.data.message)
+      const response = await axios.get(`${baseURL}/Broadcast/allbroadcastmess`,{
+        params:{
+          parentid:parentID
+        }
+      
+      })
+      setbroadcastmess(response.data.bmess)
+      setNotmessage(response.data.message)
+      console.log("mss",response.data.message)
+    }
+catch(error)
+{
+  console.log("error",error.response.data.message)
+}
   }
   const postbroadcastmessage = async() =>{
-
+try{
+const response = await axios.post(`${baseURL}/Broadcast/addbroadcast`,{text,status,teachername,batch},{
+  params:{
+    teacherid:teacherID
+  }
+})
+alert(response.data.message)
+}
+catch(error)
+{
+  alert(error.response.data.message)
+}
   }
   return (
     <div className='brdiv'>
@@ -79,14 +101,22 @@ console.log("mss",response.data.message)
 {teacherID && <div className='d-block  mt-4 m-1 '>
 <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Broadcast a message</h3>
   <input
+  value={text}
   className='me-2'
   style={{
    letterSpacing:"2px",
    width:"50%"
   }}
   placeholder='Enter your message here...'
+  onChange={(e)=> setText(e.target.value)}
   />
-  <select className='me-2'>
+   <select className='me-2' onChange={(e)=>setStatus(e.target.value)}>
+    <option value="Status" >Status</option>
+    <option value="Important">Important</option>
+    <option value="Notify">Notify</option>
+    <option value="Keeptrack">Keeptrack</option>
+  </select>
+  <select className='me-2' onChange={(e)=>setBatch(e.target.value)}>
     <option value="select" >Select your Batch</option>
     <option value="10A">10A</option>
     <option value="10B">10B</option>
