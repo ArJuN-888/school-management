@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import GetParentID from './Hooks/GetParentID';
 import './Styles/Leaveletter.css'
 import axios from 'axios';
@@ -6,6 +6,7 @@ import mycontext from '../Context/Context';
 
 
 export default function() {
+    const[letters,setLetters]=useState([])
     const[sname,setSname]=useState("")
     const[rollno,setRollno]=useState("")
     const[days,setDays]=useState("")
@@ -16,6 +17,11 @@ export default function() {
     const{baseURL}=useContext(mycontext)
 console.log("bas",baseURL);
 console.log("id",parentID);
+
+useEffect(()=>{
+    getMyletter()
+})
+
 const leaveSubmit = async()=>{
     try
     {
@@ -35,6 +41,17 @@ const leaveSubmit = async()=>{
     }
 }
 
+const getMyletter = async() =>{
+    try
+    {
+        const response=await axios.get(`${baseURL}/Leave/getletter/${parentID}`)
+        setLetters(response.data)
+    }
+    catch(err)
+    {
+        alert(err)
+    }
+}
 
   return (
     <div className='leave-container'>
@@ -86,6 +103,28 @@ const leaveSubmit = async()=>{
                 <div className='b-sec'>
                     <button className='leave-button' onClick={()=>leaveSubmit()}>Submit</button>
                 </div>
+            </div>
+        </div>
+        <div className='map-container'>
+            <div className='map-section'>
+                <table>
+                    <tr>
+                        <th>Sl. No</th>
+                        <th>Date</th>
+                        <th>Days Applied</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                    {letters.map((a,index)=>(
+                        <>
+                        <td>{index+1}</td>
+                        <td>{a.startdate}</td>
+                        <td>{a.days}</td>
+                        <td>{a.grant ? "Approved" : "Pending" }</td>
+                        </>
+                    ))}
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

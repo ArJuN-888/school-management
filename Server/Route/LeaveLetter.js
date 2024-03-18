@@ -41,6 +41,22 @@ router.get('/getletters',async(req,res)=>{
     }
 })
 
+
+router.get('/getletter/:id',async(req,res)=>{
+    try{
+    const {id}=req.params
+    console.log("mark",id);
+    const allLetters=await leaveModel.find({parentid:id})
+    console.log("mylet",allLetters);
+    return res.status(200).send(allLetters)
+    
+    }
+    catch(err)
+    {
+        return res.status(400).json({message:"error in fetching all letters"})
+    }
+})
+
 router.put("/grant/:id",async(req,res)=>{
     try{
         const {id}=req.params;

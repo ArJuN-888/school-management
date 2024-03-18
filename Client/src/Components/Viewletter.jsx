@@ -67,6 +67,7 @@ console.log("letters",letters);
             <h2 className='l-head'>Submitted LeaveLetters</h2>
             <table className='l-table'>
                 <tr>
+                    <th>Sl.no</th>
                     <th>Roll No.</th>
                     <th>Student Name</th>
                     <th>Start Date</th>
@@ -75,8 +76,9 @@ console.log("letters",letters);
                     <th>Action</th>
                 </tr>
                 <tr>
-                  {letters.map((a)=>(
+                  {letters.map((a,index)=>(
                     <>
+                    <td>{index+1}</td>
                     <td>{a.rollno}</td>
                     <td>{a.studentname}</td>
                     <td>{a.startdate}</td>
