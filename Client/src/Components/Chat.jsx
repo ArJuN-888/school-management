@@ -12,12 +12,14 @@ import PotentialChats from './Chat/PotentialChats'
 import GetadminID from './Hooks/GetadminID'
 import GetdoctorID from './Hooks/GetdoctorID'
 import GetParentID from './Hooks/GetParentID'
+import GetEID from './Hooks/GetEID'
 export default function Chat() {
   const teacherID = GetTID()
   const doctorID = GetdoctorID()
    const adminID = GetadminID()
    const parentID = GetParentID()
-   const {baseURL,setPotentialChats,chat,setChat,currentChat,setCurrentChat,messages,setMessages,userID} = useContext(mycontext)
+   const eoID = GetEID()
+   const {baseURL,setPotentialChats,chat,setChat,currentChat,setCurrentChat,messages,setMessages,userID,notifications} = useContext(mycontext)
     
   //  const [allusers,setAllusers] = useState([])
     console.log("currentchat",currentChat)
@@ -45,7 +47,11 @@ useEffect(()=>{
   {
     fetchdparentchat()
   }
-},[userID,doctorID,teacherID,adminID,parentID])
+  else if(eoID === userID)
+  {
+   fetchEchat()
+  }
+},[userID,doctorID,teacherID,adminID,parentID,eoID,notifications])
     useEffect(()=>{
       fetchMessages()
     },[currentChat])
@@ -105,6 +111,19 @@ catch(error)
   alert(error.response.data.message)
 }
 }
+//organization chat 
+const fetchEchat = async() =>{
+  try{
+      
+      const response = await axios.get(`${baseURL}/Chat/${eoID}`)
+      setChat(response.data)
+      setLoading(false)
+  }
+catch(error)
+{
+  alert(error.response.data.message)
+}
+}
     //user current chat
     const fetchMessages = async() =>{
       try{
@@ -125,9 +144,10 @@ catch(error)
       let newParents = [];
        let responseParent;
        let responseTeachers;
-     
+       const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
+      const neweo = responseeo.data.eo
       //when parent logs in we need to sort the childrens based on the batch provided by the teacher or by teacher name
   if(parentID)
   {
@@ -179,7 +199,7 @@ catch(error)
       //   return [...prevUsers, ...filteredTeachers, ...filteredAdmins,...filteredDoctors];
       // });
   
-      const pchats = [...newParents,...newTeachers, ...newAdmins,...newDoctors].filter((u) => {
+      const pchats = [...newParents,...newTeachers, ...newAdmins,...newDoctors,...neweo].filter((u) => {
         let isChatCreated = false;
         if (userID === u._id) return false;
         if (chat) {

@@ -14,13 +14,14 @@ export const EoLogin = () => {
             alert(response.data.message)
            localStorage.setItem("eoID",response.data.eoID)
            localStorage.setItem("eoName",response.data.eoName)
-           nav("/AdminHome")
+           alert(response.data.message)
+           nav("/Home")
             setEmail("")
             setPassword("")
         }
         catch(error)
         {
-            alert(error);
+            alert(error.response.data.message);
         }
     }
 

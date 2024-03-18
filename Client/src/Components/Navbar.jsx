@@ -14,7 +14,7 @@ import GetPname from './Hooks/GetParentName';
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
 export default function Navbar() {
-  const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats} = useContext(mycontext)
+  const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats,setNotifications} = useContext(mycontext)
     const teacherID = GetTID()
     const teacherName = GetTname()
     const adminID = GetadminID()
@@ -36,7 +36,6 @@ export default function Navbar() {
         setMessages(null)
         setUserID(null)
         setChat([])
-
         nav("/Tlogin")
         // location.reload()
      }
@@ -81,7 +80,6 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
-       
          localStorage.removeItem("parentName")
          localStorage.removeItem("parentID")
          nav("/Plogin")

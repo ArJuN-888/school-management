@@ -28,7 +28,7 @@ router.post("/register",async(req,res)=>{
 router.post("/login",async(req,res)=>{
     try{
     const {email,password} = req.body
-    const eo=await adminModel.findOne({email})
+    const eo=await eoModel.findOne({email})
     console.log(eo);
     if(!email || !password)
     {
@@ -68,6 +68,7 @@ router.get("/geteo",async(req,res)=>{
 router.get("/find/geteo/:id",async(req,res)=>{
     try{
     const data = await eoModel.findById(req.params.id)
+    console.log("eooooo",data)
     res.status(200).json({eo:data})
     }
     catch(error){

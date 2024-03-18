@@ -160,6 +160,44 @@ useEffect(()=>{
     })
     setNotifications(mNotifications)
   })
+  const markNotificationAsRead = useCallback((n,chat,userID,notifications)=>{
+    //find chat to open
+  const desiredChat = chat.find(chat=>{
+    const chatMembers = [userID,n.senderId]
+    const isDesiredChat = chat?.members.every((member)=>{
+      return chatMembers.includes(member)
+    })
+    return isDesiredChat
+  })
+  //mark notification as read
+  const mnotifications = notifications.map(el=>{
+    if(n.senderId === el.senderId){
+      return {...n,isRead:true}
+    }
+    else{
+      return el
+    }
+
+  })
+  setCurrentChat(desiredChat)
+  setNotifications(mnotifications)
+  },[])
+  const markthisuserNotificationAsRead = useCallback((thisUserNotifications,notifications)=>{
+// mark notification as read
+const mNotifications = notifications.map(el=>{
+  let notification;
+  thisUserNotifications.forEach(n=>{
+    if(n.senderId == el.senderId){
+      notification = {...n, isRead : true}
+    }
+    else {
+      notification = el
+    }
+  })
+  return notification
+})
+setNotifications(mNotifications)
+  },[])
   const contextdata = {
     userID,
     setUserID,
@@ -184,7 +222,9 @@ useEffect(()=>{
     setLoggedinTeacherStudents,
     notifications,setNotifications,
     allUsers,
-    markAllNotificationsAsread
+    markAllNotificationsAsread,
+    markNotificationAsRead,
+    markthisuserNotificationAsRead
   };
   return (
     <>
