@@ -28,6 +28,7 @@ import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
 import ViewMarklist from "./Components/ViewMarklist";
+import Viewletter from "./Components/Viewletter";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -204,6 +205,7 @@ useEffect(()=>{
             <Route path="/Broadcasts" element={<Broadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
+            <Route path="/viewletter" element={<Viewletter/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
