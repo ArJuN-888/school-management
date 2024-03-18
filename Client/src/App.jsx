@@ -258,11 +258,8 @@ setNotifications(mNotifications)
             <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/>
             <Route path="/Elogin" element={<EoLogin/>}/>
             <Route path="/viewletter" element={<Viewletter/>}/>
-<<<<<<< HEAD
             <Route path="/timetable" element={<Timetable/>}/>
-=======
 
->>>>>>> 546ba02bbbae1f1dcd1ba7ff3c0fed1a8b5e6fb7
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
