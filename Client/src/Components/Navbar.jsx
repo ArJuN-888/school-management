@@ -195,6 +195,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Adminlogin">Admin-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Dlogin">Doctor-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Plogin">Parent-Login</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Elogin">External-Login</Link></li>
         </> }
         
      
