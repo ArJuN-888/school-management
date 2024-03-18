@@ -28,9 +28,13 @@ import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
 import ViewMarklist from "./Components/ViewMarklist";
+<<<<<<< HEAD
 import ExternalOrganizationRegister from "./Components/ExternalOrganizationRegister";
 import GetEID from "./Components/Hooks/GetEID";
 import { EoLogin } from "./Components/EoLogin";
+=======
+import Viewletter from "./Components/Viewletter";
+>>>>>>> e629d6a2959c505bc5e6d9fcd2286b41ae56c705
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -213,8 +217,12 @@ useEffect(()=>{
             <Route path="/Broadcasts" element={<Broadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
+<<<<<<< HEAD
             <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/>
             <Route path="/Elogin" element={<EoLogin/>}/>
+=======
+            <Route path="/viewletter" element={<Viewletter/>}/>
+>>>>>>> e629d6a2959c505bc5e6d9fcd2286b41ae56c705
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

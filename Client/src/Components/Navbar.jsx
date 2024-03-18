@@ -151,6 +151,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/viewattendence">Attendence-Record</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/marklist">Add-Students-mark</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/viewmarklist">View-mark-list</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/viewletter">View-letter</Link></li>
         
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}

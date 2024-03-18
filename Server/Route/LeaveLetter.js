@@ -27,10 +27,29 @@ router.post('/add', async (req, res) => {
 });
 
 
-router.get('/getallletters',async(req,res)=>{
+router.get('/getletters',async(req,res)=>{
     try{
-    const allLetters=await leaveModel.find({})
+    const cls = req.query.clue
+    console.log("mark",cls);
+    const allLetters=await leaveModel.find({studentclass:cls})
+    console.log("lettr",allLetters);
     return res.status(200).send(allLetters)
+    }
+    catch(err)
+    {
+        return res.status(400).json({message:"error in fetching all letters"})
+    }
+})
+
+
+router.get('/getletter/:id',async(req,res)=>{
+    try{
+    const {id}=req.params
+    console.log("mark",id);
+    const allLetters=await leaveModel.find({parentid:id})
+    console.log("mylet",allLetters);
+    return res.status(200).send(allLetters)
+    
     }
     catch(err)
     {
