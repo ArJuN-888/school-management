@@ -28,6 +28,9 @@ import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
 import ViewMarklist from "./Components/ViewMarklist";
+import ExternalOrganizationRegister from "./Components/ExternalOrganizationRegister";
+import GetEID from "./Components/Hooks/GetEID";
+import { EoLogin } from "./Components/EoLogin";
 import Viewletter from "./Components/Viewletter";
 import Timetable from "./Components/Timetable";
 function App() {
@@ -35,6 +38,7 @@ function App() {
   const teacherID = GetTID();
   const doctorID = GetdoctorID();
   const parentID = GetParentID();
+  const eoID = GetEID()
   //common logid container
   console.log()
   const [userID, setUserID] = useState(null);
@@ -80,7 +84,8 @@ useEffect(()=>{
     const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
     const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
    const  responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
-   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher])
+   const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
+   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher,...responseeo.data.eo])
   }
   //getting id of log
   useEffect(() => {
@@ -93,7 +98,11 @@ useEffect(()=>{
     } else if (parentID) {
       setUserID(parentID);
     }
-  }, [adminID, teacherID, doctorID, parentID]);
+    else if(eoID)
+    {
+      setUserID(eoID);
+    }
+  }, [adminID, teacherID, doctorID, parentID,eoID]);
   useEffect(() => {
     //establishing socket io connection
     const newSocket = io("http://localhost:8080");
@@ -152,6 +161,44 @@ useEffect(()=>{
     })
     setNotifications(mNotifications)
   })
+  const markNotificationAsRead = useCallback((n,chat,userID,notifications)=>{
+    //find chat to open
+  const desiredChat = chat.find(chat=>{
+    const chatMembers = [userID,n.senderId]
+    const isDesiredChat = chat?.members.every((member)=>{
+      return chatMembers.includes(member)
+    })
+    return isDesiredChat
+  })
+  //mark notification as read
+  const mnotifications = notifications.map(el=>{
+    if(n.senderId === el.senderId){
+      return {...n,isRead:true}
+    }
+    else{
+      return el
+    }
+
+  })
+  setCurrentChat(desiredChat)
+  setNotifications(mnotifications)
+  },[])
+  const markthisuserNotificationAsRead = useCallback((thisUserNotifications,notifications)=>{
+// mark notification as read
+const mNotifications = notifications.map(el=>{
+  let notification;
+  thisUserNotifications.forEach(n=>{
+    if(n.senderId == el.senderId){
+      notification = {...n, isRead : true}
+    }
+    else {
+      notification = el
+    }
+  })
+  return notification
+})
+setNotifications(mNotifications)
+  },[])
   const contextdata = {
     userID,
     setUserID,
@@ -176,7 +223,9 @@ useEffect(()=>{
     setLoggedinTeacherStudents,
     notifications,setNotifications,
     allUsers,
-    markAllNotificationsAsread
+    markAllNotificationsAsread,
+    markNotificationAsRead,
+    markthisuserNotificationAsRead
   };
   return (
     <>
@@ -206,8 +255,14 @@ useEffect(()=>{
             <Route path="/Broadcasts" element={<Broadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
+            <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/>
+            <Route path="/Elogin" element={<EoLogin/>}/>
             <Route path="/viewletter" element={<Viewletter/>}/>
+<<<<<<< HEAD
             <Route path="/timetable" element={<Timetable/>}/>
+=======
+
+>>>>>>> 546ba02bbbae1f1dcd1ba7ff3c0fed1a8b5e6fb7
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

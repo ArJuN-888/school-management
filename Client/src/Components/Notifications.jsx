@@ -6,7 +6,7 @@ import { unreadNotificationsFunc } from './Hooks/unreadNotifications';
 import { FaCheckDouble } from "react-icons/fa";
 import moment from 'moment';
 export default function Notification() {
-    const {  notifications,setNotifications,chat,userID,allUsers,markAllNotificationsAsread} = useContext(mycontext)
+    const {  notifications,setNotifications,chat,userID,allUsers,markAllNotificationsAsread,markNotificationAsRead} = useContext(mycontext)
     const [isOpen,setisOpen] = useState(false)
    const unreadNotifications = unreadNotificationsFunc(notifications)
    const modifiedNotifications = notifications.map((n)=>{
@@ -20,7 +20,7 @@ return {
    console.log("mn",modifiedNotifications)
   return (
     <div className='notifications'>
-        <div style={{cursor:"pointer"}} className="notifications-icon" onClick={()=> setisOpen(!isOpen)}>
+        <div style={{cursor:"pointer"}} className="notifications-icon position-relative" onClick={()=> setisOpen(!isOpen)}>
         <PiNotificationLight className='fs-4'/>
         {unreadNotifications?.length === 0 ? null : (
  <div className="notification-count">
@@ -45,10 +45,14 @@ return {
                 <hr></hr>
                 {modifiedNotifications?.length === 0 ? <span className='notifications'>No notifications yet..</span>: null}
                 {modifiedNotifications && modifiedNotifications.map((n,index)=>{
-                    return <div key = {index} >
+                    return <div key = {index} onClick={()=>{
+                        markNotificationAsRead(n,chat,userID,notifications)
+                        setisOpen(false)
+                    }}>
                         <span >{`${n.senderName}`} sent you a new message</span>
                         <span  className='notification-time me-2'>{moment(n.date).calendar()}</span>
                         {n.isRead ? <FaCheckDouble /> : <FaCheck />}
+                        
                     </div>
                 })}
             </div>

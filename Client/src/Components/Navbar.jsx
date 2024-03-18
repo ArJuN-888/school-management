@@ -11,8 +11,10 @@ import GetdoctorID from './Hooks/GetdoctorID';
 import Getdoctorname from './Hooks/Getdoctorname';
 import GetParentID from './Hooks/GetParentID';
 import GetPname from './Hooks/GetParentName';
+import GetEID from './Hooks/GetEID';
+import GetEName from './Hooks/GetEName'
 export default function Navbar() {
-  const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats} = useContext(mycontext)
+  const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats,setNotifications} = useContext(mycontext)
     const teacherID = GetTID()
     const teacherName = GetTname()
     const adminID = GetadminID()
@@ -21,6 +23,8 @@ export default function Navbar() {
     const doctorName = Getdoctorname()
   const parentID = GetParentID()
   const parentName = GetPname()
+  const eoName = GetEName()
+  const eoID = GetEID()
     const nav = useNavigate()
     const Logststate = () =>{
      if(teacherID)
@@ -32,7 +36,6 @@ export default function Navbar() {
         setMessages(null)
         setUserID(null)
         setChat([])
-
         nav("/Tlogin")
         // location.reload()
      }
@@ -77,9 +80,25 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
-       
          localStorage.removeItem("parentName")
          localStorage.removeItem("parentID")
+         nav("/Plogin")
+        //  location.reload()
+      }
+
+    
+    }
+    const Logeostate = () =>{
+      if(eoID)
+      {
+        setPotentialChats([])
+         setCurrentChat(null)
+         setMessages(null)
+         setUserID(null)
+         setChat([])
+       
+         localStorage.removeItem("eoName")
+         localStorage.removeItem("eoID")
          nav("/Plogin")
         //  location.reload()
       }
@@ -158,11 +177,23 @@ export default function Navbar() {
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
-        {(!adminID && !teacherID && !doctorID && !parentID) && <>
+        {eoID &&<>
+        <li>Logged in as <label style={{
+            color:'green',
+            fontWeight:"bolder"
+        }}>{eoName}</label></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
+
+        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+        </>}
+        {(!adminID && !teacherID && !doctorID && !parentID && !eoID) && <>
         <li><Link style={{textDecoration:"none"}} to="/Tlogin">Teacher-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Adminlogin">Admin-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Dlogin">Doctor-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Plogin">Parent-Login</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Elogin">External-Login</Link></li>
         </> }
         
      

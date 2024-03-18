@@ -12,8 +12,12 @@ const broadcastRoute = require("./Route/BroadcastRoute.js")
 const announcementShema = require("./Route/AnnounceRoute.js")
 const attendenceRoute = require("./Route/AttendenceRoute.js")
 const marksheetRoute = require("./Route/marklistRoute.js")
+<<<<<<< HEAD
 const timeRoute = require('./Route/Timetable.js')
 
+=======
+const eoRoute = require("./Route/EoRoute.js")
+>>>>>>> 546ba02bbbae1f1dcd1ba7ff3c0fed1a8b5e6fb7
 const app = express();
 const PORT = 5000;
 app.use(express.json())
@@ -39,7 +43,11 @@ app.use("/Announcement",announcementShema)
 app.use("/attendence",attendenceRoute)
 app.use("/Broadcast",broadcastRoute)
 app.use("/marksheetadd",marksheetRoute)
+<<<<<<< HEAD
 app.use("/Timetable",timeRoute)
+=======
+app.use("/Organization",eoRoute)
+>>>>>>> 546ba02bbbae1f1dcd1ba7ff3c0fed1a8b5e6fb7
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);

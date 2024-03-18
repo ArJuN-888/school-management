@@ -8,17 +8,20 @@ const {adminModel} =require('../Model/AdminSchema.js')
 
 router.post("/register",async(req,res)=>{
     const {username,email,password,status}=req.body;
-
+  if(!username || !email || !password || !status)
+  {
+    return res.status(400).json({message:"Empty fields..."})
+  }
     const admin=await adminModel.findOne({email})
 
     if(admin){
-        return res.json({message:" email already in use !!!"})
+        return res.status(400).json({message:" email already in use !!!"})
     }
 
     const hashedPassword=await bcrypt.hash(password,10)
     const newAdmin=new adminModel({username,email,password:hashedPassword,status})
     await newAdmin.save()
-    res.json({message:"Admin registered successfully!!! "})
+    res.status(200).json({message:"Admin registered successfully!!! "})
 })
 
 

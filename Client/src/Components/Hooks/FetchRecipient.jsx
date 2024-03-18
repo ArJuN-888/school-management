@@ -33,6 +33,10 @@ export const useFetchRecipient = (chat, userID) => {
           if (parentresponse.data.parent !== null) {
             setRecipientUser(parentresponse.data.parent);
           }
+          const eoresponse = await axios.get(`${baseURL}/Organization/find/geteo/${recipientid}`);
+          if (eoresponse.data.eo !== null) {
+            setRecipientUser(eoresponse.data.eo);
+          }
         }
       } catch (error) {
         console.log(error);
