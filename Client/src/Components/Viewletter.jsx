@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import GetTID from './Hooks/Getteacherid'
-
+import moment from 'moment'
 
 export default function Viewletter() {
 
@@ -11,26 +11,9 @@ export default function Viewletter() {
   console.log("claa teacher",TID); 
   useEffect(()=>{
     getTeacher()
-    // getAllLetters()
-    
   
   },[])
 
-//  const getAllLetters = async() => {
-//    try
-//    {
-//      const res= await axios.get('http://localhost:5000/Leave/getletters',{
-//       params:{
-//         clue:cls
-//       }
-//      })
-//      setLetters(res.data)
-//    }
-//    catch(err)
-//    {
-//     alert(err)
-//    }
-//  }
 
  const getTeacher = async() => {
   try
@@ -43,6 +26,8 @@ export default function Viewletter() {
       }
      })
      setLetters(resp.data)
+     const dateObject = new Date(resp.data.startdate)
+     console.log("date",dateObject);
   }
   catch(err)
   {
@@ -50,8 +35,31 @@ export default function Viewletter() {
   }
 }
 
+const grantSubmit = async (id,grant) => {
+  try
+  {
+    if(grant===true)
+            {
+                const response =  await axios.put(`http://localhost:5000/Leave/grant/${id}`,{grant:false})
+                alert(response.data.message)
+            }
+            else
+            {
+                const response =  await axios.put(`http://localhost:5000/Leave/grant/${id}`,{grant:true})
+                alert(response.data.message)
+            
+            }
+            getTeacher()
+  }
+  catch(err)
+  {
+    alert(err)
+  }
+}
+
 console.log("letters",letters);
  console.log("cls",cls);
+
 
   return (
     <div className='l-container'>
@@ -67,6 +75,16 @@ console.log("letters",letters);
                     <th>Action</th>
                 </tr>
                 <tr>
+                  {letters.map((a)=>(
+                    <>
+                    <td>{a.rollno}</td>
+                    <td>{a.studentname}</td>
+                    <td>{a.startdate}</td>
+                    <td>{a.days}</td>
+                    <td>{a.reason}</td>
+                    <td><button className='l-button' onClick={()=>{grantSubmit(a._id,a.grant)}}>{a.grant? "Refuse":"Grant"}</button></td>
+                    </>
+                  ))}
                     
                 </tr>
             </table>
