@@ -28,11 +28,15 @@ import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
 import ViewMarklist from "./Components/ViewMarklist";
+import ExternalOrganizationRegister from "./Components/ExternalOrganizationRegister";
+import GetEID from "./Components/Hooks/GetEID";
+import { EoLogin } from "./Components/EoLogin";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
   const doctorID = GetdoctorID();
   const parentID = GetParentID();
+  const eoID = GetEID()
   //common logid container
   console.log()
   const [userID, setUserID] = useState(null);
@@ -78,7 +82,8 @@ useEffect(()=>{
     const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
     const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
    const  responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
-   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher])
+   const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
+   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher,...responseeo.data.eo])
   }
   //getting id of log
   useEffect(() => {
@@ -91,7 +96,11 @@ useEffect(()=>{
     } else if (parentID) {
       setUserID(parentID);
     }
-  }, [adminID, teacherID, doctorID, parentID]);
+    else if(eoID)
+    {
+      setUserID(eoID);
+    }
+  }, [adminID, teacherID, doctorID, parentID,eoID]);
   useEffect(() => {
     //establishing socket io connection
     const newSocket = io("http://localhost:8080");
@@ -204,6 +213,8 @@ useEffect(()=>{
             <Route path="/Broadcasts" element={<Broadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
+            <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/>
+            <Route path="/Elogin" element={<EoLogin/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
