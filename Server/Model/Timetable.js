@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const StudentTimetableSchema = new Schema({
     classteacher: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'teachers',
         required: true
     },
@@ -31,4 +31,4 @@ const StudentTimetableSchema = new Schema({
 
 const StudentTimetable = mongoose.model('StudentTimetable', StudentTimetableSchema);
 
-module.exports = StudentTimetable;
+module.exports = {StudentTimetable};
