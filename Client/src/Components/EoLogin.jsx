@@ -29,7 +29,7 @@ export const EoLogin = () => {
     <div className='admin-container'>
         <div className='admin-section'>
             <div className='admin-form' >
-                <h1 className='admin-title'>Admin Login</h1>
+                <h1 className='admin-title'>External Login</h1>
                 <input
                  className='admin-input'
                  type='text'

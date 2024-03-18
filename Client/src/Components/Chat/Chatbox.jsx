@@ -5,6 +5,7 @@ import "../Styles/Chat.css"
 import { useRef } from 'react';
 import { BiChat } from "react-icons/bi";
 import Spinner from 'react-bootstrap/Spinner';
+import { RiChatQuoteLine } from "react-icons/ri";
 import axios from 'axios';
 import {Stack} from "react-bootstrap"
 import { useFetchRecipient } from '../Hooks/FetchRecipient'
@@ -58,7 +59,7 @@ scrollRef.current?.scrollIntoView({behavior:"smooth"})
    "message-r  p-2 ms-3 self align-self-start flex-grow-0" }` }
    ref={scrollRef}
    >
-    <span style={{fontSize:"18px"}}>{message.text}</span>
+    <span style={{fontSize:"18px",display:"flex",flexWrap:"wrap"}}>{message.text} <RiChatQuoteLine /> </span>
     <span style={{fontSize:"12px"}}>{moment(message.createdAt).calendar()}</span>
   </Stack>)}
    </Stack>

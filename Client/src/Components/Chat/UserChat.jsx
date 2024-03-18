@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useFetchRecipient } from '../Hooks/FetchRecipient'
 import { BiSolidChat } from "react-icons/bi";
-
+import { PiClockClockwiseFill } from "react-icons/pi";
 import { HiOutlineStatusOnline } from "react-icons/hi";
 import mycontext from '../../Context/Context';
 import { unreadNotificationsFunc } from '../Hooks/unreadNotifications';
@@ -80,7 +80,9 @@ const truncateText = (text) =>{
 )}
 <div className='text'>{
 latestMessage?.text && (
-  <span>{truncateText(latestMessage?.text)}</span>
+  <span className='fs-5' style={{
+    letterSpacing:"2px"
+  }}><PiClockClockwiseFill /> {truncateText(latestMessage?.text)}...</span>
 )
 }</div>
 </div>
