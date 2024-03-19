@@ -9,6 +9,10 @@ const model = new mongoose.Schema({
         type: String,
         required: true
     },
+    examname:{
+        type:String,
+        required:true
+    },
     marks: [{
         subject: {
             type: String,

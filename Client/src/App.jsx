@@ -35,6 +35,8 @@ import Timetable from "./Components/Timetable";
 import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
+import ParentMarklistView from "./Components/ParentMarklistView";
+
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -263,6 +265,9 @@ setNotifications(mNotifications)
             <Route path="/timetable" element={<Timetable/>}/>
             <Route path="/viewtime" element={<ViewTime/>}/>
             <Route path="/Allteachers" element={<Teachers/>}/>
+            <Route path="/ParentmarklistView" element={<ParentMarklistView/>}/>
+
+
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

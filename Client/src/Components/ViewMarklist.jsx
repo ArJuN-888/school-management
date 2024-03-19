@@ -99,6 +99,7 @@ const [stname,setStname] = useState("")
               <tr>
                 <th className='bg-primary text-white '>studentid</th>
                 <th className='bg-primary text-white '>student name</th>
+                <th className='bg-primary text-white '>Examination Name</th>
                 <th className='bg-primary text-white '>Mark</th>
                 <th className='bg-primary text-white '>persentage</th>
                 <th className='bg-primary text-white '>Result</th>
@@ -112,6 +113,7 @@ const [stname,setStname] = useState("")
                   <tr key={index}>
                     <td>{data.studentid}</td>
                     <td>{data.name}</td>
+                    <td>{data.examname}</td>
                     <td>
                       <Table className='fs-5'  cstriped bordered hover variant="white">
                         <thead>
