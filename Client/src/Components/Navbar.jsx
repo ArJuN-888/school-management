@@ -173,7 +173,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
-
+        <li><Link style={{textDecoration:"none"}} to="/viewtime">Timetable</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 

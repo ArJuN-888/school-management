@@ -39,5 +39,27 @@ router.delete("/delete/:id",async (req, res) => {
     }
 })
 
+router.get("/gettable/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const timetable = await StudentTimetable.findById({_id:id});
+        res.json(timetable);
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.put("/updatetable/:id", async (req, res) => {
+    const { id } = req.params;
+    const { timetable } = req.body;
+    try {
+        await StudentTimetable.findByIdAndUpdate(id, { timetable });
+        res.status(200).json({ message: "Timetable updated successfully" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 
 module.exports = router
