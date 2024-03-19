@@ -101,55 +101,55 @@ const StudentMarklist = () => {
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject2">Subject 2:</label>
-                    <input type="text" id="subject2" name="subject2" required  onChange={handleonChange}/>
+                    <input type="text" id="subject2" name="subject2"   onChange={handleonChange}/>
                     <input type="number" id="scoredMark2" name="scoredMark2" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark2" name="totalMark2" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject3">Subject 3:</label>
-                    <input type="text" id="subject3" name="subject3" required onChange={handleonChange}/>
+                    <input type="text" id="subject3" name="subject3"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark3" name="scoredMark3" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark3" name="totalMark3" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject4">Subject 4:</label>
-                    <input type="text" id="subject4" name="subject4" required onChange={handleonChange}/>
+                    <input type="text" id="subject4" name="subject4"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark4" name="scoredMark4" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark4" name="totalMark4" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject5">Subject 5:</label>
-                    <input type="text" id="subject5" name="subject5" required onChange={handleonChange}/>
+                    <input type="text" id="subject5" name="subject5"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark5" name="scoredMark5" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark5" name="totalMark5" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject6">Subject 6:</label>
-                    <input type="text" id="subject6" name="subject6" required onChange={handleonChange}/>
+                    <input type="text" id="subject6" name="subject6"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark6" name="scoredMark6" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark6" name="totalMark6" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject7">Subject 7:</label>
-                    <input type="text" id="subject7" name="subject7" required onChange={handleonChange}/>
+                    <input type="text" id="subject7" name="subject7"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark7" name="scoredMark7" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark7" name="totalMark7" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject8">Subject 8:</label>
-                    <input type="text" id="subject8" name="subject8" required onChange={handleonChange}/>
+                    <input type="text" id="subject8" name="subject8"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark8" name="scoredMark8" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark8" name="totalMark8" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject9">Subject 9:</label>
-                    <input type="text" id="subject9" name="subject9" required onChange={handleonChange}/>
+                    <input type="text" id="subject9" name="subject9"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark9" name="scoredMark9" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark9" name="totalMark9" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject10">Subject 10:</label>
-                    <input type="text" id="subject10" name="subject10" required onChange={handleonChange}/>
+                    <input type="text" id="subject10" name="subject10"  onChange={handleonChange}/>
                     <input type="number" id="scoredMark10" name="scoredMark10" placeholder="Scored Mark" required onChange={handleonChange}/>
                     <input type="number" id="totalMark10" name="totalMark10" placeholder="Total Mark" required onChange={handleonChange}/>
                 </div>
