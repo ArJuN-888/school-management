@@ -63,7 +63,7 @@ alert(error.response.data.message)
      </select>
      
      <select   onChange={(e)=> handleChange("health",e.target.value)} >
-    <option value="health status">health status</option>
+    <option value="health status">Current health status</option>
       <option value="GOOD">GOOD</option>
       <option value="GOOD">BAD</option>
      </select>
@@ -75,6 +75,7 @@ alert(error.response.data.message)
       <input
       value={Parentregister.parentphone}
       placeholder='Parentphone...'
+      type='number'
       onChange={(e)=>handleChange("parentphone",e.target.value)}
      />
     

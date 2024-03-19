@@ -3,6 +3,7 @@ import GetTname from "./Hooks/Getteachername";
 import GetTID from "./Hooks/Getteacherid";
 import mycontext from "../Context/Context";
 import axios from "axios";
+import { Table} from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "react-bootstrap";
@@ -55,14 +56,14 @@ const Studentattendence = () => {
         <h1 className="fs-3">Record Your Class Attendance Here</h1>
       </div>
       <div className="table fs-5">
-        <table>
-          <thead>
-            <tr>
-              <th>Student ID</th>
-              <th>Student Name</th>
-              <th>Date</th>
-              <th>Attendance</th>
-              <th>Submit</th>
+        <Table responsive bordered hover variant="white">
+          <thead style={{letterSpacing:"4px"}} >
+            <tr >
+              <th className='bg-primary text-white '>Student ID</th>
+              <th className='bg-primary text-white '>Student Name</th>
+              <th className='bg-primary text-white '>Date</th>
+              <th className='bg-primary text-white '>Attendance</th>
+              <th className='bg-primary text-white '>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -101,7 +102,7 @@ const Studentattendence = () => {
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );

@@ -24,7 +24,10 @@ try
     if(parent){
         return res.status(400).json({message:" email already in use !!!"})
     }
-   
+   if(parentphone.length <10)
+   {
+    return res.status(400).json({message:" Phone number is too short.. !!!"})
+   }
     
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {
@@ -41,7 +44,7 @@ try
         return res.status(400).json({message:"you have no right to add to this Provided division"})
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newParent=new parentModel({studentname,parentname,email, classteacher,health,password:hashedPassword,batch,status,parentphone})
+    const newParent=new parentModel({studentname,parentname,email, classteacher,health,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`})
     await newParent.save()
     res.status(200).json({message:"Parent registration successfull "})
 }

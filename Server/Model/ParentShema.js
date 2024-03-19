@@ -15,8 +15,8 @@ const parentSchema=new mongoose.Schema({
        
     },
     status:String,
-    parentphone:Number,
-    password:String,
+    parentphone:{type:String,required:"true"},
+    password:{type:String,required:"true"},
 },{strict:true,timestamps:true});
 
 const parentModel=mongoose.model("parents",parentSchema)
