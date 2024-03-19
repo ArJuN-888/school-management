@@ -8,6 +8,7 @@ const StudentMarklist = () => {
     const [data, setData] = useState({
         studentid: "",
         name: "",
+        examname:"",
         subject1: "",
         scoredMark1: "",
         totalMark1: "",
@@ -45,6 +46,7 @@ const StudentMarklist = () => {
         const response = await axios.post(`${baseURL}/marksheetadd`, {
                 studentid: data.studentid,
                 name: data.name,
+                examname:data.examname,
                 marks: [
                     { subject: data.subject1, scoredMark: data.scoredMark1, totalMark: data.totalMark1 },
                     { subject: data.subject2, scoredMark: data.scoredMark2, totalMark: data.totalMark2 },
@@ -78,6 +80,10 @@ const StudentMarklist = () => {
                 <div className="form-group">
                     <label htmlFor="name">Name:</label>
                     <input type="text" id="name" name="name" required onChange={handleonChange}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="name">Examname:</label>
+                    <input type="text" id="examname" name="examname" required onChange={handleonChange}/>
                 </div>
                 <div className="subject-group">
                     <label htmlFor="subject1">Subject 1:</label>
