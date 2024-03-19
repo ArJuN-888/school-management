@@ -33,6 +33,7 @@ import { EoLogin } from "./Components/EoLogin";
 import Viewletter from "./Components/Viewletter";
 import Timetable from "./Components/Timetable";
 import TeacherClassroom from "./Components/TeacherClassroom";
+import ViewTime from "./Components/ViewTime";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -259,6 +260,7 @@ setNotifications(mNotifications)
             <Route path="/Elogin" element={<EoLogin/>}/>
             <Route path="/viewletter" element={<Viewletter/>}/>
             <Route path="/timetable" element={<Timetable/>}/>
+            <Route path="/viewtime" element={<ViewTime/>}/>
 
           </Routes>
         </mycontext.Provider>
