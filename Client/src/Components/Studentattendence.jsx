@@ -39,7 +39,7 @@ const Studentattendence = () => {
     try {
       const response = await axios.post(`${baseURL}/attendence/attendencemark`, {
         studentid: studentId,
-        date: date.toLocaleDateString(), // Adjust date format according to server requirements
+        date: date.toLocaleDateString(), 
         status,
       });
       console.log("Marked student id:", response.data.markedstudentid);
@@ -49,6 +49,10 @@ const Studentattendence = () => {
       alert("An error occurred while marking attendance");
     }
   };
+
+  const checkattendence= async()=>{
+    
+  }
 
   return (
     <div className="m-2" style={{letterSpacing:"2px"}}>
