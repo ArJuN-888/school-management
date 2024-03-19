@@ -177,5 +177,16 @@ router.get("/find/:id",async(req,res)=>{
         res.status(400).json({message:"Unable to fetch individual user",error})
     }
 })
+router.delete("/delete/:id",async(req,res)=>{
+  try{
+      console.log("id",req.params.id)
+     const User = await teacherModel.findByIdAndDelete(req.params.id)
+      res.status(200).json({message:"Successfully deleted..."})
+  }
+  catch(error){
+    console.log("error",error)
+      res.status(400).json({message:"Unable to Delete",error})
+  }
+})
 
 module.exports=router

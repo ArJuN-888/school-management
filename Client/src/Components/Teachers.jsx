@@ -49,6 +49,9 @@ fetchTeachers()
   }
   const handleEdit = (data) =>{
 setToggle(1)
+setGrant(false)
+setPasstoggle(0)
+setprevpassword("")
 setTname(data.username)
 setTid(data._id)
 const filterTeachertoEdit = Teachers.find((element)=>element.batch === data.batch)
@@ -83,6 +86,8 @@ setGrant(response.data.grant)
    }
   const Cancel = () =>{
 setToggle(0)
+setGrant(false)
+setPasstoggle(false)
   }
   const Togglepassreq = () =>{
     setPasstoggle(!passtoggle)
@@ -99,6 +104,20 @@ setToggle(0)
         {
       alert(error.response.data.message)
         }
+  }
+  const handleDelete = async(id) =>{
+    try{
+      const response = await axios.delete(`${baseURL}/Teacher/delete/${id}`)
+        alert(response.data.message)
+        fetchTeachers()
+        setToggle(0)
+      setGrant(false)
+      setPasstoggle(false)
+          }
+          catch(error)
+          {
+        alert(error.response.data.message)
+          }
   }
   return (
     <>
@@ -119,7 +138,8 @@ setToggle(0)
             <td>{data._id}</td>
             <td>{data.username}</td>
           <td>{data.batch}</td>
-          <td><Button style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 ' onClick={()=>handleEdit(data)}>Edit</Button></td>
+          <td><Button  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 me-2' onClick={()=>handleEdit(data)}>Edit</Button>
+          <Button style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 ' variant='danger' onClick={()=>handleDelete(data._id)}>Delete</Button></td>
           </tr>
         ))}
         </tbody>

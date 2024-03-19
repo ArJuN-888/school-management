@@ -20,7 +20,7 @@ export default function Login() {
       localStorage.setItem("teacherID", response.data.tID);
       localStorage.setItem("teacherName", response.data.tname);
       localStorage.setItem("teacherClass", response.data.tclass);
-      nav("/Teacherhome");
+      nav("/Home");
     } catch (error) {
       alert(error.response.data.message);
     }

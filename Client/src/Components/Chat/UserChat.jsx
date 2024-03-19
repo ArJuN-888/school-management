@@ -66,14 +66,15 @@ const truncateText = (text) =>{
   {recipientUser && recipientUser.qualification && (
   <div className='name d-flex '>qualification : {recipientUser.qualification}</div>
 )}
- {recipientUser && recipientUser.batch && (
-  <div className='name d-flex '>class : {recipientUser.batch}</div>
-)}
+
   {recipientUser && recipientUser.organization && (
   <div className='name  p-1   d-flex '>Associate :  {recipientUser.organization}</div>
 )}
   {recipientUser && recipientUser.status && recipientUser.parentname && recipientUser.studentname && (
   <div className='name  p-1   d-flex '>{recipientUser.status} {` of ${recipientUser.studentname}`}</div>
+)}
+ {recipientUser && recipientUser.batch && (
+  <div className='name d-flex '>class : {recipientUser.batch}</div>
 )}
   {recipientUser && recipientUser.status && (
   <div className='name  p-1   d-flex '>stat : {recipientUser.status}</div>

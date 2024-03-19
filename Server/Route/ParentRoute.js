@@ -7,7 +7,7 @@ const {teacherModel} = require("../Model/TeacherSchema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
-
+const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 
 router.post("/register",async(req,res)=>{
 try
@@ -24,9 +24,9 @@ try
     if(parent){
         return res.status(400).json({message:" email already in use !!!"})
     }
-   if(parentphone.length <10)
+   if(!parentphone.match(phoneregex) )
    {
-    return res.status(400).json({message:" Phone number is too short.. !!!"})
+    return res.status(400).json({message:" Enter a 10 digit valid Phone number.. !!!"})
    }
     
     const isEmailValid = mailformat.test(email) && txt.test(email);
