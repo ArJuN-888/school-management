@@ -3,14 +3,15 @@ import GetTname from "./Hooks/Getteachername";
 import GetTID from "./Hooks/Getteacherid";
 import mycontext from "../Context/Context";
 import axios from "axios";
-import { Table} from 'react-bootstrap';
+import { Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "react-bootstrap";
 const Studentattendence = () => {
   const Tname = GetTname();
   const teacherID = GetTID();
-  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } = useContext(mycontext);
+  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } =
+    useContext(mycontext);
   const [date, setDate] = useState(null);
 
   useEffect(() => {
@@ -37,37 +38,72 @@ const Studentattendence = () => {
 
   const markAttendance = async (studentId, status) => {
     try {
-      const response = await axios.post(`${baseURL}/attendence/attendencemark`, {
-        studentid: studentId,
-        date: date.toLocaleDateString(), 
-        status,
-      });
-      console.log("Marked student id:", response.data.markedstudentid);
-      alert("Attendance Marked Successfully");
+      const today = new Date().toLocaleDateString();
+      const isAttendanceMarked = await checkAttendance(studentId, today); // Custom function to check if attendance is already marked
+  
+      if (isAttendanceMarked) {
+        console.log("Attendance already marked for today.");
+        alert("Attendance has already been marked for today's date");
+      } else {
+        const response = await axios.post(`${baseURL}/attendence/attendencemark`, {
+          studentid: studentId,
+          date: today,
+          status,
+        });
+        console.log("Marked student id:", response.data.markedstudentid);
+        alert("Attendance Marked Successfully");
+      }
     } catch (error) {
       console.error("Error marking attendance:", error);
-      alert("An error occurred while marking attendance");
+        alert("An error occurred while marking attendance");
     }
   };
-
-  const checkattendence= async()=>{
-    
+  
+  // Custom function to check if attendance is already marked
+  const checkAttendance = async (studentId, date) => {
+    try {
+      const response = await axios.get(`${baseURL}/attendence/attendance/check`, {
+        params: {
+          studentid: studentId,
+          date,
+        },
+      });
+      return response.data.attendanceExists; // Assuming the API returns a boolean indicating whether attendance exists
+    } catch (error) {
+      console.error("Error checking attendance:", error);
+      return false; // Assume attendance check failed
+    }
+  };
+  
+  const checkattendence = async (studentid,date) => {
+    try {
+      const response = await axios.get(`${baseURL}/attendance/check`, {
+        params: {
+          studentid: studentId,
+          date,
+        },
+      });
+      return response.data.attendanceExists; // Assuming the API returns a boolean indicating whether attendance exists
+    } catch (error) {
+      console.error("Error checking attendance:", error);
+      return false; // Assume attendance check failed
+    }
   }
 
   return (
-    <div className="m-2" style={{letterSpacing:"2px"}}>
+    <div className="m-2" style={{ letterSpacing: "2px" }}>
       <div className="heading">
         <h1 className="fs-3">Record Your Class Attendance Here</h1>
       </div>
       <div className="table fs-5">
         <Table responsive bordered hover variant="white">
-          <thead style={{letterSpacing:"4px"}} >
-            <tr >
-              <th className='bg-primary text-white '>Student ID</th>
-              <th className='bg-primary text-white '>Student Name</th>
-              <th className='bg-primary text-white '>Date</th>
-              <th className='bg-primary text-white '>Attendance</th>
-              <th className='bg-primary text-white '>Action</th>
+          <thead style={{ letterSpacing: "4px" }}>
+            <tr>
+              <th className="bg-primary text-white ">Student ID</th>
+              <th className="bg-primary text-white ">Student Name</th>
+              <th className="bg-primary text-white ">Date</th>
+              <th className="bg-primary text-white ">Attendance</th>
+              <th className="bg-primary text-white ">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -77,7 +113,12 @@ const Studentattendence = () => {
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
                   <td>
-                    <DatePicker placeholderText="Select the date..." selected={date} onChange={(date) => setDate(date)} maxDate={new Date()} />
+                    <DatePicker
+                      placeholderText="Select the date..."
+                      selected={date}
+                      onChange={(date) => setDate(date)}
+                      maxDate={new Date()}
+                    />
                   </td>
                   <td>
                     <select
@@ -89,14 +130,27 @@ const Studentattendence = () => {
                         setLoggedinTeacherStudents(updatedStudents);
                       }}
                     >
-                      <option value="" disabled>CHOOSE</option>
+                      <option value="" disabled>
+                        CHOOSE
+                      </option>
                       <option value="PRESENT">PRESENT</option>
                       <option value="ABSENT">ABSENT</option>
                       <option value="ABSENT">HALFDAY</option>
                     </select>
                   </td>
                   <td>
-                    <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={() => markAttendance(student._id, student.status)}>Mark Attendance</Button>
+                    <Button
+                      style={{
+                        borderRadius: "0.2rem",
+                        boxShadow: "0px 0px 5px 0px grey",
+                        letterSpacing: "2px",
+                      }}
+                      onClick={() =>
+                        markAttendance(student._id, student.status)
+                      }
+                    >
+                      Mark Attendance
+                    </Button>
                   </td>
                 </tr>
               ))
