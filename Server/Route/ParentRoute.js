@@ -119,4 +119,38 @@ router.get("/find/:id",async(req,res)=>{
     }
 })
 
+router.put("/edit/:id",async(req,res)=>{
+    try {
+        const {id}= req.params
+        const {studentname,parentname,email,batch,health,parentphone,status}=req.body
+        const response= await parentModel.findByIdAndUpdate(id,{
+            studentname,parentname,email,batch,health,parentphone,status
+        })
+        if(!studentname || !parentname || !email || !parentphone || !health || !status || !batch){
+           return res.status(400).json({message:" All fields  are required"})
+        }
+
+        if(!response){
+            return res.status(400).json({message:"Parent Not Found"})
+        }else{
+            return res.status(200).json({message:"Prent Acoount Updated Sucessfully"})
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({message:"An error Occured"})
+    }
+})
+
+router.delete("/delete/:id",async(req,res)=>{
+    try {
+        const {id}= req.params
+        const response= await parentModel.findByIdAndDelete(id)
+        console.log(response)
+         return res.status(200).json({message:"Student Deleted Sucessfully"})
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({message:"Internal error occured"})
+    }
+})
+
 module.exports=router
