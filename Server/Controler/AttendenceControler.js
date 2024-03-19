@@ -37,8 +37,23 @@ const getattendenceRecord= async(req,res)=>{
         
     }
 }
+const checkAttendanceController = async (req, res) => {
+    try {
+      // Extract parameters from the request
+      const { studentid, date } = req.query;
+  
+      // Query the database to check if attendance exists for the given studentid and date
+      const attendanceRecord = await AttendenceSchema.findOne({ studentid, date });
+  
+      // Return the result indicating whether attendance exists
+      res.json({ attendanceExists: !!attendanceRecord });
+    } catch (error) {
+      console.error("Error checking attendance:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
 
 module.exports={
    Markattendence,
-   getattendenceRecord
+   getattendenceRecord,checkAttendanceController
 }

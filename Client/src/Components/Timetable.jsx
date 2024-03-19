@@ -3,7 +3,8 @@ import axios from "axios";
 import GetTname from "./Hooks/Getteachername";
 
 const Timetable = () => {
-  
+  const[toggle,setToggle]=useState(0)
+  const[mute,setMute]=useState(0)
   const [timetable, setTimetable] = useState({
     Monday: [],
     Tuesday: [],
@@ -15,8 +16,10 @@ const Timetable = () => {
   const Tname = GetTname()
   const [timetables, setTimetables] = useState([]);
   const[tableID,setTableID]=useState("")
+  const legth = timetables.length
   useEffect(() => {
     fetchTimetables();
+    
   }, []);
 
   const fetchTimetables = async () => {
@@ -24,6 +27,11 @@ const Timetable = () => {
       const response = await axios.get("http://localhost:5000/Timetable/gettable",{params:{Tname}});
       setTimetables(response.data);
       setTableID(response.data[0]._id)
+      setToggle(1)
+      if(legth === 1)
+    {
+      setMute(1)
+    }
     } catch (error) {
       console.error("Error fetching timetables: ", error);
     }
@@ -31,16 +39,26 @@ const Timetable = () => {
 
   const handleAdd = async () => {
     try {
-      await axios.post("http://localhost:5000/Timetable/addtable", { Tname, timetable });
-      setTimetable({
-        Monday: [],
-        Tuesday: [],
-        Wednesday: [],
-        Thursday: [],
-        Friday: [],
-        Saturday: []
-      });
-      fetchTimetables();
+      fetchTimetables()
+      if(legth === 1)
+      {
+        alert("Please Save Your Updates ")
+      }
+      else
+      {
+          await axios.post("http://localhost:5000/Timetable/addtable", { Tname, timetable });
+          setTimetable({
+                Monday: [],
+                Tuesday: [],
+                Wednesday: [],
+                Thursday: [],
+                Friday: [],
+                Saturday: []
+                        });
+          fetchTimetables();
+          setMute(1)
+          setToggle(0)
+      }
     } catch (error) {
       console.error("Error adding timetable: ", error);
     }
@@ -51,6 +69,9 @@ const Timetable = () => {
     {
        const response = await axios.delete(`http://localhost:5000/Timetable/delete/${tableID}`)
        alert(response.data.message)
+       setMute(0)
+       fetchTimetables()
+       setToggle(0)
     }
     catch(err)
     {
@@ -59,10 +80,54 @@ const Timetable = () => {
     fetchTimetables()
   }
 
+  const editButton = async(id) => {
+    
+    try {
+      const response = await axios.get(`http://localhost:5000/Timetable/gettable/${id}`);
+      const { timetable } = response.data;
+      setTimetable(timetable);
+      console.log("tt",timetable);
+      setTableID(id);
+      setToggle(0);
+      setMute(0)
+  } catch (error) {
+      console.error("Error editing timetable: ", error);
+  }
+  }
+
+  const saveButton = async (tableID) => {
+      fetchTimetables()
+      console.log("length",legth);
+      if(legth === 0)
+      {
+        alert("First Add Your Timetable")
+      }
+      else
+      {
+        try {
+            const response = await axios.put(`http://localhost:5000/Timetable/updatetable/${tableID}`, { timetable });
+            alert(response.data.message)
+            fetchTimetables();
+            setToggle(1);
+            setTimetable({
+                Monday: [],
+                Tuesday: [],
+                Wednesday: [],
+                Thursday: [],
+                Friday: [],
+                Saturday: []
+            });
+            } 
+            catch (error) 
+            {
+            console.error("Error saving timetable: ", error);
+            }
+      }
+};
 
   return (
     <div>
-        {timetables.length === 0 ?( 
+      {!toggle ?( 
         <div className="table-add"> 
             <h2>Add Timetable</h2>
                 <div>
@@ -125,10 +190,11 @@ const Timetable = () => {
                     }
                     />
                 </div>
-               <button onClick={handleAdd}>Add</button>
+               <button onClick={()=>{handleAdd()}}>Add</button>
+               <button className="map-save" onClick={()=>{saveButton(tableID)}}>Save</button> 
                
         </div>
-    ):( 
+      ):(
     <div className="show-section">
         <h2>Timetable</h2>
         <table>
@@ -159,12 +225,21 @@ const Timetable = () => {
             ))}
             </tbody>
         </table>
-        <div className="button-sec">
+         
+    </div>
+  )} 
+    <div className="button-sec">
+      {mute?(  
+        <>
             <button className="map-edit" onClick={()=>{editButton(tableID)}}>Edit</button>
             <button className="map-delete" onClick={()=>{deleteButton(tableID)}}>Delete</button>
-        </div>   
-    </div>
-    )}
+            </>   
+      ):(   
+      <div >
+
+      </div>
+      )}  
+        </div>  
     </div>
   );
 };

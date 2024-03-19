@@ -50,6 +50,13 @@ const [stname,setStname] = useState("")
           console.log(error);
         }
       };
+      
+        const calculatePercentage = (marks) => {
+        const totalScoredMarks = marks.reduce((acc, curr) => acc + curr.scoredMark, 0);
+        const totalPossibleMarks = marks.reduce((acc, curr) => acc + curr.totalMark, 0);
+        const percentage = (totalScoredMarks / totalPossibleMarks) * 100;
+        return percentage.toFixed(2); // Round to two decimal places
+      };
       const Close= () =>{
         setMark([])
       }
@@ -93,6 +100,8 @@ const [stname,setStname] = useState("")
                 <th className='bg-primary text-white '>studentid</th>
                 <th className='bg-primary text-white '>student name</th>
                 <th className='bg-primary text-white '>Mark</th>
+                <th className='bg-primary text-white '>persentage</th>
+                <th className='bg-primary text-white '>Result</th>
               </tr>
               
             </thead>
@@ -121,8 +130,14 @@ const [stname,setStname] = useState("")
                             </tr>
                           ))}
                         </tbody>
-                      </Table>
+                      </Table>  
                     </td>
+                    <td>{calculatePercentage(data.marks)}%</td> {/* Display percentage */}
+                    <td> {calculatePercentage (data.marks) > 45 ? (
+                      <div>passed</div>
+                    ):(
+                   <div>fail</div>
+                    )}</td>
                   </tr>
                 ))
               ) : (
