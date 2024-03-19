@@ -10,8 +10,7 @@ import { Button } from "react-bootstrap";
 const Studentattendence = () => {
   const Tname = GetTname();
   const teacherID = GetTID();
-  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } =
-    useContext(mycontext);
+  const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } = useContext(mycontext);
   const [date, setDate] = useState(null);
 
   useEffect(() => {
