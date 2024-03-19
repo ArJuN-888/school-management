@@ -18,7 +18,7 @@ const  Markattendence = async(req,res)=>{
         })
 
          await attendenceRecord.save()
-         return res.status(200).json({message:"Attendence marked Sucessful",markedstudentid:attendenceRecord.studentid})
+         return res.status(200).json({message:"Attendence marked Successfully",markedstudentid:attendenceRecord.studentid})
     } catch (error) {
         console.log(error)
         res.status(400).json({message:"InTernal Error occured"})

@@ -50,11 +50,11 @@ const Studentattendence = () => {
           status,
         });
         console.log("Marked student id:", response.data.markedstudentid);
-        alert("Attendance Marked Successfully");
+        alert(response.data.message);
       }
     } catch (error) {
       console.error("Error marking attendance:", error);
-        alert("An error occurred while marking attendance");
+        alert(error.response.data.message);
     }
   };
   

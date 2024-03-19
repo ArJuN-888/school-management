@@ -34,6 +34,7 @@ import Viewletter from "./Components/Viewletter";
 import Timetable from "./Components/Timetable";
 import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
+import Teachers from "./Components/Teachers";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -261,7 +262,7 @@ setNotifications(mNotifications)
             <Route path="/viewletter" element={<Viewletter/>}/>
             <Route path="/timetable" element={<Timetable/>}/>
             <Route path="/viewtime" element={<ViewTime/>}/>
-
+            <Route path="/Allteachers" element={<Teachers/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
