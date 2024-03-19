@@ -2,13 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetTname from './Hooks/Getteachername'
 import GetTID from './Hooks/Getteacherid'
 import mycontext from '../Context/Context'
+import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
+import { FaEye } from "react-icons/fa";
+import { Button, Table } from 'react-bootstrap'
 const ViewMarklist = () => {
     const teacherName=GetTname()
     const teacherID=GetTID()
     const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents} = useContext(mycontext)
     const [mark,setMark]=useState([])
-
+const [stat,setStat] = useState("")
+const [stname,setStname] = useState("")
     useEffect(() => {
         if (teacherID) {
           getStudents();
@@ -26,44 +30,51 @@ const ViewMarklist = () => {
         setLoggedinTeacherStudents(response.data.parent)
       };
 
-      const handleview = async (studentid) => {
+      const handleview = async (studentid,sname) => {
         try {
           const response = await axios.get(
             `${baseURL}/marksheetadd/list/${studentid}`
           );
           console.log(response.data.message);
           console.log("id of student", studentid);
-          if (response.data.message === null) {
-            setMark([{ status: "tap view button to see records" }]);
+          if (response.data.message.length === 0) {
+            setStname("")
+            setStat("No data available...")
+            setMark([])
           } else {
+            setStname(sname)
             setMark(response.data.message);
+            setStat("")
           }
         } catch (error) {
           console.log(error);
         }
       };
-
+      const Close= () =>{
+        setMark([])
+      }
   return (
-    <div>
+    <div className='m-2' style={{letterSpacing:"3px"}}>
       <div className="heading">
-        <h3> hello {teacherName}... This your Students Marklist </h3>
+        <h3 className='fs-2'> hello {teacherName}... This is your Students Marklist </h3>
       </div>
       <div className="table">
-        <table>
-          <thead>
+        <Table className='fs-5' responsive cstriped bordered hover variant="white">
+        <thead>
             <tr>
-              <th>Student-id</th>
-              <th>StudentName</th>
-              <th>View marksheet</th>
+              <th className='bg-primary text-white '>Student-id</th>
+              <th className='bg-primary text-white '>StudentName</th>
+              <th className='bg-primary text-white '>View marksheet</th>
             </tr>
           </thead>
+         
           <tbody>
             {loggedteacherStudents.length > 0 ? (
               loggedteacherStudents.map((student, index) => (
                 <tr key={index}>
                   <td>{student._id}</td>
                   <td>{student.studentname}</td>
-                  <td style={{cursor:"pointer"}} onClick={() => handleview(student._id)}>view</td>
+                  <td style={{cursor:"pointer"}} onClick={() => handleview(student._id,student.studentname)}><FaEye fontSize="24px"/></td>
                 </tr>
               ))
             ) : (
@@ -72,16 +83,20 @@ const ViewMarklist = () => {
               </div>
             )}
           </tbody>
-        </table>
+        </Table >
         <div className="">
-          <table>
-            <thead>
+        {mark.length!==0 &&<h3 className='mt-4 mb-4' style={{letterSpacing:"3px"}}>{`Marklist history of ${stname} `}...</h3>}
+         <Table className='fs-5' responsive cstriped bordered hover variant="white">
+         {mark.length !==0 &&  <thead>
+    
               <tr>
-                <th>studentid</th>
-                <th>student name</th>
-                <th>Mark</th>
+                <th className='bg-primary text-white '>studentid</th>
+                <th className='bg-primary text-white '>student name</th>
+                <th className='bg-primary text-white '>Mark</th>
               </tr>
+              
             </thead>
+            }
             <tbody>
               {mark.length > 0 ? (
                 mark.map((data, index) => (
@@ -89,12 +104,12 @@ const ViewMarklist = () => {
                     <td>{data.studentid}</td>
                     <td>{data.name}</td>
                     <td>
-                      <table>
+                      <Table className='fs-5'  cstriped bordered hover variant="white">
                         <thead>
                           <tr>
-                            <th>Subject</th>
-                            <th>Scored Mark</th>
-                            <th>Total Mark</th>
+                            <th className='bg-primary text-white '>Subject</th>
+                            <th className='bg-primary text-white '>Scored Mark</th>
+                            <th className='bg-primary text-white '>Total Mark</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -106,17 +121,21 @@ const ViewMarklist = () => {
                             </tr>
                           ))}
                         </tbody>
-                      </table>
+                      </Table>
                     </td>
                   </tr>
                 ))
               ) : (
-                <div>
-                  <h3 className='ms-2'>No data available...</h3>
-                </div>
+                null
               )}
             </tbody>
-          </table>
+          </Table>
+          {mark.length!==0 &&<button className='mt-1 ' style={{border:"none",backgroundColor:"red",
+        
+        boxShadow:"0px 0px 5px 0px",
+        float:"inline-end"
+        }} onClick={Close}><IoMdClose style={{fontSize:"40px",backgroundColor:"transparent",color:"white"}}/></button>}
+          <h3 className='mt-5 fs-2 text-center' style={{letterSpacing:"3px"}}>{stat}</h3>
           </div>
           </div>
           </div>

@@ -3,15 +3,20 @@ import GetTID from './Hooks/Getteacherid'
 import GetTname from './Hooks/Getteachername'
 import mycontext from '../Context/Context'
 import axios from 'axios'
+import { Table} from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { FaEye } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import Tooltip from 'react-bootstrap/Tooltip';
 const AttendenceViewing = () => {
     const teacherID=GetTID()
     const teacherName= GetTname()
     const {baseURL,loggedteacherStudents ,setLoggedinTeacherStudents}=useContext(mycontext)
     const [attendence,setAttendence]=useState([])
+    const [stname,setStname] = useState("")
+    const [stat,setstat] = useState("")
     console.log("attendence",attendence)
-
+console.log("stat",stat)
     useEffect(()=>{
         getStudents()
     },[teacherID])
@@ -28,16 +33,19 @@ const AttendenceViewing = () => {
       };
 
       //to access Student attendence 
-      const viewAttendence = async (studentid) => {
+      const viewAttendence = async (studentid,sname) => {
         try {
           const response = await axios.get(`${baseURL}/attendence/record/${studentid}`);
-          console.log(response.data.message);
+          console.log("dsjgjhgn",response.data.message);
           console.log("id of student", studentid);
     
-          if (response.data.message === null) {
-            setAttendence([{ status: "tap view button  to see records" }]);
+          if (response.data.message.length === 0) {
+            setstat("No Records Available...");
+            setAttendence([])
           } else {
+            setStname(sname)
             setAttendence(response.data.message);
+            setstat("")
           }
         } catch (error) {
           console.log(error);
@@ -48,18 +56,21 @@ const AttendenceViewing = () => {
             View Attendence tab
         </Tooltip>
     );
+    const Close= () =>{
+      setAttendence([])
+    }
   return (
     <div className='m-2' style={{letterSpacing:"2px"}}>
         <div className='heading'>
            <h2>You Can view Student's Attendence Here</h2>
         </div>
-        <div className='table fs-5'>
-        <table>
-          <thead>
+        <div className='table fs-5 '>
+        <Table responsive cstriped bordered hover variant="white">
+          <thead style={{letterSpacing:"4px"}} >
             <tr>
-              <th>StudentId</th>
-              <th>StudentName</th>
-              <th>Status</th>
+              <th className='bg-primary text-white ' >StudentId</th>
+              <th className='bg-primary text-white' >StudentName</th>
+              <th className='bg-primary text-white'>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +86,7 @@ const AttendenceViewing = () => {
                                 delay={{ show: 250, hide: 400 }}
                                 overlay={renderTooltip}
                             >
-                  <td onClick={() => viewAttendence(student._id)} style={{cursor:"pointer"}}>view</td>
+                  <td onClick={() => viewAttendence(student._id,student.studentname)} style={{cursor:"pointer"}}><FaEye fontSize="24px"/></td>
                   </OverlayTrigger>
                 </tr>
               
@@ -86,17 +97,17 @@ const AttendenceViewing = () => {
               </tr>
             )}
           </tbody>
-          </table>
+          </Table>
           <div className='mt-5'>
           {attendence.length > 0 ? (
             
-            <table className='mt-6'>
-              <thead>
-              <h3 className='mb-4'>Attendence History</h3>
+            <Table className='mt-6' responsive cstriped bordered hover variant="white">
+              <thead style={{letterSpacing:"4px"}} >
+              <h3 className='mb-4'>{`Attendence History of ${stname}`}</h3>
                 <tr>
-                  <th>Studentid</th>
-                  <th>Date</th>
-                  <th>status</th>
+                  <th className='bg-primary text-white '>Studentid</th>
+                  <th className='bg-primary text-white '>Date</th>
+                  <th className='bg-primary text-white '>status</th>
                 </tr>
               </thead>
               <tbody>
@@ -108,10 +119,16 @@ const AttendenceViewing = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </Table>
           ) : (
-            <h1>No record found!</h1>
+          null
           )}
+        <h1 className='fs-2' style={{letterSpacing:"3px"}}>{stat}</h1>
+        {attendence.length!==0 &&<button className='mt-1 ' style={{border:"none",backgroundColor:"red",
+        
+        boxShadow:"0px 0px 5px 0px",
+        float:"inline-end"
+        }} onClick={Close}><IoMdClose style={{fontSize:"40px",backgroundColor:"transparent",color:"white"}}/></button>}
           </div>
             
         </div>

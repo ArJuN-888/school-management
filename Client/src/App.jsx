@@ -19,7 +19,6 @@ import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
 import AdminHome from "./Components/AdminHome";
-import TeacherHome from "./Components/TeacherHome";
 import CreateAnnouncements from "./Components/CreateAnnouncements";
 import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
@@ -33,6 +32,7 @@ import GetEID from "./Components/Hooks/GetEID";
 import { EoLogin } from "./Components/EoLogin";
 import Viewletter from "./Components/Viewletter";
 import Timetable from "./Components/Timetable";
+import TeacherClassroom from "./Components/TeacherClassroom";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -245,7 +245,7 @@ setNotifications(mNotifications)
             <Route path="/Pregister" element={<ParentRegistration />} />
             <Route path="/Plogin" element={<ParentLogin />} />
             <Route path="/AdminHome" element={<AdminHome />} />
-            <Route path="/Teacherhome" element={<TeacherHome />} />
+            <Route path="/TeacherClassroom" element={<TeacherClassroom />} />
             <Route path="/createAnnouncements" element={<CreateAnnouncements />} />
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/leaveletter" element={<Leaveletter />} />

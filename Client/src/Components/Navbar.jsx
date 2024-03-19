@@ -141,7 +141,7 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{teacherName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Teacherhome">Home</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>

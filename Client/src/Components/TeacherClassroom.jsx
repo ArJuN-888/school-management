@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from "react";
 import getteachername from "./Hooks/Getteachername";
 import GetTID from "./Hooks/Getteacherid";
 import axios from "axios";
+import { Table } from "react-bootstrap";
 import mycontext from "../Context/Context";
 import "./Styles/Home.css"
-export default function TeacherHome() {
+export default function TeacherClassroom() {
   const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents} = useContext(mycontext);
   console.log("logged in teacher students",loggedteacherStudents)
   const teachername = getteachername();
@@ -31,13 +32,13 @@ export default function TeacherHome() {
         <h3 style={{letterSpacing:"2px"}} >Welcome {teachername}, to your classRoom</h3>
       </div>
       <div className="table fs-5" style={{letterSpacing:"2px"}}>
-        <table>
-          <thead>
+        <Table responsive cstriped bordered hover variant="white">
+          <thead style={{letterSpacing:"4px"}}>
             <tr>
-              <th>Studentid</th>
-              <th>StudentName</th>
-              <th>parentName</th>
-              <th>parentPhone</th>
+              <th className='bg-primary text-white '>Student_id</th>
+              <th className='bg-primary text-white '>Student_Name</th>
+              <th className='bg-primary text-white '>parent_Name</th>
+              <th className='bg-primary text-white '>Contact_No</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +55,7 @@ export default function TeacherHome() {
             <h1>No student available</h1>
             )}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );
