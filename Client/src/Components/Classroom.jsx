@@ -112,7 +112,7 @@ export default function Classroom() {
                 </div>
             ))}
             <div className=''>
-            {ptog===1 && <h3 className='ms-2  mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>Registered Students...</h3>}
+            {ptog===1 && <h3 className='ms-2  mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>{`Registered Students in ${batch}`}</h3>}
                 {parents.map((data, index) => (
                     <div  key={index}>
                         {(ptog === 1 && data.batch === batch) ? (

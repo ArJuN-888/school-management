@@ -20,8 +20,8 @@ return {
    console.log("mn",modifiedNotifications)
   return (
     <div className='notifications'>
-        <div style={{cursor:"pointer"}} className="notifications-icon position-relative" onClick={()=> setisOpen(!isOpen)}>
-        <PiNotificationLight className='fs-4'/>
+        <div  className="notifications-icon position-relative" >
+        <PiNotificationLight style={{cursor:"pointer"}} className='fs-4' onClick={()=> setisOpen(!isOpen)}/>
         {unreadNotifications?.length === 0 ? null : (
  <div className="notification-count">
 <span style={{

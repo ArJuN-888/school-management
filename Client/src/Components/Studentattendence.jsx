@@ -88,7 +88,7 @@ const Studentattendence = () => {
                       <option value="" disabled>CHOOSE</option>
                       <option value="PRESENT">PRESENT</option>
                       <option value="ABSENT">ABSENT</option>
-                      <option value="ABSENT">HALFDAY</option>
+                      <option value="HALFDAY">HALFDAY</option>
                     </select>
                   </td>
                   <td>

@@ -222,7 +222,7 @@ catch(error)
         {chat.length<1  ? null : 
        
            <div className='message-box   d-flex flex-column  ' >
-               <label className='chatlb ms-2 fs-5 ' style={{textAlign:"center",margin:"6px 0px 0px 0px",letterSpacing:"2px"}}>Previous Chats <TbMessage2Search /><Notification/></label>
+               <label className='chatlb  ms-2 fs-5 ' style={{textAlign:"center",margin:"6px 0px 0px 0px",letterSpacing:"2px"}}>Previous Chats <TbMessage2Search /><Notification/></label>
             {loading===true && <Spinner animation="border" variant="danger" />}
             {chat&&chat.map((chat,index)=>{
                 return(

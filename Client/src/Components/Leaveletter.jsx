@@ -15,8 +15,8 @@ export default function() {
     const[sclass,setSclass]=useState("")
     const parentID = GetParentID()
     const{baseURL}=useContext(mycontext)
-console.log("bas",baseURL);
-console.log("id",parentID);
+// console.log("bas",baseURL);
+// console.log("id",parentID);
 
 useEffect(()=>{
     getMyletter()

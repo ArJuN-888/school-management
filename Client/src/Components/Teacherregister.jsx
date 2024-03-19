@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import mycontext from '../Context/Context';
 import {useContext } from 'react';
 export default function Register() {
    const {teacherregisterdata,setteacherRegisterdata} = useContext(mycontext)
+   const [toggle,setToggle] =useState(0)
+  
     const handleChange = (key, value) => {
         setteacherRegisterdata({ ...teacherregisterdata, [key]: value });
     };
@@ -15,6 +17,9 @@ export default function Register() {
             alert(error.response.data.message);
         }
     };
+    const handleToggle = () =>{
+      setToggle(1)
+    }
   return (
     <div>  <label>Teachers- Account -Creation </label>
     <input
@@ -48,6 +53,11 @@ export default function Register() {
    
   </select>
     <button onClick={()=>{register()}}>Register</button>
+    {toggle === 1 ? <>
+    
+    </>:<>
+    <button onClick={handleToggle} >Edit registered student data</button>
+    </>}
     </div>
   )
 }

@@ -5,12 +5,17 @@ import GetadminID from './Hooks/GetadminID';
 import Getadminname from './Hooks/Getadminname';
 import { useNavigate } from 'react-router-dom'
 import mycontext from '../Context/Context'
+import { PiChatsLight } from "react-icons/pi";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
+import { FaUserPlus } from "react-icons/fa6";
+import { BsChatLeftTextFill } from "react-icons/bs";
+import { BiHomeAlt2 } from "react-icons/bi";
 import GetdoctorID from './Hooks/GetdoctorID';
 import Getdoctorname from './Hooks/Getdoctorname';
 import GetParentID from './Hooks/GetParentID';
 import GetPname from './Hooks/GetParentName';
+import { RiFileList2Fill } from "react-icons/ri";
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
 export default function Navbar() {
@@ -112,10 +117,7 @@ export default function Navbar() {
         justifyContent:"center",
        fontFamily:"monospace",
     }}>
-       <label style={{
-    
-        fontSize:"18px"
-       }}>Personal-Chat</label>
+      
       <ul style={{
         display:"flex",
         justifyContent:"center",
@@ -128,8 +130,8 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{adminName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/AdminHome">Home</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2 style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
@@ -141,11 +143,11 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{teacherName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Pregister">Add Students</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studentattendence">Mark-Attendence</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat">< PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Pregister"><FaUserPlus style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studentattendence"><RiFileList2Fill style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/viewattendence">Attendence-Record</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/marklist">Add-Students-mark</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/viewmarklist">View-mark-list</Link></li>
@@ -158,9 +160,9 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{doctorName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
@@ -169,9 +171,9 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{parentName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
 
         <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
 
@@ -182,9 +184,9 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{eoName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home">Home</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">Chat</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts">Announcements</Link></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}  /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
