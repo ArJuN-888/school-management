@@ -74,20 +74,7 @@ const Studentattendence = () => {
     }
   };
   
-  const checkattendence = async (studentid,date) => {
-    try {
-      const response = await axios.get(`${baseURL}/attendance/check`, {
-        params: {
-          studentid: studentId,
-          date,
-        },
-      });
-      return response.data.attendanceExists; // Assuming the API returns a boolean indicating whether attendance exists
-    } catch (error) {
-      console.error("Error checking attendance:", error);
-      return false; // Assume attendance check failed
-    }
-  }
+
 
   return (
     <div className="m-2" style={{ letterSpacing: "2px" }}>
