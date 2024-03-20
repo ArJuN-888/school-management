@@ -36,6 +36,7 @@ export default function Navbar() {
      {
         localStorage.removeItem("teacherID")
         localStorage.removeItem("teacherName")
+        localStorage.removeItem("teacherClass")
         setPotentialChats([])
         setCurrentChat(null)
         setMessages(null)
@@ -87,6 +88,7 @@ export default function Navbar() {
          setChat([])
          localStorage.removeItem("parentName")
          localStorage.removeItem("parentID")
+         localStorage.removeItem("parentClass")
          nav("/Plogin")
         //  location.reload()
       }

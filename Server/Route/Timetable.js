@@ -12,6 +12,16 @@ router.get("/gettable",async (req, res) => {
     }
 })
 
+router.get("/gettableP",async (req, res) => {
+    try {
+        const Pclass = req.query.Pclass
+        console.log("cls",Pclass);
+        const timetables = await StudentTimetable.find({classN:Pclass});
+        res.json(timetables);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
 
 router.post("/addtable",async (req, res) => {
     const { timetable, Tclass } = req.body;

@@ -15,6 +15,7 @@ export default function ParentLogin() {
             alert(response.data.message)
             localStorage.setItem("parentID",response.data.parentID)
             localStorage.setItem("parentName",response.data.parentName)
+            localStorage.setItem("parentClass",response.data.parentClass)
             nav("/Home")
         }
    catch(error)
