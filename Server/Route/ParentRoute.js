@@ -78,7 +78,7 @@ router.post("/login",async(req,res)=>{
     }
 
     const token = JWT.sign({id : parent._id},"secret")
-   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id,parentName:parent.parentname})
+   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id,parentName:parent.parentname,parentClass:parent.batch})
 }
 catch(error)
 {
