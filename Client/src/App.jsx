@@ -36,6 +36,7 @@ import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
+import Parentattendenceviewing from "./Components/Parentattendenceviewing";
 
 function App() {
   const adminID = GetadminID();
@@ -267,6 +268,7 @@ setNotifications(mNotifications)
             <Route path="/viewtime" element={<ViewTime/>}/>
             <Route path="/Allteachers" element={<Teachers/>}/>
             <Route path="/ParentmarklistView" element={<ParentMarklistView/>}/>
+            <Route path="/parentattendeceView" element={<Parentattendenceviewing/>}/>
 
 
           </Routes>
