@@ -54,6 +54,7 @@ function App() {
     password: "",
     batch: "",
     status: "",
+    specialization:""
   });
   const [teacherloginData, setteacherLogindata] = useState({
     email: "",

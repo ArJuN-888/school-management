@@ -11,11 +11,11 @@ const txt = /.com/;
 
 router.post("/register", async (req, res) => {
     try {
-      const { username, email, password,batch, status } = req.body;
+      const { username, email, password,batch, status ,specialization} = req.body;
   
       console.log("reqbdy", req.body);
   
-      if (!username || !email || !password||!batch || !status) {
+      if (!username || !email || !password||!batch || !status || !specialization) {
         return res.status(400).json({ message: "Empty Fields !!!" });
       }
   
@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status });
+      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization});
       await newTeacher.save();
   
       res.status(200).json({ message: "Faculty Registration Successful" });
