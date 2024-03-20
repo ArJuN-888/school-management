@@ -39,15 +39,6 @@ export default function Login() {
         />
       </div>
       <div className="form-group">
-        <label>Batch</label>
-        <input
-          type='text'
-          value={teacherloginData.batch}
-          placeholder='Batch...'
-          onChange={(e) => handleLoginChange("batch", e.target.value)}
-        />
-      </div>
-      <div className="form-group">
         <label>Password</label>
         <input
           type='password'
