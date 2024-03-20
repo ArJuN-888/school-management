@@ -15,11 +15,11 @@ try
    
     if( !username || !email || !password || !status || !qualification ) 
     {
-        return res.json({message:" Empty Fields !!!"})
+        return res.status(400).json({message:" Empty Fields !!!"})
     }
     const doctor=await doctorModel.findOne({email})
     if(doctor){
-        return res.json({message:" email already in use !!!"})
+        return res.status(400).json({message:" email already in use !!!"})
     }
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {
@@ -32,10 +32,11 @@ try
     const hashedPassword=await bcrypt.hash(password,10)
     const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status})
     await newDoctor.save()
-    res.json({message:"Doctor Registration Successfull "})
+    res.status(200).json({message:"Doctor Registration Successfull "})
 }
 catch(error)
 {
+    console.log("error",error)
     return res.status(400).json({message:"Error in Doctor Registration"})
 }
 
