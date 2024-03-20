@@ -11,17 +11,13 @@ router.post("/register",async(req,res)=>{
 try
 {
     const {username,email,password,qualification,status}=req.body;
-<<<<<<< HEAD
-    const doctor=await doctorModel.findOne({email})
-=======
 
-   
->>>>>>> a1c2b6640406ada0c795625c8c6ca146547eae8e
+    const doctor=await doctorModel.findOne({email})
+
     if( !username || !email || !password || !status || !qualification ) 
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
-    const doctor=await doctorModel.findOne({email})
     if(doctor){
         return res.status(400).json({message:" email already in use !!!"})
     }

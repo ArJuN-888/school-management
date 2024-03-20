@@ -35,15 +35,14 @@ import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
-<<<<<<< HEAD
 import DoctorManage from "./Components/DoctorManage";
-=======
 import GetSID from "./Components/Hooks/GetstaffID";
 import Parentattendenceviewing from "./Components/Parentattendenceviewing";
 import TeacherProfile from "./Components/TeacherProfile";
 import ParentProfile from "./Components/ParentProfile";
+import DoctorProfile from "./Components/Styles/DoctorProfile";
+import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
 
->>>>>>> a1c2b6640406ada0c795625c8c6ca146547eae8e
 
 function App() {
   const adminID = GetadminID();
@@ -282,6 +281,8 @@ setNotifications(mNotifications)
             <Route path="/parentattendeceView" element={<Parentattendenceviewing/>}/>
             <Route path="/Tpro" element={<TeacherProfile/>}/>
             <Route path="/Ppro" element={<ParentProfile/>}/>
+            <Route path="/Dpro" element={<DoctorProfile/>}/>
+            <Route path="/Expro" element={<ExternalOrganizationProfile/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

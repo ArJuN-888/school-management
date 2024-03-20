@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetPname from './Hooks/GetParentName'
 import mycontext from '../Context/Context'
 import axios from 'axios'
+
 const ParentProfile = () => {
     const [student,setStudent]=useState([])
     console.log("student",student)
