@@ -37,6 +37,7 @@ import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
 import GetSID from "./Components/Hooks/GetstaffID";
 import Parentattendenceviewing from "./Components/Parentattendenceviewing";
+import TeacherProfile from "./Components/TeacherProfile";
 
 
 function App() {
@@ -275,6 +276,7 @@ setNotifications(mNotifications)
             <Route path="/Allteachers" element={<Teachers/>}/>
             <Route path="/ParentmarklistView" element={<ParentMarklistView/>}/>
             <Route path="/parentattendeceView" element={<Parentattendenceviewing/>}/>
+            <Route path="/Tpro" element={<TeacherProfile/>}/>
 
 
           </Routes>
