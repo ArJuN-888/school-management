@@ -121,7 +121,7 @@ router.put("/edit/:id",async(req,res)=>{
       } 
     catch (error) 
       {
-        return res.status(200).json({message:"Update Not Possible"});
+        return res.status(400).json({message:"Update Not Possible"});
       }
 })
 
@@ -132,20 +132,20 @@ router.post('/docpassmatch/:id',async(req,res)=>{
 
         if(!password)
         {
-            return res.status(200).json({message:"Empty Field !!!"})
+            return res.status(400).json({message:"Empty Field !!!"})
         }
         const doctor = await doctorModel.findOne({ _id: id });
 
         if(!doctor)
         {
-            return res.status(200).json({message:"Account not found !!!"})
+            return res.status(400).json({message:"Account not found !!!"})
         }
 
         const isPasswordValid= await bcrypt.compare(password,doctor.password)
 
         if(!isPasswordValid)
         {
-            return res.status(200).json({message:"Invalid password !!"})
+            return res.status(400).json({message:"Invalid password !!"})
         }
 
         return res.status(200).json({message:"You can now update your Password",status:true})
@@ -162,28 +162,28 @@ router.put('/docpassupdate/:id',async(req,res)=>{
         const { id } = req.params;
         const { password,conPass } = req.body;
 
-        if(password!==conPass)
+        if(password !== conPass)
         {
-            return res.json({message:"Password mismatched"})
+            return res.status(400).json({message:"Password mismatched"})
         } 
         if(!password || !conPass)
         {
-            return res.status(200).json({message:"Empty Field"})
+            return res.status(400).json({message:"Empty Field"})
         }
         if(!password.match(passformat)) 
         {
-            return res.status(200).json({message:" Password should contain Minimum 8 characters,At least one lowercase character,At least one digit,At least one special character ",});
+            return res.status(400).json({message:" Password should contain Minimum 8 characters,At least one lowercase character,At least one digit,At least one special character ",});
         }
         const hashedPassword=await bcrypt.hash(password,10)
         await doctorModel.findByIdAndUpdate(id,{password:hashedPassword});
         
-        res.json({message:"Password Updated successfully"})
+        res.status(200).json({message:"Password Updated successfully"})
 
 
       } 
       catch (error) 
       {
-        return res.status(200).json({message:"Update Not Possible"});
+        return res.status(400).json({message:"Update Not Possible"});
       }
 })
 

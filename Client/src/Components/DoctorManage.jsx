@@ -22,7 +22,7 @@ export default function DoctorManage() {
     const[newQuali,setNewQuali]=useState("")
     const[conPass,setConpass]=useState("")
     const[newPass,setNewpass]=useState("")
-
+console.log("hsgh",doctors)
     useEffect(()=>{
 
         fetchDoctors()
@@ -47,7 +47,7 @@ export default function DoctorManage() {
             const response = await axios.get(`${baseURL}/Doctor/find/${id}`)
             setDoctor(response.data.doctor)
             setEditToggle(1)
-            setDocID(response.data.doctor._id)
+            setDocID(id)
             setNewusername(response.data.doctor.username)
             setNewEmail(response.data.doctor.email)
             setNewQuali(response.data.doctor.qualification)
@@ -140,9 +140,9 @@ console.log("id",docID);
             }
             setOldpass("")
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -159,9 +159,9 @@ console.log("id",docID);
                 setPasstoggle(0)
             }
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 

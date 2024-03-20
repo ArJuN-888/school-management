@@ -68,8 +68,8 @@ console.log("stat",stat)
         <Table responsive cstriped bordered hover variant="white">
           <thead style={{letterSpacing:"4px"}} >
             <tr>
-              <th className='bg-primary text-white ' >StudentId</th>
-              <th className='bg-primary text-white' >StudentName</th>
+              <th className='bg-primary text-white ' >Student Id</th>
+              <th className='bg-primary text-white' >Student Name</th>
               <th className='bg-primary text-white'>Status</th>
             </tr>
           </thead>
