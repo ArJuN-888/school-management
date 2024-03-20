@@ -37,16 +37,21 @@ const Studentattendence = () => {
 
   const markAttendance = async (studentId, status) => {
     try {
-      const today = new Date().toLocaleDateString();
-      const isAttendanceMarked = await checkAttendance(studentId, today); // Custom function to check if attendance is already marked
+      if (!date) {
+        alert("Please select a date.");
+        return;
+      }
+      
+      const selectedDate = date.toLocaleDateString(); // Convert selected date to string
+      const isAttendanceMarked = await checkAttendance(studentId, selectedDate);
   
       if (isAttendanceMarked) {
-        console.log("Attendance already marked for today.");
-        alert("Attendance has already been marked for today's date");
+        console.log("Attendance already marked for the selected date.");
+        alert("Attendance has already been marked for the selected date");
       } else {
         const response = await axios.post(`${baseURL}/attendence/attendencemark`, {
           studentid: studentId,
-          date: today,
+          date: selectedDate,
           status,
         });
         console.log("Marked student id:", response.data.markedstudentid);
@@ -54,9 +59,10 @@ const Studentattendence = () => {
       }
     } catch (error) {
       console.error("Error marking attendance:", error);
-        alert(error.response.data.message);
+      alert(error.response.data.message);
     }
   };
+  
   
   // Custom function to check if attendance is already marked
   const checkAttendance = async (studentId, date) => {
