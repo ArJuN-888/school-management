@@ -13,7 +13,6 @@ import { useCallback, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AdminLogin } from "./Components/AdminLogin";
 import DoctorLogin from "./Components/DoctorLogin";
-import DoctorRegister from "./Components/DoctorRegister";
 import GetdoctorID from "./Components/Hooks/GetdoctorID";
 import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
@@ -35,15 +34,13 @@ import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
-<<<<<<< HEAD
 import DoctorManage from "./Components/DoctorManage";
-=======
 import GetSID from "./Components/Hooks/GetstaffID";
 import Parentattendenceviewing from "./Components/Parentattendenceviewing";
 import TeacherProfile from "./Components/TeacherProfile";
 import ParentProfile from "./Components/ParentProfile";
 
->>>>>>> a1c2b6640406ada0c795625c8c6ca146547eae8e
+
 
 function App() {
   const adminID = GetadminID();
@@ -258,7 +255,6 @@ setNotifications(mNotifications)
             <Route path="/Chat" element={<Chat />} />
             <Route path="/Adminlogin" element={<AdminLogin />} />
             <Route path="/Dlogin" element={<DoctorLogin />} />
-            <Route path="/Dregister" element={<DoctorRegister />} />
             <Route path="/Pregister" element={<ParentRegistration />} />
             <Route path="/Plogin" element={<ParentLogin />} />
             <Route path="/TeacherClassroom" element={<TeacherClassroom />} />
