@@ -131,7 +131,7 @@ setPasstoggle(false)
       <div className='all-teacher m-2 ' style={{letterSpacing:"2px"}}>
       <label className='fs-4  mb-4' ><u>Certified educators</u></label>
         <Table  responsive bordered hover  variant='white'>
-          <thead className='fs-5'>
+        {Teachers.length !==0 &&  <thead className='fs-5'>
             <tr>
               <th className="bg-primary text-white ">Teacher_ID</th>
               <th className="bg-primary text-white ">Status</th>
@@ -139,7 +139,7 @@ setPasstoggle(false)
               <th className="bg-primary text-white ">Batch</th>
               <th className="bg-primary text-white ">Action</th>
             </tr>
-          </thead>
+          </thead>}
           <tbody className='fs-5'>
         {Teachers && Teachers.map((data,index)=>(
           <tr key={index}>

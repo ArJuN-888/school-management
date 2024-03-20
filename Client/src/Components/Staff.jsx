@@ -131,15 +131,17 @@ export default function Staff() {
     <>
     <div className='all-teacher m-2 mt-5' style={{letterSpacing:"2px"}}>
       <Table  responsive bordered hover  variant='white'>
+       {allstaff.length !== 0 &&
         <thead className='fs-5'>
-          <tr>
-            <th className="bg-primary text-white ">Teacher_ID</th>
-            <th className="bg-primary text-white ">Status</th>
-            <th className="bg-primary text-white ">Teacher_Name</th>
-            <th className="bg-primary text-white ">Batch</th>
-            <th className="bg-primary text-white ">Action</th>
-          </tr>
-        </thead>
+        <tr>
+          <th className="bg-primary text-white ">Teacher_ID</th>
+          <th className="bg-primary text-white ">Status</th>
+          <th className="bg-primary text-white ">Teacher_Name</th>
+          <th className="bg-primary text-white ">Batch</th>
+          <th className="bg-primary text-white ">Action</th>
+        </tr>
+      </thead>
+       }
         <tbody className='fs-5'>
       {allstaff && allstaff.map((data,index)=>(
         <tr key={index}>
