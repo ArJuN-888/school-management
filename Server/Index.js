@@ -13,7 +13,7 @@ const announcementShema = require("./Route/AnnounceRoute.js")
 const attendenceRoute = require("./Route/AttendenceRoute.js")
 const marksheetRoute = require("./Route/marklistRoute.js")
 const timeRoute = require('./Route/Timetable.js')
-
+const staffRoute = require("./Route/StaffRoute.js")
 
 const eoRoute = require("./Route/EoRoute.js")
 
@@ -42,10 +42,9 @@ app.use("/Announcement",announcementShema)
 app.use("/attendence",attendenceRoute)
 app.use("/Broadcast",broadcastRoute)
 app.use("/marksheetadd",marksheetRoute)
-
 app.use("/Timetable",timeRoute)
 app.use("/Organization",eoRoute)
-
+app.use("/Staff",staffRoute)
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);

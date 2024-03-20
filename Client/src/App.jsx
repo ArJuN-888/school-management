@@ -18,7 +18,6 @@ import GetdoctorID from "./Components/Hooks/GetdoctorID";
 import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
 import GetParentID from "./Components/Hooks/GetParentID";
-import AdminHome from "./Components/AdminHome";
 import CreateAnnouncements from "./Components/CreateAnnouncements";
 import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
@@ -36,6 +35,7 @@ import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
+import GetSID from "./Components/Hooks/GetstaffID";
 
 function App() {
   const adminID = GetadminID();
@@ -43,6 +43,7 @@ function App() {
   const doctorID = GetdoctorID();
   const parentID = GetParentID();
   const eoID = GetEID()
+  const staffID = GetSID()
   //common logid container
   console.log()
   const [userID, setUserID] = useState(null);
@@ -90,7 +91,8 @@ useEffect(()=>{
     const responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
    const  responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
    const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
-   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher,...responseeo.data.eo])
+   const  responseStaff = await axios.get(`${baseURL}/Staff/getstaff`);
+   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher,...responseeo.data.eo,...responseStaff.data.staff])
   }
   //getting id of log
   useEffect(() => {
@@ -107,7 +109,11 @@ useEffect(()=>{
     {
       setUserID(eoID);
     }
-  }, [adminID, teacherID, doctorID, parentID,eoID]);
+    else if(staffID)
+    {
+      setUserID(staffID);
+    }
+  }, [adminID, teacherID, doctorID, parentID,eoID,staffID]);
   useEffect(() => {
     //establishing socket io connection
     const newSocket = io("http://localhost:8080");
@@ -249,7 +255,6 @@ setNotifications(mNotifications)
             <Route path="/Dregister" element={<DoctorRegister />} />
             <Route path="/Pregister" element={<ParentRegistration />} />
             <Route path="/Plogin" element={<ParentLogin />} />
-            <Route path="/AdminHome" element={<AdminHome />} />
             <Route path="/TeacherClassroom" element={<TeacherClassroom />} />
             <Route path="/createAnnouncements" element={<CreateAnnouncements />} />
             <Route path="/Studentattendence" element={<Studentattendence />} />

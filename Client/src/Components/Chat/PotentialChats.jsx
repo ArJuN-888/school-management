@@ -54,6 +54,7 @@ export default function PotentialChats() {
                                 <div className="single-user" key={index} onClick={() => { Createchat(userID, u._id) }}>
                                     <div > {u.username} {u.parentname && u.parentname}</div>
                                     <div> {[u.batch] && [u.batch]}</div>
+                                    <div>{u.specialization && u.specialization}</div>
                                     <div>{u.status}  {u.studentname && `of ${u.studentname} `}</div>
                                     <div>{onlineUsers.some((user) => user?.userID === u._id) ? <HiOutlineStatusOnline style={{ fontSize: "20px", color: "yellow" }} /> : ""}</div>
                                 </div>

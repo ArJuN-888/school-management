@@ -18,6 +18,8 @@ import GetPname from './Hooks/GetParentName';
 import { RiFileList2Fill } from "react-icons/ri";
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
+import GetSID from './Hooks/GetstaffID';
+import GetSname from './Hooks/GetstaffName';
 export default function Navbar() {
   const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats,setNotifications} = useContext(mycontext)
     const teacherID = GetTID()
@@ -30,6 +32,8 @@ export default function Navbar() {
   const parentName = GetPname()
   const eoName = GetEName()
   const eoID = GetEID()
+  const staffID = GetSID()
+  const staffName = GetSname()
     const nav = useNavigate()
     const Logststate = () =>{
      if(teacherID)
@@ -112,6 +116,23 @@ export default function Navbar() {
 
     
     }
+    const Logstaffstate = () =>{
+      if(staffID)
+      {
+        setPotentialChats([])
+         setCurrentChat(null)
+         setMessages(null)
+         setUserID(null)
+         setChat([])
+       
+         localStorage.removeItem("staffName")
+         localStorage.removeItem("staffID")
+         nav("/Tlogin")
+        //  location.reload()
+      }
+
+    
+    }
   return (
     <>
     <nav style={{
@@ -171,6 +192,17 @@ export default function Navbar() {
       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
+        {staffID &&<>
+        <li>Logged in as <label style={{
+            color:'green',
+            fontWeight:"bolder"
+        }}>{staffName}</label></li>
+         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
+      
+        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logstaffstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+        </>}
         {parentID &&<>
         <li>Logged in as <label style={{
             color:'green',
@@ -196,7 +228,7 @@ export default function Navbar() {
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
-        {(!adminID && !teacherID && !doctorID && !parentID && !eoID) && <>
+        {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
         <li><Link style={{textDecoration:"none"}} to="/Tlogin">Teacher-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Adminlogin">Admin-Login</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Dlogin">Doctor-Login</Link></li>
