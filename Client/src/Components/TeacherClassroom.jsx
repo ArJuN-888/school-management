@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import getteachername from "./Hooks/Getteachername";
 import GetTID from "./Hooks/Getteacherid";
 import axios from "axios";
-import { Table } from "react-bootstrap";
+import { Table,Button } from "react-bootstrap";
 import mycontext from "../Context/Context";
 import "./Styles/Home.css";
 export default function TeacherClassroom() {
@@ -128,8 +128,8 @@ export default function TeacherClassroom() {
               <th className="bg-primary text-white ">Student_Name</th>
               <th className="bg-primary text-white ">parent_Name</th>
               <th className="bg-primary text-white ">Contact_No</th>
-              <th className="bg-primary text-white ">Edit</th>
-              <th className="bg-primary text-white ">Delete</th>
+              <th className="bg-primary text-white ">Action</th>
+          
             </tr>
           </thead>
           <tbody>
@@ -140,12 +140,12 @@ export default function TeacherClassroom() {
                   <td>{student.studentname}</td>
                   <td>{student.parentname}</td>
                   <td>{student.parentphone}</td>
-                  <td><button onClick={()=> handleEditbtn(student._id,student)}>Edit</button></td>
-                  <td><button onClick={()=>handleDelete(student._id)}>Delete</button></td>
+                  <td className="d-flex"  ><Button className="me-1 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
+                  <Button className=" fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} variant="danger" onClick={()=>handleDelete(student._id)}>Delete</Button></td>
                 </tr>
               ))
             ) : (
-              <h1>No student available</h1>
+              <h1 style={{letterSpacing:"3px"}} className="fs-3">No student available...</h1>
             )}
           </tbody>
         </Table>
@@ -172,7 +172,7 @@ export default function TeacherClassroom() {
             <label> Email</label>
             <input type="email" name="email" value={edit.email} placeholder="email" onChange={handleChange}></input>
             <label>Batch</label>
-            <select name="batch" value={edit.batch} onChange={handleChange}>
+            <select name="batch" disabled value={edit.batch} onChange={handleChange}>
               <option>batch</option>
               <option value="10A">10A</option>
               <option value="10B">10B</option>
@@ -180,9 +180,9 @@ export default function TeacherClassroom() {
             </select>
             <label>Health</label>
             <select name="health"  value={edit.health} onChange={handleChange}>
-              <option></option>
-              <option value="good">good</option>
-              <option value="bad">bad</option>
+            <option>H.status</option>
+              <option value="GOOD">GOOD</option>
+              <option value="BAD">BAD</option>
             </select>
             <label>parent phone</label>
             <input

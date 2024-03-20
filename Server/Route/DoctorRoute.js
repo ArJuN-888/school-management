@@ -6,7 +6,6 @@ const {doctorModel} = require("../Model/DoctorSchema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
-const passuser=/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/
 
 router.post("/register",async(req,res)=>{
 try
@@ -21,10 +20,6 @@ try
     const doctor=await doctorModel.findOne({email})
     if(doctor){
         return res.json({message:" email already in use !!!"})
-    }
-    if(!username.match(passuser))
-    {
-        return res.status(400).json({message:" Password should contain Minimum 8 characters,Only contains alphanumeric characters, underscore and dot.Underscore and dot can't be at the end or start of a username.Underscore and dot can't be next to each other.Underscore or dot can't be used multiple times in a row .",}); 
     }
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {

@@ -154,12 +154,12 @@ router.put("/updatepassword/:id",async(req,res)=>{
 })
 router.put("/update/:id",async(req,res)=>{
   try{
-   const {username,email,status} = req.body
+   const {username,email,status,specialization} = req.body
    if(!username|| !email || !status)
    {
     return   res.status(400).json({message:"Empty fields..."})
    }
-    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status})
+    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status,specialization})
       res.status(200).json({message:"Profile Successfully Updated..."})
  
   }

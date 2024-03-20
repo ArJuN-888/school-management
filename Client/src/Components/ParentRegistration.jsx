@@ -65,7 +65,7 @@ alert(error.response.data.message)
      <select   onChange={(e)=> handleChange("health",e.target.value)} >
     <option value="health status">Current health status</option>
       <option value="GOOD">GOOD</option>
-      <option value="GOOD">BAD</option>
+      <option value="BAD">BAD</option>
      </select>
      <input
         value={Parentregister.password}
