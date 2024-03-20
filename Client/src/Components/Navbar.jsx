@@ -135,6 +135,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2 style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/doctormanage">Doctor-Manage</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
        

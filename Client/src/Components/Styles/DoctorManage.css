@@ -1,0 +1,162 @@
+
+.doc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .doc-reg {
+    margin-bottom: 20px;
+  }
+  
+  .doc-input-sec {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-in-doc {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  .sub-button {
+    margin-top: 10px;
+  }
+  
+  .submit-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: 1px solid rgb(44, 255, 244);
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .doc-map-tab {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .doc-map-head,
+  .doc-map-data {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .doc-map-head {
+    background-color: #f2f2f2;
+  }
+  
+  
+  .doc-delete {
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 7px;
+    background: #ff0000;
+    border: none;
+  }
+
+  .doc-edit{
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .edit-sec-doc {
+    margin-top: 20px;
+  }
+  
+  .new-doc-det {
+    margin-bottom: 10px;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 6px;
+  }
+  
+  .edit-sub-button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: rgb(43, 255, 43);
+  }
+  
+  .edit-pass-button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    background: yellow;
+  }
+
+  .edit-can-button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: gray;
+  }
+  
+  .pass-edit,
+  .pass-update {
+    margin-top: 20px;
+    
+  }
+  
+  .pass-ch-edit,
+  .pass-up-edit {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
+  
+  .pass-section {
+    display: flex;
+  }
+  
+ 
+
+
+  .pass-subm-button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    background: rgb(88, 155, 255);
+    margin-left: 10px;
+    height: 37px;
+  }
+  .pass-canc-button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+    background: rgb(167, 167, 167);
+    height: 37px;
+  }
+
+  
+  .pass-con-button-can {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #7a7a7a;
+  }
+
+  .pass-con-button{
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-left: 10px;
+    background: #1cff07;
+  }
+  

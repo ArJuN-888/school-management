@@ -36,6 +36,7 @@ import TeacherClassroom from "./Components/TeacherClassroom";
 import ViewTime from "./Components/ViewTime";
 import Teachers from "./Components/Teachers";
 import ParentMarklistView from "./Components/ParentMarklistView";
+import DoctorManage from "./Components/DoctorManage";
 
 function App() {
   const adminID = GetadminID();
@@ -266,6 +267,7 @@ setNotifications(mNotifications)
             <Route path="/timetable" element={<Timetable/>}/>
             <Route path="/viewtime" element={<ViewTime/>}/>
             <Route path="/Allteachers" element={<Teachers/>}/>
+            <Route path="/doctormanage" element={<DoctorManage/>}/>
             <Route path="/ParentmarklistView" element={<ParentMarklistView/>}/>
 
 

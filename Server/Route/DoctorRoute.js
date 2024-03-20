@@ -12,7 +12,6 @@ router.post("/register",async(req,res)=>{
 try
 {
     const {username,email,password,qualification,status}=req.body;
-
     const doctor=await doctorModel.findOne({email})
     if( !username || !email || !password || !status || !qualification ) 
     {
@@ -36,7 +35,7 @@ try
     const hashedPassword=await bcrypt.hash(password,10)
     const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status})
     await newDoctor.save()
-    res.json({message:"Doctor Registration Successfull "})
+    res.status(200).json({message:"Doctor Registration Successfull "})
 }
 catch(error)
 {
@@ -94,6 +93,99 @@ router.get("/find/:id",async(req,res)=>{
     catch(error){
         res.status(400).json({message:"Unable to fetch doctor",error})
     }
+})
+
+router.delete("/delete/:id",async(req,res)=>{
+    try{
+        
+       const User = await doctorModel.findByIdAndDelete(req.params.id)
+        res.status(200).json({message:"Successfully Deleted Doctor",doctor:User})
+    }
+    catch(error){
+        res.status(400).json({message:"Unable to delete doctor",error})
+    }
+})
+
+router.put("/edit/:id",async(req,res)=>{
+    try
+     {
+        const { id } = req.params;
+        const { username,email,qualification } = req.body;
+        console.log("up",req.body);
+        if(!username || !email || !qualification)
+        {
+            return res.status(400).json({message:"Empty Field"})
+        }
+        await doctorModel.findByIdAndUpdate(id,{username,email,qualification});
+        res.status(200).json({message:"Profile Updated successfully"})
+
+      } 
+    catch (error) 
+      {
+        return res.status(200).json({message:"Update Not Possible"});
+      }
+})
+
+router.post('/docpassmatch/:id',async(req,res)=>{
+    try{
+        const {id}=req.params
+        const {password}=req.body
+
+        if(!password)
+        {
+            return res.status(200).json({message:"Empty Field !!!"})
+        }
+        const doctor = await doctorModel.findOne({ _id: id });
+
+        if(!doctor)
+        {
+            return res.status(200).json({message:"Account not found !!!"})
+        }
+
+        const isPasswordValid= await bcrypt.compare(password,doctor.password)
+
+        if(!isPasswordValid)
+        {
+            return res.status(200).json({message:"Invalid password !!"})
+        }
+
+        return res.status(200).json({message:"You can now update your Password",status:true})
+    }
+    catch(error)
+    {
+        return res.status(400).json({message:"Error Occured"})
+    }
+})
+
+router.put('/docpassupdate/:id',async(req,res)=>{
+    try
+     {
+        const { id } = req.params;
+        const { password,conPass } = req.body;
+
+        if(password!==conPass)
+        {
+            return res.json({message:"Password mismatched"})
+        } 
+        if(!password || !conPass)
+        {
+            return res.status(200).json({message:"Empty Field"})
+        }
+        if(!password.match(passformat)) 
+        {
+            return res.status(200).json({message:" Password should contain Minimum 8 characters,At least one lowercase character,At least one digit,At least one special character ",});
+        }
+        const hashedPassword=await bcrypt.hash(password,10)
+        await doctorModel.findByIdAndUpdate(id,{password:hashedPassword});
+        
+        res.json({message:"Password Updated successfully"})
+
+
+      } 
+      catch (error) 
+      {
+        return res.status(200).json({message:"Update Not Possible"});
+      }
 })
 
 module.exports=router
