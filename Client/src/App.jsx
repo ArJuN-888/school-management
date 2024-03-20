@@ -13,7 +13,6 @@ import { useCallback, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AdminLogin } from "./Components/AdminLogin";
 import DoctorLogin from "./Components/DoctorLogin";
-import DoctorRegister from "./Components/DoctorRegister";
 import GetdoctorID from "./Components/Hooks/GetdoctorID";
 import ParentRegistration from "./Components/ParentRegistration";
 import ParentLogin from "./Components/ParentLogin";
@@ -43,6 +42,10 @@ import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/Styles/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3397b9c59ea6aa80a6a11b5f24eda56a5a241dd
 
 function App() {
   const adminID = GetadminID();
@@ -257,7 +260,6 @@ setNotifications(mNotifications)
             <Route path="/Chat" element={<Chat />} />
             <Route path="/Adminlogin" element={<AdminLogin />} />
             <Route path="/Dlogin" element={<DoctorLogin />} />
-            <Route path="/Dregister" element={<DoctorRegister />} />
             <Route path="/Pregister" element={<ParentRegistration />} />
             <Route path="/Plogin" element={<ParentLogin />} />
             <Route path="/TeacherClassroom" element={<TeacherClassroom />} />

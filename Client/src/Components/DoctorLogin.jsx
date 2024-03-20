@@ -36,7 +36,6 @@ console.log("Error faced",error)
          onChange={(e)=>handleChange("password",e.target.value)}
       />
       <Button variant='success' onClick={loginpass}>Login</Button>
-      <Link to="/Dregister">Register</Link>
     </div>
   )
 }
