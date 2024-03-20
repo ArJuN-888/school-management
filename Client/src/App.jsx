@@ -42,10 +42,6 @@ import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/Styles/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c3397b9c59ea6aa80a6a11b5f24eda56a5a241dd
 
 function App() {
   const adminID = GetadminID();

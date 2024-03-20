@@ -18,10 +18,6 @@ try
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> c3397b9c59ea6aa80a6a11b5f24eda56a5a241dd
     if(doctor){
         return res.status(400).json({message:" email already in use !!!"})
     }
