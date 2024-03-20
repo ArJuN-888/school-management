@@ -131,6 +131,7 @@ setPasstoggle(false)
       <div className='all-teacher m-2 ' style={{letterSpacing:"2px"}}>
       <label className='fs-4  mb-4' ><u>Certified educators</u></label>
         <Table  responsive bordered hover  variant='white'>
+          {Teachers.length === 0 && <h3>No Data Found...</h3>}
         {Teachers.length !==0 &&  <thead className='fs-5'>
             <tr>
               <th className="bg-primary text-white ">Teacher_ID</th>

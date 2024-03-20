@@ -174,7 +174,7 @@ export default function TeacherClassroom() {
       </div>
       <div className="table fs-5" style={{ letterSpacing: "2px" }}>
         <Table responsive cstriped bordered hover variant="white">
-          <thead style={{ letterSpacing: "4px" }}>
+          {loggedteacherStudents.length !== 0 && <thead style={{ letterSpacing: "4px" }}>
             <tr>
               <th className="bg-primary text-white ">Student_id</th>
               <th className="bg-primary text-white ">Batch</th>
@@ -184,7 +184,7 @@ export default function TeacherClassroom() {
               <th className="bg-primary text-white ">Action</th>
           
             </tr>
-          </thead>
+          </thead>}
           <tbody>
             {loggedteacherStudents.length !== 0 ? (
               loggedteacherStudents.map((student, index) => (
@@ -194,8 +194,8 @@ export default function TeacherClassroom() {
                   <td>{student.studentname}</td>
                   <td>{student.parentname}</td>
                   <td>{student.parentphone}</td>
-                  <td  className="d-flex" ><Button className="me-1 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
-                  <Button className=" fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} variant="danger" onClick={()=>handleDelete(student._id)}>Delete</Button></td>
+                  <td  className="d-flex" ><Button className="me-1 fs-6"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
+                  <Button className=" fs-6" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} variant="danger" onClick={()=>handleDelete(student._id)}>Delete</Button></td>
                 </tr>
               ))
             ) : (
@@ -306,9 +306,9 @@ export default function TeacherClassroom() {
             </Col>
             </Form.Group>
            
-            <Button className="me-1 mt-4 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}} onClick={()=> handleSubmit(studentid)}>Update</Button>
-            <Button className="me-1 mt-4 fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='danger' onClick={Cancel}>Cancel</Button>
-            <Button className="me-1 mt-4 fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='success' onClick={Togglepassreq}>Password Change</Button>
+            <Button className="me-2 mt-4 fs-6"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}} onClick={()=> handleSubmit(studentid)}>Update</Button>
+            <Button className="me-2 mt-4 fs-6" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='danger' onClick={Cancel}>Cancel</Button>
+            <Button className="me-2 mt-4 fs-6" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='success' onClick={Togglepassreq}>Password Change</Button>
           </Form>
           </>
         )}
@@ -332,7 +332,7 @@ export default function TeacherClassroom() {
           </Col>
          
         </Form.Group>
-        <Button className='fs-5 mt-2' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={RequestPasswordchange}>Request Password Change</Button>
+        <Button className='fs-6 mt-2' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={RequestPasswordchange}>Request Password Change</Button>
       </Form>
       
       </> 
@@ -372,7 +372,7 @@ export default function TeacherClassroom() {
           </Col>
          
         </Form.Group>
-        <Button className='fs-5' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={UpdatePassword}>Update Password</Button>
+        <Button className='fs-6' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={UpdatePassword}>Update Password</Button>
       </Form>
       
       </> 

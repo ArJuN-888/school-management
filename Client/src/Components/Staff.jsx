@@ -115,7 +115,7 @@ export default function Staff() {
           //delete
           const handleDelete = async(id) =>{
             try{
-              const response = await axios.delete(`${baseURL}/Staff/delete/${Sid}`)
+              const response = await axios.delete(`${baseURL}/Staff/delete/${id}`)
                 alert(response.data.message)
                 fetchStaff()
                 setToggle(0)
