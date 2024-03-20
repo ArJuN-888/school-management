@@ -4,8 +4,8 @@ const {StudentTimetable} = require('../Model/Timetable.js')
 
 router.get("/gettable",async (req, res) => {
     try {
-        const { Tname }= req.body
-        const timetables = await StudentTimetable.find({Tname});
+        const Tclass = req.query.Tclass
+        const timetables = await StudentTimetable.find({classN:Tclass});
         res.json(timetables);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -14,10 +14,10 @@ router.get("/gettable",async (req, res) => {
 
 
 router.post("/addtable",async (req, res) => {
-    const { timetable, Tname } = req.body;
+    const { timetable, Tclass } = req.body;
 
     const studentTimetable = new StudentTimetable({
-        classteacher:Tname,
+        classN:Tclass,
         timetable
     });
 

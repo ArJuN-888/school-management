@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const StudentTimetableSchema = new Schema({
-    classteacher: {
+    classN: {
         type: String,
-        ref: 'teachers',
         required: true
     },
     timetable: {

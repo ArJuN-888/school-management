@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GetTname from "./Hooks/Getteachername";
+import GetTclass from "./Hooks/GetTeacherClass";
 
 const Timetable = () => {
   const[toggle,setToggle]=useState(0)
@@ -13,7 +14,7 @@ const Timetable = () => {
     Friday: [],
     Saturday: []
   });
-  const Tname = GetTname()
+  const Tclass = GetTclass()
   const [timetables, setTimetables] = useState([]);
   const[tableID,setTableID]=useState("")
   const legth = timetables.length
@@ -24,7 +25,7 @@ const Timetable = () => {
 
   const fetchTimetables = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/Timetable/gettable",{params:{Tname}});
+      const response = await axios.get("http://localhost:5000/Timetable/gettable",{params:{Tclass}});
       setTimetables(response.data);
       setTableID(response.data[0]._id)
       setToggle(1)
@@ -33,7 +34,7 @@ const Timetable = () => {
       console.error("Error fetching timetables: ", error);
     }
   };
-
+console.log("tables",timetables);
   const handleAdd = async () => {
     try {
       fetchTimetables()
@@ -43,7 +44,7 @@ const Timetable = () => {
       }
       else
       {
-          await axios.post("http://localhost:5000/Timetable/addtable", { Tname, timetable });
+          await axios.post("http://localhost:5000/Timetable/addtable", { Tclass, timetable });
           setTimetable({
                 Monday: [],
                 Tuesday: [],
@@ -64,7 +65,7 @@ const Timetable = () => {
   const deleteButton = async(id) => {
     try
     {
-       const response = await axios.delete(`http://localhost:5000/Timetable/delete/${tableID}`)
+       const response = await axios.delete(`http://localhost:5000/Timetable/delete/${id}`)
        alert(response.data.message)
        setMute(0)
        fetchTimetables()
