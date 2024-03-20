@@ -217,6 +217,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/leaveletter">Leaveletter</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/ParentmarklistView">Marklist</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/parentattendeceView">Attendence</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Ppro">Profile</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {eoID &&<>

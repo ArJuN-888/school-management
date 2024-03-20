@@ -38,6 +38,7 @@ import ParentMarklistView from "./Components/ParentMarklistView";
 import GetSID from "./Components/Hooks/GetstaffID";
 import Parentattendenceviewing from "./Components/Parentattendenceviewing";
 import TeacherProfile from "./Components/TeacherProfile";
+import ParentProfile from "./Components/ParentProfile";
 
 
 function App() {
@@ -249,9 +250,7 @@ setNotifications(mNotifications)
           <Routes>
             <Route path="/Tlogin" element={<Login />} />
             <Route path="/Tregister" element={<Register />} />
-
             <Route path="/Home" element={<Home />} />
-
             <Route path="/Chat" element={<Chat />} />
             <Route path="/Adminlogin" element={<AdminLogin />} />
             <Route path="/Dlogin" element={<DoctorLogin />} />
@@ -277,8 +276,7 @@ setNotifications(mNotifications)
             <Route path="/ParentmarklistView" element={<ParentMarklistView/>}/>
             <Route path="/parentattendeceView" element={<Parentattendenceviewing/>}/>
             <Route path="/Tpro" element={<TeacherProfile/>}/>
-
-
+            <Route path="/Ppro" element={<ParentProfile/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
