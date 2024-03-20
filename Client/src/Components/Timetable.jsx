@@ -28,10 +28,7 @@ const Timetable = () => {
       setTimetables(response.data);
       setTableID(response.data[0]._id)
       setToggle(1)
-      if(legth === 1)
-    {
       setMute(1)
-    }
     } catch (error) {
       console.error("Error fetching timetables: ", error);
     }
