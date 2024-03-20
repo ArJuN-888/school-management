@@ -1,19 +1,21 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Styles/AdminLogin.css'
 import { useNavigate } from 'react-router-dom'
-export const AdminLogin = () => {
+import mycontext from '../Context/Context'
+export const StaffLogin = () => {
+    const {baseURL} =useContext(mycontext)
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
  const nav = useNavigate()
 //Admin login function
-    const AdLogin = async() =>{
+    const StaffLogin = async() =>{
         try
         {
-            const response=await axios.post("http://localhost:5000/Admin/login",{email,password})
+            const response=await axios.post(`${baseURL}/Staff/login`,{email,password})
             alert(response.data.message)
-           localStorage.setItem("adminID",response.data.adminID)
-           localStorage.setItem("adminName",response.data.admin.username)
+           localStorage.setItem("staffID",response.data.staffID)
+           localStorage.setItem("staffName",response.data.staff.username)
            nav("/Home")
             setEmail("")
             setPassword("")
@@ -28,7 +30,7 @@ export const AdminLogin = () => {
     <div className='admin-container'>
         <div className='admin-section'>
             <div className='admin-form'>
-                <h1 className='admin-title'>Admin Login</h1>
+                <h1 className='admin-title'>Staff Login</h1>
                 <input
                  className='admin-input'
                  type='text'
@@ -44,7 +46,7 @@ export const AdminLogin = () => {
                  onChange={(e)=>setPassword(e.target.value)}
                 />
                 <div className='but-section'>
-                    <button className='adm-button' onClick={()=>{AdLogin()}}>Submit</button>
+                    <button className='adm-button' onClick={()=>{StaffLogin()}}>Submit</button>
                 </div>
             </div>
         </div>

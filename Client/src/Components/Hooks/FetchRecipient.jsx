@@ -37,6 +37,10 @@ export const useFetchRecipient = (chat, userID) => {
           if (eoresponse.data.eo !== null) {
             setRecipientUser(eoresponse.data.eo);
           }
+          const staffresponse = await axios.get(`${baseURL}/Staff/find/getstaff/${recipientid}`);
+          if (staffresponse.data.staff !== null) {
+            setRecipientUser(staffresponse.data.staff);
+          }
         }
       } catch (error) {
         console.log(error);

@@ -135,7 +135,7 @@ const [stname,setStname] = useState("")
                       </Table>  
                     </td>
                     <td>{calculatePercentage(data.marks)}%</td> {/* Display percentage */}
-                    <td> {calculatePercentage (data.marks) > 45 ? (
+                    <td> {calculatePercentage (data.marks) > 20 ? (
                       <div>passed</div>
                     ):(
                    <div>fail</div>

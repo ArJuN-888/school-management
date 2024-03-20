@@ -5,9 +5,11 @@ import { Table,Button,Form } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import myContext from "../Context/Context"
+import Staff from './Staff';
 export default function Teachers() {
   const {baseURL} = useContext(myContext)
   const [Teachers,setTeachers] = useState([])
+
   const [toggle,setToggle] = useState(0)
   const [Tname,setTname] = useState("")
   const [Tid,setTid]= useState("")
@@ -18,16 +20,19 @@ export default function Teachers() {
     password:"",
     confirmation:""
   })
+
   const [teacherObj,setTeacherObj] = useState({
     username:"",
     email:"",
     status:"",
-    batch:""
+    batch:"",
+    specialization:"",
 
   })
   console.log("AllTEACHERS",Teachers)
   useEffect(()=>{
 fetchTeachers()
+
   },[])
   const handleChange = (key,value) =>
   {
@@ -47,6 +52,7 @@ fetchTeachers()
     alert(error.response.data.message)
   }
   }
+
   const handleEdit = (data) =>{
 setToggle(1)
 setGrant(false)
@@ -59,7 +65,8 @@ const filterTeachertoEdit = Teachers.find((element)=>element.batch === data.batc
       username:filterTeachertoEdit.username,
       email:filterTeachertoEdit.email,
       batch:filterTeachertoEdit.batch,
-      status:filterTeachertoEdit.status
+      status:filterTeachertoEdit.status,
+      specialization:filterTeachertoEdit.specialization
     })
   }
   const Update = async() =>{
@@ -124,18 +131,21 @@ setPasstoggle(false)
       <div className='all-teacher m-2 ' style={{letterSpacing:"2px"}}>
       <label className='fs-4  mb-4' ><u>Certified educators</u></label>
         <Table  responsive bordered hover  variant='white'>
-          <thead className='fs-5'>
+          {Teachers.length === 0 && <h3>No Data Found...</h3>}
+        {Teachers.length !==0 &&  <thead className='fs-5'>
             <tr>
               <th className="bg-primary text-white ">Teacher_ID</th>
+              <th className="bg-primary text-white ">Status</th>
               <th className="bg-primary text-white ">Teacher_Name</th>
               <th className="bg-primary text-white ">Batch</th>
               <th className="bg-primary text-white ">Action</th>
             </tr>
-          </thead>
+          </thead>}
           <tbody className='fs-5'>
         {Teachers && Teachers.map((data,index)=>(
           <tr key={index}>
             <td>{data._id}</td>
+            <td>{data.status}</td>
             <td>{data.username}</td>
           <td>{data.batch}</td>
           <td><Button  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 me-2' onClick={()=>handleEdit(data)}>Edit</Button>
@@ -202,6 +212,20 @@ setPasstoggle(false)
         style={{letterSpacing:"3px"}}
         placeholder='Status...'
         onChange={(e)=>handleChange("status",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
+          <Form.Label column sm="2" className='fs-5' >
+            Specialization:
+          </Form.Label>
+          <Col sm="10">
+        <Form.Control
+        className='fs-5'
+        value={teacherObj.specialization}
+        style={{letterSpacing:"3px"}}
+        placeholder='Specialized in...'
+        onChange={(e)=>handleChange("specialization",e.target.value)}
         />
         </Col>
         </Form.Group>
@@ -277,6 +301,9 @@ setPasstoggle(false)
       
       
       }
+      <div className='staff'>
+<Staff/>
+      </div>
     </>
   )
 }

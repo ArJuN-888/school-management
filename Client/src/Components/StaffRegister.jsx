@@ -2,17 +2,24 @@ import React, { useState } from 'react'
 import axios from "axios";
 import mycontext from '../Context/Context';
 import {useContext } from 'react';
-import StaffRegister from './StaffRegister';
-export default function Register() {
-   const {teacherregisterdata,setteacherRegisterdata} = useContext(mycontext)
-   
+export default function StaffRegister() {
+   const {baseURL} = useContext(mycontext)
+   const [staffObj,setstaffObj] = useState({
+    username:"",
+    email:"",
+    status:"",
+    password:"",
+    batch:"",
+    specialization:"",
+
+  })
   
     const handleChange = (key, value) => {
-        setteacherRegisterdata({ ...teacherregisterdata, [key]: value });
+        setstaffObj({ ...staffObj, [key]: value });
     };
     const register = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/Teacher/register",teacherregisterdata );
+            const response = await axios.post(`${baseURL}/Staff/register`,staffObj );
             alert(response.data.message);
         } catch (error) {
             alert(error.response.data.message);
@@ -20,31 +27,29 @@ export default function Register() {
     };
  
   return (
-    <div>  
-      <h3 className='mb-4'>Teacher Registration</h3>
-      <label>Teachers- Account -Creation </label>
+    <div>  <label>Staff- Account -Creation </label>
     <input
         type='text'
-        value={teacherregisterdata.username}
+        value={staffObj.username}
         placeholder='username...'
         onChange={(e) => handleChange("username", e.target.value)}
     />
    
      <input
         type='text'
-        value={teacherregisterdata.email}
+        value={staffObj.email}
         placeholder='Email...'
         onChange={(e) => handleChange("email", e.target.value)}
     />
      <input
         type='text'
-        value={teacherregisterdata.password}
+        value={staffObj.password}
         placeholder='Password...'
         onChange={(e) => handleChange("password", e.target.value)}
     />
      <input
         type='text'
-        value={teacherregisterdata.specialization}
+        value={staffObj.specialization}
         placeholder='Specialized in...'
         onChange={(e) => handleChange("specialization", e.target.value)}
     />
@@ -53,17 +58,16 @@ export default function Register() {
     <option value="10A">10A</option>
     <option value="10B">10B</option>
     <option value="10C">10C</option>
+    <option value="10D">10D</option>
   </select>
      <select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
     <option value="Status" >Status</option>
-    <option value="Class teacher">Class teacher</option>
+    <option value="Subject teacher">Subject teacher</option>
    
   </select>
     <button onClick={()=>{register()}}>Register</button>
-   <div className='Staff-Register mt-4 '>
-  <h3 className='mb-4'>Staff Registration</h3>
-  <StaffRegister/>
-   </div>
+   
     </div>
   )
 }
+

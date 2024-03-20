@@ -13,12 +13,14 @@ import GetadminID from './Hooks/GetadminID'
 import GetdoctorID from './Hooks/GetdoctorID'
 import GetParentID from './Hooks/GetParentID'
 import GetEID from './Hooks/GetEID'
+import GetSID from './Hooks/GetstaffID'
 export default function Chat() {
   const teacherID = GetTID()
   const doctorID = GetdoctorID()
    const adminID = GetadminID()
    const parentID = GetParentID()
    const eoID = GetEID()
+   const staffID = GetSID()
    const {baseURL,setPotentialChats,chat,setChat,currentChat,setCurrentChat,messages,setMessages,userID,notifications} = useContext(mycontext)
     
   //  const [allusers,setAllusers] = useState([])
@@ -51,7 +53,11 @@ useEffect(()=>{
   {
    fetchEchat()
   }
-},[userID,doctorID,teacherID,adminID,parentID,eoID,notifications])
+  else if(staffID===userID)
+  {
+    fetchSchat()
+  }
+},[userID,doctorID,teacherID,adminID,parentID,eoID,notifications,staffID])
     useEffect(()=>{
       fetchMessages()
     },[currentChat])
@@ -59,6 +65,19 @@ useEffect(()=>{
       getUsers()
       
        },[chat])
+       //staff chat
+       const fetchSchat = async() =>{
+        try{
+            
+            const response = await axios.get(`${baseURL}/Chat/${staffID}`)
+            setChat(response.data)
+            setLoading(false)
+        }
+      catch(error)
+      {
+        alert(error.response.data.message)
+      }
+    }
   //teacher chat 
     const fetchuserchat = async() =>{
         try{
@@ -142,11 +161,13 @@ catch(error)
     try {
       let newTeachers =[];
       let newParents = [];
+      let newStaff = []
        let responseParent;
        let responseTeachers;
        const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
+       const responseStaff = await axios.get(`${baseURL}/Staff/getstaff`);
       const neweo = responseeo.data.eo
       //when parent logs in we need to sort the childrens based on the batch provided by the teacher or by teacher name
   if(parentID)
@@ -184,6 +205,10 @@ catch(error)
       {
         newParents = responseParent.data.parent
       }
+      if(!staffID)
+      {
+        newStaff = responseStaff.data.staff
+      }
     // if(teacherID)
     // {
     //   newParents = responseParent.data.parent.filter((cname)=> cname.studentclass === responseTeachers.data.teacher.batch )
@@ -199,7 +224,7 @@ catch(error)
       //   return [...prevUsers, ...filteredTeachers, ...filteredAdmins,...filteredDoctors];
       // });
   
-      const pchats = [...newParents,...newTeachers, ...newAdmins,...newDoctors,...neweo].filter((u) => {
+      const pchats = [...newParents,...newTeachers, ...newAdmins,...newDoctors,...neweo,...newStaff].filter((u) => {
         let isChatCreated = false;
         if (userID === u._id) return false;
         if (chat) {

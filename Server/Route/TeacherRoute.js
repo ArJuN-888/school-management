@@ -59,19 +59,15 @@ router.post("/register", async (req, res) => {
 
 router.post("/login",async(req,res)=>{
     try{
-    const {email,password,batch} = req.body
+    const {email,password} = req.body
     const teacher=await teacherModel.findOne({email})
-    if(!email || !password|| !batch)
+    if(!email || !password)
     {
         return res.status(400).json({message:"empty fields"})
     }
    
     if(!teacher){
         return res.status(400).json({message:"Invalid Account !!!"})
-    }
-
-    if(teacher.batch!==batch){
-      return res.status(400).json({message:"incorrect batch"})
     }
    
     const isPasswordValid= await bcrypt.compare(password,teacher.password)
@@ -154,12 +150,12 @@ router.put("/updatepassword/:id",async(req,res)=>{
 })
 router.put("/update/:id",async(req,res)=>{
   try{
-   const {username,email,status} = req.body
-   if(!username|| !email || !status)
+   const {username,email,status,specialization} = req.body
+   if(!username|| !email || !status || !specialization)
    {
     return   res.status(400).json({message:"Empty fields..."})
    }
-    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status})
+    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status,specialization})
       res.status(200).json({message:"Profile Successfully Updated..."})
  
   }

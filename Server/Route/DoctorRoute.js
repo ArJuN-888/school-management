@@ -6,23 +6,24 @@ const {doctorModel} = require("../Model/DoctorSchema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
-const passuser=/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/
 
 router.post("/register",async(req,res)=>{
 try
 {
     const {username,email,password,qualification,status}=req.body;
+<<<<<<< HEAD
     const doctor=await doctorModel.findOne({email})
+=======
+
+   
+>>>>>>> a1c2b6640406ada0c795625c8c6ca146547eae8e
     if( !username || !email || !password || !status || !qualification ) 
     {
-        return res.json({message:" Empty Fields !!!"})
+        return res.status(400).json({message:" Empty Fields !!!"})
     }
+    const doctor=await doctorModel.findOne({email})
     if(doctor){
-        return res.json({message:" email already in use !!!"})
-    }
-    if(!username.match(passuser))
-    {
-        return res.status(400).json({message:" Password should contain Minimum 8 characters,Only contains alphanumeric characters, underscore and dot.Underscore and dot can't be at the end or start of a username.Underscore and dot can't be next to each other.Underscore or dot can't be used multiple times in a row .",}); 
+        return res.status(400).json({message:" email already in use !!!"})
     }
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {
@@ -39,6 +40,7 @@ try
 }
 catch(error)
 {
+    console.log("error",error)
     return res.status(400).json({message:"Error in Doctor Registration"})
 }
 

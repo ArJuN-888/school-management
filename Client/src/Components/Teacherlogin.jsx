@@ -3,7 +3,7 @@ import axios from "axios";
 import mycontext from '../Context/Context';
 import { useNavigate, Link } from 'react-router-dom';
 import "./Styles/Teacherlogin.css"
-
+import { StaffLogin } from './StaffLogin';
 export default function Login() {
   const { teacherloginData, setteacherLogindata } = useContext(mycontext);
   const nav = useNavigate();
@@ -39,15 +39,6 @@ export default function Login() {
         />
       </div>
       <div className="form-group">
-        <label>Batch</label>
-        <input
-          type='text'
-          value={teacherloginData.batch}
-          placeholder='Batch...'
-          onChange={(e) => handleLoginChange("batch", e.target.value)}
-        />
-      </div>
-      <div className="form-group">
         <label>Password</label>
         <input
           type='password'
@@ -58,7 +49,10 @@ export default function Login() {
       </div>
       <button onClick={login}>Login</button>
       <div className="register-link">
-        <Link to="/Tregister">Register</Link>
+        {/* <Link to="/Tregister">Register</Link> */}
+      </div>
+      <div className='Staff-login'>
+      <StaffLogin/>
       </div>
     </div>
   );
