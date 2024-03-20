@@ -135,6 +135,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Dregister">Doctor-Registration</Link></li>
        
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}

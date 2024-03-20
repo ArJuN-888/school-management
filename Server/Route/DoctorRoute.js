@@ -13,11 +13,12 @@ try
 {
     const {username,email,password,qualification,status}=req.body;
 
-    const doctor=await doctorModel.findOne({email})
+   
     if( !username || !email || !password || !status || !qualification ) 
     {
         return res.json({message:" Empty Fields !!!"})
     }
+    const doctor=await doctorModel.findOne({email})
     if(doctor){
         return res.json({message:" email already in use !!!"})
     }
