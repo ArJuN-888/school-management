@@ -35,7 +35,7 @@ console.log("hsgh",doctors)
             const response = await axios.get(`${baseURL}/Doctor/getalldoctor`)
             setDoctors(response.data.doctor)
         }
-        catch(err)
+        catch(error)
         {
             alert(error.response.data.message)
         }
@@ -53,7 +53,7 @@ console.log("hsgh",doctors)
             setNewQuali(response.data.doctor.qualification)
             
         }
-        catch(err)
+        catch(error)
         {
             alert(error.response.data.message)
         }
@@ -72,7 +72,7 @@ console.log("id",docID);
             setStatus("")
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
             alert(error.response.data.message)
         }
@@ -104,7 +104,7 @@ console.log("id",docID);
             setPassCon(0)
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
             alert(error.response.data.message)
         }
