@@ -118,7 +118,7 @@ router.get("/find/:id",async(req,res)=>{
         res.status(400).json({message:"Unable to fetch doctor",error})
     }
 })
-
+// edit other data
 router.put("/edit/:id",async(req,res)=>{
     try {
         const {id}= req.params
@@ -152,5 +152,49 @@ router.delete("/delete/:id",async(req,res)=>{
         res.status(400).json({message:"Internal error occured"})
     }
 })
+//passreq
+router.post("/passreq/:id",async(req,res)=>{
+    try{
+     const {prevpassword} = req.body
+      const data = await parentModel.findById(req.params.id)
+      const isPasswordValid= await bcrypt.compare(prevpassword,data.password)
+      if(!isPasswordValid)
+      {
+       return res.status(400).json({message:"Password Update request failed..."})
+      }
+       return  res.status(200).json({message:" verified... You can now provide a new password...",grant:true})
+   
+    }
+    catch(error){
+        return res.status(400).json({message:"Unable to Update"})
+    }
+  })
+//update pass
 
+  router.put("/updatepassword/:id",async(req,res)=>{
+    try{
+     const {password,confirmation} = req.body
+     if(!password || !confirmation)
+     {
+      return res.status(400).json({message:"Empty fields..."})
+     }
+     if(password !== confirmation)
+     {
+      return res.status(400).json({message:"Confirmation Missmatch..."})
+     }
+     if (!password.match(passformat))
+     {
+      return res.status(400).json({ message: "Password should contain at least 8 characters, one uppercase character, one lowercase character, one digit, and one special character"})
+     }
+     const hashedPassword = await bcrypt.hash(password,10)
+  
+      const data = await parentModel.findByIdAndUpdate(req.params.id,{password:hashedPassword})
+        res.status(200).json({message:" Successfully Updated..."})
+   
+    }
+    catch(error){
+        console.log("error",error)
+         res.status(400).json({message:"Unable to Update"})
+    }
+  })
 module.exports=router

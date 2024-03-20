@@ -151,7 +151,7 @@ router.put("/updatepassword/:id",async(req,res)=>{
 router.put("/update/:id",async(req,res)=>{
   try{
    const {username,email,status,specialization} = req.body
-   if(!username|| !email || !status)
+   if(!username|| !email || !status || !specialization)
    {
     return   res.status(400).json({message:"Empty fields..."})
    }

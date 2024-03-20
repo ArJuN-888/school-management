@@ -49,7 +49,7 @@ export default function Login() {
       </div>
       <button onClick={login}>Login</button>
       <div className="register-link">
-        <Link to="/Tregister">Register</Link>
+        {/* <Link to="/Tregister">Register</Link> */}
       </div>
       <div className='Staff-login'>
       <StaffLogin/>

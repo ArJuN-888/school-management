@@ -14,7 +14,7 @@ export default function Classroom() {
     const [togid, setTogid] = useState("");
     const [batch, setBatch] = useState("");
     const [ptog, setPtog] = useState(0);
-
+console.log("parentS",parents)
     useEffect(() => {
         fetchTeachers();
         fetchParents();
@@ -113,7 +113,7 @@ export default function Classroom() {
             ))}
             <div className=''>
             {ptog===1 && <h3 className='ms-2  mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>{`Registered Students in ${batch}`}</h3>}
-            {parents.length === 0 && ptog === 1 && <h3>No students registered...</h3>}
+            {!parents.some((element)=>element.batch === batch) && ptog === 1 && <h3>No students registered...</h3>}
                 {parents.map((data, index) => (
                     <div  key={index}>
                         {(ptog === 1 && data.batch === batch) ? (

@@ -2,12 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import getteachername from "./Hooks/Getteachername";
 import GetTID from "./Hooks/Getteacherid";
 import axios from "axios";
-import { Table,Button } from "react-bootstrap";
+import Spinner from 'react-bootstrap/Spinner';
+import { Table,Button,Form, Row, Col } from 'react-bootstrap';
 import mycontext from "../Context/Context";
 import "./Styles/Home.css";
 export default function TeacherClassroom() {
+
   const teachername = getteachername();
   const teacherID = GetTID();
+  const [passtoggle,setPasstoggle] = useState(false)
+  const [prevpassword,setprevpassword] = useState("")
+  const [sname,setsname] = useState("")
+  const[pid,setpid] = useState("")
   const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } =
     useContext(mycontext);
   console.log("logged in teacher students", loggedteacherStudents);
@@ -18,11 +24,14 @@ export default function TeacherClassroom() {
     email: "",
     batch: "",
     health: "",
-    password: "",
     parentphone: "",
     status: "",
   });
-
+  const [grant,setGrant] = useState(false)
+  const [updatedpassword,setUpdatedpassword] = useState({
+    password:"",
+    confirmation:""
+  })
   console.log("edit",edit)
 
   const [toggle, setToggle] = useState(0);
@@ -40,7 +49,10 @@ export default function TeacherClassroom() {
     const {name,value}= e.target
     setEdit({...edit,[name]:value})
   }
-
+  const handlePass = (key,value) =>
+  {
+   setUpdatedpassword({...updatedpassword,[key]:value})
+  }
   const getStudents = async () => {
     const response = await axios.get(`${baseURL}/Parent/getallparent`, {
       params: {
@@ -96,6 +108,8 @@ export default function TeacherClassroom() {
   const handleEditbtn=(id,data)=>{
     setToggle(1)
     setStudentid(id)
+    setpid(id)
+    setsname(data.studentname)
     setEdit({
       studentname: data.studentname,
       parentname: data.parentname,
@@ -112,9 +126,47 @@ export default function TeacherClassroom() {
   }
 
 
+  const Cancel = () =>{
+    setToggle(0)
+    // setGrant(false)
+   
+      }
+      const Togglepassreq = () =>{
+        setPasstoggle(!passtoggle)
+      }
+      //req pass
 
+      const RequestPasswordchange = async() =>{
+        try{
+      const response = await axios.post(`${baseURL}/Parent/passreq/${pid}`,{prevpassword})
+    setGrant(response.data.grant)
+      alert(response.data.message)
+        }
+        catch(error)
+        {
+      alert(error.response.data.message)
+        }
+       }      //update pass
+      const UpdatePassword = async() =>{
+        try{
+        const response = await axios.put(`${baseURL}/Parent/updatepassword/${pid}`,updatedpassword)
+          alert(response.data.message)
+          setToggle(0)
+          setGrant(false)
+          setPasstoggle(false)
+          setprevpassword("")
+          setUpdatedpassword({
+            password:"",
+            confirmation:""
+          })
+            }
+            catch(error)
+            {
+          alert(error.response.data.message)
+            }
+      }
   return (
-    <div className="main d-block m-2">
+    <div className="main d-block m-2 fs-5" style={{letterSpacing:"2px"}}>
       <div className="heading">
         <h3 style={{ letterSpacing: "2px" }}>
           Welcome {teachername}, to your classRoom
@@ -125,6 +177,7 @@ export default function TeacherClassroom() {
           <thead style={{ letterSpacing: "4px" }}>
             <tr>
               <th className="bg-primary text-white ">Student_id</th>
+              <th className="bg-primary text-white ">Batch</th>
               <th className="bg-primary text-white ">Student_Name</th>
               <th className="bg-primary text-white ">parent_Name</th>
               <th className="bg-primary text-white ">Contact_No</th>
@@ -135,12 +188,13 @@ export default function TeacherClassroom() {
           <tbody>
             {loggedteacherStudents.length !== 0 ? (
               loggedteacherStudents.map((student, index) => (
-                <tr key={index}>
-                  <td>{student._id}</td>
+                <tr key={index} >
+                  <td >{student._id}</td>
+                  <td>{student.batch}</td>
                   <td>{student.studentname}</td>
                   <td>{student.parentname}</td>
                   <td>{student.parentphone}</td>
-                  <td className="d-flex"  ><Button className="me-1 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
+                  <td  className="d-flex" ><Button className="me-1 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
                   <Button className=" fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} variant="danger" onClick={()=>handleDelete(student._id)}>Delete</Button></td>
                 </tr>
               ))
@@ -153,58 +207,178 @@ export default function TeacherClassroom() {
       <div className="edit">
         {toggle === 1 && (
           <>
-            <label>Student name</label>
-            <input
+              <label className='fs-4 mt-4 mb-4' >{`Modifying the particulars concerning ${sname}`}   <Spinner animation="border" role="status" variant="primary" size="sm"></Spinner></label>
+          <Form className=""  >
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Student name:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
               type="text"
               name="studentname"
-              placeholder="student name"
+              className="fs-5"
+              style={{letterSpacing:"2px"}}
+              placeholder="Student name..."
               value={edit.studentname}
               onChange={handleChange}
-            ></input>
-            <label>parent name</label>
-            <input
+            ></Form.Control>
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Parent name:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
               type="text"
+              className="fs-5"
+              style={{letterSpacing:"2px"}}
               name="parentname"
-              placeholder="parent name"
+              placeholder="Parent name..."
               value={edit.parentname}
               onChange={handleChange}
-            ></input>
-            <label> Email</label>
-            <input type="email" name="email" value={edit.email} placeholder="email" onChange={handleChange}></input>
-            <label>Batch</label>
-            <select name="batch" disabled value={edit.batch} onChange={handleChange}>
-              <option>batch</option>
+            ></Form.Control>
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Email:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
+              type="text"
+              className="fs-5"
+              style={{letterSpacing:"2px"}}
+              name="email"
+              placeholder="Email..."
+              value={edit.email}
+              onChange={handleChange}
+            ></Form.Control>
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Batch:</Form.Label>
+            <Col sm="10">
+            <Form.Select style={{letterSpacing:"2px"}} className="fs-5"  name="batch" disabled value={edit.batch} onChange={handleChange}>
+              <option className="fs-5">batch</option>
               <option value="10A">10A</option>
               <option value="10B">10B</option>
               <option value="10C">10C</option>
-            </select>
-            <label>Health</label>
-            <select name="health"  value={edit.health} onChange={handleChange}>
-            <option>H.status</option>
+             
+            </Form.Select>
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label  column sm="2">Health:</Form.Label>
+            <Col sm="10">
+            <Form.Select style={{letterSpacing:"2px"}} className="fs-5" name="health"  value={edit.health} onChange={handleChange}>
+              <option>Health Status</option>
               <option value="GOOD">GOOD</option>
               <option value="BAD">BAD</option>
-            </select>
-            <label>parent phone</label>
-            <input
-              type="string"
+             
+            </Form.Select>
+            </Col>
+            </Form.Group>
+         
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Student Phno:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
+              type="text"
+              style={{letterSpacing:"2px"}}
+              className="fs-5"
               name="parentphone"
-              placeholder="parent phone"
+              placeholder="Parent Phno..."
               value={edit.parentphone}
               onChange={handleChange}
-            ></input>
-            <label>Status</label>
-            <select name="status" value={edit.status} onChange={handleChange}>
-              <option>status</option>
+            ></Form.Control>
+ 
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Status:</Form.Label>
+            <Col sm="10">
+            <Form.Select style={{letterSpacing:"2px"}} className="fs-5"  name="status"  value={edit.status} onChange={handleChange}>
+                       <option disabled>status</option>
               <option value="MOTHER">MOTHER</option>
               <option value="FATHER">FATHER</option>
               <option value="BROTHER">BROTHER</option>
               <option value="SISTER">SISTER</option>
               <option value="GRANDFATHER">GRANDFATHER</option>
               <option value="GRANDMOTHER">GRANDMOTHER</option>
-            </select>
-            <button onClick={()=> handleSubmit(studentid)}>Update</button>
+             
+            </Form.Select>
+            </Col>
+            </Form.Group>
+           
+            <Button className="me-1 mt-4 fs-5"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}} onClick={()=> handleSubmit(studentid)}>Update</Button>
+            <Button className="me-1 mt-4 fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='danger' onClick={Cancel}>Cancel</Button>
+            <Button className="me-1 mt-4 fs-5" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"3px"}}  variant='success' onClick={Togglepassreq}>Password Change</Button>
+          </Form>
           </>
         )}
+      </div>
+      <div className="password-change">
+      {passtoggle ===true && grant=== false && <>
+      <Form className='m-2'  style={{letterSpacing:"3px"}}>
+        <Form.Group as={Row}>
+          <Form.Label column  sm="2" className='fs-5'>
+            Previous Password:
+          </Form.Label>
+          <Col sm="10">
+          <Form.Control 
+            className='fs-5'
+            value={prevpassword}
+            style={{letterSpacing:"3px"}}
+            placeholder='Previous password...'
+            onChange={(e)=>setprevpassword(e.target.value)}
+           
+          />
+          </Col>
+         
+        </Form.Group>
+        <Button className='fs-5 mt-2' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={RequestPasswordchange}>Request Password Change</Button>
+      </Form>
+      
+      </> 
+    
+      }
+         {grant ===true && <>
+      <Form className='m-2'  style={{letterSpacing:"3px"}}>
+        <Form.Group as={Row}>
+          <Form.Label column  sm="2" className='fs-5'>
+            New Password:
+          </Form.Label>
+          <Col sm="10">
+          <Form.Control 
+            className='fs-5'
+            value={updatedpassword.password}
+            style={{letterSpacing:"3px"}}
+            placeholder='New password...'
+            onChange={(e)=>handlePass("password",e.target.value)}
+           
+          />
+          </Col>
+         
+        </Form.Group>
+        <Form.Group as={Row} className='mt-3'>
+          <Form.Label column  sm="2" className='fs-5'>
+           Confirm New Password:
+          </Form.Label>
+          <Col sm="10">
+          <Form.Control 
+            className='fs-5'
+            value={updatedpassword.confirmation}
+            style={{letterSpacing:"3px"}}
+            placeholder='Confirm password...'
+            onChange={(e)=>handlePass("confirmation",e.target.value)}
+           
+          />
+          </Col>
+         
+        </Form.Group>
+        <Button className='fs-5' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='primary' onClick={UpdatePassword}>Update Password</Button>
+      </Form>
+      
+      </> 
+      
+      
+      }
       </div>
     </div>
   );
