@@ -37,7 +37,7 @@ console.log("hsgh",doctors)
         }
         catch(err)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -55,7 +55,7 @@ console.log("hsgh",doctors)
         }
         catch(err)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 console.log("id",docID);
@@ -74,7 +74,7 @@ console.log("id",docID);
         }
         catch(err)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -88,7 +88,7 @@ console.log("id",docID);
         }
         catch(err)
         {
-            console.log(err);
+            alert(error.response.data.message)
         }
     }
 
@@ -106,7 +106,7 @@ console.log("id",docID);
         }
         catch(err)
         {
-            console.log(err);
+            alert(error.response.data.message)
         }
     }
 
