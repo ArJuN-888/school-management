@@ -14,7 +14,7 @@ const attendenceRoute = require("./Route/AttendenceRoute.js")
 const marksheetRoute = require("./Route/marklistRoute.js")
 const timeRoute = require('./Route/Timetable.js')
 const staffRoute = require("./Route/StaffRoute.js")
-
+const studyRoute = require("./Route/StudyRoute.js")
 const eoRoute = require("./Route/EoRoute.js")
 
 const app = express();
@@ -45,6 +45,7 @@ app.use("/marksheetadd",marksheetRoute)
 app.use("/Timetable",timeRoute)
 app.use("/Organization",eoRoute)
 app.use("/Staff",staffRoute)
+app.use("/Material",studyRoute)
 // Start the HTTP server
 app.listen(PORT, () => {
     console.log("Server started at", PORT);

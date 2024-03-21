@@ -4,6 +4,7 @@ require("dotenv").config()
 const JWT=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
 const {staffModel} =require('../Model/StaffShema')
+const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
@@ -73,8 +74,19 @@ catch(error)
 })
 router.get("/getstaff",async(req,res)=>{
     try{
-    const data = await staffModel.find({})
-    res.status(200).json({staff:data})
+      if(req.query.parentid)
+      {
+        const parent = await parentModel.findById(req.query.parentid)
+        //teacher of the student of that particular parent based on batch provided by parent
+        const data = await staffModel.find({batch:parent.batch})
+       return res.status(200).json({staff:data})
+      }
+      else
+      {
+        const data = await staffModel.find({})
+        res.status(200).json({staff:data})
+      }
+   
     }
     catch(error){
         return res.status(400).json({message:"Unable to fetch staff"})

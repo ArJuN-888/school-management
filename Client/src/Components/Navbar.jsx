@@ -160,6 +160,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Exmanage">Eo-Manage</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -180,6 +181,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/viewletter">View-letter</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/timetable">Time Table</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tpro">Profile</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
@@ -219,6 +221,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/ParentmarklistView">Marklist</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/parentattendeceView">Attendence</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Ppro">Profile</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {eoID &&<>

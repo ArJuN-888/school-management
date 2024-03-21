@@ -12,11 +12,11 @@ const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 router.post("/register",async(req,res)=>{
 try
 {
-    const {studentname,parentname, email,classteacher, health ,password,batch,status,parentphone}=req.body
+    const {studentname,parentname, email,classteacher ,password,batch,status,parentphone}=req.body
     console.log("req body",req.body)
    const teacherid = req.query.teacherid
   
-    if(!studentname || !parentname || !email || !classteacher || !health || !batch || !password || !status || !parentphone)
+    if(!studentname || !parentname || !email || !classteacher  || !batch || !password || !status || !parentphone)
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
@@ -44,7 +44,7 @@ try
         return res.status(400).json({message:"you have no right to add to this Provided division"})
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newParent=new parentModel({studentname,parentname,email, classteacher,health,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`})
+    const newParent=new parentModel({studentname,parentname,email, classteacher,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`})
     await newParent.save()
     res.status(200).json({message:"Parent registration successfull "})
 }
@@ -122,18 +122,18 @@ router.get("/find/:id",async(req,res)=>{
 router.put("/edit/:id",async(req,res)=>{
     try {
         const {id}= req.params
-        const {studentname,parentname,email,batch,health,parentphone,status}=req.body
+        const {studentname,parentname,email,batch,parentphone,status}=req.body
         const response= await parentModel.findByIdAndUpdate(id,{
-            studentname,parentname,email,batch,health,parentphone,status
+            studentname,parentname,email,batch,parentphone,status
         })
-        if(!studentname || !parentname || !email || !parentphone || !health || !status || !batch){
+        if(!studentname || !parentname || !email || !parentphone  || !status || !batch){
            return res.status(400).json({message:" All fields  are required"})
         }
 
         if(!response){
             return res.status(400).json({message:"Parent Not Found"})
         }else{
-            return res.status(200).json({message:"Prent Acoount Updated Sucessfully"})
+            return res.status(200).json({message:"Parent Acoount Updated Sucessfully"})
         }
     } catch (error) {
         console.log(error)

@@ -10,10 +10,7 @@ const parentSchema=new mongoose.Schema({
         required:true
     },
     batch:String,
-    health:{
-        type:String,
-       
-    },
+  
     status:String,
     parentphone:{type:String,required:"true"},
     password:{type:String,required:"true"},

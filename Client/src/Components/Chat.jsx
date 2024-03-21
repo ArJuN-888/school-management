@@ -165,10 +165,11 @@ catch(error)
       let newDoctors =[]
        let responseParent;
        let responseTeachers;
+       let responseStaff;
        const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
       const responseAdmins = await axios.get(`${baseURL}/Admin/getadmin`);
       const responseDoctor = await axios.get(`${baseURL}/Doctor/getalldoctor`);
-       const responseStaff = await axios.get(`${baseURL}/Staff/getstaff`);
+       
       const neweo = responseeo.data.eo
       //when parent logs in we need to sort the childrens based on the batch provided by the teacher or by teacher name
   if(parentID)
@@ -178,9 +179,15 @@ catch(error)
         parentid:parentID
       }
     });
+    responseStaff = await axios.get(`${baseURL}/Staff/getstaff`,{
+      params:{
+        parentid:parentID
+      }
+    });
   }
   else{
     responseTeachers = await axios.get(`${baseURL}/Teacher/getallteachers`)
+    responseStaff = await axios.get(`${baseURL}/Staff/getstaff`)
   }
       //when teacher logs in we need to sort the childrens of that particular teacher
       if(teacherID)
