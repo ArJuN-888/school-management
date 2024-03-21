@@ -25,6 +25,7 @@ alert(error.response.data.message)
     }
   return (
     <div>
+        <label>Teachers- Account -Creation </label>
         <input
         placeholder='email...'
         value={registerEo.email}
