@@ -2,10 +2,10 @@ const HealthSchema = require("../Model/StudentHealth");
 
 const Addrecord = async (req, res) => {
     try {
-      const { studentid, studentname, Immunization, Vision, Hearing, MentalHealth, PhysicalExamination, NutritionStatus } = req.body;
+      const { studentid, studentname, Immunization, Vision, Hearing, MentalHealth, PhysicalExamination, NutritionStatus ,Finalreport} = req.body;
   
       // Check if any required field is missing
-      if (!studentid || !studentname || !Immunization || !Vision || !Hearing || !MentalHealth || !PhysicalExamination || !NutritionStatus) {
+      if (!studentid || !studentname || !Immunization || !Vision || !Hearing || !MentalHealth || !PhysicalExamination || !NutritionStatus||!Finalreport) {
         return res.status(400).json({ message: "All fields are required" });
       }
   
@@ -24,13 +24,14 @@ const Addrecord = async (req, res) => {
         Hearing,
         MentalHealth,
         PhysicalExamination,
-        NutritionStatus
+        NutritionStatus,
+        Finalreport
       });
   
       await Health.save();
       res.status(200).json({ message: "Successfully added Student Health Record" });
     } catch (error) {
-      console.error(error); // Log the error for debugging
+      console.error(error);
       res.status(500).json({ message: "Internal Error Occurred" });
     }
   };

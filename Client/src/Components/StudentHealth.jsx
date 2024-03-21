@@ -16,7 +16,8 @@ const StudentHealth = () => {
         Hearing: '',
         PhysicalExamination: '',
         NutritionStatus: '',
-        MentalHealth: ''
+        MentalHealth: '',
+        Finalreport:""
     });
     console.log("inputs",data)
 
@@ -80,6 +81,12 @@ const StudentHealth = () => {
                     <Form.Group as={Col} controlId="MentalHealth">
                         <Form.Label>Mental Health</Form.Label>
                         <Form.Control type="text" name="MentalHealth" placeholder="Mental Health" onChange={handleChange} />
+                    </Form.Group>
+                </Row>
+                <Row>
+                <Form.Group as={Col} controlId="Finalreport">
+                        <Form.Label>Finalreport</Form.Label>
+                        <Form.Control type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange} />
                     </Form.Group>
                 </Row>
                 <div className="text-center">

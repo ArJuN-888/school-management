@@ -8,7 +8,8 @@ const Model= new mongoose.Schema({
     Hearing:String,
     MentalHealth:String,
     PhysicalExamination:String,
-    NutritionStatus:String
+    NutritionStatus:String,
+    Finalreport:String
 })
 
 const HealthSchema= mongoose.model("HealthSchema",Model)
