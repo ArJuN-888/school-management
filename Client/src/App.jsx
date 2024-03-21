@@ -43,6 +43,7 @@ import DoctorProfile from "./Components/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfile";
 import EoManage from "./Components/EoManage";
 import StudeyMaterial from "./Components/StudyMaterials";
+import StudentHealth from "./Components/StudentHealth";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -283,6 +284,7 @@ setNotifications(mNotifications)
             <Route path="/Expro" element={<ExternalOrganizationProfile/>}/>
             <Route path="/Exmanage" element={<EoManage/>}/>
             <Route path="/Studymaterial" element={<StudeyMaterial/>}/>
+            <Route path="/Health" element={<StudentHealth/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
