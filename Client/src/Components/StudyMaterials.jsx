@@ -120,66 +120,89 @@ catch(error)
   return err
 }
   return (
-    <div className='m-3 fs-5'>
+    <div className='m-3 fs-5' style={{letterSpacing:"2px"}}>
         {teacherID || adminID ? <>
-<div><h1 className='fs-2' style={{letterSpacing:"2px"}}>Upload study materials....</h1></div>
+<div><h1 className='fs-3 d-flex mb-4' style={{letterSpacing:"3px"}}>Upload study materials....</h1></div>
 <Form>
-    <Form.Group as={Row}>
-        <Form.Label column sm="2">Note:</Form.Label>
-        <Col sm="10">
+    <Form.Group as={Row} >
+        <Form.Label column sm="1">Note:</Form.Label>
+        <Col sm="11">
 
        
 <Form.Control
 value={material.note}
-className='inp'
-placeholder='note...'
+
+style={{letterSpacing:"2px"}}
+className='fs-5'
+placeholder='Note...'
 onChange={(e)=>handleChange("note",e.target.value)}
 />
 </Col>
 </Form.Group>
-<select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
-    <option value="Status"  >Status</option>
+<Form.Group as={Row} className='mt-1'>
+        <Form.Label column sm="1">Status:</Form.Label>
+        <Col sm="11">
+<Form.Select className='fs-5'  style={{letterSpacing:"2px"}}  onChange={(e)=>handleChange("status",e.target.value)}>
+    <option value="Status" disabled  >Status</option>
     <option value="Important">Important</option>
     <option value="Notify">Notify</option>
     <option value="Keeptrack">Keeptrack</option>
-  </select>
-  <input
+  </Form.Select>
+  </Col>
+</Form.Group>
+<Form.Group as={Row} className='mt-1'>
+        <Form.Label column sm="1">Subject:</Form.Label>
+        <Col sm="11">
+  <Form.Control
+   style={{letterSpacing:"2px"}}
+   className='fs-5'
 value={material.subject}
-className='inp'
-placeholder='subject...'
+
+placeholder='Subject...'
 onChange={(e)=>handleChange("subject",e.target.value)}
 />
+</Col>
+</Form.Group>
 {lnktog===true ?
 <>
-<input
+<Form.Group as={Row} className='mt-1'>
+        <Form.Label column sm="1">Link:</Form.Label>
+        <Col sm="11">
+<Form.Control
 value={material.link}
-className='inp'
+
+style={{letterSpacing:"2px"}}
+className='fs-5'
 placeholder='Link...'
 onChange={(e)=>handleChange("link",e.target.value)}
 />
+</Col>
+</Form.Group>
 
-<Button style={{letterSpacing:"2px",border:"none",
+<Button className='me-2 mb-2' style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}}  variant='danger' onClick={()=>setlnktog(!lnktog)}>Close</Button>
 </>:
-<Button style={{letterSpacing:"2px",border:"none",
-    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}}  onClick={()=>setlnktog(!lnktog)}>Provide a link if Any ?</Button>
+<Button className='mb-2 mt-2' style={{letterSpacing:"2px",border:"none", 
+    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} variant='success'  onClick={()=>setlnktog(!lnktog)}>Provide a link if Any ?</Button>
 }
-
-      <input
+<Form.Control
       type='file'
+      className='fs-5'
+      style={{letterSpacing:"2px"}}
      onChange={handleFile}
       />
-      < Button  style={{letterSpacing:"2px",border:"none",
+    
+      < Button className='mt-2' style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
     </Form>
     <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
     {allmaterial.length=== 0 && <h3>No History found...</h3>}
 { allmaterial && allmaterial.map((an,index)=>(
-<div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
-<span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
+<div key={index} className='d-flex gap-5 mt-2 p-2' style={{backgroundColor:"transparent",boxShadow:"0px 0px 1px 0px"}} >
+<span className='text-success fs-5' style={{letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.subject}</label></div>
-<div><label className='text-warning fs-5' style={{letterSpacing:"2px"}}>{an.status}</label></div>
+<div><label className='text-warning fs-5' style={{letterSpacing:"2px"}}>{an.status} !!</label></div>
 {an.link && <>Refer :  <Link style={{color:"blue"}} to={`${an.link}`}>{an.link}</Link></>}
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>
 <PiDownloadSimpleLight style={{fontSize:"30px"}} />
