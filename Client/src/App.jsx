@@ -41,12 +41,7 @@ import TeacherProfile from "./Components/TeacherProfile";
 import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/Styles/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
-
-<<<<<<< HEAD
-=======
-
->>>>>>> c3397b9c59ea6aa80a6a11b5f24eda56a5a241dd
-
+import EoManage from "./Components/EoManage";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -285,6 +280,7 @@ setNotifications(mNotifications)
             <Route path="/Ppro" element={<ParentProfile/>}/>
             <Route path="/Dpro" element={<DoctorProfile/>}/>
             <Route path="/Expro" element={<ExternalOrganizationProfile/>}/>
+            <Route path="/Exmanage" element={<EoManage/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

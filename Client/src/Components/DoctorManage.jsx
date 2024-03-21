@@ -86,7 +86,7 @@ console.log("id",docID);
             fetchDoctors()
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
             alert(error.response.data.message)
         }
@@ -213,7 +213,7 @@ console.log("id",docID);
                     type='text'
                     value={password}
                     placeholder='Password...'
-                    onChange={(e)=>setUsername(e.target.value)}
+                    onChange={(e)=>setPassword(e.target.value)}
                 />
                  </Col>
                 </Form.Group>
@@ -280,32 +280,50 @@ console.log("id",docID);
         </div>
         <div className='edit-sec-doc'>
             {editToggle ?(  
-            <>
-                <input
+            <Form>
+                 <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Username:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newUsername}
-                    placeholder='New Username'
+                    placeholder='Status...'
                     onChange={(e)=>setNewusername(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Email:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newEmail}
-                    placeholder='New Email'
+                    placeholder='Status...'
                     onChange={(e)=>setNewEmail(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Qualification:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newQuali}
-                    placeholder='Qualification'
+                    placeholder='Status...'
                     onChange={(e)=>setNewQuali(e.target.value)}
                 />
-                <Button variant='primary' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{editSave()}}>Update</Button>
-                <Button variant='danger' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{cancelUpdate()}}>Cancel</Button>
-                <Button variant='success' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}className='' onClick={()=>{passChange()}}>Password Update</Button>
-            </>
+                 </Col>
+                </Form.Group>
+                <Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{editSave()}}>Update</Button>
+                <Button variant='danger' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{cancelUpdate()}}>Cancel</Button>
+                <Button variant='success' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}className='mt-2 fs-6' onClick={()=>{passChange()}}>Password Update</Button>
+            </Form>
             ):(
                 <>
                 </>
@@ -313,19 +331,24 @@ console.log("id",docID);
         </div>
         <div className='pass-edit'>
             {passtoggle ?(   
-            <>
-                <div className='pass-section'>
-                <input
+            <Form>
+                 <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Previous Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-ch-edit'
                     value={oldPass}
-                    placeholder='Old Password'
+                    placeholder='Previous Password...'
                     onChange={(e)=>setOldpass(e.target.value)}
                 />
+                 </Col>
+                </Form.Group>
                 <Button className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subPass()}}>Check</Button>
                 <Button variant='danger' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subCanpass()}}>Cancel</Button>
-                </div>
-            </>
+        
+            </Form>
             ):(
                 <>
                 </>
@@ -333,25 +356,37 @@ console.log("id",docID);
         </div>
         <div className='pass-update'>
         {passCon ?(    
-            <>
-            <input
+            <Form>
+           <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Previous Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-up-edit'
                     value={newPass}
-                    placeholder='New Password'
+                    placeholder='New password...'
                     onChange={(e)=>setNewpass(e.target.value)}
-            />
-            <input
+                />
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Confirm Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-up-edit'
                     value={conPass}
-                    placeholder='Confirm New Password'
+                    placeholder='Confirm Password...'
                     onChange={(e)=>setConpass(e.target.value)}
-            />
+                />
+                 </Col>
+                </Form.Group>
             <Button variant='primary' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subConpass()}}>Update</Button>
             <Button variant="danger" className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subConpassCancel()}}>Cancel</Button>
 
-            </>
+            </Form>
         ):( 
             <div>
 

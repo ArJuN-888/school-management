@@ -128,18 +128,18 @@ router.post('/docpassmatch/:id',async(req,res)=>{
     try{
         const {id}=req.params
         const {password}=req.body
-
-        if(!password)
-        {
-            return res.status(400).json({message:"Empty Field !!!"})
-        }
         const doctor = await doctorModel.findOne({ _id: id });
+
 
         if(!doctor)
         {
             return res.status(400).json({message:"Account not found !!!"})
         }
-
+        if(!password)
+        {
+            return res.status(400).json({message:"Empty Field !!!"})
+        }
+       
         const isPasswordValid= await bcrypt.compare(password,doctor.password)
 
         if(!isPasswordValid)
