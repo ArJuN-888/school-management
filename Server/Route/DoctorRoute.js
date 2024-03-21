@@ -16,19 +16,19 @@ try
 
     if( !username || !email || !password || !status || !qualification ) 
     {
-        return res.status(400).json({message:" Empty Fields !!!"})
+        return res.status(200).json({message:" Empty Fields !!!"})
     }
 
     if(doctor){
-        return res.status(400).json({message:" email already in use !!!"})
+        return res.status(200).json({message:" email already in use !!!"})
     }
     const isEmailValid = mailformat.test(email) && txt.test(email);
     if (!isEmailValid) {
-        return res.status(400).json({ message: "Enter a valid email" });
+        return res.status(200).json({ message: "Enter a valid email" });
     }
     if (!password.match(passformat)) 
     {
-        return res.status(400).json({message:" Password should contain Minimum 8 characters At least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
+        return res.status(200).json({message:" Password should contain Minimum 8 characters At least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
     }
     const hashedPassword=await bcrypt.hash(password,10)
     const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status})
@@ -38,7 +38,7 @@ try
 catch(error)
 {
     console.log("error",error)
-    return res.status(400).json({message:"Error in Doctor Registration"})
+    return res.status(200).json({message:"Error in Doctor Registration"})
 }
 
 })
@@ -50,22 +50,23 @@ router.post("/login",async(req,res)=>{
     const doctor=await doctorModel.findOne({email})
     if(!email || !password)
     {
-        return res.status(400).json({message:"empty fields"})
+        return res.status(200).json({message:"empty fields"})
     }
    
     if(!doctor){
-        return res.status(400).json({message:"Invalid Account !!!"})
+        return res.status(200).json({message:"Invalid Account !!!"})
     }
+    
    
     const isPasswordValid= await bcrypt.compare(password,doctor.password)
 
     if(!isPasswordValid)
     {
-        return res.status(400).json({message:"Invalid password !!"})
+        return res.status(200).json({message:"Invalid password !!"})
     }
 
     const token = JWT.sign({id : doctor._id},"secret")
-   return res.status(200).json({message:"Successfully logged-in",token:token,doctorID:doctor._id,username:doctor.username})
+   return res.status(400).json({message:"Successfully logged-in",token:token,doctorID:doctor._id,username:doctor.username})
 }
 catch(error)
 {
