@@ -13,6 +13,8 @@ export default function StudeyMaterial() {
   const {baseURL} = useContext(mycontext)
   const [selectedfile,setSelectedfile] = useState(null)
   const [allmaterial,setallMaterial] = useState([])
+  const [filterprev,setFilterprev] = useState([])
+  console.log("filter",filterprev)
   const [lnktog,setlnktog] = useState(false)
   const [reqURL,] = useState('http://localhost:5000/uploads');
   console.log("jf",allmaterial)
@@ -42,7 +44,18 @@ setSelectedfile(e.target.files[0])
 try{
   const response = await axios.get(`${baseURL}/Material/gatherpost`)
   console.log("res",response.data.studymaterial)
-  setallMaterial(response.data.studymaterial)
+  const filteredData = response.data.studymaterial.filter((element) => element.userID === adminID);
+  const filteredDatas = response.data.studymaterial.filter((element) => element.userID === teacherID);
+  console.log("Filtered data:", filteredData);
+if(adminID){
+    setFilterprev(filteredData);
+}
+else if(teacherID)
+{
+    setFilterprev(filteredDatas)
+}
+
+  setallMaterial(response.data.studymaterial);
 }
 catch(error)
 {
@@ -119,6 +132,7 @@ catch(error)
   
   return err
 }
+
   return (
     <div className='m-3 fs-5' style={{letterSpacing:"2px"}}>
         {teacherID || adminID ? <>
@@ -196,8 +210,8 @@ onChange={(e)=>handleChange("link",e.target.value)}
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
     </Form>
     <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
-    {allmaterial.length=== 0 && <h3>No History found...</h3>}
-{ allmaterial && allmaterial.map((an,index)=>(
+    {filterprev.length=== 0 && <h3>No History found...</h3>}
+{ filterprev && filterprev.map((an,index)=>(
 <div key={index} className='d-flex gap-5 mt-2 p-2' style={{backgroundColor:"transparent",boxShadow:"0px 0px 1px 0px"}} >
 <span className='text-success fs-5' style={{letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
@@ -213,8 +227,8 @@ onChange={(e)=>handleChange("link",e.target.value)}
 ))}
 
 </>:<>
-{allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
-{allmaterial && allmaterial.map((data,index)=>(
+{filterprev.length=== 0 && <h3>Materials unavialable...</h3>}
+{filterprev && filterprev.map((data,index)=>(
     <div key={index}>
         <span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(data.createdAt).calendar()}</span>
         {data.note}
