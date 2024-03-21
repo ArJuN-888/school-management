@@ -31,7 +31,7 @@ const StudentHealth = () => {
         const response=  await axios.post(`${baseURL}/Health/Add`,data)
         console.log(response.data)
         setHealth(response.data.message)
-        alert("Added Sucessfully")
+        alert(response.data.message)
        } catch (error) {
         console.log(error)
        }
