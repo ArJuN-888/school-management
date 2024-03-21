@@ -41,7 +41,12 @@ import TeacherProfile from "./Components/TeacherProfile";
 import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/Styles/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
+<<<<<<< HEAD
 import EoManage from "./Components/EoManage";
+=======
+
+
+>>>>>>> 4ea48adec7de13326bb8a63c12f1f5a83e5791cb
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
