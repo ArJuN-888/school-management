@@ -53,6 +53,17 @@ const StudentHealth = () => {
                         <Form.Control type="text" name="studentname" placeholder="Enter Student Name" onChange={handleChange} />
                     </Form.Group>
                 </Row>
+                <Row>
+                <Form.Group as={Col} controlId="batch">
+                        <Form.Label>Student batch</Form.Label>
+                        <Form.Select type="text" name="batch" placeholder="Finalreport" onChange={handleChange}>
+                          <option value="">batch</option>
+                            <option value="10A">10A</option>
+                            <option value="10B">10B</option>
+                            <option value="10C">10C</option>
+                        </Form.Select>
+                    </Form.Group>
+                </Row>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="Immunization">
                         <Form.Label>Immunization</Form.Label>
@@ -89,7 +100,7 @@ const StudentHealth = () => {
                         <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
                           <option value="">Status</option>
                             <option value="HEALTHY">HEALTHY</option>
-                            <option value="HEALTHY">NEED CONSULTATION</option>
+                            <option value="NEDD CONSULTATION">NEED CONSULTATION</option>
                         </Form.Select>
                     </Form.Group>
                 </Row>
