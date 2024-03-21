@@ -182,6 +182,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/timetable">Time Table</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tpro">Profile</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Health"> Mark Health Record</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
