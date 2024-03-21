@@ -3,6 +3,7 @@ import axios from "axios";
 import mycontext from '../Context/Context';
 import {useContext } from 'react';
 import StaffRegister from './StaffRegister';
+import ExternalOrganizationRegister from './ExternalOrganizationRegister';
 export default function Register() {
    const {teacherregisterdata,setteacherRegisterdata} = useContext(mycontext)
    
@@ -21,7 +22,7 @@ export default function Register() {
  
   return (
     <div>  
-      <h3 className='mb-4'>Teacher Registration</h3>
+      <h3 className='mb-4'>Teacher</h3>
       <label>Teachers- Account -Creation </label>
     <input
         type='text'
@@ -61,7 +62,11 @@ export default function Register() {
   </select>
     <button onClick={()=>{register()}}>Register</button>
    <div className='Staff-Register mt-4 '>
-  <h3 className='mb-4'>Staff Registration</h3>
+  <h3 className='mb-4'>Staff </h3>
+  <StaffRegister/>
+   </div>
+   <div className='Staff-Register mt-4 '>
+  <h3 className='mb-4'>External Organization</h3>
   <StaffRegister/>
    </div>
     </div>

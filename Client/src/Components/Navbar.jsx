@@ -157,9 +157,9 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/doctormanage">Doctor-Manage</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Exmanage">Eo-Manage</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
-       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -189,6 +189,7 @@ export default function Navbar() {
         }}>{doctorName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}}  to="/Dpro">Profile</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
@@ -228,6 +229,9 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}  /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Expro">Profile</Link></li>
+    
+        
 
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}

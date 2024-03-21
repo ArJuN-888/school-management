@@ -2,7 +2,7 @@ import React, { useContext,useEffect, useState } from 'react'
 import mycontext from '../Context/Context'
 import axios from 'axios'
 import '../Components/Styles/DoctorManage.css'
-
+import { Button,Table ,Form, Col, Row} from 'react-bootstrap'
 export default function DoctorManage() {
     const {baseURL} = useContext(mycontext)
     const[doctors,setDoctors]=useState([])
@@ -22,7 +22,7 @@ export default function DoctorManage() {
     const[newQuali,setNewQuali]=useState("")
     const[conPass,setConpass]=useState("")
     const[newPass,setNewpass]=useState("")
-
+console.log("hsgh",doctors)
     useEffect(()=>{
 
         fetchDoctors()
@@ -35,9 +35,9 @@ export default function DoctorManage() {
             const response = await axios.get(`${baseURL}/Doctor/getalldoctor`)
             setDoctors(response.data.doctor)
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -47,15 +47,15 @@ export default function DoctorManage() {
             const response = await axios.get(`${baseURL}/Doctor/find/${id}`)
             setDoctor(response.data.doctor)
             setEditToggle(1)
-            setDocID(response.data.doctor._id)
+            setDocID(id)
             setNewusername(response.data.doctor.username)
             setNewEmail(response.data.doctor.email)
             setNewQuali(response.data.doctor.qualification)
             
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 console.log("id",docID);
@@ -72,9 +72,9 @@ console.log("id",docID);
             setStatus("")
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -86,9 +86,9 @@ console.log("id",docID);
             fetchDoctors()
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
-            console.log(err);
+            alert(error.response.data.message)
         }
     }
 
@@ -104,9 +104,9 @@ console.log("id",docID);
             setPassCon(0)
             setDocID("")
         }
-        catch(err)
+        catch(error)
         {
-            console.log(err);
+            alert(error.response.data.message)
         }
     }
 
@@ -140,9 +140,9 @@ console.log("id",docID);
             }
             setOldpass("")
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -159,9 +159,9 @@ console.log("id",docID);
                 setPasstoggle(0)
             }
         }
-        catch(err)
+        catch(error)
         {
-            alert(err)
+            alert(error.response.data.message)
         }
     }
 
@@ -174,60 +174,94 @@ console.log("id",docID);
     }
 
   return (
-    <div className='doc-container'>
-        <div className='doc-reg'>
-            <h3 className='doc-reg-head'>Doctor-Registration</h3>
-            <div className='doc-input-sec'>
-                <input
-                    className='add-in-doc'
+    <div className='m-2 fs-5' style={{letterSpacing:"2px"}}>
+        <div >
+            <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Doctor Registration...</h3>
+            <Form>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Username:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5'
                     type='text'
                     value={username}
-                    placeholder='Username'
+                    placeholder='Username...'
                     onChange={(e)=>setUsername(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Email:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5'
                     type='text'
-                    className='add-in-doc'
                     value={email}
-                    placeholder='Email'
+                    placeholder='Email...'
                     onChange={(e)=>setEmail(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5'
                     type='text'
-                    className='add-in-doc'
                     value={password}
-                    placeholder='Password'
+                    placeholder='Password...'
                     onChange={(e)=>setPassword(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Qualification:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='add-in-doc'
                     value={quali}
-                    placeholder='Qualification'
+                    placeholder='Qualification...'
                     onChange={(e)=>setQuali(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Status:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='add-in-doc'
                     value={status}
-                    placeholder='Status'
+                    placeholder='Status...'
                     onChange={(e)=>setStatus(e.target.value)}
                 />
+                 </Col>
+                </Form.Group>
                 <div className='sub-button'>
-                    <button className='submit-button' onClick={()=>{submitButton()}}>Submit</button>
+                    <Button variant='primary' className='mb-4'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{submitButton()}}>Submit</Button>
                 </div>
-            </div>
+            </Form>
         </div>
-        <div className='doc-map-sec'>
-            <div className='doc-mapp'>
-                <table className='doc-map-tab'>
+        <div className=''>
+            <div>
+            <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Registered Doctors...</h3>
+                <Table hover responsive striped  className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
+                    <thead>
                     <tr>
-                        <th className='doc-map-head'>sl.No</th>
-                        <th className='doc-map-head'>Username</th>
-                        <th className='doc-map-head'>Email</th>
-                        <th className='doc-map-head'>Qualification</th>
-                        <th className='doc-map-head'>Action</th>
+                        <th className='doc-map-head text-white bg-primary'>sl.No</th>
+                        <th className='doc-map-head text-white bg-primary'>Username</th>
+                        <th className='doc-map-head text-white bg-primary'>Email</th>
+                        <th className='doc-map-head text-white bg-primary'>Qualification</th>
+                        <th className='doc-map-head text-white bg-primary'>Action</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     {doctors.map((doc,index)=>(
                     <tr>
                         <td className='doc-map-data'>{index+1}</td>
@@ -235,42 +269,61 @@ console.log("id",docID);
                         <td className='doc-map-data'>{doc.email}</td>
                         <td className='doc-map-data'>{doc.qualification}</td>
                         <td className='doc-map-data'>
-                            <button className='doc-edit' onClick={()=>editDoc(doc._id)}>Edit</button>
-                            <button className='doc-delete' onClick={()=>deleteDoc(doc._id)}>Delete</button>
+                            <Button className='me-2'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>editDoc(doc._id)}>Edit</Button>
+                            <Button style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} variant='danger'  onClick={()=>deleteDoc(doc._id)}>Delete</Button>
                         </td>
                     </tr>
                     ))}
-                </table>
+                    </tbody>
+                </Table>
             </div>
         </div>
         <div className='edit-sec-doc'>
             {editToggle ?(  
-            <>
-                <input
+            <Form>
+                 <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Username:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newUsername}
-                    placeholder='New Username'
+                    placeholder='Status...'
                     onChange={(e)=>setNewusername(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Email:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newEmail}
-                    placeholder='New Email'
+                    placeholder='Status...'
                     onChange={(e)=>setNewEmail(e.target.value)}
                 />
-                <input
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Qualification:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='new-doc-det'
                     value={newQuali}
-                    placeholder='Qualification'
+                    placeholder='Status...'
                     onChange={(e)=>setNewQuali(e.target.value)}
                 />
-                <button className='edit-sub-button' onClick={()=>{editSave()}}>Update</button>
-                <button className='edit-can-button' onClick={()=>{cancelUpdate()}}>Cancel</button>
-                <button className='edit-pass-button' onClick={()=>{passChange()}}>Password Update</button>
-            </>
+                 </Col>
+                </Form.Group>
+                <Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{editSave()}}>Update</Button>
+                <Button variant='danger' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{cancelUpdate()}}>Cancel</Button>
+                <Button variant='success' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}className='mt-2 fs-6' onClick={()=>{passChange()}}>Password Update</Button>
+            </Form>
             ):(
                 <>
                 </>
@@ -278,19 +331,24 @@ console.log("id",docID);
         </div>
         <div className='pass-edit'>
             {passtoggle ?(   
-            <>
-                <div className='pass-section'>
-                <input
+            <Form>
+                 <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Previous Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-ch-edit'
                     value={oldPass}
-                    placeholder='Old Password'
+                    placeholder='Previous Password...'
                     onChange={(e)=>setOldpass(e.target.value)}
                 />
-                <button className='pass-subm-button' onClick={()=>{subPass()}}>Check</button>
-                <button className='pass-canc-button' onClick={()=>{subCanpass()}}>Cancel</button>
-                </div>
-            </>
+                 </Col>
+                </Form.Group>
+                <Button className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subPass()}}>Check</Button>
+                <Button variant='danger' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subCanpass()}}>Cancel</Button>
+        
+            </Form>
             ):(
                 <>
                 </>
@@ -298,25 +356,37 @@ console.log("id",docID);
         </div>
         <div className='pass-update'>
         {passCon ?(    
-            <>
-            <input
+            <Form>
+           <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Previous Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-up-edit'
                     value={newPass}
-                    placeholder='New Password'
+                    placeholder='New password...'
                     onChange={(e)=>setNewpass(e.target.value)}
-            />
-            <input
+                />
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Confirm Password:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
                     type='text'
-                    className='pass-up-edit'
                     value={conPass}
-                    placeholder='Confirm New Password'
+                    placeholder='Confirm Password...'
                     onChange={(e)=>setConpass(e.target.value)}
-            />
-            <button className='pass-con-button' onClick={()=>{subConpass()}}>Update</button>
-            <button className='pass-con-button-can' onClick={()=>{subConpassCancel()}}>Cancel</button>
+                />
+                 </Col>
+                </Form.Group>
+            <Button variant='primary' className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subConpass()}}>Update</Button>
+            <Button variant="danger" className='me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{subConpassCancel()}}>Cancel</Button>
 
-            </>
+            </Form>
         ):( 
             <div>
 

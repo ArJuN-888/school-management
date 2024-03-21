@@ -161,7 +161,8 @@ catch(error)
     try {
       let newTeachers =[];
       let newParents = [];
-      let newStaff = []
+      let newStaff = [];
+      let newDoctors =[]
        let responseParent;
        let responseTeachers;
        const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
@@ -195,8 +196,11 @@ catch(error)
       }
       
       // Extract users from the responses
+     if(!doctorID)
+     {
+      newDoctors = responseDoctor.data.doctor
+     }
      
-      const newDoctors = responseDoctor.data.doctor
       if(!teacherID)
       {
          newTeachers = responseTeachers.data.teacher;
