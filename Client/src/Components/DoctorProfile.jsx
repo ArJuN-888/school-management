@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Getdoctorname from "../Hooks/Getdoctorname";
+import Getdoctorname from "./Hooks/Getdoctorname";
 import axios from "axios";
-import mycontext from "../../Context/Context";
+import mycontext from "../Context/Context";
 const DoctorProfile = () => {
     const Doctorname=Getdoctorname()
     const {baseURL}=useContext(mycontext)
