@@ -61,13 +61,13 @@ export default function Register() {
    
   </select>
     <button onClick={()=>{register()}}>Register</button>
-   <div className='Staff-Register mt-4 '>
+   <div className='Staff-Register mt-5 '>
   <h3 className='mb-4'>Staff </h3>
   <StaffRegister/>
    </div>
-   <div className='Staff-Register mt-4 '>
+   <div className='Staff-Register mt-5 '>
   <h3 className='mb-4'>External Organization</h3>
-  <StaffRegister/>
+  <ExternalOrganizationRegister/>
    </div>
     </div>
   )
