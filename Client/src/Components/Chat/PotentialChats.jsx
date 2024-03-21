@@ -55,7 +55,8 @@ export default function PotentialChats() {
                                     <div > {u.username} {u.parentname && u.parentname}</div>
                                     <div> {[u.batch] && [u.batch]}</div>
                                     <div>{u.specialization && u.specialization}</div>
-                                    <div>{u.status}  {u.studentname && `of ${u.studentname} `}</div>
+                                    <div>{u.status}  {u.studentname && `of ${u.studentname} `} {u.organization && `of ${u.organization}`}</div>
+                                    
                                     <div>{onlineUsers.some((user) => user?.userID === u._id) ? <HiOutlineStatusOnline style={{ fontSize: "20px", color: "yellow" }} /> : ""}</div>
                                 </div>
                             )

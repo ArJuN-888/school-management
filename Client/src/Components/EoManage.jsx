@@ -132,10 +132,10 @@ export default function EoManage() {
        {allEo.length !== 0 &&
         <thead className='fs-5'>
         <tr>
-          <th className="bg-primary text-white ">Teacher_ID</th>
+          <th className="bg-primary text-white ">Organization_ID</th>
           <th className="bg-primary text-white ">Status</th>
-          <th className="bg-primary text-white ">Teacher_Name</th>
-          <th className="bg-primary text-white ">Batch</th>
+          <th className="bg-primary text-white ">Representative</th>
+          <th className="bg-primary text-white ">Organization</th>
           <th className="bg-primary text-white ">Action</th>
         </tr>
       </thead>
@@ -146,7 +146,7 @@ export default function EoManage() {
           <td>{data._id}</td>
           <td>{data.status}</td>
           <td>{data.username}</td>
-        <td>{data.batch}</td>
+          <td>{data.organization}</td>
         <td><Button  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 me-2' onClick={()=>handleEdit(data)}>Edit</Button>
         <Button style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 ' variant='danger' onClick={()=>handleDelete(data._id)}>Delete</Button></td>
         </tr>

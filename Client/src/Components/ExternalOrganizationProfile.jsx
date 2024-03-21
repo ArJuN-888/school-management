@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import GetEname from '../Hooks/GetEName'
+import GetEname from './Hooks/GetEName'
 import axios from 'axios'
-import mycontext from '../../Context/Context'
+import mycontext from '../Context/Context'
 const ExternalOrganizationProfile = () => {
     const Externalname=GetEname()
     const {baseURL}=useContext(mycontext)

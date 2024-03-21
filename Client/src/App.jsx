@@ -39,8 +39,8 @@ import GetSID from "./Components/Hooks/GetstaffID";
 import Parentattendenceviewing from "./Components/Parentattendenceviewing";
 import TeacherProfile from "./Components/TeacherProfile";
 import ParentProfile from "./Components/ParentProfile";
-import DoctorProfile from "./Components/Styles/DoctorProfile";
-import ExternalOrganizationProfile from "./Components/Styles/ExternalOrganizationProfile";
+import DoctorProfile from "./Components/DoctorProfile";
+import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfile";
 import EoManage from "./Components/EoManage";
 function App() {
   const adminID = GetadminID();
