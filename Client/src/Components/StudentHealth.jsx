@@ -86,7 +86,11 @@ const StudentHealth = () => {
                 <Row>
                 <Form.Group as={Col} controlId="Finalreport">
                         <Form.Label>Finalreport</Form.Label>
-                        <Form.Control type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange} />
+                        <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
+                          <option value="">Status</option>
+                            <option value="HEALTHY">HEALTHY</option>
+                            <option value="HEALTHY">NEED CONSULTATION</option>
+                        </Form.Select>
                     </Form.Group>
                 </Row>
                 <div className="text-center">
