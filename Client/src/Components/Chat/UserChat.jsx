@@ -68,7 +68,7 @@ const truncateText = (text) =>{
 )}
 
   {recipientUser && recipientUser.organization && (
-  <div className='name  p-1   d-flex '>Associate :  {recipientUser.organization}</div>
+  <div className='name  p-1   d-flex '>Organization :  {recipientUser.organization}</div>
 )}
   {recipientUser && recipientUser.status && recipientUser.parentname && recipientUser.studentname && (
   <div className='name  p-1   d-flex '>{recipientUser.status} {` of ${recipientUser.studentname}`}</div>

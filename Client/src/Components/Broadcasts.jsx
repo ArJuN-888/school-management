@@ -87,7 +87,7 @@ catch(error)
       {broadcast.length === 0  && <div>No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld mt-2 flex-wrap' style={{backgroundColor:"transparent"}}>
-<span className='fs-6 text-success' style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
+<span className='fs-5 text-success' style={{letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
 <div><label className='text-warning' style={{letterSpacing:"2px"}}>{an.status}</label></div>
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>

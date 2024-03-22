@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import { Button, Table } from 'react-bootstrap';
 import Tooltip from 'react-bootstrap/Tooltip';
 import mycontext from '../Context/Context';
 import { VscClose } from "react-icons/vsc";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaUserGraduate } from "react-icons/fa6";
+
 export default function Classroom() {
     const { baseURL } = useContext(mycontext);
     const [teachers, setTeachers] = useState([]);
@@ -14,7 +17,7 @@ export default function Classroom() {
     const [togid, setTogid] = useState("");
     const [batch, setBatch] = useState("");
     const [ptog, setPtog] = useState(0);
-console.log("parentS",parents)
+
     useEffect(() => {
         fetchTeachers();
         fetchParents();
@@ -62,85 +65,98 @@ console.log("parentS",parents)
     );
 
     return (
-        <>
-                      <h3 className='ms-2 mt-4 mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>Registered Classrooms...</h3>
-        <div className='main'>
-
-            {teachers.map((data, index) => (
-                <div className='data' style={{letterSpacing:"2px"}} key={index}>
-                    {(toggle === 1 && data._id === togid) ? (
-                        <>
-                            <div>Name: {data.username}</div>
-                            <div>Stat: {data.status}</div>
-                            <div>Batch: {data.batch}</div>
-                            <OverlayTrigger
-                                placement="right"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltip}
-                            >
-                                <button onClick={() => handleptoggle(data.batch)} style={{
-                                    padding: "8px",
+        <div className='' >
+            <h3 className='ms-2 mt-4 mb-4 ' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
+            <div className='main d-block flex-wrap'>
+                {teachers.map((data, index) => (
+                    <div className='data  ' style={{ letterSpacing: "2px" }} key={index}>
+                        {(toggle === 1 && data._id === togid) ? (
+                            <>
+                                <div>Name: {data.username}</div>
+                                <div>Stat: {data.status}</div>
+                                <div>Batch: {data.batch}</div>
+                                <OverlayTrigger
+                                    placement="right"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={renderTooltip}
+                                >
+                                    <Button onClick={() => handleptoggle(data.batch)} style={{
+                                        padding: "8px",
+                                        border: "none",
+                                        boxShadow: "0px 0px 4px 0px grey",
+                                        margin: "2px",
+                                        borderRadius: "5px",
+                                        backgroundColor: "#00A36C"
+                                    }}>
+                                        <FaUserGraduate style={{ fontSize: "24px", color: "white" }} />
+                                    </Button>
+                                </OverlayTrigger>
+                            </>
+                        ) : (
+                       
+                                <div className='allbt mt-1' >
+                                <Button variant='primary'  style={{
+                                    padding: "10px 50px 10px 50px",
+                                    position: "relative",
                                     border: "none",
-                                    boxShadow: "0px 0px 4px 0px",
+                                    letterSpacing: "2px",
+                                    boxShadow: "0px 0px 4px 0px grey",
+                                    color: "white",
                                     margin: "2px",
                                     borderRadius: "5px",
-                                    backgroundColor: "#00A36C"
-                                }}>
-                                    <FaUserGraduate style={{ fontSize: "30px" ,color:"white"}} />
-                                </button>
-                            </OverlayTrigger>
-                        </>
-                    ) : (
-                        <div className='d'>
-                            <button style={{
-                                padding: "10px 25px 10px 25px",
-                                position:"relative",
-                                border: "none",
-                                letterSpacing:"2px",
-                                boxShadow: "0px 0px 4px 0px grey",
-                                backgroundColor: "dodgerblue",
-                                color:"white",
-                                margin: "2px",
-                                borderRadius: "5px",
-                            }} onClick={() => handleToggle(data._id)}>
-                                {data.batch}
-                                  <div><FaBookBookmark /></div>
-                            </button>
-                            
-                        </div>
-                    )}
-                </div>
-            ))}
-            <div className=''>
-            {ptog===1 && <h3 className='ms-2  mb-4 d-flex justify-content-center' style={{letterSpacing:"2px"}}>{`Registered Students in ${batch}`}</h3>}
-            {!parents.some((element)=>element.batch === batch) && ptog === 1 && <h3>No students registered...</h3>}
-                {parents.map((data, index) => (
-                    <div  key={index}>
-                        {(ptog === 1 && data.batch === batch) ? (
-                            <div className='details-sub ' style={{letterSpacing:"2px"}}>
-                                <div>Student Name: {data.studentname}</div>
-                                <div>Parent Name: {data.parentname}</div>
-                                <div>Batch: {data.batch}</div>
-                                <div>Email: {data.email}</div>
-                                <div>Phone No: {data.parentphone}</div>
-                                
-                            </div>
-                        ) : null}
-                      
+                                }} onClick={() => handleToggle(data._id)}>
+                                    {data.batch}
+                                    
+                                     <FaBookBookmark />
+                                </Button>
+                              
+                                </div>
+                           
+                        )}
                     </div>
                 ))}
-                {ptog===1 &&  <button style={{
-                                padding: "6px 10px 8px 10px",
-                                border: "none",
-                                boxShadow: "0px 0px 4px 0px",
-                                backgroundColor: "red",
-                                margin: "2px",
+                <div className=''>
+                    {ptog === 1 && <h3 className='ms-2 mt-3 mb-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Registered Students in ${batch}`}</h3>}
+                   
+                    <Table responsive striped hover bordered >
+                        {ptog === 1 && <thead>
+                            <tr>
+                                <th className='fs-5 bg-primary text-white' style={{ letterSpacing: "2px" }}>Student Name</th>
+                                <th className='fs-5 bg-primary text-white' style={{ letterSpacing: "2px" }}>Parent Name</th>
+                                <th className='fs-5 bg-primary text-white' style={{ letterSpacing: "2px" }}>Batch</th>
+                                <th className='fs-5 bg-primary text-white' style={{ letterSpacing: "2px" }}>Email</th>
+                                <th className='fs-5 bg-primary text-white' style={{ letterSpacing: "2px" }}>Ph no</th>
+                            </tr>
+                        </thead>}
 
-                                borderRadius: "5px",
-                            }}  onClick={Close}><VscClose style={{ fontSize: "20px",color:"white" }} /></button>}
-                 
+                        <tbody>
+                        {!parents.some((element) => element.batch === batch) && ptog === 1 && <h3 className='mt-3 mb-3' style={{letterSpacing:"3px"}}>No students registered...</h3>}
+                            {parents.map((data, index) => (
+                                <tr key={index}>
+                                    {(ptog === 1 && data.batch === batch) && (
+                                        <>
+                                            <td className='fs-5' style={{ letterSpacing: "2px" }}>{data.studentname}</td>
+                                            <td className='fs-5' style={{ letterSpacing: "2px" }}>{data.parentname}</td>
+                                            <td className='fs-5' style={{ letterSpacing: "2px" }}>{data.batch}</td>
+                                            <td className='fs-5' style={{ letterSpacing: "2px" }}>{data.email}</td>
+                                            <td className='fs-5' style={{ letterSpacing: "2px" }}>{data.parentphone}</td>
+                                        </>
+                                    )}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                    {ptog === 1 && <Button className='mt-2' style={{
+                        padding: "6px 10px 8px 10px",
+                        border: "none",
+                        letterSpacing: "2px",
+                        boxShadow: "0px 0px 4px 0px grey",
+                        backgroundColor: "red",
+                        margin: "2px",
+                        borderRadius: "5px",
+                    }} onClick={Close}>Close</Button>}
+                </div>
             </div>
         </div>
-        </>
     );
 }

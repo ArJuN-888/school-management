@@ -13,7 +13,6 @@ export default function ParentRegistration() {
     classteacher: teacherName,
     email: "",
     batch: "",
-    health: "",
     password: "",
     parentphone: "",
     status: "",
@@ -62,11 +61,7 @@ alert(error.response.data.message)
       <option value="10C">10C</option>
      </select>
      
-     <select   onChange={(e)=> handleChange("health",e.target.value)} >
-    <option value="health status">Current health status</option>
-      <option value="GOOD">GOOD</option>
-      <option value="BAD">BAD</option>
-     </select>
+  
      <input
         value={Parentregister.password}
         placeholder='Password...'

@@ -162,6 +162,9 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile /></Link></li>
+
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
+
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
@@ -182,6 +185,9 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/viewletter">View-letter</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/timetable">Time Table</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tpro">Profile</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Health"> Mark Health Record</Link></li>
+        
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {doctorID &&<>
@@ -192,6 +198,7 @@ export default function Navbar() {
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}}  to="/Dpro">Profile</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="Healthview">Health Record</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
       
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
@@ -221,6 +228,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/ParentmarklistView">Marklist</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/parentattendeceView">Attendence</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Ppro">Profile</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {eoID &&<>

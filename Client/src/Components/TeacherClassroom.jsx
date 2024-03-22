@@ -23,7 +23,6 @@ export default function TeacherClassroom() {
     classteacher: teachername,
     email: "",
     batch: "",
-    health: "",
     parentphone: "",
     status: "",
   });
@@ -78,7 +77,7 @@ export default function TeacherClassroom() {
 
   const handleSubmit = async (id) => {
     try {
-      if (!edit.studentname || !edit.parentname || !edit.email || !edit.batch || !edit.health || !edit.parentphone || !edit.status) {
+      if (!edit.studentname || !edit.parentname || !edit.email || !edit.batch  || !edit.parentphone || !edit.status) {
         alert("All fields are required");
         return;
       }
@@ -93,7 +92,6 @@ export default function TeacherClassroom() {
         classteacher: teachername,
         email: "",
         batch: "",
-        health: "",
         parentphone: "",
         status: "",
       });
@@ -116,7 +114,6 @@ export default function TeacherClassroom() {
       classteacher: data.classteacher,
       email: data.email,
       batch: data.batch,
-      health: data.health,
       parentphone: data.parentphone,
       status: data.status,
 
@@ -263,17 +260,7 @@ export default function TeacherClassroom() {
             </Form.Select>
             </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mt-2">
-            <Form.Label  column sm="2">Health:</Form.Label>
-            <Col sm="10">
-            <Form.Select style={{letterSpacing:"2px"}} className="fs-5" name="health"  value={edit.health} onChange={handleChange}>
-              <option>Health Status</option>
-              <option value="GOOD">GOOD</option>
-              <option value="BAD">BAD</option>
-             
-            </Form.Select>
-            </Col>
-            </Form.Group>
+        
          
             <Form.Group as={Row} className="mt-2">
             <Form.Label column sm="2">Student Phno:</Form.Label>
