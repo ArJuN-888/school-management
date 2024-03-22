@@ -148,62 +148,7 @@ const StudentHealth = () => {
                         </Form.Group>
                     </Col>
 
-                <Form.Group as={Col} controlId="batch">
-                        <Form.Label>Student batch</Form.Label>
-                        <Form.Select type="text" name="batch" placeholder="Finalreport" onChange={handleChange}>
-                          <option value="">batch</option>
-                            <option value="10A">10A</option>
-                            <option value="10B">10B</option>
-                            <option value="10C">10C</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="Immunization">
-                        <Form.Label>Immunization</Form.Label>
-                        <Form.Control type="text" name="Immunization" placeholder="Immunization" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="Vision">
-                        <Form.Label>Vision</Form.Label>
-                        <Form.Control type="text" name="Vision" placeholder="Vision" onChange={handleChange} />
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="Hearing">
-                        <Form.Label>Hearing</Form.Label>
-                        <Form.Control type="text" name="Hearing" placeholder="Hearing" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="PhysicalExamination">
-                        <Form.Label>Physical Examination</Form.Label>
-                        <Form.Control type="text" name="PhysicalExamination" placeholder="Physical Examination" onChange={handleChange} />
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="NutritionStatus">
-                        <Form.Label>Nutrition Status</Form.Label>
-                        <Form.Control type="text" name="NutritionStatus" placeholder="Nutrition Status" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="MentalHealth">
-                        <Form.Label>Mental Health</Form.Label>
-                        <Form.Control type="text" name="MentalHealth" placeholder="Mental Health" onChange={handleChange} />
-                    </Form.Group>
-                </Row>
-                <Row>
-                <Form.Group as={Col} controlId="Finalreport">
-                        <Form.Label>Finalreport</Form.Label>
-
-
-                       
-
-
-
-                      <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
-                          <option value="">Status</option>
-                            <option value="HEALTHY">HEALTHY</option>
-                            <option value="NEEDS CONSULTATION">NEEDS CONSULTATION</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Row>
+              </Row>
                 <div className="text-center">
                     <Button variant="primary" type="submit">Submit</Button>
                 </div>
