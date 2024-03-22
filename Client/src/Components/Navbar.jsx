@@ -10,6 +10,7 @@ import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import { ImBook } from "react-icons/im";
 import { FaUserPlus } from "react-icons/fa6";
+import {CgProfile} from "react-icons/cg"
 import { BsChatLeftTextFill } from "react-icons/bs";
 import { FaUserDoctor } from "react-icons/fa6";
 import { TfiAnnouncement } from "react-icons/tfi";
@@ -211,6 +212,7 @@ const Sm = (props) => (
                     <BiHomeAlt2 style={{ color: "black", fontSize: "25px" }} />
               
                 </Link></li></OverlayTrigger>
+
    <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Registers}><Link style={{textDecoration:"none"}} to="/Tregister"><FaUserPlus style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Classroom}><Link style={{textDecoration:"none"}} to="/Classroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
@@ -218,6 +220,10 @@ const Sm = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Extern}><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={CAnn}><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+
+
+        <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></li>
+
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
         </div></>}
         {teacherID &&<>

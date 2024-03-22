@@ -106,6 +106,7 @@ const getMyletter = async() =>{
             </div>
         </div>
         <div className='map-container'>
+            {letters ?(    
             <div className='map-section'>
                 <table>
                     <tr>
@@ -126,6 +127,10 @@ const getMyletter = async() =>{
                     </tr>
                 </table>
             </div>
+             ):(
+            <>
+            </>
+            )}
         </div>
     </div>
   )
