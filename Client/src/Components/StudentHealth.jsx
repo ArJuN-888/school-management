@@ -202,7 +202,6 @@ const StudentHealth = () => {
             </Form.Group>
           </Col>
           </Row>
-   
                 <div className="text-center">
                     <Button variant="primary" type="submit">Submit</Button>
                 </div>
