@@ -103,8 +103,8 @@ console.log("admin",admin)
     }
    
   return (
-    <div>
-        <div>
+    <div className='m-2'>
+        <div className='fs-5' style={{letterSpacing:"2px"}}>
            <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
             <>
                  <Form>
@@ -152,7 +152,7 @@ console.log("admin",admin)
         <div>
             {toggle ?(
                 <>
-                    <Form>
+                    <Form className='fs-5' style={{letterSpacing:"2px"}}>
                  <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Previous Password:</Form.Label>
                     <Col sm="10">
@@ -177,10 +177,10 @@ console.log("admin",admin)
                 </>
             )}
         </div>
-        <div>
+        <div className='m-2'>
             {passToggle?(
                 <>
-                    <Form>
+                    <Form className='fs-5' style={{letterSpacing:"2px"}}>
            <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> New Password:</Form.Label>
                     <Col sm="10">
