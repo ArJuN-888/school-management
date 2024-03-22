@@ -3,7 +3,6 @@ import axios from "axios";
 import mycontext from '../Context/Context';
 import {useContext } from 'react';
 import StaffRegister from './StaffRegister';
-import ExternalOrganizationRegister from './ExternalOrganizationRegister';
 export default function Register() {
    const {teacherregisterdata,setteacherRegisterdata} = useContext(mycontext)
    
@@ -65,10 +64,7 @@ export default function Register() {
   <h3 className='mb-4'>Staff </h3>
   <StaffRegister/>
    </div>
-   <div className='Staff-Register mt-5 '>
-  <h3 className='mb-4'>External Organization</h3>
-  <ExternalOrganizationRegister/>
-   </div>
+ 
     </div>
   )
 }

@@ -70,3 +70,11 @@
     width: 100%;
 
   }
+  .batch-select {
+    overflow: hidden;
+   
+  }
+  
+  .batch-select:hover {
+    overflow-y: auto;
+  }

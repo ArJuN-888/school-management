@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetadminID from './Hooks/GetadminID'
 import axios from 'axios';
 import moment from "moment"
-import { Button } from 'react-bootstrap';
+import { Button,Col,Form, Row } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
@@ -109,21 +109,33 @@ catch(error)
   return err
 }
   return (
-    <div>
+    <div className='m-2'>
 <div><h1 className='fs-2' style={{letterSpacing:"2px"}}>Upload announcements...</h1></div>
-<input
+<Form.Group as={Row}>
+  <Form.Label column sm="1" >Note:</Form.Label>
+
+<Col sm="11">
+<Form.Control
 value={announce.note}
 className='inp'
-placeholder='note...'
+placeholder='Description...'
 onChange={(e)=>handleChange("note",e.target.value)}
 />
-<select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
+</Col>
+</Form.Group>
+<Form.Group as={Row}>
+  <Form.Label column sm="1" >Status:</Form.Label>
+
+<Col sm="11">
+<Form.Select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
     <option value="Status" >Status</option>
     <option value="Important">Important</option>
     <option value="Notify">Notify</option>
     <option value="Keeptrack">Keeptrack</option>
-  </select>
-      <input
+  </Form.Select>
+  </Col>
+  </Form.Group>
+      <Form.Control
       type='file'
      onChange={handleFile}
       />

@@ -170,7 +170,7 @@ export default function Navbar() {
         }}>{teacherName}</label></li>
 
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}} /></Link></li>
-         <l1><Link style={{textDecoration:"none"}} to="/TeacherClassroom">Your Classroom</Link></l1>
+         <li><Link style={{textDecoration:"none"}} to="/TeacherClassroom">Your Classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat">< PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister"><FaUserPlus style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>

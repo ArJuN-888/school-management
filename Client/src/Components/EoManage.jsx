@@ -19,6 +19,14 @@ export default function EoManage() {
         organization:""
     
       })
+      const [registerEo,setregisterEo] = useState({
+        email:"",
+        username:"",
+        organization:"",
+        password:"",
+        status:""
+    })
+    
       console.log("allEo",allEo)
       const [toggle,setToggle] = useState(0)
       const [Ename,setEname] = useState("")
@@ -50,7 +58,7 @@ export default function EoManage() {
       }
       }
       const handleEdit = (data) =>{
-        setToggle(1)
+        setToggle(2)
         setGrant(false)
         setPasstoggle(0)
         setprevpassword("")
@@ -125,8 +133,93 @@ export default function EoManage() {
                 alert(error.response.data.message)
                   }
           }
+
+          const handle1Change = (key,value) =>{
+            setregisterEo({...registerEo,[key]:value})
+                }
+                const handleSubmit = async() =>{
+                    try{
+             const response = await axios.post(`${baseURL}/Organization/register`,registerEo)
+             alert(response.data.message)
+             fetcheo()
+                    }
+                    catch(error){
+            alert(error.response.data.message)
+                    }
+                }
   return (
-    <>
+    <div className='fs-5' style={{letterSpacing:"2px"}}>
+      <div className='m-2' >
+      <div className='Staff-Register mt-2 '>
+  <h3 className='mb-4'>External Organization Registration...</h3>
+
+   </div>
+      <Form >
+        <Form.Group as={Row} className='mt-2'>
+          <Form.Label column sm="2">Username:</Form.Label>
+          <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='Username...'
+        value={registerEo.username}
+        onChange={(e)=> handle1Change("username",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+          <Form.Label column sm="2">Email:</Form.Label>
+          <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='Email...'
+        value={registerEo.email}
+        onChange={(e)=> handle1Change("email",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+          <Form.Label column sm="2">Password:</Form.Label>
+          <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='Password...'
+        value={registerEo.password}
+        onChange={(e)=> handle1Change("password",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+          <Form.Label column sm="2">Status:</Form.Label>
+          <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='Status...'
+        value={registerEo.status}
+        onChange={(e)=> handle1Change("status",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+          <Form.Label column sm="2">Organization:</Form.Label>
+          <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='Organization...'
+        value={registerEo.organization}
+        onChange={(e)=> handle1Change("organization",e.target.value)}
+        />
+        </Col>
+        </Form.Group>
+        <Button className='bg-primary' onClick={handleSubmit}>Submit</Button>
+        </Form>
+        
+    </div>
+  
     <div className='all-teacher m-2 mt-5' style={{letterSpacing:"2px"}}>
       <Table  responsive bordered hover  variant='white'>
        {allEo.length !== 0 &&
@@ -154,7 +247,7 @@ export default function EoManage() {
       </tbody>
       </Table>
     </div>
-    {toggle === 1 && (<div className='m-2 d-block' style={{letterSpacing:"2px"}}>
+    {toggle === 2 && (<div className='m-2 d-block' style={{letterSpacing:"2px"}}>
       <label className='fs-4 mt-4 mb-4' >{`Modifying the particulars concerning ${Ename}`}   <Spinner animation="border" role="status" variant="primary" size="sm"></Spinner></label>
       <Form className='form '  style={{letterSpacing:"3px"}} >
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
@@ -214,7 +307,7 @@ export default function EoManage() {
       />
       </Col>
       </Form.Group>
-      <div className='d-flex gap-1 mt-1' style={{letterSpacing:"2px"}}>
+      <div className='d-flex gap-2 mt-2' style={{letterSpacing:"2px"}}>
       <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=>Update()}>Update</Button>
       <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='danger' onClick={Cancel}>Cancel</Button>
       <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}}  variant='success' onClick={Togglepassreq}>Password Change</Button>
@@ -286,6 +379,6 @@ export default function EoManage() {
     
     
     }
-  </>
+  </div>
   )
 }
