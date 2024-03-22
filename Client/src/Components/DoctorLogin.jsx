@@ -21,6 +21,7 @@ export default function DoctorLogin() {
   }
  catch(error){
 console.log("Error faced",error)
+alert(error.response.data.message)
  }
  }
   return (
