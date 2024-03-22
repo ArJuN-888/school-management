@@ -63,6 +63,7 @@ console.log("letters",letters);
 
   return (
     <div className='l-container'>
+      {letters ?(    
         <div className='l-section'>
             <h2 className='l-head'>Submitted LeaveLetters</h2>
             <table className='l-table'>
@@ -91,6 +92,12 @@ console.log("letters",letters);
                 </tr>
             </table>
         </div>
+      ):( 
+        <>
+        <h1>No Leave Letters has been Submitted</h1>
+        </>
+
+      )}
     </div>
   )
 }
