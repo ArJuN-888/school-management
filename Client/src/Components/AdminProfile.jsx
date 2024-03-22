@@ -7,7 +7,7 @@ export default function () {
     const {baseURL} = useContext(mycontext)
     const[toggle,setToggle]=useState(0)
     const[passToggle,setPassToggle]=useState(0)
-    const[admin,setAdmin]=useState({})
+    const[admin,setAdmin]=useState([])
     const[adminID,setAdminID]=useState("")
     const[newUsername,setNewusername]=useState("")
     const[newEmail,setNewEmail]=useState("")
@@ -15,7 +15,7 @@ export default function () {
     const[oldPass,setOldpass]=useState("")
     const[newPass,setNewpass]=useState("")
     const[conPass,setConpass]=useState("")
-
+console.log("admin",admin)
     useEffect(()=>{
         fetchAdmin()
     },[])
@@ -51,11 +51,12 @@ export default function () {
         try
         {
             const response = await axios.get(`${baseURL}/Admin/getadmin`)
+        
             setAdmin(response.data.admin)
-            setNewEmail(response.data.admin.email)
-            setNewusername(response.data.admin.username)
-            setNewStat(response.data.admin.status)
-            setAdminID(response.data.admin._id)
+            setNewEmail(response.data.admin[0].email)
+            setNewusername(response.data.admin[0].username)
+            setNewStat(response.data.admin[0].status)
+            setAdminID(response.data.admin[0]._id)
         }
         catch(err)
         {
@@ -104,7 +105,7 @@ export default function () {
   return (
     <div>
         <div>
-           
+           <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
             <>
                  <Form>
                  <Form.Group as={Row} className='mt-2'>

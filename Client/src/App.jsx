@@ -104,7 +104,23 @@ useEffect(()=>{
    const  responseParent = await axios.get(`${baseURL}/Parent/getallparent`);
    const  responseeo = await axios.get(`${baseURL}/Organization/geteo`);
    const  responseStaff = await axios.get(`${baseURL}/Staff/getstaff`);
-   setallUsers([...allUsers,...responseAdmins.data.admin,...responseDoctor.data.doctor,...responseParent.data.parent,...responseTeachers.data.teacher,...responseeo.data.eo,...responseStaff.data.staff])
+   const allUsersArray = [
+    ...responseAdmins.data.admin,
+    ...responseDoctor.data.doctor,
+    ...responseParent.data.parent,
+    ...responseTeachers.data.teacher,
+    ...responseeo.data.eo,
+    ...responseStaff.data.staff
+  ];
+
+  // Use Set to filter out duplicate values
+  const uniqueUsersSet = new Set(allUsersArray);
+
+  // Convert Set back to an array
+  const uniqueUsersArray = [...uniqueUsersSet];
+
+  // Update state with unique users array
+  setallUsers(uniqueUsersArray);
   }
   //getting id of log
   useEffect(() => {
