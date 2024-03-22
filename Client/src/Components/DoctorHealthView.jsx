@@ -14,7 +14,7 @@ const DoctorHealthView = () => {
     const ViewRecord = async () => {
         try {
             const response = await axios.get(`${baseURL}/Health/View`);
-            const myStudents = response.data.message.filter((u) => u.Finalreport === "NEDD CONSULTATION");
+            const myStudents = response.data.message.filter((u) => u.Finalreport === "NEED CONSULTATION");
             setRecord(myStudents);
         } catch (error) {
             console.error('Error fetching records:', error);

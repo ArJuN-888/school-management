@@ -97,24 +97,17 @@ const StudentHealth = () => {
                 <Row>
                 <Form.Group as={Col} controlId="Finalreport">
                         <Form.Label>Finalreport</Form.Label>
-<<<<<<< HEAD
+
 
                        
-  <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
-    <option value="">Status</option>
-    <option value="HEALTHY">HEALTHY</option>
-    <option value="NEED CONSULTATION">NEED CONSULTATION</option> {/* Fixed duplicate value */}
-    
-  </Form.Select>
 
 
-=======
-                        <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
+
+                      <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
                           <option value="">Status</option>
                             <option value="HEALTHY">HEALTHY</option>
-                            <option value="NEDD CONSULTATION">NEED CONSULTATION</option>
+                            <option value="NEED CONSULTATION">NEED CONSULTATION</option>
                         </Form.Select>
->>>>>>> b7f47e0f3df8bf5ea89c6ba3d8cae97c5ab865d6
                     </Form.Group>
                 </Row>
                 <div className="text-center">

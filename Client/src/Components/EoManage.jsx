@@ -141,6 +141,7 @@ export default function EoManage() {
                     try{
              const response = await axios.post(`${baseURL}/Organization/register`,registerEo)
              alert(response.data.message)
+             fetcheo()
                     }
                     catch(error){
             alert(error.response.data.message)
