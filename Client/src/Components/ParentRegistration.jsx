@@ -54,11 +54,17 @@ alert(error.response.data.message)
       onChange={(e)=>handleChange("email",e.target.value)}
      />
     
-     <select   onChange={(e)=> handleChange("batch",e.target.value)} >
-    <option value="Select a Batch">Select a Batch</option>
+     <select  onChange={(e)=> handleChange("batch",e.target.value)} >
+    <option   value="Select a Batch">Select a Batch</option>
       <option value="10A">10A</option>
       <option value="10B">10B</option>
       <option value="10C">10C</option>
+      <option value="10C">10D</option>
+      <option value="10C">9A</option>
+      <option value="10C">9B</option>
+      <option value="10C">9C</option>
+      <option value="10C">9D</option>
+      <option value="10C">8A</option>
      </select>
      
   
@@ -73,16 +79,20 @@ alert(error.response.data.message)
       type='number'
       onChange={(e)=>handleChange("parentphone",e.target.value)}
      />
-    
-       <select   onChange={(e)=> handleChange("status",e.target.value)} >
-    <option value="status">Status</option>
-      <option value="MOTHER">MOTHER</option>
-      <option value="FATHER">FATHER</option>
-      <option value="BROTHER">BROTHER</option>
-      <option value="SISTER">SISTER</option>
-      <option value="GRANDFATHER">GRANDFATHER</option>
-      <option value="GRANDMOTHER">GRANDMOTHER</option>
-     </select>
+
+   <select style={{position:"relative"}}  onChange={(e) => handleChange("status", e.target.value)}>
+   
+  <option value="status">Status</option>
+  <option value="MOTHER">MOTHER</option>
+  <option value="FATHER">FATHER</option>
+  <option value="BROTHER">BROTHER</option>
+  <option value="SISTER">SISTER</option>
+  <option value="GRANDFATHER">GRANDFATHER</option>
+  <option value="GRANDMOTHER">GRANDMOTHER</option>
+ 
+</select>
+
+  
      <button onClick={handleSubmit}>Register</button>
     </div>
   )
