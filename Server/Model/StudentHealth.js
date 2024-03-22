@@ -3,6 +3,7 @@ const mongoose= require("mongoose")
 const Model= new mongoose.Schema({
     studenentid:String,
     studentname:String,
+    batch:String,
     Immunization:String,
     Vision:String,
     Hearing:String,

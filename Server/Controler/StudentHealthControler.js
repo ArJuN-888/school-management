@@ -2,10 +2,10 @@ const HealthSchema = require("../Model/StudentHealth");
 
 const Addrecord = async (req, res) => {
     try {
-      const { studentid, studentname, Immunization, Vision, Hearing, MentalHealth, PhysicalExamination, NutritionStatus ,Finalreport} = req.body;
+      const { studentid, studentname,batch, Immunization, Vision, Hearing, MentalHealth, PhysicalExamination, NutritionStatus ,Finalreport} = req.body;
   
       // Check if any required field is missing
-      if (!studentid || !studentname || !Immunization || !Vision || !Hearing || !MentalHealth || !PhysicalExamination || !NutritionStatus||!Finalreport) {
+      if (!studentid || !studentname ||!batch || !Immunization || !Vision || !Hearing || !MentalHealth || !PhysicalExamination || !NutritionStatus||!Finalreport) {
         return res.status(400).json({ message: "All fields are required" });
       }
   
@@ -19,6 +19,7 @@ const Addrecord = async (req, res) => {
       const Health = new HealthSchema({
         studentid,
         studentname,
+        batch,
         Immunization,
         Vision,
         Hearing,
