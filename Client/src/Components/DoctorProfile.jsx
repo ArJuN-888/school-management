@@ -6,7 +6,6 @@ const DoctorProfile = () => {
     const Doctorname=Getdoctorname()
     const {baseURL}=useContext(mycontext)
     const [doctor,setDoctor]=useState([])
-    console.log("doctor",doctor)
 
     useEffect(()=>{
      getAllDoctors()
