@@ -20,7 +20,7 @@ export default function ParentLogin() {
         }
    catch(error)
    {
-    console.log(error.response.data.message)
+ alert(error.response.data.message)
    }
     }
   return (
