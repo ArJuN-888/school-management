@@ -6,7 +6,6 @@ import Getadminname from './Hooks/Getadminname';
 import { useNavigate } from 'react-router-dom'
 import mycontext from '../Context/Context'
 import { PiChatsLight } from "react-icons/pi";
-import { CgProfile } from "react-icons/cg";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import { ImBook } from "react-icons/im";
@@ -147,13 +146,49 @@ export default function Navbar() {
          Home
       </Tooltip>
   );
-
+  const Chat = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+       Chat
+    </Tooltip>
+);
+const Registers = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Add Faculties 
+  </Tooltip>
+);
+const Classroom = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     Classroom
+  </Tooltip>
+);
+const Doctor = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     Manage-Doctor
+  </Tooltip>
+);
+const Extern = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Manage-E-Organization
+  </Tooltip>
+);
+const CAnn = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     Announcements
+  </Tooltip>
+);
+const Sm = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     Study materials
+  </Tooltip>
+);
   return (
     <>
-    <nav style={{
+    <nav className=' nv position-fixed fixed-top' style={{
         display:"flex",
         justifyContent:"center",
-       fontFamily:"monospace",
+      width:"100%",
+      zIndex:"1",
+
     }}>
       
       <ul style={{
@@ -164,14 +199,11 @@ export default function Navbar() {
         fontSize:"18px"
     }}>
   {adminID &&<>
-  <div className='d-flex gap-3 mt-3' >
-        <li>Logged in as <label style={{
-            color:'green',
-            fontWeight:"bolder"
-        }}>{adminName}</label></li>
+  <div className='d-flex gap-4 mt-3 justify-content-center'  >
+        <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-white'>{adminName}</div></li>
             <OverlayTrigger
-                    placement="right"
-                    delay={{ show: 250, hide: 400 }}
+                    placement="bottom"
+                    delay={{ show: 50, hide: 100 }}
                     overlay={renderTooltip}
                   >
          <li><Link style={{ textDecoration: "none" }} to="/Home">
@@ -179,13 +211,13 @@ export default function Navbar() {
                     <BiHomeAlt2 style={{ color: "black", fontSize: "25px" }} />
               
                 </Link></li></OverlayTrigger>
-   <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Tregister"><FaUserPlus style={{color:"black",fontSize:"25px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Classroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/doctormanage"><FaUserDoctor style={{color:"black",fontSize:"25px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></li>
+   <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Registers}><Link style={{textDecoration:"none"}} to="/Tregister"><FaUserPlus style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Classroom}><Link style={{textDecoration:"none"}} to="/Classroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Doctor}><Link style={{textDecoration:"none"}} to="/doctormanage"><FaUserDoctor style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Extern}><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={CAnn}><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
         </div></>}
         {teacherID &&<>

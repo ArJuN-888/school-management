@@ -60,7 +60,7 @@ catch(error)
 })
 router.get("/getadmin",async(req,res)=>{
     try{
-    const data = await adminModel.findOne({})
+    const data = await adminModel.find({})
     res.status(200).json({admin:data})
     }
     catch(error){
