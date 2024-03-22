@@ -110,7 +110,6 @@ router.put("/edit/:id",async(req,res)=>{
      {
         const { id } = req.params;
         const { username,email,qualification } = req.body;
-        console.log("up",req.body);
         if(!username || !email || !qualification)
         {
             return res.status(400).json({message:"Empty Field"})

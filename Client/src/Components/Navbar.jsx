@@ -6,6 +6,7 @@ import Getadminname from './Hooks/Getadminname';
 import { useNavigate } from 'react-router-dom'
 import mycontext from '../Context/Context'
 import { PiChatsLight } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import { ImBook } from "react-icons/im";
@@ -279,3 +280,4 @@ export default function Navbar() {
     </>
   )
 }
+

@@ -17,7 +17,7 @@ console.log("lokok",Pclass);
     try {
       const response = await axios.get("http://localhost:5000/Timetable/gettableP",{params:{ Pclass}});
       setTimetables(response.data);
-      // const logonn = timetables.length
+    
       setLogonn(timetables.length)
     } catch (error) {
       console.error("Error fetching timetables: ", error);
