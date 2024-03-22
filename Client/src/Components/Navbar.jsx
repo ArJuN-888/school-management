@@ -164,7 +164,7 @@ export default function Navbar() {
         fontSize:"18px"
     }}>
   {adminID &&<>
-  
+  <div className='d-flex gap-3 mt-3' >
         <li>Logged in as <label style={{
             color:'green',
             fontWeight:"bolder"
@@ -188,7 +188,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
-        </>}
+        </div></>}
         {teacherID &&<>
         <li>Logged in as <label style={{
             color:'green',
