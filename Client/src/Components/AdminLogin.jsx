@@ -20,7 +20,8 @@ export const AdminLogin = () => {
         }
         catch(error)
         {
-            alert(error);
+            console.log(error)
+            alert(error.response.data.message)
         }
     }
 
