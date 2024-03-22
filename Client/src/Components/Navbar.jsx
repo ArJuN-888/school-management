@@ -6,6 +6,7 @@ import Getadminname from './Hooks/Getadminname';
 import { useNavigate } from 'react-router-dom'
 import mycontext from '../Context/Context'
 import { PiChatsLight } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import { FaUserPlus } from "react-icons/fa6";
@@ -160,6 +161,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/Exmanage">Eo-Manage</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile /></Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {teacherID &&<>
