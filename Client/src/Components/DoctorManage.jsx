@@ -231,18 +231,18 @@ console.log("id",docID);
                  </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>
-                    <Form.Label  column sm="2"> Status:</Form.Label>
-                    <Col sm="10">
-                <Form.Control
-                    style={{letterSpacing:"2px"}}
-                    className='fs-5 '
-                    type='text'
-                    value={status}
-                    placeholder='Status...'
-                    onChange={(e)=>setStatus(e.target.value)}
-                />
-                 </Col>
-                </Form.Group>
+  
+  <Form.Label column sm="2" >Status:</Form.Label>
+
+<Col sm="10">
+<Form.Select    style={{letterSpacing:"2px"}}
+           className='fs-5 me-2'  onChange={(e)=>setStatus(e.target.value)}>
+    <option value="" >Status</option>
+    <option value="Doctor">Doctor</option>
+
+  </Form.Select>
+  </Col>
+  </Form.Group >
                 <div className='sub-button'>
                     <Button variant='primary' className='mb-4'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{submitButton()}}>Submit</Button>
                 </div>

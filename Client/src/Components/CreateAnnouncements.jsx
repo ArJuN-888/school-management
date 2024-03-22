@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetadminID from './Hooks/GetadminID'
 import axios from 'axios';
 import moment from "moment"
-import { Button } from 'react-bootstrap';
+import { Button,Col,Form, Row } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
@@ -109,30 +109,50 @@ catch(error)
   return err
 }
   return (
-    <div>
-<div><h1 className='fs-2' style={{letterSpacing:"2px"}}>Upload announcements...</h1></div>
-<input
+    <div className='fs-5 m-2' style={{letterSpacing:"2px"}}>
+<label className='fs-3 mb-3 ' style={{letterSpacing:"2px"}}>Upload announcements...</label>
+<Form>
+<Form.Group as={Row} className='mt-2'>
+  <Form.Label column sm="1" >Note:</Form.Label>
+
+<Col sm="11">
+<Form.Control
+   style={{letterSpacing:"2px"}}
+   className='fs-5'
 value={announce.note}
-className='inp'
-placeholder='note...'
+
+placeholder='Description...'
 onChange={(e)=>handleChange("note",e.target.value)}
 />
-<select className='me-2' onChange={(e)=>handleChange("status",e.target.value)}>
+</Col>
+</Form.Group>
+<Form.Group as={Row} className='mt-2'>
+  
+  <Form.Label column sm="1" >Status:</Form.Label>
+
+<Col sm="11">
+<Form.Select    style={{letterSpacing:"2px"}}
+           className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
     <option value="Status" >Status</option>
     <option value="Important">Important</option>
     <option value="Notify">Notify</option>
     <option value="Keeptrack">Keeptrack</option>
-  </select>
-      <input
+  </Form.Select>
+  </Col>
+  </Form.Group >
+      <Form.Control 
+         style={{letterSpacing:"2px"}}
+         className='fs-5 mt-2'
       type='file'
      onChange={handleFile}
       />
-      < Button  style={{letterSpacing:"2px",backgroundColor:"green",border:"none",
+      </Form>
+      < Button  className='mt-2'  style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
     <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
 { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
-<span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
+<span className='text-success fs-5' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
 <div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
 <div><label className='text-warning fs-5' style={{letterSpacing:"2px"}}>{an.status}</label></div>
 <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>

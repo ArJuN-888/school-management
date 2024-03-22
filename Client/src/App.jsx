@@ -25,7 +25,7 @@ import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
 import ViewMarklist from "./Components/ViewMarklist";
-import ExternalOrganizationRegister from "./Components/ExternalOrganizationRegister";
+// import ExternalOrganizationRegister from "./Components/ExternalOrganizationRegister";
 import GetEID from "./Components/Hooks/GetEID";
 import { EoLogin } from "./Components/EoLogin";
 import Viewletter from "./Components/Viewletter";
@@ -47,7 +47,6 @@ import AdminProfile from "./Components/AdminProfile";
 
 import StudeyMaterial from "./Components/StudyMaterials";
 import StudentHealth from "./Components/StudentHealth";
-import TeacherHealthView from "./Components/DoctorHealthView";
 import DoctorHealthView from "./Components/DoctorHealthView";
 
 function App() {
@@ -275,7 +274,7 @@ setNotifications(mNotifications)
             <Route path="/Broadcasts" element={<Broadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
-            <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/>
+            {/* <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/> */}
             <Route path="/Elogin" element={<EoLogin/>}/>
             <Route path="/viewletter" element={<Viewletter/>}/>
             <Route path="/timetable" element={<Timetable/>}/>

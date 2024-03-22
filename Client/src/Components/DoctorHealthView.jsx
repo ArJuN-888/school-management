@@ -6,6 +6,7 @@ import { Table } from 'react-bootstrap';
 const DoctorHealthView = () => {
     const { baseURL } = useContext(mycontext);
     const [record, setRecord] = useState([]);
+    console.log("record", record);
 
     useEffect(() => {
         ViewRecord();
@@ -14,7 +15,8 @@ const DoctorHealthView = () => {
     const ViewRecord = async () => {
         try {
             const response = await axios.get(`${baseURL}/Health/View`);
-            const myStudents = response.data.message.filter((u) => u.Finalreport === "NEDD CONSULTATION");
+            console.log("response",response.data.message)
+            const myStudents= response.data.message.filter((u)=> u.Finalreport==="NEEDS CONSULTATION")
             setRecord(myStudents);
         } catch (error) {
             console.error('Error fetching records:', error);
@@ -34,24 +36,28 @@ const DoctorHealthView = () => {
                             <th>Student ID</th>
                             <th>Student Name</th>
                             <th>Batch</th>
+                            <th>Age</th>
                             <th>Health Report</th>
                         </tr>
                     </thead>
                     <tbody>
                         {record.length !== 0 ? (
-                            record.map((data, index) => (
+                            record.map((student, index) => (
                                 <tr key={index}>
-                                    <td>{data._id}</td>
-                                    <td>{data.studentname}</td>
-                                    <td>{data.batch}</td>
-                                    <td> 
+                                    <td>{student._id}</td>
+                                    <td>{student.studentname}</td>
+                                    <td>{student.batch}</td>
+                                    <td>{student.age}</td>
+                                    <td>
                                         <ul>
-                                            <li><strong>Vision:</strong> {data.Vision}</li>
-                                            <li><strong>Mental Health:</strong> {data.MentalHealth}</li>
-                                            <li><strong>Immunization:</strong> {data.Immunization}</li>
-                                            <li><strong>Hearing:</strong> {data.Hearing}</li>
-                                            <li><strong>Nutrition Status:</strong> {data.NutritionStatus}</li>
-                                            <li><strong>Physical Examination:</strong> {data.PhysicalExamination}</li>
+                                            <li><strong>Height:</strong> {student.height}</li>
+                                            <li><strong>Weight:</strong> {student.weight}</li>
+                                            <li><strong>Vision:</strong> {student.Vision}</li>
+                                            <li><strong>Mental Health:</strong> {student.MentalHealth}</li>
+                                            <li><strong>Immunization:</strong> {student.Immunization}</li>
+                                            <li><strong>Hearing:</strong> {student.Hearing}</li>
+                                            <li><strong>Nutrition Status:</strong> {student.NutritionStatus}</li>
+                                            <li><strong>Physical Examination:</strong> {student.PhysicalExamination}</li>
                                         </ul>
                                     </td>
                                 </tr>
