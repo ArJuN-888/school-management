@@ -8,8 +8,12 @@ import mycontext from '../Context/Context'
 import { PiChatsLight } from "react-icons/pi";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
+import { ImBook } from "react-icons/im";
 import { FaUserPlus } from "react-icons/fa6";
 import { BsChatLeftTextFill } from "react-icons/bs";
+import { FaUserDoctor } from "react-icons/fa6";
+import { TfiAnnouncement } from "react-icons/tfi";
+import { FaUserTie } from "react-icons/fa6";
 import { BiHomeAlt2 } from "react-icons/bi";
 import GetdoctorID from './Hooks/GetdoctorID';
 import Getdoctorname from './Hooks/Getdoctorname';
@@ -19,7 +23,11 @@ import { RiFileList2Fill } from "react-icons/ri";
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
 import GetSID from './Hooks/GetstaffID';
+import { SiGoogleclassroom } from "react-icons/si";
 import GetSname from './Hooks/GetstaffName';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+
+import Tooltip from 'react-bootstrap/Tooltip';
 export default function Navbar() {
   const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats,setNotifications} = useContext(mycontext)
     const teacherID = GetTID()
@@ -133,6 +141,12 @@ export default function Navbar() {
 
     
     }
+    const renderTooltip = (props) => (
+      <Tooltip id="button-tooltip" {...props}>
+         Home
+      </Tooltip>
+  );
+
   return (
     <>
     <nav style={{
@@ -149,19 +163,29 @@ export default function Navbar() {
         fontSize:"18px"
     }}>
   {adminID &&<>
+  
         <li>Logged in as <label style={{
             color:'green',
             fontWeight:"bolder"
         }}>{adminName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2 style={{color:"black",fontSize:"23px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/doctormanage">Doctor-Manage</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Exmanage">Eo-Manage</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
-        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+            <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderTooltip}
+                  >
+         <li><Link style={{ textDecoration: "none" }} to="/Home">
+              
+                    <BiHomeAlt2 style={{ color: "black", fontSize: "25px" }} />
+              
+                </Link></li></OverlayTrigger>
+   <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Tregister"><FaUserPlus style={{color:"black",fontSize:"25px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Classroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/doctormanage"><FaUserDoctor style={{color:"black",fontSize:"25px"}} /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></li>
+        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
         </>}
         {teacherID &&<>
         <li>Logged in as <label style={{
@@ -181,7 +205,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/viewletter">View-letter</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/timetable">Time Table</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tpro">Profile</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"23px"}}  /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Health"> Mark Health Record</Link></li>
         
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
@@ -224,7 +248,7 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/ParentmarklistView">Marklist</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/parentattendeceView">Attendence</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Ppro">Profile</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
+        <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"23px"}}  /></Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {eoID &&<>

@@ -154,7 +154,7 @@ export default function EoManage() {
   <h3 className='mb-4'>External Organization Registration...</h3>
 
    </div>
-      <Form >
+      <Form  >
         <Form.Group as={Row} className='mt-2'>
           <Form.Label column sm="2">Username:</Form.Label>
           <Col sm="10" >
@@ -194,13 +194,14 @@ export default function EoManage() {
         <Form.Group as={Row} className='mt-2'>
           <Form.Label column sm="2">Status:</Form.Label>
           <Col sm="10" >
-        <Form.Control
-           style={{letterSpacing:"2px"}}
+        <Form.Select   style={{letterSpacing:"2px"}}
            className='fs-5'
         placeholder='Status...'
         value={registerEo.status}
-        onChange={(e)=> handle1Change("status",e.target.value)}
-        />
+        onChange={(e)=> handle1Change("status",e.target.value)}>
+          <option value="">Status</option>
+         <option value="Representative">Representative</option>
+        </Form.Select>
         </Col>
         </Form.Group>
         <Form.Group as={Row} className='mt-2'>
@@ -215,12 +216,16 @@ export default function EoManage() {
         />
         </Col>
         </Form.Group>
-        <Button className='bg-primary' onClick={handleSubmit}>Submit</Button>
+        
+        <Button variant='primary' className=' mt-2'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={handleSubmit}>Submit</Button>
+      
+       
         </Form>
         
     </div>
   
-    <div className='all-teacher m-2 mt-5' style={{letterSpacing:"2px"}}>
+    <div className='all-teacher m-2 mt-3' style={{letterSpacing:"2px"}}>
+    <h3 className='doc-reg-head mb-4' style={{letterSpacing:"3px"}}>Registered Organizations...</h3>
       <Table  responsive bordered hover  variant='white'>
        {allEo.length !== 0 &&
         <thead className='fs-5'>
