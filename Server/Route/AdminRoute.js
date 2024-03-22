@@ -72,7 +72,7 @@ router.get("/getadmin",async(req,res)=>{
 router.get("/find/getadmin/:id",async(req,res)=>{
     try{
     const data = await adminModel.findById(req.params.id)
-    res.status(200).json({data})
+    res.status(200).json({admin:data})
     }
     catch(error){
         return res.status(400).json({message:"Unable to fetch admin"})
