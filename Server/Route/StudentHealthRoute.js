@@ -5,6 +5,6 @@ const StudentHealthControler= require("../Controler/StudentHealthControler")
 const healthRoute= express.Router()
 
 healthRoute.post("/Add",StudentHealthControler.Addrecord)
-healthRoute.get("/view",StudentHealthControler.Getrecord)
+healthRoute.get("/View",StudentHealthControler.Getrecord)
 
 module.exports=healthRoute

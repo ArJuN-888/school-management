@@ -44,7 +44,6 @@ import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfil
 import EoManage from "./Components/EoManage";
 import StudeyMaterial from "./Components/StudyMaterials";
 import StudentHealth from "./Components/StudentHealth";
-import TeacherHealthView from "./Components/DoctorHealthView";
 import DoctorHealthView from "./Components/DoctorHealthView";
 function App() {
   const adminID = GetadminID();
