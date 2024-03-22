@@ -200,7 +200,7 @@ const StudentHealth = () => {
                       <Form.Select type="text" name="Finalreport" placeholder="Finalreport" onChange={handleChange}>
                           <option value="">Status</option>
                             <option value="HEALTHY">HEALTHY</option>
-                            <option value="NEED CONSULTATION">NEED CONSULTATION</option>
+                            <option value="NEEDS CONSULTATION">NEEDS CONSULTATION</option>
                         </Form.Select>
                     </Form.Group>
                 </Row>
