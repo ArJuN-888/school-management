@@ -169,20 +169,6 @@ export default function Navbar() {
             color:'green',
             fontWeight:"bolder"
         }}>{adminName}</label></li>
-<<<<<<< HEAD
-         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2 style={{color:"black",fontSize:"23px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Tregister">Teacher-register</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/doctormanage">Doctor-Manage</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Exmanage">Eo-Manage</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Classroom">classroom</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/createAnnouncements">Create Announcements</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile /></Link></li>
-
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial">Study Materials</Link></li>
-
-        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
-=======
             <OverlayTrigger
                     placement="right"
                     delay={{ show: 250, hide: 400 }}
@@ -201,7 +187,6 @@ export default function Navbar() {
         <li><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
->>>>>>> 8301f140348b5d7e9bfdc4de385fcc4b4073bb12
         </>}
         {teacherID &&<>
         <li>Logged in as <label style={{
