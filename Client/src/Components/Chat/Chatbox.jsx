@@ -24,7 +24,7 @@ scrollRef.current?.scrollIntoView({behavior:"smooth"})
         scrollRef.current.scrollIntoView({ behavior: "smooth" });
       }
   },[messages,newMessage])
-   if(!recipientUser) return (<div className='d-flex' style={{justifyContent:"center",alignItems:"center",height:"100%",width:"100%"}}><label className='me-2 text-white fs-5'>No Conversations Yet...</label> <Spinner animation="border" size='md' variant="black" /></div>)
+   if(!recipientUser) return (<div className='d-flex' style={{justifyContent:"center",alignItems:"center",height:"100%",width:"100%"}}><label className='me-2 text-black fs-5'>No Conversations Yet...</label> <Spinner animation="border" size='md' variant="black" /></div>)
 
    const SendTextMessage = async(textMessage,currentchatid) =>{
      

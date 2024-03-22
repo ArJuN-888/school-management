@@ -1,3 +1,6 @@
+body{
+  margin-top: 80px;
+}
 .main {
     margin: 20px;
   }
@@ -77,4 +80,10 @@
   
   .batch-select:hover {
     overflow-y: auto;
+  }
+  .nv{
+    height: fit-content;
+ background-color: rgb(0,0,0,0.1);
+backdrop-filter: blur(40px);
+ 
   }
