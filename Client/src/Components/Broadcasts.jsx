@@ -8,11 +8,15 @@ import GetParentID from './Hooks/GetParentID';
 import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
 import GetTname from './Hooks/Getteachername';
+import GetSID from './Hooks/GetstaffID';
+import GetSname from './Hooks/GetstaffName';
 export default function Broadcasts() {
   const [reqURL,] = useState('http://localhost:5000/uploads');
    const teachername = GetTname()
     const teacherID = GetTID()
     const parentID = GetParentID()
+    const staffID = GetSID()
+    const staffName = GetSname()
     useEffect(()=>{
       getAnnouncements()
       if(parentID)
@@ -32,7 +36,7 @@ export default function Broadcasts() {
   const getAnnouncements = async() =>{
     try{
       const response = await axios.get(`${baseURL}/Announcement/gatherpost`)
-      console.log("res",response.data.announcement)
+      console.log("resannouncementfromadmin",response.data.announcement)
       setbroadcast(response.data.announcement)
     }
     catch(error)
@@ -69,9 +73,11 @@ catch(error)
   }
   const postbroadcastmessage = async() =>{
 try{
-const response = await axios.post(`${baseURL}/Broadcast/addbroadcast`,{text,status,teachername,batch},{
+const response = await axios.post(`${baseURL}/Broadcast/addbroadcast`,{text,status,teachername: (teachername && teachername)
+  ||(staffName&&staffName),batch},{
   params:{
-    teacherid:teacherID
+    teacherid:teacherID,
+    staffID:staffID
   }
 })
 alert(response.data.message)
@@ -98,7 +104,7 @@ catch(error)
 
 ))}
 
-{teacherID && <div className='d-block  mt-4 m-1 '>
+{(teacherID || staffID )&& <div className='d-block  mt-4 m-1 '>
 <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Broadcast a message</h3>
   <input
   value={text}

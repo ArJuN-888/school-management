@@ -3,7 +3,9 @@ import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import mycontext from '../Context/Context';
 import axios from "axios";
+
 import { Table ,Button} from 'react-bootstrap';
+
 
 const StudentMarklist = () => {
     const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents } = useContext(mycontext);
@@ -77,6 +79,7 @@ const StudentMarklist = () => {
             console.log(error);
         }
     };
+
      
     const handletoggle=(students)=>{
        setToggle(1)
@@ -87,10 +90,12 @@ const StudentMarklist = () => {
     })
     }
 
+
     return (
         <div className='main'>
             <div className='heading'>
                 <h3>Welcome {teacherName} - Add Marklist of Each Student</h3>
+
 
 
                 <div className="table fs-5">

@@ -5,7 +5,7 @@ const parentSchema=new mongoose.Schema({
     studentname:String,
     parentname:String,
 
-    rollno:{type:Number,required:true,unique:true},
+    rollno:Number,
 
     email:{
         type:String,

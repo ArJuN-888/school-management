@@ -1,6 +1,7 @@
 const {broadMessModel} = require("../Model/BMessageSchema")
 const {teacherModel} = require("../Model/TeacherSchema")
 const {parentModel} = require("../Model/ParentShema")
+const {staffModel} = require("../Model/StaffShema")
 const express = require("express")
 const router = express.Router()
 
@@ -8,14 +9,25 @@ const router = express.Router()
 router.post("/addbroadcast",async(req,res)=>{
     try{
         const {text,batch,status,teachername} = req.body
-        const teacherid = req.query.teacherid
+        const teacherid = req.query.teacherid && req.query.teacherid 
+        const staffid = req.query.staffID && req.query.staffID 
+        console.log("ids",teacherid,staffid)
+        console.log("reqbodyofbc",req.body)
        if(!text || !batch || !teachername || !status)
        {
         return   res.status(400).json({message:"Empty fields..."})
        }
+       
        const teacher = await teacherModel.findById(teacherid)
-      if(teacher.batch !== batch)
+       const staff = await staffModel.findById(staffid)
+      if(teacherid && teacher.batch !== batch)
       {
+        console.log("teacherid",teacherid)
+        return   res.status(400).json({message:"Invalid  batch..."})
+      }
+      if(staffid && staff.batch !== batch)
+      {
+        console.log("staffid",staffid)
         return   res.status(400).json({message:"Invalid  batch..."})
       }
         const newbroadcast = new broadMessModel({
