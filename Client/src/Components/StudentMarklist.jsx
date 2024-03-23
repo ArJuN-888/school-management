@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import GetTname from './Hooks/Getteachername';
 import mycontext from '../Context/Context';
 import axios from "axios";
-
 const StudentMarklist = () => {
     const { baseURL } = useContext(mycontext);
     const teacherName = GetTname();
@@ -45,7 +44,7 @@ const StudentMarklist = () => {
             console.log(error);
         }
     };
-
+  
     return (
         <div className='main'>
             <div className='heading'>
@@ -76,6 +75,7 @@ const StudentMarklist = () => {
                         ))}
                         <button type="button" onClick={handleAddMark}>Add Mark</button>
                         <button type="submit">Submit</button>
+                 
                     </form>
                     <div id="message"></div>
                 </div>
