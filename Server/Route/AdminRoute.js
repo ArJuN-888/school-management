@@ -89,7 +89,7 @@ router.put("/edit/:id",async(req,res)=>{
             return res.status(200).json({message:"Empty Field"})
         }
         await adminModel.findByIdAndUpdate(id,{username,email,status});
-        res.status(200).json({message:"Profile Updated successfully"})
+        res.status(200).json({message:"Profile Updated successfully.."})
 
       } 
     catch (error) 
