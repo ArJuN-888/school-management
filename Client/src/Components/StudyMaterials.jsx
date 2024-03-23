@@ -157,7 +157,7 @@ onChange={(e)=>handleChange("note",e.target.value)}
         <Form.Label column sm="1">Status:</Form.Label>
         <Col sm="11">
 <Form.Select className='fs-5'  style={{letterSpacing:"2px"}}  onChange={(e)=>handleChange("status",e.target.value)}>
-    <option value="Status" disabled  >Status</option>
+    <option value="" >Status</option>
     <option value="Important">Important</option>
     <option value="Notify">Notify</option>
     <option value="Keeptrack">Keeptrack</option>

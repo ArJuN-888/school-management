@@ -4,16 +4,15 @@ const studentmarklistSchema = require("../Model/StudentmarklistSchema")
 
 const addMark = async (req, res) => {
     try {
-        const { studentid, name,examname, marks } = req.body;
+        const { studentid,examname, marks } = req.body;
 
-        if (!studentid || !name ||!examname  ) {
+        if (!studentid  ||!examname ||!marks ) {
             return res.status(400).json({ message: "Invalid data provided" });
         }
 
 
         const studentMarkList = new studentmarklistSchema({
             studentid,
-            name,
             examname,
             marks,
         });
