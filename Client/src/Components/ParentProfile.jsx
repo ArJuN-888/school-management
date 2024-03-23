@@ -33,7 +33,6 @@ const ParentProfile = () => {
             <h3>{data.studentname}</h3>
             <p>ID: {data._id}</p>
             <p>Email: {data.email}</p>
-            <p>Classteacher-Name: {data.classteacher}</p>
             <p>Status: {data.status}</p>
             <p>Batch: {data.batch}</p>
             <p>Health:{data.health}</p>
