@@ -16,6 +16,7 @@ export default function ParentRegistration() {
     password: "",
     parentphone: "",
     status: "",
+    rollno:""
   });
   console.log("parent",Parentregister)
   const handleChange = (key,value) =>{
@@ -37,6 +38,11 @@ alert(error.response.data.message)
 }
   return (
     <div>
+       <input
+     value={Parentregister.rollno}
+     placeholder='Rollno...'
+     onChange={(e)=>handleChange("rollno",e.target.value)}
+     />
       <input
      value={Parentregister.studentname}
      placeholder='studentname...'

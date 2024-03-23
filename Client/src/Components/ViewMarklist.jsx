@@ -67,30 +67,30 @@ const [stname,setStname] = useState("")
       </div>
       <div className="table">
         <Table className='fs-5' responsive cstriped bordered hover variant="white">
-        <thead>
+       {loggedteacherStudents.length !==0 && <thead>
             <tr>
-              <th className='bg-primary text-white '>Student-id</th>
+              <th className='bg-primary text-white '>Roll no</th>
               <th className='bg-primary text-white '>StudentName</th>
               <th className='bg-primary text-white '>View marksheet</th>
             </tr>
-          </thead>
+          </thead>}
          
           <tbody>
-            {loggedteacherStudents.length > 0 ? (
+            {loggedteacherStudents.length > 0 && (
               loggedteacherStudents.map((student, index) => (
                 <tr key={index}>
-                  <td>{student._id}</td>
+                  <td>{student.rollno}</td>
                   <td>{student.studentname}</td>
                   <td style={{cursor:"pointer"}} onClick={() => handleview(student._id,student.studentname)}><FaEye fontSize="24px"/></td>
                 </tr>
               ))
-            ) : (
-              <div>
-                <h4>Mark list is not initiated...</h4>
-              </div>
-            )}
+            )} 
+               
+              
+            
           </tbody>
         </Table >
+        {loggedteacherStudents.length === 0 && <label className='fs-5'>Mark-list is not initiated... </label>} 
         <div className="">
         {mark.length!==0 &&<h3 className='mt-4 mb-4' style={{letterSpacing:"3px"}}>{`Marklist history of ${stname} `}...</h3>}
          <Table className='fs-5' responsive cstriped bordered hover variant="white">

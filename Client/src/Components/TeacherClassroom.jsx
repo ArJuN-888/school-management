@@ -25,6 +25,7 @@ export default function TeacherClassroom() {
     batch: "",
     parentphone: "",
     status: "",
+    rollno:""
   });
   const [grant,setGrant] = useState(false)
   const [updatedpassword,setUpdatedpassword] = useState({
@@ -86,15 +87,16 @@ export default function TeacherClassroom() {
       console.log(response.data.message);
   
       alert("Parent Account Edited Successfully");
-      setEdit({
-        studentname: "",
-        parentname: "",
-        classteacher: teachername,
-        email: "",
-        batch: "",
-        parentphone: "",
-        status: "",
-      });
+      // setEdit({
+      //   studentname: "",
+      //   parentname: "",
+      //   classteacher: teachername,
+      //   email: "",
+      //   batch: "",
+      //   parentphone: "",
+      //   status: "",
+
+      // });
       getStudents();
       setToggle(0);
     } catch (error) {
@@ -116,7 +118,7 @@ export default function TeacherClassroom() {
       batch: data.batch,
       parentphone: data.parentphone,
       status: data.status,
-
+     rollno:data.rollno
 
     })
 
@@ -170,42 +172,59 @@ export default function TeacherClassroom() {
         </h3>
       </div>
       <div className="table fs-5" style={{ letterSpacing: "2px" }}>
-        <Table responsive cstriped bordered hover variant="white">
-          {loggedteacherStudents.length !== 0 && <thead style={{ letterSpacing: "4px" }}>
-            <tr>
-              <th className="bg-primary text-white ">Student_id</th>
-              <th className="bg-primary text-white ">Batch</th>
-              <th className="bg-primary text-white ">Student_Name</th>
-              <th className="bg-primary text-white ">parent_Name</th>
-              <th className="bg-primary text-white ">Contact_No</th>
-              <th className="bg-primary text-white ">Action</th>
-          
-            </tr>
-          </thead>}
-          <tbody>
-            {loggedteacherStudents.length !== 0 ? (
-              loggedteacherStudents.map((student, index) => (
-                <tr key={index} >
-                  <td >{student._id}</td>
-                  <td>{student.batch}</td>
-                  <td>{student.studentname}</td>
-                  <td>{student.parentname}</td>
-                  <td>{student.parentphone}</td>
-                  <td  className="d-flex" ><Button className="me-1 fs-6"style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={()=> handleEditbtn(student._id,student)}>Edit</Button>
-                  <Button className=" fs-6" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} variant="danger" onClick={()=>handleDelete(student._id)}>Delete</Button></td>
-                </tr>
-              ))
-            ) : (
-              <h1 style={{letterSpacing:"3px"}} className="fs-3">No student available...</h1>
-            )}
-          </tbody>
-        </Table>
+      <Table responsive striped bordered hover variant="white">
+  {loggedteacherStudents.length !== 0 && (
+    <thead style={{ letterSpacing: "4px" }}>
+      <tr>
+        <th className="bg-primary text-white">Roll_no</th>
+        <th className="bg-primary text-white">Batch</th>
+        <th className="bg-primary text-white">Student_Name</th>
+        <th className="bg-primary text-white">parent_Name</th>
+        <th className="bg-primary text-white">Contact_No</th>
+        <th className="bg-primary text-white">Action</th>
+      </tr>
+    </thead>
+  )}
+  <tbody>
+    {loggedteacherStudents.length !== 0 && (
+      loggedteacherStudents.map((student, index) => (
+        <tr key={index}>
+          <td style={{ padding: '10px', borderSpacing: '12px' }}>{student.rollno}</td>
+          <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.batch}</td>
+          <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.studentname}</td>
+          <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.parentname}</td>
+          <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.parentphone}</td>
+          <td className="d-flex">
+            <Button className="me-1 fs-6" style={{ borderRadius: "0.2rem", boxShadow: "0px 0px 5px 0px grey", letterSpacing: "2px" }} onClick={() => handleEditbtn(student._id, student)}>Edit</Button>
+            <Button className="fs-6" style={{ borderRadius: "0.2rem", boxShadow: "0px 0px 5px 0px grey", letterSpacing: "2px" }} variant="danger" onClick={() => handleDelete(student._id)}>Delete</Button>
+          </td>
+        </tr>
+      ))
+    )}
+  </tbody>
+</Table>
+
+        {loggedteacherStudents.length ===0 && <h1 style={{letterSpacing:"3px"}} className="fs-3">No student available...</h1> }
       </div>
       <div className="edit">
         {toggle === 1 && (
           <>
               <label className='fs-4 mt-4 mb-4' >{`Modifying the particulars concerning ${sname}`}   <Spinner animation="border" role="status" variant="primary" size="sm"></Spinner></label>
           <Form className=""  >
+          <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Roll no:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
+              type="text"
+              name="rollno"
+              className="fs-5"
+              style={{letterSpacing:"2px"}}
+              placeholder="Student name..."
+              value={edit.rollno}
+              onChange={handleChange}
+            ></Form.Control>
+            </Col>
+            </Form.Group>
             <Form.Group as={Row} className="mt-2">
             <Form.Label column sm="2">Student name:</Form.Label>
             <Col sm="10">

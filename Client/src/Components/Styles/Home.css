@@ -87,3 +87,15 @@ body{
 backdrop-filter: blur(40px);
  
   }
+  .btn-grp{
+    display: grid;
+    justify-content: center;
+    background-color: aqua;
+    width: 200px;
+  }
+.t-con{
+  padding: 5px;
+  box-shadow: 0px 0px 1px 0px grey;
+  border-radius: 7px;
+ 
+}
