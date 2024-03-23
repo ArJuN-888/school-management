@@ -8,7 +8,6 @@ import { Table } from "react-bootstrap";
 const ParentMarklistView = () => {
   const parentname = GetPname();
   const parentID = GetParentID();
-
   const [mark, setMark] = useState([]);
   console.log("marklist", mark);
 
@@ -29,10 +28,19 @@ const ParentMarklistView = () => {
   };
 
   const calculatePercentage = (marks) => {
-    const totalScoredMarks = marks.reduce((acc, curr) => acc + curr.scoredMark, 0);
-    const totalPossibleMarks = marks.reduce((acc, curr) => acc + curr.totalMark, 0);
-    const percentage = (totalScoredMarks / totalPossibleMarks) * 100;
-    return percentage.toFixed(2); // Round to two decimal places
+    let scored = "";
+    let Tmark="";
+    marks.forEach(marks => {
+      if(marks.scoredMark && marks.totalMark !== null)
+      {
+        scored += marks.scoredMark 
+        Tmark += marks.totalMark
+      }
+    
+    });
+      
+       const percentage = (scored/Tmark)*100
+      return percentage
   };
 
   return (
