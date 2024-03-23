@@ -1,244 +1,135 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import GetTclass from "./Hooks/GetTeacherClass";
+import './Styles/Timetable.css'
 
-const Timetable = () => {
-  const[toggle,setToggle]=useState(0)
-  const[mute,setMute]=useState(0)
-  const [timetable, setTimetable] = useState({
-    Monday: [],
-    Tuesday: [],
-    Wednesday: [],
-    Thursday: [],
-    Friday: [],
-    Saturday: []
-  });
+function TimetableForm() {
+  const [day, setDay] = useState('');
   const Tclass = GetTclass()
+  const [periods, setPeriods] = useState(Array(8).fill(''));
   const [timetables, setTimetables] = useState([]);
-  const[tableID,setTableID]=useState("")
-  const legth = timetables.length
+  const [selectedId, setSelectedId] = useState(null);
+
   useEffect(() => {
     fetchTimetables();
-    
   }, []);
 
   const fetchTimetables = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/Timetable/gettable",{params:{Tclass}});
+      const response = await axios.get('http://localhost:5000/Timetable/gettable', {
+        params: { Tclass }
+      });
       setTimetables(response.data);
-      setTableID(response.data[0]._id)
-      setToggle(1)
-      setMute(1)
+      setSelectedId(response.data._id)
     } catch (error) {
-      console.error("Error fetching timetables: ", error);
+      console.error('Error fetching timetables:', error);
     }
   };
-console.log("tables",timetables);
-  const handleAdd = async () => {
+console.log("time...",selectedId);
+  const handleAddTimetable = async () => {
     try {
-      fetchTimetables()
-      if(legth === 1)
-      {
-        alert("Please Save Your Updates ")
-      }
-      else
-      {
-          await axios.post("http://localhost:5000/Timetable/addtable", { Tclass, timetable });
-          setTimetable({
-                Monday: [],
-                Tuesday: [],
-                Wednesday: [],
-                Thursday: [],
-                Friday: [],
-                Saturday: []
-                        });
-          fetchTimetables();
-          setMute(1)
-          setToggle(0)
-      }
+      const response = await axios.post('http://localhost:5000/Timetable/addtable', { day, classN:Tclass, periods });
+      alert(response.data.message)
+      fetchTimetables();
+      setDay('');
+      setPeriods(Array(8).fill(''));
     } catch (error) {
-      console.error("Error adding timetable: ", error);
+      console.error('Error adding timetable:', error);
     }
   };
-  
-  const deleteButton = async(id) => {
-    try
-    {
-       const response = await axios.delete(`http://localhost:5000/Timetable/delete/${id}`)
-       alert(response.data.message)
-       setMute(0)
-       fetchTimetables()
-       setToggle(0)
-    }
-    catch(err)
-    {
-        alert(err);
-    }
-    fetchTimetables()
-  }
 
-  const editButton = async(id) => {
-    
+  const handleDeleteTimetable = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/Timetable/gettable/${id}`);
-      const { timetable } = response.data;
-      setTimetable(timetable);
-      console.log("tt",timetable);
-      setTableID(id);
-      setToggle(0);
-      setMute(0)
-  } catch (error) {
-      console.error("Error editing timetable: ", error);
-  }
-  }
+      const response = await axios.delete(`http://localhost:5000/Timetable/delete/${id}`);
+      alert(response.data.message)
+      fetchTimetables();
+    } catch (error) {
+      console.error('Error deleting timetable:', error);
+    }
+  };
 
-  const saveButton = async (tableID) => {
-      fetchTimetables()
-      console.log("length",legth);
-      if(legth === 0)
-      {
-        alert("First Add Your Timetable")
-      }
-      else
-      {
-        try {
-            const response = await axios.put(`http://localhost:5000/Timetable/updatetable/${tableID}`, { timetable });
-            alert(response.data.message)
-            fetchTimetables();
-            setToggle(1);
-            setTimetable({
-                Monday: [],
-                Tuesday: [],
-                Wednesday: [],
-                Thursday: [],
-                Friday: [],
-                Saturday: []
-            });
-            } 
-            catch (error) 
-            {
-            console.error("Error saving timetable: ", error);
-            }
-      }
-};
+  const handleEditTimetable = (timetable) => {
+    setDay(timetable.day);
+    setPeriods(timetable.periods);
+    setSelectedId(timetable._id);
+  };
+
+  const handleUpdateTimetable = async () => {
+    try {
+      const response=await axios.put(`http://localhost:5000/Timetable/updatetable/${selectedId}`, { day, periods});
+      alert(response.data.message)
+      fetchTimetables();
+      setDay('');
+      setPeriods(Array(8).fill(''));
+      setSelectedId(null);
+    } catch (error) {
+      console.error('Error updating timetable:', error);
+    }
+  };
 
   return (
-    <div>
-      {!toggle ?( 
-        <div className="table-add"> 
-            <h2>Add Timetable</h2>
-                <div>
-                    <label>Monday</label>
-                    <input
-                    type="text"
-                    value={timetable.Monday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Monday: e.target.value })
-                    }
-                    />
-                </div>
-                <div>
-                    <label>Tuesday</label>
-                    <input
-                    type="text"
-                    value={timetable.Tuesday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Tuesday: e.target.value })
-                    }
-                    />
-                </div>
-                <div>
-                    <label>Wednesday</label>
-                    <input
-                    type="text"
-                    value={timetable.Wednesday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Wednesday: e.target.value })
-                    }
-                    />
-                </div>
-                <div>
-                    <label>Thursday</label>
-                    <input
-                    type="text"
-                    value={timetable.Thursday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Thursday: e.target.value })
-                    }
-                    />
-                </div>
-                <div>
-                    <label>Friday</label>
-                    <input
-                    type="text"
-                    value={timetable.Friday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Friday: e.target.value })
-                    }
-                    />
-                </div>
-                <div>
-                    <label>Saturday</label>
-                    <input
-                    type="text"
-                    value={timetable.Saturday}
-                    onChange={(e) =>
-                        setTimetable({ ...timetable, Saturday: e.target.value })
-                    }
-                    />
-                </div>
-               <button onClick={()=>{handleAdd()}}>Add</button>
-               <button className="map-save" onClick={()=>{saveButton(tableID)}}>Save</button> 
-               
+    <div className='main-time'>
+      <h2>Add / Edit Timetable</h2>
+      <label>Day: <input type="text" value={day} onChange={(e) => setDay(e.target.value)} /></label><br />
+      {periods.map((period, index) => (
+        <div key={index}>
+          <label>{`Period ${index + 1}: `}</label>
+          <input type="text" value={period} onChange={(e) => {
+            const newPeriods = [...periods];
+            newPeriods[index] = e.target.value;
+            setPeriods(newPeriods);
+          }} /><br />
         </div>
-      ):(
-    <div className="show-section">
-        <h2>Timetable</h2>
-        <table>
-            <thead>
-                <tr>
-                <th>Day</th>
-                <th>Subjects</th>
-                
-                </tr>
-            </thead>
-            <tbody>
-            {timetables.map((timetable) => (
-                Object.entries(timetable.timetable).map(([day, subjects]) => (
-                <tr key={day}>
-                    <td>{day}</td>
-                    {Array.isArray(subjects) ? (
-                    subjects.map((subject, index) => (
-                        <td key={index}>{subject}</td>
-                    ))
-                    
-                    ) : (
-                    <td>{subjects}</td>
-                    )}
-                </tr>
-                
-                ))
-               
-            ))}
-            </tbody>
-        </table>
-         
-    </div>
-  )} 
-    <div className="button-sec">
-      {mute?(  
-        <>
-            <button className="map-edit" onClick={()=>{editButton(tableID)}}>Edit</button>
-            <button className="map-delete" onClick={()=>{deleteButton(tableID)}}>Delete</button>
-            </>   
-      ):(   
-      <div >
-
+      ))}
+      {selectedId ? (
+        <button onClick={handleUpdateTimetable}>Update Timetable</button>
+      ) : (
+        <button onClick={handleAddTimetable}>Add Timetable</button>
+      )}
+      <h2>Timetables</h2>
+      <ul>
+        {timetables.map(timetable => (
+          <li key={timetable._id}>
+            <p>{timetable.day}: {timetable.periods.join(', ')}</p>
+            <button onClick={() => handleEditTimetable(timetable)}>Edit</button>
+            <button onClick={() => handleDeleteTimetable(timetable._id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+      <div className='overall-time'>
+        <h2 className='overall-head'>Your Class Timetable</h2>
+        <div className="time-section">
+              <table>
+                  <tr>
+                      <th> DAY </th>
+                      <th>  Ⅰ  </th>
+                      <th>  ⅠⅠ  </th>
+                      <th>  ⅠⅠⅠ  </th>
+                      <th> ⅠⅤ </th>
+                      <th> Ⅴ </th>
+                      <th> ⅤⅠ </th>
+                      <th> VⅠⅠ </th>
+                      <th> ⅤⅠⅠⅠ </th>
+                  </tr>
+                  {timetables.map((data)=>(
+                    <tr>
+                        <td>{data.day}</td>
+                        <td>{data.periods[0]}</td>
+                        <td>{data.periods[1]}</td>
+                        <td>{data.periods[2]}</td>
+                        <td>{data.periods[3]}</td>
+                        <td>{data.periods[4]}</td>
+                        <td>{data.periods[5]}</td>
+                        <td>{data.periods[6]}</td>
+                        <td>{data.periods[7]}</td>
+                    </tr>
+                  ))}
+                 
+              </table>
+          </div>
       </div>
-      )}  
-        </div>  
     </div>
   );
-};
+}
 
-export default Timetable;
+export default TimetableForm;

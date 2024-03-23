@@ -6,28 +6,19 @@ const StudentTimetableSchema = new Schema({
         type: String,
         required: true
     },
-    timetable: {
-        Monday: [{
-            type: String
-        }],
-        Tuesday: [{
-            type: String
-        }],
-        Wednesday: [{
-            type: String
-        }],
-        Thursday: [{
-            type: String
-        }],
-        Friday: [{
-            type: String
-        }],
-        Saturday: [{
-            type: String
-        }] 
+    day: {
+        type:String,
+        required:true
+    },
+    periods: {
+        type:[String]
+        
     }
+    
+   
+        
 });
 
-const StudentTimetable = mongoose.model('StudentTimetable', StudentTimetableSchema);
+const StudentTimetable = mongoose.model('Timetable', StudentTimetableSchema);
 
 module.exports = {StudentTimetable};
