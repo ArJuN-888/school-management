@@ -12,11 +12,15 @@ const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 router.post("/register",async(req,res)=>{
 try
 {
-    const {studentname,parentname, email,classteacher ,password,batch,status,parentphone,rollno}=req.body
+
+    const {studentname,parentname, email ,password,batch,status,parentphone,rollno}=req.body
+
     console.log("req body",req.body)
-   const teacherid = req.query.teacherid
+    const teacherid = req.query.teacherid
   
-    if(!studentname || !parentname || !email || !classteacher  || !batch || !password || !status || !parentphone || !rollno)
+
+    if(!studentname || !parentname || !email   || !batch || !password || !status || !parentphone || !rollno)
+
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
@@ -46,7 +50,9 @@ try
         return res.status(400).json({message:"you have no right to add to this Provided division"})
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newParent=new parentModel({studentname,parentname,email, classteacher,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`,rollno})
+
+    const newParent=new parentModel({studentname,parentname,email,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`,rollno})
+
     await newParent.save()
     res.status(200).json({message:"Parent registration successfull "})
 }

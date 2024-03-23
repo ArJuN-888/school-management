@@ -4,8 +4,9 @@ const mongoose=require('mongoose')
 const parentSchema=new mongoose.Schema({
     studentname:String,
     parentname:String,
-    classteacher:String,
+
     rollno:{type:Number,required:true,unique:true},
+
     email:{
         type:String,
         required:true
