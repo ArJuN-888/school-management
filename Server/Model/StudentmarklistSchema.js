@@ -16,15 +16,12 @@ const model = new mongoose.Schema({
     marks: [{
         subject: {
             type: String,
-            required: true
         },
         scoredMark: {
             type: Number,
-            required: true
         },
         totalMark: {
             type: Number,
-            required: true
         }
     }],
    

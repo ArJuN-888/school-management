@@ -6,7 +6,7 @@ const addMark = async (req, res) => {
     try {
         const { studentid, name,examname, marks } = req.body;
 
-        if (!studentid || !name ||!examname|| !marks ) {
+        if (!studentid || !name ||!examname  ) {
             return res.status(400).json({ message: "Invalid data provided" });
         }
 

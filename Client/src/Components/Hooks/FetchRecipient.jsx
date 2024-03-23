@@ -21,8 +21,9 @@ export const useFetchRecipient = (chat, userID) => {
           }
 
           const adminresponse = await axios.get(`${baseURL}/Admin/find/getadmin/${recipientid}`);
-        
+        console.log("Adminres",adminresponse)
           if (adminresponse.data.admin !== null) {
+            console.log("adminreponseinfetchreci",adminresponse.data.admin)
             setRecipientUser(adminresponse.data.admin);
           }
           const doctorresponse = await axios.get(`${baseURL}/Doctor/find/${recipientid}`);

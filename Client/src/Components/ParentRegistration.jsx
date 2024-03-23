@@ -10,7 +10,6 @@ export default function ParentRegistration() {
   const [Parentregister, setparentRegister] = useState({
     studentname: "",
     parentname: "",
-    classteacher: teacherName,
     email: "",
     batch: "",
     password: "",
