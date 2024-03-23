@@ -29,14 +29,14 @@ console.log("tables",timetables);
               <table>
                   <tr>
                       <th> DAY </th>
-                      <th>  Ⅰ  </th>
-                      <th>  ⅠⅠ  </th>
-                      <th>  ⅠⅠⅠ  </th>
-                      <th> ⅠⅤ </th>
-                      <th> Ⅴ </th>
-                      <th> ⅤⅠ </th>
-                      <th> VⅠⅠ </th>
-                      <th> ⅤⅠⅠⅠ </th>
+                      <th>  9:00am-9:45am </th>
+                      <th>   9:45am-10:30am  </th>
+                      <th> 10:30am-11:15am  </th>
+                      <th> 11:15am-12:00pm </th>
+                      <th> 12:30pm-01:15pm  </th>
+                      <th> 01:15pm-02:00pm </th>
+                      <th> 02:00pm-02:45pm </th>
+                      <th> 02:45pm-03:30pm </th>
                   </tr>
                   {timetables.map((data)=>(
                     <tr>
