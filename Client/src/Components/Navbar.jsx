@@ -232,9 +232,18 @@ const Sm = (props) => (
             fontWeight:"bolder"
         }}>{teacherName}</label></li>
 
-         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}} /></Link></li>
+<OverlayTrigger
+                    placement="bottom"
+                    delay={{ show: 50, hide: 100 }}
+                    overlay={renderTooltip}
+                  >
+         <li><Link style={{ textDecoration: "none" }} to="/Home">
+              
+                    <BiHomeAlt2 style={{ color: "black", fontSize: "25px" }} />
+              
+                </Link></li></OverlayTrigger>
          <li><Link style={{textDecoration:"none"}} to="/TeacherClassroom">Your Classroom</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat">< PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
         <li><Link style={{textDecoration:"none"}} to="/Pregister"><FaUserPlus style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Studentattendence"><RiFileList2Fill style={{color:"black",fontSize:"23px"}} /></Link></li>
@@ -244,7 +253,7 @@ const Sm = (props) => (
         <li><Link style={{textDecoration:"none"}} to="/viewletter">View-letter</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/timetable">Time Table</Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Tpro">Profile</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"23px"}}  /></Link></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><Link style={{textDecoration:"none"}} to="/Health"> Mark Health Record</Link></li>
         
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 

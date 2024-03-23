@@ -43,9 +43,10 @@ setSelectedfile(e.target.files[0])
   const getStudymaterials = async() =>{
 try{
   const response = await axios.get(`${baseURL}/Material/gatherpost`)
-  console.log("res",response.data.studymaterial)
+  console.log("restudy",response.data.studymaterial)
   const filteredData = response.data.studymaterial.filter((element) => element.userID === adminID);
   const filteredDatas = response.data.studymaterial.filter((element) => element.userID === teacherID);
+  
   console.log("Filtered data:", filteredData);
 if(adminID){
     setFilterprev(filteredData);
@@ -157,7 +158,7 @@ onChange={(e)=>handleChange("note",e.target.value)}
         <Form.Label column sm="1">Status:</Form.Label>
         <Col sm="11">
 <Form.Select className='fs-5'  style={{letterSpacing:"2px"}}  onChange={(e)=>handleChange("status",e.target.value)}>
-    <option value="Status" disabled  >Status</option>
+    <option value=""   >Status</option>
     <option value="Important">Important</option>
     <option value="Notify">Notify</option>
     <option value="Keeptrack">Keeptrack</option>
@@ -227,8 +228,8 @@ onChange={(e)=>handleChange("link",e.target.value)}
 ))}
 
 </>:<>
-{filterprev.length=== 0 && <h3>Materials unavialable...</h3>}
-{filterprev && filterprev.map((data,index)=>(
+{allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
+{allmaterial && allmaterial.map((data,index)=>(
     <div key={index}>
         <span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(data.createdAt).calendar()}</span>
         {data.note}
