@@ -9,6 +9,8 @@ import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
 import { Link } from 'react-router-dom';
+import GetSID from './Hooks/GetstaffID';
+import GetParentID from './Hooks/GetParentID';
 export default function StudeyMaterial() {
   const {baseURL} = useContext(mycontext)
   const [selectedfile,setSelectedfile] = useState(null)
@@ -21,11 +23,13 @@ export default function StudeyMaterial() {
   console.log("file",selectedfile)
   const adminID = GetadminID()
   const teacherID = GetTID()
+  const staffID = GetSID()
+  const parentId = GetParentID()
  useEffect(()=>{
  getStudymaterials()
  },[])
   const [material,setMaterial] = useState({
-    userID:adminID || teacherID,
+    userID:adminID || teacherID || staffID,
     status:"",
     note:"",
     subject:"",
@@ -46,7 +50,7 @@ try{
   console.log("restudy",response.data.studymaterial)
   const filteredData = response.data.studymaterial.filter((element) => element.userID === adminID);
   const filteredDatas = response.data.studymaterial.filter((element) => element.userID === teacherID);
-  
+  const filteredSDatas = response.data.studymaterial.filter((element) => element.userID === staffID);
   console.log("Filtered data:", filteredData);
 if(adminID){
     setFilterprev(filteredData);
@@ -55,12 +59,15 @@ else if(teacherID)
 {
     setFilterprev(filteredDatas)
 }
-
+else if(staffID)
+{
+  setFilterprev(filteredSDatas)
+}
   setallMaterial(response.data.studymaterial);
 }
 catch(error)
 {
-  console.log("error",error)
+ alert(error.response.data.message)
 }
   }
   const HandleSubmit = async () => {
@@ -136,7 +143,7 @@ catch(error)
 
   return (
     <div className='m-3 fs-5' style={{letterSpacing:"2px"}}>
-        {teacherID || adminID ? <>
+        {teacherID || adminID ||staffID ? <>
 <div><h1 className='fs-3 d-flex mb-4' style={{letterSpacing:"3px"}}>Upload study materials....</h1></div>
 <Form>
     <Form.Group as={Row} >
@@ -228,7 +235,7 @@ onChange={(e)=>handleChange("link",e.target.value)}
 ))}
 
 </>:<>
-{allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
+{!parentId && allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
 {allmaterial && allmaterial.map((data,index)=>(
     <div key={index}>
         <span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(data.createdAt).calendar()}</span>
