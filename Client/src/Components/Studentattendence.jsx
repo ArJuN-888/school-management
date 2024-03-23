@@ -88,21 +88,21 @@ const Studentattendence = () => {
         <h1 className="fs-3">Record Your Class Attendance Here</h1>
       </div>
       <div className="table fs-5">
-        <Table responsive bordered hover variant="white">
-          <thead style={{ letterSpacing: "4px" }}>
+        <Table responsive striped hover variant="white">
+         {loggedteacherStudents.length !==0 && <thead style={{ letterSpacing: "4px" }}>
             <tr>
-              <th className="bg-primary text-white ">Student ID</th>
+              <th className="bg-primary text-white ">Roll no</th>
               <th className="bg-primary text-white ">Student Name</th>
               <th className="bg-primary text-white ">Date</th>
               <th className="bg-primary text-white ">Attendance</th>
               <th className="bg-primary text-white ">Action</th>
             </tr>
-          </thead>
+          </thead>}
           <tbody>
-            {loggedteacherStudents.length > 0 ? (
+            {loggedteacherStudents.length > 0 && (
               loggedteacherStudents.map((student, index) => (
                 <tr key={index}>
-                  <td>{student._id}</td>
+                  <td>{student.rollno}</td>
                   <td>{student.studentname}</td>
                   <td>
                     <DatePicker
@@ -146,13 +146,12 @@ const Studentattendence = () => {
                   </td>
                 </tr>
               ))
-            ) : (
-              <tr>
-                <td colSpan="5">No student data available</td>
-              </tr>
-            )}
+            )} 
+           
+            
           </tbody>
         </Table>
+        {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
       </div>
     </div>
   );

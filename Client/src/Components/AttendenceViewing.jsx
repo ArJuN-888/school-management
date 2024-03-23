@@ -66,20 +66,20 @@ console.log("stat",stat)
         </div>
         <div className='table fs-5 '>
         <Table responsive cstriped bordered hover variant="white">
-          <thead style={{letterSpacing:"4px"}} >
+          {loggedteacherStudents.length !== 0 &&<thead style={{letterSpacing:"4px"}} >
             <tr>
-              <th className='bg-primary text-white ' >Student Id</th>
+              <th className='bg-primary text-white ' >Roll no</th>
               <th className='bg-primary text-white' >Student Name</th>
               <th className='bg-primary text-white'>Status</th>
             </tr>
-          </thead>
+          </thead>}
           <tbody>
 
-          {loggedteacherStudents.length > 0 ? (
+          {loggedteacherStudents.length > 0 && (
               loggedteacherStudents.map((student, index) => (
              
                 <tr key={index}>
-                  <td>{student._id}</td>
+                  <td>{student.rollno}</td>
                   <td>{student.studentname}</td>
                   <OverlayTrigger
                                 placement="left"
@@ -91,12 +91,13 @@ console.log("stat",stat)
                 </tr>
               
               ))
-            ) : (
-              <tr>
-                <td colSpan="3">No student data available</td>
-              </tr>
-            )}
+            )} 
+            
+            
           </tbody>
+          <div>
+               {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
+              </div>
           </Table>
           <div className='mt-5'>
           {attendence.length > 0 ? (
