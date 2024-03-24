@@ -189,7 +189,7 @@ export default function TeacherClassroom() {
     {loggedteacherStudents.length !== 0 && (
       loggedteacherStudents.map((student, index) => (
         <tr key={index}>
-          <td style={{ padding: '10px', borderSpacing: '12px' }}>{student.rollno}</td>
+          <td style={{ padding: '10px', borderSpacing: '12px' }}>{index+1}</td>
           <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.batch}</td>
           <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.studentname}</td>
           <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.parentname}</td>

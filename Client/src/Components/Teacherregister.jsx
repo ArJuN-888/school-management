@@ -70,6 +70,16 @@ export default function Register() {
             <option value="10B">10B</option>
             <option value="10C">10C</option>
           </Form.Select>
+          <FormGroup controlId="formBasicSpecialization">
+          <FormLabel>Class Number</FormLabel>
+          <FormControl
+            type="text"
+            value={teacherregisterdata.batchnumber}
+            placeholder="batchnumber"
+            onChange={(e) => handleChange("batchnumber", e.target.value)}
+          />
+        </FormGroup>
+
         </FormGroup>
         <FormGroup controlId="formBasicStatus">
           <FormLabel>Status</FormLabel>
