@@ -5,10 +5,7 @@ const model = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    },
+  
     examname:{
         type:String,
         required:true
@@ -16,6 +13,7 @@ const model = new mongoose.Schema({
     marks: [{
         subject: {
             type: String,
+            required:true
         },
         scoredMark: {
             type: Number,
