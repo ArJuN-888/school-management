@@ -13,9 +13,10 @@ router.post("/register",async(req,res)=>{
 try
 {
 
-    const {studentname,parentname, email ,password,batch,status,parentphone,rollno}=req.body
+    const {studentname,parentname, email ,password,batch,status,parentphone,rollno,batchnumber}=req.body
 
     console.log("req body",req.body)
+    console.log("batchnumber",batchnumber)
     const teacherid = req.query.teacherid
   
 
@@ -51,7 +52,7 @@ try
     }
     const hashedPassword=await bcrypt.hash(password,10)
 
-    const newParent=new parentModel({studentname,parentname,email,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`,rollno})
+    const newParent=new parentModel({studentname,parentname,email,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`,rollno:`${batchnumber}rollno`})
 
     await newParent.save()
     res.status(200).json({message:"Parent registration successfull "})

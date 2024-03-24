@@ -1,10 +1,12 @@
-import React, { useContext,useState } from 'react'
+import React, { useContext,useEffect,useState } from 'react'
 import axios from 'axios'
 import mycontext from '../Context/Context'
 import GetTID from './Hooks/Getteacherid'
 import GetTname from './Hooks/Getteachername'
 export default function ParentRegistration() {
   const {baseURL} = useContext(mycontext)
+  const [batchnumber,setBatchNumber]=useState("")
+  console.log("batch",batchnumber)
   const teacherID = GetTID()
   const teacherName = GetTname()
   const [Parentregister, setparentRegister] = useState({
@@ -15,12 +17,29 @@ export default function ParentRegistration() {
     password: "",
     parentphone: "",
     status: "",
-    rollno:""
+    rollno:"",
+    batchnumber
   });
   console.log("parent",Parentregister)
   const handleChange = (key,value) =>{
   setparentRegister({...Parentregister,[key]:value})
   }
+
+  useEffect(()=>{
+  getteachers()
+  },[teacherID])
+
+const getteachers=async()=>{
+  try {
+    const response= await axios.get(`${baseURL}/Teacher/find/${teacherID}`)
+    console.log(response.data.user)
+    setBatchNumber(response.data.user.batchnumber)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 const handleSubmit = async() =>{
 try{
 const response = await axios.post(`${baseURL}/Parent/register`,Parentregister,{
