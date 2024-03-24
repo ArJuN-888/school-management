@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import './Styles/AdminLogin.css'
+import admin from "../Components/Pictures/admin.jpg"
 import { useNavigate } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import { FaUserShield } from "react-icons/fa";
 export const AdminLogin = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    const [tog,setTog] = useState(false)
  const nav = useNavigate()
 //Admin login function
     const AdLogin = async() =>{
@@ -26,29 +30,41 @@ export const AdminLogin = () => {
     }
 
   return (
-    <div className='admin-container'>
-        <div className='admin-section'>
-            <div className='admin-form'>
-                <h1 className='admin-title'>Admin Login</h1>
+<div className='parent-ad d-flex   m-5 '>
+        <div className='img-container-admin ' >
+ <img src={admin} width="100%"/>
+        </div>
+
+       
+            <div className='admin-form' style={{position:"relative"}} >
+            <div className='icon-ad-hold d-flex justify-content-center '><FaUserShield className='ad-ico ' /></div>
+                {/* <h1 style={{letterSpacing:"2px"}} className='admin-title'>Admin Login</h1> */}
                 <input
+                 style={{letterSpacing:"2px"}}
                  className='admin-input'
                  type='text'
                  value={email}
-                 placeholder='Email'
+                 placeholder='Email...'
                  onChange={(e)=>setEmail(e.target.value)}
                 />
                 <input
+                 style={{letterSpacing:"2px"}}
                  className='admin-input'
-                 type='text'
+                 type={tog ? "text" : "password"}
                  value={password}
-                 placeholder='Password'
+                 placeholder='Password...'
                  onChange={(e)=>setPassword(e.target.value)}
                 />
-                <div className='but-section'>
-                    <button className='adm-button' onClick={()=>{AdLogin()}}>Submit</button>
+                <div className=''>
+                   
+                    <input type='checkbox' style={{width:"2rem"}} onChange={(e)=>setTog(!tog)}/> <label>Show Password</label>
+                    <Button style={{borderRadius:"0.2rem",width:"100%",boxShadow:"0px 0px 8px 0px grey",
+                
+                   letterSpacing:"2px" }}  className='mt-5' onClick={()=>{AdLogin()}}>Login</Button>
                 </div>
             </div>
         </div>
-    </div>
+  
+ 
   )
 }

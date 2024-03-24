@@ -48,7 +48,7 @@ import AdminProfile from "./Components/AdminProfile";
 import StudeyMaterial from "./Components/StudyMaterials";
 import StudentHealth from "./Components/StudentHealth";
 import DoctorHealthView from "./Components/DoctorHealthView";
-
+ import { StaffLogin } from "./Components/StaffLogin";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -305,7 +305,7 @@ setNotifications(mNotifications)
             <Route path="/Expro" element={<ExternalOrganizationProfile/>}/>
             <Route path="/Exmanage" element={<EoManage/>}/>
             <Route path="/Admprofile" element={<AdminProfile/>}/>
-
+            <Route path="/Staff" element={<StaffLogin/>}/>
             <Route path="/Studymaterial" element={<StudeyMaterial/>}/>
             <Route path="/Health" element={<StudentHealth/>}/>
             <Route path="/Healthview" element={<DoctorHealthView/>}/>

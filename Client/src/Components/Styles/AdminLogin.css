@@ -1,22 +1,11 @@
 
-
-.admin-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .admin-section {
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
   .admin-form {
-    max-width: 300px;
+    max-width: 450px;
     margin: 0 auto;
+    background-color: rgba(233, 227, 227, 0.1);
+    box-shadow: 0px 0px 1px 0px;
+    padding: 20px;
+  border-radius: 5px;
   }
   
   .admin-title {
@@ -31,11 +20,9 @@
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-shadow: 0px 0px 2px 0px grey;
   }
-  
-  .but-section {
-    text-align: center;
-  }
+
   
   .adm-button {
     background-color: #4caf50;
@@ -50,4 +37,39 @@
   .adm-button:hover {
     background-color: #45a049;
   }
+  .img-container-admin{
+    width: 650px;
+   
+  }
+  .parent-ad{
+    padding: 0px 100px 0px 100px;
+  background-color: #f6f6f6;
+  gap: 130px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  }
+  .icon-ad-hold{
+    margin-bottom: 15px;
+    position: absolute;
+    top:-14%;
+    left: 40%;
+ 
+  }
   
+  .ad-ico{
+    background-color:rgb(251, 254, 254);
+  font-size: 80px;
+  padding: 8px;
+  border-radius: 40px;
+  box-shadow: 0px 0px 5px 0px grey;
+  color: rgb(157, 159, 154);
+  }
+  @media screen and (max-width:1281px) {
+    .parent-ad{
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0px;
+      padding: 0px;
+    }
+  }
