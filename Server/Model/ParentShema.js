@@ -16,6 +16,8 @@ const parentSchema=new mongoose.Schema({
         required:true
     },
     batch:String,
+
+    address:String,
   
     status:String,
     parentphone:{type:String,required:"true"},
