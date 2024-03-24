@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import GetParentID from './Hooks/GetParentID';
+import GetParentclass from './Hooks/GetPclass';
 import { Container, Form, Button, Table } from 'react-bootstrap';
 import './Styles/Leaveletter.css';
 import axios from 'axios';
@@ -14,13 +15,16 @@ export default function LeaveLetter() {
     const [reason, SetReason] = useState("");
     const [sclass, setSclass] = useState("");
     const parentID = GetParentID();
+    const pClass = GetParentclass()
     const { baseURL } = useContext(mycontext);
-console.log("parent",parentID);
+
     useEffect(() => {
         getMyletter();
     }, []);
 
     const leaveSubmit = async () => {
+        if(sclass === pClass)
+        {
         try {
             const response = await axios.post(`${baseURL}/Leave/add`, {
                 studentname: sname,
@@ -40,8 +44,14 @@ console.log("parent",parentID);
             setSdate("");
             SetReason("");
             setSclass("");
+            getMyletter()
         } catch (error) {
             console.log(error);
+        }
+        }
+        else
+        {
+            alert("Specify Your Classname Correctly")
         }
     };
 
