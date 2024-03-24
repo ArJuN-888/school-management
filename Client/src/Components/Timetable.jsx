@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GetTclass from "./Hooks/GetTeacherClass";
 import './Styles/Timetable.css'
+import { Form, Button, Table } from 'react-bootstrap';
 
 function TimetableForm() {
   const [day, setDay] = useState('');
@@ -69,64 +70,69 @@ console.log("time...",selectedId);
 
   return (
     <div className='main-time'>
-      <h2>Add / Edit Timetable</h2>
-      <label>Day: <input type="text" value={day} onChange={(e) => setDay(e.target.value)} /></label><br />
-      {periods.map((period, index) => (
-        <div key={index}>
-          <label>{`Period ${index + 1}: `}</label>
-          <input type="text" value={period} onChange={(e) => {
-            const newPeriods = [...periods];
-            newPeriods[index] = e.target.value;
-            setPeriods(newPeriods);
-          }} /><br />
-        </div>
-      ))}
-      {selectedId ? (
-        <button onClick={handleUpdateTimetable}>Update Timetable</button>
-      ) : (
-        <button onClick={handleAddTimetable}>Add Timetable</button>
-      )}
+      <h2 className='overall-head text-center'>Add / Edit Timetable</h2>
+      <Form>
+        <Form.Group>
+          <Form.Label>Day:</Form.Label>
+          <Form.Control type="text" value={day} onChange={(e) => setDay(e.target.value)} />
+        </Form.Group>
+        {periods.map((period, index) => (
+          <div key={index}>
+            <Form.Group>
+              <Form.Label>{`Period ${index + 1}:`}</Form.Label>
+              <Form.Control type="text" value={period} onChange={(e) => {
+                const newPeriods = [...periods];
+                newPeriods[index] = e.target.value;
+                setPeriods(newPeriods);
+              }} />
+            </Form.Group>
+          </div>
+        ))}
+        {selectedId ? (
+          <Button variant='info' onClick={handleUpdateTimetable}>Update Timetable</Button>
+        ) : (
+          <Button onClick={handleAddTimetable}>Add Timetable</Button>
+        )}
+      </Form>
       <h2>Timetables</h2>
       <ul>
         {timetables.map(timetable => (
           <li key={timetable._id}>
             <p>{timetable.day}: {timetable.periods.join(', ')}</p>
-            <button onClick={() => handleEditTimetable(timetable)}>Edit</button>
-            <button onClick={() => handleDeleteTimetable(timetable._id)}>Delete</button>
+            <Button onClick={() => handleEditTimetable(timetable)}>Edit</Button>
+            <Button variant='danger' onClick={() => handleDeleteTimetable(timetable._id)}>Delete</Button>
           </li>
         ))}
       </ul>
       <div className='overall-time'>
-        <h2 className='overall-head'>Your Class Timetable</h2>
+        <h2 className='overall-head text-center'>Your Class Timetable</h2>
         <div className="time-section">
-              <table>
-                  <tr>
-                      <th> DAY </th>
-                      <th>  9:00am-9:45am </th>
-                      <th>   9:45am-10:30am  </th>
-                      <th> 10:30am-11:15am  </th>
-                      <th> 11:15am-12:00pm </th>
-                      <th> 12:30pm-01:15pm  </th>
-                      <th> 01:15pm-02:00pm </th>
-                      <th> 02:00pm-02:45pm </th>
-                      <th> 02:45pm-03:30pm </th>
-                  </tr>
-                  {timetables.map((data)=>(
-                    <tr>
-                        <td>{data.day}</td>
-                        <td>{data.periods[0]}</td>
-                        <td>{data.periods[1]}</td>
-                        <td>{data.periods[2]}</td>
-                        <td>{data.periods[3]}</td>
-                        <td>{data.periods[4]}</td>
-                        <td>{data.periods[5]}</td>
-                        <td>{data.periods[6]}</td>
-                        <td>{data.periods[7]}</td>
-                    </tr>
+          <Table striped bordered variant='dark'>
+            <thead>
+              <tr>
+                <th>DAY</th>
+                <th>9:00am-9:45am</th>
+                <th>9:45am-10:30am</th>
+                <th>10:30am-11:15am</th>
+                <th>11:15am-12:00pm</th>
+                <th>12:30pm-01:15pm</th>
+                <th>01:15pm-02:00pm</th>
+                <th>02:00pm-02:45pm</th>
+                <th>02:45pm-03:30pm</th>
+              </tr>
+            </thead>
+            <tbody>
+              {timetables.map((data, index) => (
+                <tr key={index}>
+                  <td>{data.day}</td>
+                  {data.periods.map((period, index) => (
+                    <td key={index}>{period}</td>
                   ))}
-                 
-              </table>
-          </div>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </div>
   );
