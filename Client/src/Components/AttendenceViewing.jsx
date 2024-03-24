@@ -68,6 +68,7 @@ console.log("stat",stat)
         <Table responsive cstriped bordered hover variant="white">
           {loggedteacherStudents.length !== 0 &&<thead style={{letterSpacing:"4px"}} >
             <tr>
+            <th className="bg-primary text-white ">SL no</th>
               <th className='bg-primary text-white ' >ADM no</th>
               <th className='bg-primary text-white' >Student Name</th>
               <th className='bg-primary text-white'>Status</th>
@@ -79,6 +80,7 @@ console.log("stat",stat)
               loggedteacherStudents.map((student, index) => (
              
                 <tr key={index}>
+                    <td>{index+1}</td>
                   <td>{student.rollno}</td>
                   <td>{student.studentname}</td>
                   <OverlayTrigger
@@ -106,7 +108,7 @@ console.log("stat",stat)
               <thead style={{letterSpacing:"4px"}} >
               <h3 className='mb-4'>{`Attendence History of ${stname}`}</h3>
                 <tr>
-                  <th className='bg-primary text-white '>Studentid</th>
+                  <th className='bg-primary text-white '>SL no</th>
                   <th className='bg-primary text-white '>Date</th>
                   <th className='bg-primary text-white '>status</th>
                 </tr>
@@ -114,7 +116,7 @@ console.log("stat",stat)
               <tbody>
                 {attendence.map((record, index) => (
                   <tr key={index}>
-                    <td>{record.studentid}</td>
+                    <td>{index+1}</td>
                     <td>{record.date}</td>
                     <td>{record.status}</td>
                   </tr>

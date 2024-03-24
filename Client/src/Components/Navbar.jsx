@@ -9,6 +9,7 @@ import { PiChatsLight } from "react-icons/pi";
 import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import { ImBook } from "react-icons/im";
+import { MdSchool } from "react-icons/md";
 import { FaUserPlus } from "react-icons/fa6";
 import {CgProfile} from "react-icons/cg"
 import { BsChatLeftTextFill } from "react-icons/bs";
@@ -23,6 +24,9 @@ import GetPname from './Hooks/GetParentName';
 import { RiFileList2Fill } from "react-icons/ri";
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
 import GetSID from './Hooks/GetstaffID';
 import { SiGoogleclassroom } from "react-icons/si";
 import GetSname from './Hooks/GetstaffName';
@@ -187,6 +191,7 @@ const Sm = (props) => (
     <nav className=' nv position-fixed fixed-top' style={{
         display:"flex",
         justifyContent:"center",
+        alignItems:"center",
       width:"100%",
       zIndex:"1",
 
@@ -196,8 +201,11 @@ const Sm = (props) => (
         display:"flex",
         justifyContent:"center",
         gap:"20px",
+        alignItems:"center",
         listStyleType:"none",
-        fontSize:"18px"
+        fontSize:"18px",
+        width:"100%",
+       
     }}>
   {adminID &&<>
   <div className='d-flex gap-4 mt-3 justify-content-center'  >
@@ -314,11 +322,23 @@ const Sm = (props) => (
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
-        <li><Link style={{textDecoration:"none"}} to="/Tlogin">Teacher-Login</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Adminlogin">Admin-Login</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Dlogin">Doctor-Login</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Plogin">Parent-Login</Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Elogin">External-Login</Link></li>
+      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:""}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
+      <li><Link>About us</Link></li>
+       <li> <Dropdown className='mt-2 me-5' as={ButtonGroup}>
+      <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}} variant="secondary"><u>Login Options</u></Button>
+
+      <Dropdown.Toggle style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey"}} split variant="secondary" id="dropdown-split-basic" />
+
+      <Dropdown.Menu className='fs-6 ' style={{letterSpacing:"2px",border:"1px solid grey"}}  >
+        <Dropdown.Item   >  <Link className='text-black'  to="/Tlogin">Teacher</Link></Dropdown.Item>
+        <Dropdown.Item ><Link className='text-black'  to="/Adminlogin">Admin</Link></Dropdown.Item>
+        <Dropdown.Item >  <Link className='text-black'  to="/Dlogin">Doctor</Link></Dropdown.Item>
+        <Dropdown.Item>   <Link className='text-black'  to="/Plogin">Parent</Link></Dropdown.Item>
+        <Dropdown.Item>  <Link className='text-black'  to="/Elogin">External</Link></Dropdown.Item>
+        <Dropdown.Divider />
+            <Dropdown.Item eventKey="4">Contact us</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown></li>
         </> }
         
      

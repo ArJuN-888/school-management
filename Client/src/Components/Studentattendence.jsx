@@ -91,6 +91,7 @@ const Studentattendence = () => {
         <Table responsive striped hover variant="white">
          {loggedteacherStudents.length !==0 && <thead style={{ letterSpacing: "4px" }}>
             <tr>
+        
               <th className="bg-primary text-white ">ADM no</th>
               <th className="bg-primary text-white ">Student Name</th>
               <th className="bg-primary text-white ">Date</th>
