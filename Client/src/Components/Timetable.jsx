@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GetTclass from "./Hooks/GetTeacherClass";
 import './Styles/Timetable.css'
-import { Form, Button, Table } from 'react-bootstrap';
+import { Form, Button, Table ,Col, Row } from 'react-bootstrap';
 
 function TimetableForm() {
   const [day, setDay] = useState('');
@@ -69,31 +69,35 @@ console.log("time...",selectedId);
   };
 console.log("time",timetables);
   return (
-    <div className='main-time'>
-      <h2 className='overall-head text-center'>Add / Edit Timetable</h2>
-      <Form>
-        <Form.Group>
-          <Form.Label>Day:</Form.Label>
-          <Form.Control type="text" value={day} onChange={(e) => setDay(e.target.value)} />
-        </Form.Group>
-        {periods.map((period, index) => (
-          <div key={index}>
+    <div className="text-center main-time">
+      <h2 className='overall-head text-center styled-heading'>Add / Edit Timetable</h2>
+      <Row className="justify-content-center">
+        <Col>
+          <Form>
             <Form.Group>
-              <Form.Label>{`Period ${index + 1}:`}</Form.Label>
-              <Form.Control type="text" value={period} onChange={(e) => {
-                const newPeriods = [...periods];
-                newPeriods[index] = e.target.value;
-                setPeriods(newPeriods);
-              }} />
+              <Form.Label>Day:</Form.Label>
+              <Form.Control type="text" value={day} onChange={(e) => setDay(e.target.value)} />
             </Form.Group>
-          </div>
-        ))}
-        {selectedId ? (
-          <Button variant='info' onClick={handleUpdateTimetable}>Update Timetable</Button>
-        ) : (
-          <Button onClick={handleAddTimetable}>Add Timetable</Button>
-        )}
-      </Form>
+            {periods.map((period, index) => (
+              <div key={index}>
+                <Form.Group>
+                  <Form.Label>{`Period ${index + 1}:`}</Form.Label>
+                  <Form.Control type="text" value={period} onChange={(e) => {
+                    const newPeriods = [...periods];
+                    newPeriods[index] = e.target.value;
+                    setPeriods(newPeriods);
+                  }} />
+                </Form.Group>
+              </div>
+            ))}
+            {selectedId ? (
+              <Button variant='info' className='butto' onClick={handleUpdateTimetable}>Update Timetable</Button>
+            ) : (
+              <Button className='butto ' onClick={handleAddTimetable}>Add Timetable</Button>
+            )}
+          </Form>
+        </Col>
+      </Row>
       <h2>Timetables</h2>
       <ul>
         {timetables.map(timetable => (
