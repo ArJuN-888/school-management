@@ -6,7 +6,7 @@ const parentSchema=new mongoose.Schema({
     parentname:String,
 
     rollno:{
-        type:Number,
+        type:String,
         required:true,
         unique:true
     },

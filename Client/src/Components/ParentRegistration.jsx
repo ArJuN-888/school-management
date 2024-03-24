@@ -18,7 +18,6 @@ export default function ParentRegistration() {
     parentphone: "",
     status: "",
     rollno:"",
-    batchnumber
   });
   console.log("parent",Parentregister)
   const handleChange = (key,value) =>{
@@ -44,7 +43,8 @@ const handleSubmit = async() =>{
 try{
 const response = await axios.post(`${baseURL}/Parent/register`,Parentregister,{
   params:{
-    teacherid : teacherID
+    teacherid : teacherID,
+    batchn:batchnumber
   }
 })
 alert(response.data.message)

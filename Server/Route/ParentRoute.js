@@ -9,61 +9,71 @@ const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 
-router.post("/register",async(req,res)=>{
-try
-{
+router.post("/register", async (req, res) => {
+    try {
+        const { studentname, parentname, email, password, batch, status, parentphone, rollno } = req.body;
 
-    const {studentname,parentname, email ,password,batch,status,parentphone,rollno,batchnumber}=req.body
+        console.log("req body", req.body);
 
-    console.log("req body",req.body)
-    console.log("batchnumber",batchnumber)
-    const teacherid = req.query.teacherid
-  
+        const teacherid = req.query.teacherid;
+        const batchnumber = req.query.batchn;
+        console.log("batchnumber", batchnumber, teacherid);
 
-    if(!studentname || !parentname || !email   || !batch || !password || !status || !parentphone || !rollno)
+        if (!studentname || !parentname || !email || !batch || !password || !status || !parentphone || !rollno) {
+            return res.status(400).json({ message: "Empty Fields!!!" });
+        }
+        
+        const parent = await parentModel.findOne({ email });
+        if (parent) {
+            return res.status(400).json({ message: "Email already in use!!!" });
+        }
 
-    {
-        return res.status(400).json({message:" Empty Fields !!!"})
+        if (!parentphone.match(phoneregex)) {
+            return res.status(400).json({ message: "Enter a 10 digit valid Phone number!!!" });
+        }
+
+        const isEmailValid = mailformat.test(email) && txt.test(email);
+        if (!isEmailValid) {
+            return res.status(400).json({ message: "Enter a valid email" });
+        }
+
+        if (!password.match(passformat)) {
+            return res.status(400).json({ message: "Password should contain Minimum 8 charactersAt least one uppercase character,At least one lowercase character,At least one digit,At least one special character " });
+        }
+
+        const classname = await teacherModel.findById(teacherid);
+        console.log("classnameteacher", classname.batch, "batchofstd", batch);
+        if (classname.batch !== batch) {
+            return res.status(400).json({ message: "You have no right to add to this provided division" });
+        }
+
+        // Concatenate batchnumber and rollno as a single string
+        const concatenatedRollno = `${batchnumber}${rollno}`;
+        const studentbatchnumber = await parentModel.findOne({rollno:concatenatedRollno})
+        if(studentbatchnumber)
+        {
+            return res.status(400).json({ message: "batch number already taken" }); 
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newParent = new parentModel({
+            studentname,
+            parentname,
+            email,
+            password: hashedPassword,
+            batch,
+            status,
+            parentphone: `+91-${parentphone}`,
+            rollno: concatenatedRollno // Store concatenated rollno here
+        });
+
+        await newParent.save();
+        res.status(200).json({ message: "Parent registration successful" });
+    } catch (error) {
+        console.log("Error faced", error);
+        return res.status(400).json({ message: "Error in Parent Registration" });
     }
-    const parent = await parentModel.findOne({email})
-    if(parent){
-        return res.status(400).json({message:" email already in use !!!"})
-    }
- 
-  
-   if(!parentphone.match(phoneregex) )
-   {
-    return res.status(400).json({message:" Enter a 10 digit valid Phone number.. !!!"})
-   }
-    
-    const isEmailValid = mailformat.test(email) && txt.test(email);
-    if (!isEmailValid) {
-        return res.status(400).json({ message: "Enter a valid email" });
-    }
-    if (!password.match(passformat)) 
-    {
-        return res.status(400).json({message:" Password should contain Minimum 8 charactersAt least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
-    }
-    const classname =await teacherModel.findById(teacherid)
-    console.log("classnameteacher",classname.batch,"batchofstd",batch)
-    if(classname.batch !== batch )
-    {
-        return res.status(400).json({message:"you have no right to add to this Provided division"})
-    }
-    const hashedPassword=await bcrypt.hash(password,10)
-
-    const newParent=new parentModel({studentname,parentname,email,password:hashedPassword,batch,status,parentphone:`+91-${parentphone}`,rollno:`${batchnumber}rollno`})
-
-    await newParent.save()
-    res.status(200).json({message:"Parent registration successfull "})
-}
-catch(error)
-{
-    console.log("error faced",error)
-    return res.status(400).json({message:"Error in Parent Registration"})
-}
-
-})
+});
 
 
 router.post("/login",async(req,res)=>{
