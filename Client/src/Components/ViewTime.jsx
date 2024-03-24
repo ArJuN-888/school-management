@@ -31,6 +31,7 @@ export default function ViewTime() {
         <Col>
           <div className="view-section">
             <h2 className="text-center">Your TimeTable</h2>
+            {timetables.length > 0 ?(        
             <div className="time-section">
               <Table bordered striped hover responsive variant="dark">
                 <thead>
@@ -58,6 +59,11 @@ export default function ViewTime() {
                 </tbody>
               </Table>
             </div>
+            ):( 
+              <>
+              <p className="text-center">Your Teacher Has Not Yet Provided Your Timetable...</p>
+              </>
+            )}
           </div>
         </Col>
       </Row>

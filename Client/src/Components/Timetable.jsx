@@ -67,7 +67,7 @@ console.log("time...",selectedId);
       console.error('Error updating timetable:', error);
     }
   };
-
+console.log("time",timetables);
   return (
     <div className='main-time'>
       <h2 className='overall-head text-center'>Add / Edit Timetable</h2>
@@ -106,6 +106,7 @@ console.log("time...",selectedId);
       </ul>
       <div className='overall-time'>
         <h2 className='overall-head text-center'>Your Class Timetable</h2>
+        {timetables.length > 0 ?(     
         <div className="time-section">
           <Table striped bordered variant='dark'>
             <thead>
@@ -133,6 +134,11 @@ console.log("time...",selectedId);
             </tbody>
           </Table>
         </div>
+        ):( 
+        <>
+          <p className="text-center">You Haven't Provided Any Timetable Yet..</p>
+        </>
+         )}
       </div>
     </div>
   );
