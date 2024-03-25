@@ -27,6 +27,7 @@ export default function Teachers() {
     status:"",
     batch:"",
     specialization:"",
+    phone:"",
 
   })
   console.log("AllTEACHERS",Teachers)
@@ -66,7 +67,8 @@ const filterTeachertoEdit = Teachers.find((element)=>element.batch === data.batc
       email:filterTeachertoEdit.email,
       batch:filterTeachertoEdit.batch,
       status:filterTeachertoEdit.status,
-      specialization:filterTeachertoEdit.specialization
+      specialization:filterTeachertoEdit.specialization,
+      phone:filterTeachertoEdit.phone
     })
   }
   const Update = async() =>{
@@ -198,6 +200,15 @@ setPasstoggle(false)
         style={{letterSpacing:"3px"}}
         placeholder='Email...'
         onChange={(e)=>handleChange("email",e.target.value)}
+        />
+        </Col>
+        <Col sm="11">
+        <Form.Control
+        className='fs-5'
+        value={teacherObj.phone}
+        style={{letterSpacing:"3px"}}
+        placeholder='phone...'
+        onChange={(e)=>handleChange("phone",e.target.value)}
         />
         </Col>
         </Form.Group>

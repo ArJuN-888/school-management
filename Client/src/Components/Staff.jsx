@@ -18,6 +18,7 @@ export default function Staff() {
         status:"",
         batch:"",
         specialization:"",
+        phone:"",
     
       })
       console.log("allstaff",allstaff)
@@ -63,7 +64,8 @@ export default function Staff() {
               email:filterstafftoedit.email,
               batch:filterstafftoedit.batch,
               status:filterstafftoedit.status,
-              specialization:filterstafftoedit.specialization
+              specialization:filterstafftoedit.specialization,
+              phone:filterstafftoedit.phone
             })
           }
       const Cancel = () =>{
@@ -199,6 +201,20 @@ export default function Staff() {
       style={{letterSpacing:"3px"}}
       placeholder='Email...'
       onChange={(e)=>handleChange("email",e.target.value)}
+      />
+      </Col>
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
+        <Form.Label column sm="1" className='fs-5'>
+          phone:
+        </Form.Label>
+        <Col sm="11">
+      <Form.Control
+      className='fs-5'
+      value={staffObj.phone}
+      style={{letterSpacing:"3px"}}
+      placeholder='Phone...'
+      onChange={(e)=>handleChange("phone",e.target.value)}
       />
       </Col>
       </Form.Group>

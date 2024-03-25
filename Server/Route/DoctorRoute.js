@@ -10,11 +10,11 @@ const txt = /.com/;
 router.post("/register",async(req,res)=>{
 try
 {
-    const {username,email,password,qualification,status,filename}=req.body;
+    const {username,email,password,qualification,status,filename,phone}=req.body;
 
     const doctor=await doctorModel.findOne({email})
 
-    if( !username || !email || !password || !status || !qualification ||! filename ) 
+    if( !username || !email || !password || !status || !qualification ||! filename ||!phone ) 
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
@@ -30,7 +30,7 @@ try
         return res.status(400).json({message:" Password should contain Minimum 8 characters At least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status,filename})
+    const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status,filename,phone})
     await newDoctor.save()
     res.status(200).json({message:"Doctor Registration Successfull "})
 }
@@ -109,12 +109,12 @@ router.put("/edit/:id",async(req,res)=>{
     try
      {
         const { id } = req.params;
-        const { username,email,qualification } = req.body;
+        const { username,email,qualification,phone } = req.body;
         if(!username || !email || !qualification)
         {
             return res.status(400).json({message:"Empty Field"})
         }
-        await doctorModel.findByIdAndUpdate(id,{username,email,qualification});
+        await doctorModel.findByIdAndUpdate(id,{username,email,qualification,phone});
         res.status(200).json({message:"Profile Updated successfully"})
 
       } 

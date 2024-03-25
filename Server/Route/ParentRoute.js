@@ -143,11 +143,11 @@ router.get("/find/:id",async(req,res)=>{
 router.put("/edit/:id",async(req,res)=>{
     try {
         const {id}= req.params
-        const {studentname,parentname,email,batch,parentphone,status}=req.body
+        const {studentname,parentname,email,batch,parentphone,status,address}=req.body
         const response= await parentModel.findByIdAndUpdate(id,{
             studentname,parentname,email,batch,parentphone,status
         })
-        if(!studentname || !parentname || !email || !parentphone  || !status || !batch){
+        if(!studentname || !parentname || !email || !parentphone  || !status || !batch ||!address){
            return res.status(400).json({message:" All fields  are required"})
         }
 

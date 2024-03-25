@@ -16,7 +16,8 @@ export default function EoManage() {
         username:"",
         email:"",
         status:"",
-        organization:""
+        organization:"",
+        phone:""
     
       })
       const [registerEo,setregisterEo] = useState({
@@ -24,7 +25,8 @@ export default function EoManage() {
         username:"",
         organization:"",
         password:"",
-        status:""
+        status:"",
+        phone: ""
     })
     
       console.log("allEo",allEo)
@@ -69,7 +71,8 @@ export default function EoManage() {
               username:filterEo.username,
               email:filterEo.email,
               status:filterEo.status,
-              organization:filterEo.organization
+              organization:filterEo.organization,
+              phone: filterEo.phone
             })
           }
       const Cancel = () =>{
@@ -178,6 +181,15 @@ export default function EoManage() {
         onChange={(e)=> handle1Change("email",e.target.value)}
         />
         </Col>
+        <Col sm="10" >
+        <Form.Control
+           style={{letterSpacing:"2px"}}
+           className='fs-5'
+        placeholder='phone...'
+        value={registerEo.phone}
+        onChange={(e)=> handle1Change("phone",e.target.value)}
+        />
+        </Col>
         </Form.Group>
         <Form.Group as={Row} className='mt-2'>
           <Form.Label column sm="2">Password:</Form.Label>
@@ -245,6 +257,7 @@ export default function EoManage() {
           <td>{data.status}</td>
           <td>{data.username}</td>
           <td>{data.organization}</td>
+          <td>{data.phone}</td>
         <td><Button  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 me-2' onClick={()=>handleEdit(data)}>Edit</Button>
         <Button style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} className='fs-6 ' variant='danger' onClick={()=>handleDelete(data._id)}>Delete</Button></td>
         </tr>
@@ -297,6 +310,22 @@ export default function EoManage() {
       onChange={(e)=>handleChange("email",e.target.value)}
       />
       </Col>
+      
+      </Form.Group>
+      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
+        <Form.Label column sm="2" className='fs-5'>
+          phone:
+        </Form.Label>
+        <Col sm="10">
+      <Form.Control
+      className='fs-5'
+      value={EOobj.phone}
+      style={{letterSpacing:"3px"}}
+      placeholder='Email...'
+      onChange={(e)=>handleChange("phone",e.target.value)}
+      />
+      </Col>
+      
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
         <Form.Label column sm="2" className='fs-5' >
