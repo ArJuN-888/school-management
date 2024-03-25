@@ -240,7 +240,7 @@ onChange={(e)=>handleChange("link",e.target.value)}
 </>:<>
 {parentId && allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
 {allmaterial && allmaterial.map((data,index)=>(
-    <div key={index}>
+    <div key={index} className='d-flex gap-3 '>
         <span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(data.createdAt).calendar()}</span>
         {data.note}
         {data.status}
