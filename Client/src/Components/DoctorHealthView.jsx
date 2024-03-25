@@ -64,8 +64,8 @@ const DoctorHealthView = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">
-                                    <h3>No Students Available</h3>
+                                <td colSpan="5">
+                                    <h3 className='text-center'>No Students Available</h3>
                                 </td>
                             </tr>
                         )}
