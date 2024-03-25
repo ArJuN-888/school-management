@@ -95,7 +95,7 @@ router.post("/register",Multerstore, async (req, res) => {
             batch,
             address,
             status,
-            parentphone: `+91-${parentphone}`,
+            parentphone,
             rollno: concatenatedRollno, // Store concatenated rollno here
             filename:req.file.filename
         });

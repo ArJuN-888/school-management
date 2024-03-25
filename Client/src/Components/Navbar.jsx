@@ -22,6 +22,7 @@ import Getdoctorname from './Hooks/Getdoctorname';
 import GetParentID from './Hooks/GetParentID';
 import GetPname from './Hooks/GetParentName';
 import { RiFileList2Fill } from "react-icons/ri";
+import { FaUserEdit } from "react-icons/fa";
 import GetEID from './Hooks/GetEID';
 import GetEName from './Hooks/GetEName'
 import Button from 'react-bootstrap/Button';
@@ -128,7 +129,7 @@ export default function Navbar() {
          localStorage.removeItem("eoProfile")
          localStorage.removeItem("eoName")
          localStorage.removeItem("eoID")
-         nav("/Plogin")
+         nav("/Elogin")
         //  location.reload()
       }
 
@@ -146,7 +147,7 @@ export default function Navbar() {
          localStorage.removeItem("staffName")
          localStorage.removeItem("staffID")
          localStorage.removeItem("staffProfile")
-         nav("/Tlogin")
+         nav("/Staff")
         //  location.reload()
       }
 
@@ -192,6 +193,16 @@ const Sm = (props) => (
      Study materials
   </Tooltip>
 );
+const Allteachers = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Teacher/Staff management
+  </Tooltip>
+);
+const Profile = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+    Profile
+  </Tooltip>
+);
   return (
     <>
     <nav className=' nv position-fixed fixed-top' style={{
@@ -215,7 +226,7 @@ const Sm = (props) => (
     }}>
   {adminID &&<>
   <div className='d-flex gap-4 mt-3 justify-content-center'  >
-        <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-white'>{adminName}</div></li>
+        <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{adminName}</div></li>
             <OverlayTrigger
                     placement="bottom"
                     delay={{ show: 50, hide: 100 }}
@@ -234,9 +245,9 @@ const Sm = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Extern}><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={CAnn}><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Allteachers}><Link style={{textDecoration:"none"}} to="/Allteachers"><FaUserEdit style={{color:"black",fontSize:"28px"}}  /></Link></OverlayTrigger></li>
 
-
-        <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Profile}><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"28px"}}  /></Link></OverlayTrigger></li>
 
         <li><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></li> 
         </div></>}
@@ -292,7 +303,6 @@ const Sm = (props) => (
         }}>{staffName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
-        <li><Link state={{textDecoration:"none"}} to="/Staffpro"></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><Link style={{textDecoration:"none"}} to="/StaffPro"><CgProfile style={{color:"black",fontSize:"23px"}} /></Link></li>

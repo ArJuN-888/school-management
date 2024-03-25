@@ -56,9 +56,9 @@ const Staffpro = () => {
       };
 
     return (
-        <div className="container">
-            <h2>Profile</h2>
-            <div className="img-contain">
+        <div className="pdiv" >
+          
+            <div className="img-contain mb-2">
               <img className="image" src={`${reqURL}/${staffprofile}`} />
               <div className="file-parent">
                 <label className="lb">
@@ -67,28 +67,29 @@ const Staffpro = () => {
                 </label>
               </div>
             </div>
-            <div className="row">
-                <div className="col-md-6 offset-md-3">
+            
+                <div className="">
                     {staff.length === 0 ? (
                         <div className="alert alert-info">No staff available</div>
                     ) : (
                         staff.map((data, index) => (
-                            <div className="card mb-3" key={index}>
+                            <div className="card border-0 fs-5" style={{boxShadow:"0px 0px 1px 0px",borderRadius:"0.2rem"}} key={index}>
                                 <div className="card-body">
-                                    <h3 className="card-title">{data.username}</h3>
+                                    <h3 className="card-title" style={{letterSpacing:"3px"}}>{data.username}</h3>
                                     <p className="card-text">
-                                        <strong>ID:</strong> {data._id}<br />
-                                        <strong>Email:</strong> {data.email}<br />
-                                        <strong>Batch:</strong> {data.batch}<br />
-                                        <strong>Specialization:</strong> {data.specialization}<br />
+    
+                                       <div style={{letterSpacing:"4px"}}>{data.email}</div> 
+                                   <div style={{letterSpacing:"4px"}}>Batch - <b style={{letterSpacing:"1px"}}>{data.batch}</b></div>   
+                                    <div style={{letterSpacing:"3px"}}>Subject - {data.specialization}</div>   
                                     </p>
                                 </div>
                             </div>
                         ))
                     )}
                 </div>
-            </div>
-        </div>
+                </div>
+           
+     
     );
 };
 

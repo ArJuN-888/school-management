@@ -19,12 +19,13 @@
         font-family:cursive;
        
 }
+
 body{
     /* cursor:url("https://cdn-icons-png.flaticon.com/128/6002/6002009.png"),auto; */
     
 }
 .main-parent{
-   margin: 10px; 
+   margin: 70px 0px 20px 10px;
 }
 .message-box{
     height: 79.2vh;
