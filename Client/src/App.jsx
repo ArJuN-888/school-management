@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./Components/Teacherlogin";
 import mycontext from "./Context/Context";
 import Register from "./Components/Teacherregister";
@@ -322,6 +324,7 @@ setNotifications(mNotifications)
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
+      <ToastContainer position="top-center" />
     </>
   );
 }
