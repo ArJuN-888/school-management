@@ -199,7 +199,7 @@ const Sm = (props) => (
      Study materials
   </Tooltip>
 );
-<<<<<<< HEAD
+
 const Allteachers = (props) => (
   <Tooltip id="button-tooltip" {...props}>
     Teacher/Staff management
@@ -208,7 +208,8 @@ const Allteachers = (props) => (
 const Profile = (props) => (
   <Tooltip id="button-tooltip" {...props}>
     Profile
-=======
+</Tooltip>
+)
 const Ap = (props) => (
   <Tooltip id="button-tooltip" {...props}>
      Your Profile
@@ -262,7 +263,7 @@ const Tt = (props) => (
 const Hr = (props) => (
   <Tooltip id="button-tooltip" {...props}>
      Student Health Report
->>>>>>> 6daf35bc958faf30695c70acf0d68d49769dc901
+
   </Tooltip>
 );
   return (
@@ -307,16 +308,14 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Extern}><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={CAnn}><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
-<<<<<<< HEAD
+
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Allteachers}><Link style={{textDecoration:"none"}} to="/Allteachers"><FaUserEdit style={{color:"black",fontSize:"28px"}}  /></Link></OverlayTrigger></li>
 
-        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Profile}><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"28px"}}  /></Link></OverlayTrigger></li>
+    
 
-        <li><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></li> 
-=======
-        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
-        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></OverlayTrigger></li> 
->>>>>>> 6daf35bc958faf30695c70acf0d68d49769dc901
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}  ><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"28px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La} ><button style={{border:"none",backgroundColor:"transparent"}}  onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></button></OverlayTrigger></li> 
+
         </div></>}
         {teacherID &&<>
         <li>Logged in as <label style={{
@@ -369,15 +368,12 @@ const Hr = (props) => (
             color:'green',
             fontWeight:"bolder"
         }}>{staffName}</label></li>
-<<<<<<< HEAD
-         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
-=======
+
+
          <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Bm}><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
->>>>>>> 6daf35bc958faf30695c70acf0d68d49769dc901
+
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}} to="/StaffPro"><CgProfile style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logstaffstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 

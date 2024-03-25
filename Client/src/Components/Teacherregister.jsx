@@ -127,7 +127,7 @@ export default function Register() {
               />
             </label>
           </div>
-          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+    
         </div>
             <div className="text-center">
               <Button variant="primary" onClick={register}>Register</Button>
