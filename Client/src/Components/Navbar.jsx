@@ -394,7 +394,6 @@ const Hr = (props) => (
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
       <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
-      <li><Link className=' '>About us</Link></li>
        <li> <Dropdown className=' me-5' as={ButtonGroup}>
       <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
 
