@@ -49,6 +49,7 @@ import StudeyMaterial from "./Components/StudyMaterials";
 import StudentHealth from "./Components/StudentHealth";
 import DoctorHealthView from "./Components/DoctorHealthView";
  import { StaffLogin } from "./Components/StaffLogin";
+import UniversalHome from "./Components/UniversalHome";
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -274,6 +275,7 @@ setNotifications(mNotifications)
         <mycontext.Provider value={contextdata}>
           <Navbar />
           <Routes>
+            <Route path="/" element={<UniversalHome/>} />
             <Route path="/Tlogin" element={<Login />} />
             <Route path="/Tregister" element={<Register />} />
             <Route path="/Home" element={<Home />} />

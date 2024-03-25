@@ -322,10 +322,10 @@ const Sm = (props) => (
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
-      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:""}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
+      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
       <li><Link style={{ textDecoration: 'none' }}>About us</Link></li>
        <li> <Dropdown className='mt-2 me-5' as={ButtonGroup}>
-      <Button  style={{borderRadius:"0rem",textDecoration : 'none',boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
+      <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
 
       <Dropdown.Toggle style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey"}} split variant="secondary" id="dropdown-split-basic" />
 
