@@ -394,7 +394,6 @@ const Hr = (props) => (
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
       <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
-      <li><Link className=' '>About us</Link></li>
        <li> <Dropdown className=' me-5' as={ButtonGroup}>
       <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
 
@@ -407,7 +406,7 @@ const Hr = (props) => (
         <Dropdown.Item>   <Link className='text-black' style={{ textDecoration: 'none' }} to="/Plogin">Parent</Link></Dropdown.Item>
         <Dropdown.Item>  <Link className='text-black' style={{ textDecoration: 'none' }}  to="/Elogin">External</Link></Dropdown.Item>
         <Dropdown.Divider />
-            <Dropdown.Item eventKey="4" style={{ textDecoration: 'none' }}>Contact us</Dropdown.Item>
+            <Dropdown.Item eventKey="4" ><Link to="/contactus" style={{ textDecoration: 'none' }}>Contact us</Link></Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown></li>
         </> }

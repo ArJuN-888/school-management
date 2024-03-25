@@ -9,6 +9,7 @@ const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
+const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 const Multerstore = require("../Config/MulterConfig")
 router.post("/register",Multerstore,async(req,res)=>{
     const {username,email,password,status,specialization,batch,phone}=req.body;
@@ -41,6 +42,13 @@ router.post("/register",Multerstore,async(req,res)=>{
     return res.status(400).json({
       message: "Password should contain at least 8 characters, one uppercase character, one lowercase character, one digit, and one special character",
     });
+  }
+  if (!phone.match(phoneregex)) {
+    const callback = () => {
+        console.log("Removed profile due to invalid registration credentials");
+      };
+      fs.unlink(`public/uploads/${req.file.filename}`, callback);
+    return res.status(400).json({ message: "Enter a 10 digit valid Phone number!!! !!!" });
   }
     const staff=await staffModel.findOne({email})
 
@@ -101,6 +109,9 @@ router.put("/editpic/:staffID",Multerstore,async(req,res)=> {
     const staff = await staffModel.findById(staffID)
     if (!req.file) {
       return res.status(400).json({ message: "Please select a file" });
+    }
+    if (!phone.match(phoneregex)) {
+      return res.status(400).json({message:"Enter a 10 digit valid Phone number!!! !!!"})
     }
     console.log("admin", staffID);
     console.log("userfile", req.file);

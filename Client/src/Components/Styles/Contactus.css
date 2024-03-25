@@ -1,0 +1,37 @@
+.con-items{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ad{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.simple{
+    /* background: #ffa3a3; */
+    margin-right: 10px;
+    margin-top: 40px;
+}
+
+.contact-img{
+    width:98%;
+    border-radius: 5px;
+}
+.po{
+    margin-left: 5px;
+    color: blue;
+}
+
+.backgr{
+ background-color: rgb(230, 214, 214);
+}
+
+.high-text{
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 3px;
+    text-decoration:underline;
+}
