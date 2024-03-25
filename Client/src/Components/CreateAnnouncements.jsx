@@ -6,6 +6,7 @@ import { Button,Col,Form, Row } from 'react-bootstrap';
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
 import mycontext from '../Context/Context';
+import {Flip, toast} from "react-toastify"
 
 export default function CreateAnnouncements() {
   const {baseURL} = useContext(mycontext)
@@ -71,10 +72,10 @@ catch(error)
        
     getAnnouncements()
     setSelectedfile("")
-     alert(response.data.message);
+     toast.sucess(response.data.message,{transition:Flip});
     }
      } catch (error) {
-     alert(error.response.data.message)
+      toast.error(error.response.data.message,{transition:Flip})
     }
   };
   const downloadImage = async (url, filename) => {
@@ -94,17 +95,17 @@ catch(error)
     if(!data.note)
      {
        err.note = "note is required..."
-       alert(err.note)
+       toast.error(err.note,{transition:Flip})
      }
      else if(!data.status)
      {
        err.status = "status is required..."
-       alert(err.status)
+       toast.error(err.status,{transition:Flip})
      }
     
      else if(!sltfile){
       err.file = "Please select a file..."
-      alert(err.file)
+      toast.error(err.file,{transition:Flip})
      }
    
   

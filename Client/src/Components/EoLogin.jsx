@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import external from "../Components/Pictures/external.jpg"
 import './Styles/AdminLogin.css'
 import { useNavigate } from 'react-router-dom'
+import {Flip, toast} from "react-toastify"
 export const EoLogin = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -19,14 +20,14 @@ export const EoLogin = () => {
            localStorage.setItem("eoID",response.data.eoID)
            localStorage.setItem("eoName",response.data.eoName)
            localStorage.setItem("eoProfile",response.data.eoprofile)
-           alert(response.data.message)
+           toast.success(response.data.message,{transition:Flip})
            nav("/Home")
             setEmail("")
             setPassword("")
         }
         catch(error)
         {
-            alert(error.response.data.message);
+            toast.error(error.response.data.message,{transition:Flip});
         }
     }
 

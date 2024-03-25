@@ -9,6 +9,7 @@ import { VscClose } from "react-icons/vsc";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaBookBookmark } from "react-icons/fa6";
 import { FaUserGraduate } from "react-icons/fa6";
+import {toast} from "react-toastify"
 
 export default function Classroom() {
     const { baseURL } = useContext(mycontext);
@@ -29,7 +30,7 @@ export default function Classroom() {
             const response = await axios.get(`${baseURL}/Teacher/getallteachers`);
             setTeachers(response.data.teacher);
         } catch (error) {
-            alert(error.response.data.message);
+            toast.error(error.response.data.message,{transition:Flip})
         }
     };
 
@@ -38,7 +39,7 @@ export default function Classroom() {
             const response = await axios.get(`${baseURL}/Parent/getallparent`);
             setParents(response.data.parent);
         } catch (error) {
-            alert(error.response.data.message);
+            toast.error(error.response.data.message,{transition:Flip})
         }
     };
 

@@ -5,6 +5,7 @@ import mycontext from "../Context/Context";
 import { FaPlus } from "react-icons/fa";
 import GetdoctorID from "./Hooks/GetdoctorID";
 import GetDprofile from "./Hooks/GetdocName";
+import {Flip, toast} from "react-toastify"
 const DoctorProfile = () => {
     const Doctorname=Getdoctorname()
     const {baseURL}=useContext(mycontext)
@@ -48,10 +49,10 @@ const doctorprofile = GetDprofile()
   
         localStorage.setItem("doctorProfile", response.data.doctorprofile);
         getAllDoctors();
-        alert(response.data.message);
+        toast.success(response.data.message,{transition:Flip});
       } catch (error) {
         
-        alert( error.response.data.message);
+        alert( error.response.data.message,{transition:Flip});
       }
     };
   

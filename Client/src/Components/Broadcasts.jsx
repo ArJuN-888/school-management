@@ -10,7 +10,7 @@ import GetTID from './Hooks/Getteacherid';
 import GetTname from './Hooks/Getteachername';
 import GetSID from './Hooks/GetstaffID';
 import GetSname from './Hooks/GetstaffName';
-import {toast} from 'react-toastify'
+import {Flip, toast} from 'react-toastify'
 export default function TBroadcasts() {
   const [reqURL,] = useState('http://localhost:5000/uploads');
    const teachername = GetTname()
@@ -81,11 +81,11 @@ const response = await axios.post(`${baseURL}/Broadcast/addbroadcast`,{text,stat
     staffID:staffID
   }
 })
-toast.success(response.data.message)
+toast.success(response.data.message,{transition: Flip})
 }
 catch(error)
 {
-  toast.error(error.response.data.message)
+  toast.error(error.response.data.message,{transition:Flip})
 }
   }
   return (

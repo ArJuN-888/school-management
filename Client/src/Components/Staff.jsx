@@ -6,6 +6,7 @@ import { Table,Button,Form } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import myContext from '../Context/Context';
+import {Flip, toast} from 'react-toastify'
 export default function Staff() {
     useEffect(()=>{
         fetchStaff()
@@ -48,7 +49,7 @@ export default function Staff() {
         }
       catch(error)
       {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message,{transition:Flip})
       }
       }
       const handleEdit = (data) =>{
@@ -81,11 +82,11 @@ export default function Staff() {
             try{
           const response = await axios.put(`${baseURL}/Staff/update/${Sid}`,staffObj)
           fetchStaff()
-          alert(response.data.message)
+          toast.success(response.data.message,{transition:Flip})
             }
             catch(error)
             {
-          alert(error.response.data.message)
+          toast.error(error.response.data.message,{transition:Flip})
             }
            }
            //req password
@@ -93,32 +94,32 @@ export default function Staff() {
             try{
           const response = await axios.post(`${baseURL}/Staff/passreq/${Sid}`,{prevpassword})
         setGrant(response.data.grant)
-          alert(response.data.message)
+          toast.success(response.data.message,{transition:Flip})
             }
             catch(error)
             {
-          alert(error.response.data.message)
+          toast.error(error.response.data.message,{transition:Flip})
             }
            }
            //update Password
            const UpdatePassword = async() =>{
             try{
             const response = await axios.put(`${baseURL}/Staff/updatepassword/${Sid}`,updatedpassword)
-              alert(response.data.message)
+              toast.success(response.data.message,{transition:Flip})
               setToggle(0)
               setGrant(false)
               setPasstoggle(false)
                 }
                 catch(error)
                 {
-              alert(error.response.data.message)
+              toast.error(error.response.data.message,{transition:Flip})
                 }
           }
           //delete
           const handleDelete = async(id) =>{
             try{
               const response = await axios.delete(`${baseURL}/Staff/delete/${id}`)
-                alert(response.data.message)
+                toast.success(response.data.message,{transition:Flip})
                 fetchStaff()
                 setToggle(0)
               setGrant(false)
@@ -126,7 +127,7 @@ export default function Staff() {
                   }
                   catch(error)
                   {
-                alert(error.response.data.message)
+                toast.error(error.response.data.message,{transition:Flip})
                   }
           }
   return (
