@@ -192,6 +192,16 @@ const Sm = (props) => (
      Study materials
   </Tooltip>
 );
+const Ap = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     Admin Profile
+  </Tooltip>
+);
+const La = (props) => (
+  <Tooltip id="button-tooltip" {...props}>
+     LogOut
+  </Tooltip>
+);
   return (
     <>
     <nav className=' nv position-fixed fixed-top' style={{
@@ -234,11 +244,8 @@ const Sm = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Extern}><Link style={{textDecoration:"none"}} to="/Exmanage"><FaUserTie style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={CAnn}><Link style={{textDecoration:"none"}} to="/createAnnouncements"><TfiAnnouncement style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
-
-
-        <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></li>
-
-        <li><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></li> 
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></OverlayTrigger></li> 
         </div></>}
         {teacherID &&<>
         <li>Logged in as <label style={{
