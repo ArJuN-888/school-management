@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import GetTID from './Hooks/Getteacherid';
 
 import { Table ,Button} from 'react-bootstrap';
+import {Flip, toast} from "react-toastify"
 
 export default function ViewLetter() {
   const [letters, setLetters] = useState([]);
@@ -24,17 +25,17 @@ export default function ViewLetter() {
       });
       setLetters(resp.data);
     } catch (err) {
-      alert(err);
+      toast.error(err,{transition:Flip});
     }
   };
 
   const grantSubmit = async (id, grant) => {
     try {
       const response = await axios.put(`http://localhost:5000/Leave/grant/${id}`, { grant: !grant });
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
       getTeacher();
     } catch (err) {
-      alert(err);
+      toast.err(err,{transition:Flip});
     }
   };
 
