@@ -6,7 +6,7 @@ import GetPprofile from './Hooks/Getparentprof'
 import GetParentID from './Hooks/GetParentID'
 
 import { FaPlus,FaMinus } from "react-icons/fa";
-import {toast, Flip } from 'react-toastify'
+import {toast, Flip } from 'react-toastify';
 
 const ParentProfile = () => {
     const [student,setStudent]=useState([])
