@@ -323,20 +323,20 @@ const Sm = (props) => (
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
       <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:""}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
-      <li><Link>About us</Link></li>
+      <li><Link style={{ textDecoration: 'none' }}>About us</Link></li>
        <li> <Dropdown className='mt-2 me-5' as={ButtonGroup}>
-      <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}} variant="secondary"><u>Login Options</u></Button>
+      <Button  style={{borderRadius:"0rem",textDecoration : 'none',boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
 
       <Dropdown.Toggle style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey"}} split variant="secondary" id="dropdown-split-basic" />
 
       <Dropdown.Menu className='fs-6 ' style={{letterSpacing:"2px",border:"1px solid grey"}}  >
-        <Dropdown.Item   >  <Link className='text-black'  to="/Tlogin">Teacher</Link></Dropdown.Item>
-        <Dropdown.Item ><Link className='text-black'  to="/Adminlogin">Admin</Link></Dropdown.Item>
-        <Dropdown.Item >  <Link className='text-black'  to="/Dlogin">Doctor</Link></Dropdown.Item>
-        <Dropdown.Item>   <Link className='text-black'  to="/Plogin">Parent</Link></Dropdown.Item>
-        <Dropdown.Item>  <Link className='text-black'  to="/Elogin">External</Link></Dropdown.Item>
+        <Dropdown.Item   >  <Link className='text-black' style={{ textDecoration: 'none' }} to="/Tlogin">Teacher</Link></Dropdown.Item>
+        <Dropdown.Item ><Link className='text-black ' style={{ textDecoration: 'none' }} to="/Adminlogin">Admin</Link></Dropdown.Item>
+        <Dropdown.Item >  <Link className='text-black' style={{ textDecoration: 'none' }} to="/Dlogin">Doctor</Link></Dropdown.Item>
+        <Dropdown.Item>   <Link className='text-black' style={{ textDecoration: 'none' }} to="/Plogin">Parent</Link></Dropdown.Item>
+        <Dropdown.Item>  <Link className='text-black' style={{ textDecoration: 'none' }}  to="/Elogin">External</Link></Dropdown.Item>
         <Dropdown.Divider />
-            <Dropdown.Item eventKey="4">Contact us</Dropdown.Item>
+            <Dropdown.Item eventKey="4" style={{ textDecoration: 'none' }}>Contact us</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown></li>
         </> }
