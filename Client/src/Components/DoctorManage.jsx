@@ -202,6 +202,7 @@ console.log("id",docID);
                     placeholder='Email...'
                     onChange={(e)=>setEmail(e.target.value)}
                 />
+                
                  </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>

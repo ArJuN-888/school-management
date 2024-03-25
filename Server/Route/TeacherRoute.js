@@ -11,11 +11,11 @@ const txt = /.com/;
 
 router.post("/register", async (req, res) => {
     try {
-      const { username, email, password,batch, status ,specialization,batchnumber} = req.body;
-  
+      const { username, email, password,batch, status ,specialization,batchnumber,phone,filename} = req.body;
+
       console.log("reqbdy", req.body);
   
-      if (!username || !email || !password||!batch || !status || !specialization||!batchnumber) {
+      if (!username || !email || !password||!batch || !status || !specialization||!batchnumber||!phone ||!filename) {
         return res.status(400).json({ message: "Empty Fields !!!" });
       }
   
@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber});
+      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber,phone: `+91-${phone}`,filename});
       await newTeacher.save();
   
       res.status(200).json({ message: "Faculty Registration Successful" });
@@ -150,12 +150,12 @@ router.put("/updatepassword/:id",async(req,res)=>{
 })
 router.put("/update/:id",async(req,res)=>{
   try{
-   const {username,email,status,specialization} = req.body
-   if(!username|| !email || !status || !specialization)
+   const {username,email,status,specialization,phone} = req.body
+   if(!username|| !email || !status || !specialization ||!phone)
    {
     return   res.status(400).json({message:"Empty fields..."})
    }
-    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status,specialization})
+    const data = await teacherModel.findByIdAndUpdate(req.params.id,{username,email,status,specialization,phone})
       res.status(200).json({message:"Profile Successfully Updated..."})
  
   }

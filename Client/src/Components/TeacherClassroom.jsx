@@ -24,6 +24,7 @@ export default function TeacherClassroom() {
     email: "",
     batch: "",
     parentphone: "",
+    address:"",
     status: "",
     rollno:""
   });
@@ -118,7 +119,9 @@ export default function TeacherClassroom() {
       batch: data.batch,
       parentphone: data.parentphone,
       status: data.status,
-       rollno:data.rollno
+       rollno:data.rollno,
+       address:data.address,
+       
 
     })
 
@@ -263,6 +266,20 @@ export default function TeacherClassroom() {
               name="email"
               placeholder="Email..."
               value={edit.email}
+              onChange={handleChange}
+            ></Form.Control>
+            </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mt-2">
+            <Form.Label column sm="2">Address:</Form.Label>
+            <Col sm="10">
+            <Form.Control 
+              type="text"
+              className="fs-5"
+              style={{letterSpacing:"2px"}}
+              name="address"
+              placeholder="Address..."
+              value={edit.address}
               onChange={handleChange}
             ></Form.Control>
             </Col>

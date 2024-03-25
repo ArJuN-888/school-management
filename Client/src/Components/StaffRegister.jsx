@@ -13,6 +13,7 @@ export default function StaffRegister() {
     password: "",
     batch: "",
     specialization: "",
+    phone:""
   });
 
   const handleChange = (key, value) => {
@@ -46,6 +47,14 @@ export default function StaffRegister() {
             value={staffObj.email}
             placeholder='Email...'
             onChange={(e) => handleChange("email", e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <FormControl
+            type='text'
+            value={staffObj.phone}
+            placeholder='phone...'
+            onChange={(e) => handleChange("phone", e.target.value)}
           />
         </FormGroup>
         <FormGroup>

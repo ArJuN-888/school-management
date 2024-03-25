@@ -11,7 +11,7 @@ const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
 
 router.post("/register", async (req, res) => {
     try {
-        const { studentname, parentname, email, password, batch, status, parentphone, rollno } = req.body;
+        const { studentname, parentname, email, password, batch, status, parentphone, rollno ,address,filename} = req.body;
 
         console.log("req body", req.body);
 
@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
         const batchnumber = req.query.batchn;
         console.log("batchnumber", batchnumber, teacherid);
 
-        if (!studentname || !parentname || !email || !batch || !password || !status || !parentphone || !rollno) {
+        if (!studentname || !parentname || !email || !batch || !password || !status || !parentphone || !rollno ||!address ||!filename) {
             return res.status(400).json({ message: "Empty Fields!!!" });
         }
         
@@ -62,9 +62,11 @@ router.post("/register", async (req, res) => {
             email,
             password: hashedPassword,
             batch,
+            address,
             status,
             parentphone: `+91-${parentphone}`,
-            rollno: concatenatedRollno // Store concatenated rollno here
+            rollno: concatenatedRollno, // Store concatenated rollno here
+            filename
         });
 
         await newParent.save();
@@ -141,11 +143,11 @@ router.get("/find/:id",async(req,res)=>{
 router.put("/edit/:id",async(req,res)=>{
     try {
         const {id}= req.params
-        const {studentname,parentname,email,batch,parentphone,status}=req.body
+        const {studentname,parentname,email,batch,parentphone,status,address}=req.body
         const response= await parentModel.findByIdAndUpdate(id,{
             studentname,parentname,email,batch,parentphone,status
         })
-        if(!studentname || !parentname || !email || !parentphone  || !status || !batch){
+        if(!studentname || !parentname || !email || !parentphone  || !status || !batch ||!address){
            return res.status(400).json({message:" All fields  are required"})
         }
 

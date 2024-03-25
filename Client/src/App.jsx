@@ -68,6 +68,7 @@ function App() {
     batch: "",
     batchnumber:"",
     status: "",
+    phone:"",
     specialization:""
   });
   const [teacherloginData, setteacherLogindata] = useState({
