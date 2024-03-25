@@ -5,6 +5,7 @@ import axios from 'axios'
 import Getadprofile from './Hooks/GetProfile'
 import { FaPlus } from "react-icons/fa";
 import GetadminID from './Hooks/GetadminID'
+import {toast} from "react-toastify"
 export default function () {
     const adminID = GetadminID()
     const {baseURL} = useContext(mycontext)
@@ -37,7 +38,7 @@ console.log("admin",admin)
         try
         {
             const response=await axios.put(`${baseURL}/Admin/admpassupdate/${adminID}`,{password:newPass,conPass})
-            alert(response.data.message)
+           toast.success(response.data.message)
             setOldpass("")
             if(response.data.message === "Password Updated successfully")
             {
@@ -50,7 +51,7 @@ console.log("admin",admin)
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message)
         }
     }
 
@@ -82,7 +83,7 @@ console.log("admin",admin)
         try
         {
             const response = await axios.put(`${baseURL}/Admin/edit/${adminID}`,{username:newUsername,email:newEmail,status:newStat})
-            alert(response.data.message)
+            toast.success(response.data.message)
             setHighTog(0)
             fetchAdmin()
         }
@@ -100,7 +101,7 @@ console.log("admin",admin)
         try
         {
             const response=await axios.post(`${baseURL}/Admin/admpassmatch/${adminID}`,{password:oldPass})
-            alert(response.data.message)
+            toast.success(response.data.message)
             if(response.data.message ==="You can now update your Password")
             {
                 setPassToggle(1)
@@ -139,10 +140,10 @@ console.log("admin",admin)
     
           localStorage.setItem("adminProfile", response.data.admin.filename);
           fetchAdmin();
-          alert(response.data.message);
+          toast.success(response.data.message);
         } catch (error) {
           
-          alert( error.response.data.message);
+          toast.error( error.response.data.message);
         }
       };
     
