@@ -114,10 +114,10 @@ console.log("admin",admin)
     }
    
   return (
-    <div className='m-2'>
+    <div className='m-2 justify-content-center align-items-center'>
         <div className='fs-5' style={{letterSpacing:"2px"}}>
            <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
-                <div>
+                <div >
 
                             <div className="teacher-data">
                                 {admin.map((data, index) => (
