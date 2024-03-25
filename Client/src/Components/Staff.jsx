@@ -137,7 +137,7 @@ export default function Staff() {
        {allstaff.length !== 0 &&
         <thead className='fs-5'>
         <tr>
-          <th className="bg-primary text-white ">Teacher_ID</th>
+        <th className="bg-primary text-white ">SL_No</th>
           <th className="bg-primary text-white ">Status</th>
           <th className="bg-primary text-white ">Teacher_Name</th>
           <th className="bg-primary text-white ">Batch</th>
@@ -148,7 +148,7 @@ export default function Staff() {
         <tbody className='fs-5'>
       {allstaff && allstaff.map((data,index)=>(
         <tr key={index}>
-          <td>{data._id}</td>
+          <td>{index+1}</td>
           <td>{data.status}</td>
           <td>{data.username}</td>
         <td>{data.batch}</td>
@@ -163,10 +163,10 @@ export default function Staff() {
       <label className='fs-4 mt-4 mb-4' >{`Modifying the particulars concerning ${Sname}`}   <Spinner animation="border" role="status" variant="primary" size="sm"></Spinner></label>
       <Form className='form '  style={{letterSpacing:"3px"}} >
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-        <Form.Label column sm="1" className='fs-5'>
+        <Form.Label column sm="2" className='fs-5'>
           Username:
         </Form.Label>
-        <Col sm="11">
+        <Col sm="10">
       <Form.Control
       className='fs-5'
       value={staffObj.username}
@@ -177,10 +177,10 @@ export default function Staff() {
       </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-        <Form.Label column sm="1" className='fs-5' >
+        <Form.Label column sm="2" className='fs-5' >
           Batch:
         </Form.Label>
-        <Col sm="11">
+        <Col sm="10">
       <Form.Control
       className='fs-5'
       value={staffObj.batch}
@@ -192,10 +192,10 @@ export default function Staff() {
       </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-        <Form.Label column sm="1" className='fs-5'>
+        <Form.Label column sm="2" className='fs-5'>
           Email:
         </Form.Label>
-        <Col sm="11">
+        <Col sm="10">
       <Form.Control
       className='fs-5'
       value={staffObj.email}
@@ -206,10 +206,10 @@ export default function Staff() {
       </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-        <Form.Label column sm="1" className='fs-5'>
-          phone:
+        <Form.Label column sm="2" className='fs-5'>
+          phone no:(+91)
         </Form.Label>
-        <Col sm="11">
+        <Col sm="10">
       <Form.Control
       className='fs-5'
       value={staffObj.phone}
@@ -220,17 +220,21 @@ export default function Staff() {
       </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-        <Form.Label column sm="1" className='fs-5' >
+        <Form.Label column sm="2" className='fs-5' >
           Status:
         </Form.Label>
-        <Col sm="11">
-      <Form.Control
+        <Col sm="10">
+      <Form.Select
+      disabled
       className='fs-5'
       value={staffObj.status}
       style={{letterSpacing:"3px"}}
       placeholder='Status...'
       onChange={(e)=>handleChange("status",e.target.value)}
-      />
+      >
+        <option value="" >Status</option>
+        <option value="Subject teacher">Subject teacher</option>
+      </Form.Select>
       </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >

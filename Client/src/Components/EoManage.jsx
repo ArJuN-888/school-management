@@ -290,6 +290,7 @@ export default function EoManage() {
           <th className="bg-primary text-white ">Status</th>
           <th className="bg-primary text-white ">Representative</th>
           <th className="bg-primary text-white ">Organization</th>
+          <th className="bg-primary text-white ">Phone Number</th>
           <th className="bg-primary text-white ">Action</th>
         </tr>
       </thead>

@@ -55,7 +55,7 @@ router.post("/register",Multerstore,async(req,res)=>{
     }
 
     const hashedPassword=await bcrypt.hash(password,10)
-    const newEO=new eoModel({username,email,password:hashedPassword,status,organization,filename:req.file.filename,phone: `+91-${phone}`})
+    const newEO=new eoModel({username,email,password:hashedPassword,status,organization,filename:req.file.filename,phone})
     await newEO.save()
     res.status(200).json({message:"Organization  registered successfully!!! "})
   }

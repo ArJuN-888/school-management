@@ -136,7 +136,8 @@ setPasstoggle(false)
           {Teachers.length === 0 && <h3>No Data Found...</h3>}
         {Teachers.length !==0 &&  <thead className='fs-5'>
             <tr>
-              <th className="bg-primary text-white ">Teacher_ID</th>
+
+              <th className="bg-primary text-white ">SL_No</th>
               <th className="bg-primary text-white ">Status</th>
               <th className="bg-primary text-white ">Teacher_Name</th>
               <th className="bg-primary text-white ">Batch</th>
@@ -146,7 +147,7 @@ setPasstoggle(false)
           <tbody className='fs-5'>
         {Teachers && Teachers.map((data,index)=>(
           <tr key={index}>
-            <td>{data._id}</td>
+              <td>{index+1}</td>
             <td>{data.status}</td>
             <td>{data.username}</td>
           <td>{data.batch}</td>
@@ -161,10 +162,10 @@ setPasstoggle(false)
         <label className='fs-4 mt-4 mb-4' >{`Modifying the particulars concerning ${Tname}`}   <Spinner animation="border" role="status" variant="primary" size="sm"></Spinner></label>
         <Form className='form '  style={{letterSpacing:"3px"}} >
           <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-          <Form.Label column sm="1" className='fs-5'>
+          <Form.Label column sm="2" className='fs-5'>
             Username:
           </Form.Label>
-          <Col sm="11">
+          <Col sm="10">
         <Form.Control
         className='fs-5'
         value={teacherObj.username}
@@ -175,10 +176,10 @@ setPasstoggle(false)
         </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-          <Form.Label column sm="1" className='fs-5' >
+          <Form.Label column sm="2" className='fs-5' >
             Batch:
           </Form.Label>
-          <Col sm="11">
+          <Col sm="10">
         <Form.Control
         className='fs-5'
         value={teacherObj.batch}
@@ -190,10 +191,10 @@ setPasstoggle(false)
         </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-          <Form.Label column sm="1" className='fs-5'>
+          <Form.Label column sm="2" className='fs-5'>
             Email:
           </Form.Label>
-          <Col sm="11">
+          <Col sm="10">
         <Form.Control
         className='fs-5'
         value={teacherObj.email}
@@ -202,7 +203,13 @@ setPasstoggle(false)
         onChange={(e)=>handleChange("email",e.target.value)}
         />
         </Col>
-        <Col sm="11">
+       
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+        <Form.Label column sm="2" className='fs-5'>
+            Phone no:(+91)
+          </Form.Label>
+        <Col sm="10">
         <Form.Control
         className='fs-5'
         value={teacherObj.phone}
@@ -212,20 +219,25 @@ setPasstoggle(false)
         />
         </Col>
         </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-          <Form.Label column sm="1" className='fs-5' >
-            Status:
-          </Form.Label>
-          <Col sm="11">
-        <Form.Control
-        className='fs-5'
-        value={teacherObj.status}
-        style={{letterSpacing:"3px"}}
-        placeholder='Status...'
-        onChange={(e)=>handleChange("status",e.target.value)}
-        />
-        </Col>
-        </Form.Group>
+      
+      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
+        <Form.Label column sm="2" className='fs-5' >
+          Status:
+        </Form.Label>
+        <Col sm="10">
+      <Form.Select
+      disabled
+      className='fs-5'
+      value={teacherObj.status}
+      style={{letterSpacing:"3px"}}
+      placeholder='Status...'
+      onChange={(e)=>handleChange("status",e.target.value)}
+      >
+        <option value="" >Status</option>
+        <option value="Class teacher">Class teacher</option>
+      </Form.Select>
+      </Col>
+      </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
           <Form.Label column sm="2" className='fs-5' >
             Specialization:

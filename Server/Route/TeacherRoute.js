@@ -68,7 +68,7 @@ router.post("/register",Multerstore, async (req, res) => {
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber,phone: `+91-${phone}`,filename:req.file.filename});
+      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber,phone,filename:req.file.filename});
       await newTeacher.save();
   
       res.status(200).json({ message: "Faculty Registration Successful" });

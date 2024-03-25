@@ -254,7 +254,7 @@ catch(error)
   };
   return (
     <div className='main-parent '>
-    <div className='mn' style={{ fontFamily:"monospace",fontSize:"20px",display:"flex",gap:"10px"}}>
+    <div className='mn ' style={{ fontFamily:"monospace",fontSize:"20px",display:"flex",gap:"10px"}}>
       <PotentialChats/>
         {chat.length<1  ? null : 
        
