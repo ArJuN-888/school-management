@@ -122,13 +122,17 @@ const StudentHealth = () => {
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="Immunization">
-              <Form.Label>Immunization</Form.Label>
-              <Form.Control
+              <Form.Label>Immunization (Latest)</Form.Label>
+              <Form.Select
                 type="text"
                 name="Immunization"
                 placeholder="Enter Immunization Status"
                 onChange={handleChange}
-              />
+              >
+                <option value="">Status</option>
+                <option value="TD(10 yrs)">TD(10 yrs)</option>
+                <option value="TD(16 yrs)">TD(16 yrs)</option>
+              </Form.Select>
             </Form.Group>
           </Col>
           <Col md={6}>

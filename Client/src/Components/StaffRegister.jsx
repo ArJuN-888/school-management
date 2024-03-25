@@ -50,8 +50,8 @@ export default function StaffRegister() {
 
   return (
     <div>
-      <Form>
-        <h1 className='text-center'>Staff Account Creation</h1>
+      <Form className='fs-5 m-2' style={{letterSpacing:"2px"}}>
+        <h2 className='ms-2 fs-3 mb-4' style={{letterSpacing:"3px"}}>Staff Account Creation...</h2>
         {/* <FormGroup>
           <FormControl
             type='text'
@@ -218,10 +218,10 @@ export default function StaffRegister() {
             </label>
           </div>
         <div className='text-center'>
-        <Button variant="primary"  onClick={register}>Register</Button>
+        <Button variant="primary"  style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}  onClick={register}>Register</Button>
         </div>
         <div>
-          <p className='text-center'><Link to='/Tregister'>Teacher Register</Link></p>
+          <p className='text-center'><Link className='fs-5'  to='/Tregister'>Teacher Register</Link></p>
         </div>
       </Form>
     </div>
