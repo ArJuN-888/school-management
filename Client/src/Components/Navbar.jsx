@@ -289,7 +289,7 @@ const Hr = (props) => (
        
     }}>
   {adminID &&<>
-  <div className='d-flex gap-4 mt-3 justify-content-center'  >
+  <div className='d-flex gap-4  justify-content-center'  >
         <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{adminName}</div></li>
             <OverlayTrigger
                     placement="bottom"

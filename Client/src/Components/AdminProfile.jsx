@@ -3,7 +3,7 @@ import mycontext from '../Context/Context'
 import { Button ,Form, Col, Row} from 'react-bootstrap'
 import axios from 'axios'
 import Getadprofile from './Hooks/GetProfile'
-import { FaPlus } from "react-icons/fa";
+import { FaPlus,FaMinus } from "react-icons/fa";
 import GetadminID from './Hooks/GetadminID'
 import {Flip, toast} from "react-toastify"
 export default function () {
@@ -19,6 +19,7 @@ export default function () {
     const[newStat,setNewStat]=useState("")
     const[oldPass,setOldpass]=useState("")
     const[newPass,setNewpass]=useState("")
+    const [tog,setTog] = useState(false)
     const[conPass,setConpass]=useState("")
     const [reqURL,] = useState('http://localhost:5000/uploads');
 console.log("admin",admin)
@@ -149,7 +150,7 @@ console.log("admin",admin)
     
   return (
 
-    <div className='m-2'>
+    <div className='pdiv'>
          <div className="img-contain">
               <img className="image" src={`${reqURL}/${adminprofile}`} />
               <div className="file-parent">
@@ -163,22 +164,20 @@ console.log("admin",admin)
     <div className='m-2 justify-content-center align-items-center'>
 
         <div className='fs-5' style={{letterSpacing:"2px"}}>
-           <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
                 <div >
 
                             <div className="teacher-data">
                                 {admin.map((data, index) => (
                                 <div className="admin-info" key={index}>
                                     <h3>{data.username}</h3>
-                                    <p>ID: {data._id}</p>
-                                    <p>Email: {data.email}</p>
-                                    <p>Status: {data.status}</p>
+                                    <p>{data.email}</p>
                                 </div>
                                 ))}
                             </div>
                             <div>
+                            <div className='mt-2'  ><Button style={{boxShadow:"0px 0px 5px 0px grey"}} onClick={()=>setTog(!tog)}>{tog ? <FaMinus/> : <FaPlus/>}</Button></div>
                                 {!highTog ?(    
-                                <Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{mainToggle()}}>Edit Profile</Button>
+                                <Button variant='primary' className='mt-1 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{mainToggle()}}>Edit Profile</Button>
                                 ):( 
                                 <></>
                                 )}

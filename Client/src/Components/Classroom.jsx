@@ -67,8 +67,8 @@ export default function Classroom() {
     );
 
     return (
-        <>
-            <h3 className='' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
+        <div className='' style={{padding:"20px"}}>
+            <h3 className=' ' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
 
             <div className='d-flex justify-content-center'>
              {teachers.map((data, index) => (
@@ -152,7 +152,7 @@ export default function Classroom() {
                         borderRadius: "5px",
                     }} onClick={Close}>Close</Button>}
                 </div>
-          </>
+          </div>
        
        
     );
