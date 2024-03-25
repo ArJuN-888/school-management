@@ -6,6 +6,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Table,Button,Form, Row, Col } from 'react-bootstrap';
 import mycontext from "../Context/Context";
 import "./Styles/Home.css";
+import {Flip, toast} from "react-toastify"
 export default function TeacherClassroom() {
 
   const teachername = getteachername();
@@ -69,7 +70,7 @@ export default function TeacherClassroom() {
     try {
       const response= await axios.delete(`${baseURL}/Parent/delete/${id}`)
       console.log(response.data.message)
-      alert("Student Deleted Sucessfully")
+      toast.success("Student Deleted Sucessfully",{transition:Flip})
       getStudents()
     } catch (error) {
       console.log(error)
@@ -80,14 +81,14 @@ export default function TeacherClassroom() {
   const handleSubmit = async (id) => {
     try {
       if (!edit.studentname || !edit.parentname || !edit.email || !edit.batch  || !edit.parentphone || !edit.status) {
-        alert("All fields are required");
+        toast.error("All fields are required");
         return;
       }
   
       const response = await axios.put(`${baseURL}/Parent/edit/${id}`, edit);
       console.log(response.data.message);
   
-      alert("Parent Account Edited Successfully");
+      toast.success("Parent Account Edited Successfully");
       // setEdit({
       //   studentname: "",
       //   parentname: "",
@@ -142,17 +143,17 @@ export default function TeacherClassroom() {
         try{
       const response = await axios.post(`${baseURL}/Parent/passreq/${pid}`,{prevpassword})
     setGrant(response.data.grant)
-      alert(response.data.message)
+      toast.success(response.data.message,{transition:Flip})
         }
         catch(error)
         {
-      alert(error.response.data.message)
+      toast.error(error.response.data.message,{transition:Flip})
         }
        }      //update pass
       const UpdatePassword = async() =>{
         try{
         const response = await axios.put(`${baseURL}/Parent/updatepassword/${pid}`,updatedpassword)
-          alert(response.data.message)
+          toast.success(response.data.message,{transition:Flip})
           setToggle(0)
           setGrant(false)
           setPasstoggle(false)
@@ -164,7 +165,7 @@ export default function TeacherClassroom() {
             }
             catch(error)
             {
-          alert(error.response.data.message)
+          toast.error(error.response.data.message,{transition:Flip})
             }
       }
   return (

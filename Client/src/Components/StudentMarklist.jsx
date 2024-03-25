@@ -3,6 +3,7 @@ import GetTname from './Hooks/Getteachername';
 import GetTID from './Hooks/Getteacherid';
 import mycontext from '../Context/Context';
 import axios from "axios";
+import {Flip, toast} from "react-toastify"
 
 import { Table ,Button} from 'react-bootstrap';
 
@@ -74,7 +75,7 @@ const StudentMarklist = () => {
         try {
             const response = await axios.post(`${baseURL}/marksheetadd`, data);
             console.log(response.data);
-            alert("Added Successfully");
+            toast.success("Added Successfully",{transition:Flip});
         } catch (error) {
             console.log(error);
         }

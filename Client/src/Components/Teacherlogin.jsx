@@ -7,6 +7,7 @@ import { Button } from 'react-bootstrap'
 import "./Styles/Teacherlogin.css"
 import { StaffLogin } from './StaffLogin';
 import teacher from "../Components/Pictures/teacher.jpg"
+import {Flip, toast} from 'react-toastify'
 export default function Login() {
   const { teacherloginData, setteacherLogindata } = useContext(mycontext);
   const nav = useNavigate();
@@ -19,14 +20,14 @@ const [tog,setTog] = useState(false)
   const login = async () => {
     try {
       const response = await axios.post("http://localhost:5000/Teacher/login", teacherloginData);
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
       localStorage.setItem("teacherID", response.data.tID);
       localStorage.setItem("teacherName", response.data.tname);
       localStorage.setItem("teacherClass", response.data.tclass);
       localStorage.setItem("teacherProfile", response.data.teacherprofile);
       nav("/Home");
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip});
     }
   };
 

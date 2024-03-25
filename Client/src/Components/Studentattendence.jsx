@@ -7,6 +7,7 @@ import { Table } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "react-bootstrap";
+import {Flip, toast} from "react-toastify"
 const Studentattendence = () => {
   const Tname = GetTname();
   const teacherID = GetTID();
@@ -38,7 +39,7 @@ const Studentattendence = () => {
   const markAttendance = async (studentId, status) => {
     try {
       if (!date) {
-        alert("Please select a date.");
+        toast.error("Please select a date.",{transition:Flip});
         return;
       }
       
@@ -47,7 +48,7 @@ const Studentattendence = () => {
   
       if (isAttendanceMarked) {
         console.log("Attendance already marked for the selected date.");
-        alert("Attendance has already been marked for the selected date");
+        toast.error("Attendance has already been marked for the selected date",{transition:Flip});
       } else {
         const response = await axios.post(`${baseURL}/attendence/attendencemark`, {
           studentid: studentId,
@@ -55,11 +56,11 @@ const Studentattendence = () => {
           status,
         });
         console.log("Marked student id:", response.data.markedstudentid);
-        alert(response.data.message);
+        toast.success(response.data.message,{transition:Flip});
       }
     } catch (error) {
       console.error("Error marking attendance:", error);
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip});
     }
   };
   

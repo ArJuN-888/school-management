@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import myContext from "../Context/Context"
 import Staff from './Staff';
+import {Flip, toast} from 'react-toastify'
 export default function Teachers() {
   const {baseURL} = useContext(myContext)
   const [Teachers,setTeachers] = useState([])
@@ -50,7 +51,7 @@ fetchTeachers()
     }
   catch(error)
   {
-    alert(error.response.data.message)
+    toast.error(error.response.data.message,{transition:Flip})
   }
   }
 
@@ -75,22 +76,22 @@ const filterTeachertoEdit = Teachers.find((element)=>element.batch === data.batc
    try{
  const response = await axios.put(`${baseURL}/Teacher/update/${Tid}`,teacherObj)
  fetchTeachers()
- alert(response.data.message)
+ toast.success(response.data.message,{transition:Flip})
    }
    catch(error)
    {
- alert(error.response.data.message)
+ toast.error(error.response.data.message,{transition:Flip})
    }
   }
   const RequestPasswordchange = async() =>{
     try{
   const response = await axios.post(`${baseURL}/Teacher/passreq/${Tid}`,{prevpassword})
 setGrant(response.data.grant)
-  alert(response.data.message)
+  toast.success(response.data.message,{transition:Flip})
     }
     catch(error)
     {
-  alert(error.response.data.message)
+  toast.error(error.response.data.message,{transition:Flip})
     }
    }
   const Cancel = () =>{
@@ -111,13 +112,13 @@ setPasstoggle(false)
         }
         catch(error)
         {
-      alert(error.response.data.message)
+      toast.error(error.response.data.message,{transition:Flip})
         }
   }
   const handleDelete = async(id) =>{
     try{
       const response = await axios.delete(`${baseURL}/Teacher/delete/${id}`)
-        alert(response.data.message)
+        toast.success(response.data.message,{transition:Flip})
         fetchTeachers()
         setToggle(0)
       setGrant(false)
@@ -125,7 +126,7 @@ setPasstoggle(false)
           }
           catch(error)
           {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message,{transition:Flip})
           }
   }
   return (

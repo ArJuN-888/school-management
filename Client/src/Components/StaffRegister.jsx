@@ -4,6 +4,7 @@ import mycontext from '../Context/Context';
 import { useContext } from 'react';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import {Flip, toast} from "react-toastify"
 
 export default function StaffRegister() {
   const [selectedfile, setSelectedFile] = useState(null);
@@ -33,9 +34,9 @@ export default function StaffRegister() {
         formData.append(String(key), staffObj[key]);
       });
       const response = await axios.post(`${baseURL}/Staff/register`, formData);
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip});
     }
   };
   const HandleFile = (e) => {

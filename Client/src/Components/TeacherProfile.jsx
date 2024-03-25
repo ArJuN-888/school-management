@@ -6,6 +6,7 @@ import mycontext from "../Context/Context";
 import "./Styles/TP.css"
 import { FaPlus } from "react-icons/fa";
 import GetTprofile from "./Hooks/GetteacherProfile";
+import {Flip, toast} from 'react-toastify'
 const TeacherProfile = () => {
   const { baseURL } = useContext(mycontext);
   const [teacher, setTeacher] = useState([]);
@@ -55,10 +56,10 @@ const TeacherProfile = () => {
 
       localStorage.setItem("teacherProfile", response.data.teacher.filename);
       getTeacher();
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
     } catch (error) {
       
-      alert( error.response.data.message);
+      toast.error( error.response.data.message,{transition:Flip});
     }
   };
   return (

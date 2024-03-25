@@ -4,6 +4,7 @@ import axios from 'axios';
 import mycontext from '../Context/Context';
 import GetStaffprofile from './Hooks/GetStaffproff';
 import { FaPlus } from "react-icons/fa";
+import {Flip, toast} from "react-toastify"
 const Staffpro = () => {
     const { baseURL } = useContext(mycontext);
     const staffid = GetSID();
@@ -48,10 +49,10 @@ const Staffpro = () => {
     
           localStorage.setItem("staffProfile", response.data.staff.filename);
           getallStaff();
-          alert(response.data.message);
+          toast.success(response.data.message,{transition:Flip});
         } catch (error) {
           
-          alert( error.response.data.message);
+          toast.error( error.response.data.message,{transition:Flip});
         }
       };
 
