@@ -16,11 +16,12 @@ export const AdminLogin = () => {
         {
             const response=await axios.post("http://localhost:5000/Admin/login",{email,password})
             alert(response.data.message)
+            setEmail(" ")
+            setPassword(" ")
            localStorage.setItem("adminID",response.data.adminID)
            localStorage.setItem("adminName",response.data.admin.username)
            nav("/Home")
-            setEmail("")
-            setPassword("")
+            
         }
         catch(error)
         {
