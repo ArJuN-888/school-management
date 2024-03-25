@@ -6,11 +6,11 @@ import mycontext from "../Context/Context";
 import "./Styles/TP.css"
 import { FaPlus, FaMinus} from "react-icons/fa";
 import GetTprofile from "./Hooks/GetteacherProfile";
-<<<<<<< HEAD
+
 import { Button } from 'react-bootstrap';
-=======
+
 import {Flip, toast} from 'react-toastify'
->>>>>>> d0b41b77a7eff6489772504fe0e27d41c3761898
+
 const TeacherProfile = () => {
   const { baseURL } = useContext(mycontext);
   const [teacher, setTeacher] = useState([]);

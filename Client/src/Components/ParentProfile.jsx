@@ -4,13 +4,10 @@ import mycontext from '../Context/Context'
 import axios from 'axios'
 import GetPprofile from './Hooks/Getparentprof'
 import GetParentID from './Hooks/GetParentID'
-<<<<<<< HEAD
+
 import { FaPlus,FaMinus } from "react-icons/fa";
-import { Button } from 'react-bootstrap';
-=======
-import { FaPlus } from "react-icons/fa";
-import { Flip } from 'react-toastify'
->>>>>>> d0b41b77a7eff6489772504fe0e27d41c3761898
+import {toast, Flip } from 'react-toastify'
+
 const ParentProfile = () => {
     const [student,setStudent]=useState([])
     console.log("student",student)

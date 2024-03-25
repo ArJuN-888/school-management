@@ -5,11 +5,9 @@ import mycontext from "../Context/Context";
 import { FaPlus,FaMinus } from "react-icons/fa";
 import GetdoctorID from "./Hooks/GetdoctorID";
 import GetDprofile from "./Hooks/GetdocName";
-<<<<<<< HEAD
 import { Button } from "react-bootstrap";
-=======
 import {Flip, toast} from "react-toastify"
->>>>>>> d0b41b77a7eff6489772504fe0e27d41c3761898
+
 const DoctorProfile = () => {
     const Doctorname=Getdoctorname()
     const {baseURL}=useContext(mycontext)
