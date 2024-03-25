@@ -11,6 +11,7 @@ import {Stack} from "react-bootstrap"
 import { useFetchRecipient } from '../Hooks/FetchRecipient'
 import mycontext from '../../Context/Context'
 import InputEmoji from "react-input-emoji"
+import {Flip, toast} from 'react-toastify'
 export default function Chatbox() {
     const {currentChat,messages,setMessages,baseURL,newMessage,setNewMessage, userID} = useContext(mycontext)
     const [textMessage,setTextMessage] = useState("")
@@ -41,7 +42,7 @@ scrollRef.current?.scrollIntoView({behavior:"smooth"})
     }
     catch(error)
     {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message,{transition:Flip})
     }
   
    }
