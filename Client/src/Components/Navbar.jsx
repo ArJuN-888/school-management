@@ -400,14 +400,11 @@ const Hr = (props) => (
             color:'green',
             fontWeight:"bolder"
         }}>{eoName}</label></li>
-         <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}  /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
-        <li><Link style={{textDecoration:"none"}} to="/Expro">Profile</Link></li>
-    
-        
-
-        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
+         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Bm}><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}} to="/Expro"><CgProfile style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
       <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
