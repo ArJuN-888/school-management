@@ -193,7 +193,7 @@ const Sm = (props) => (
         justifyContent:"center",
         alignItems:"center",
       width:"100%",
-      zIndex:"1",
+      zIndex:"3",
 
     }}>
       

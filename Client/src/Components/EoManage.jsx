@@ -225,7 +225,7 @@ export default function EoManage() {
     </div>
   
     <div className='all-teacher m-2 mt-3' style={{letterSpacing:"2px"}}>
-    <h3 className='doc-reg-head mb-4' style={{letterSpacing:"3px"}}>Registered Organizations...</h3>
+    {allEo.length !== 0 && <h3 className='doc-reg-head mb-4' style={{letterSpacing:"3px"}}>Registered Organizations...</h3>}
       <Table  responsive bordered hover  variant='white'>
        {allEo.length !== 0 &&
         <thead className='fs-5'>
