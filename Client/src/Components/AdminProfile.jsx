@@ -8,6 +8,7 @@ import GetadminID from './Hooks/GetadminID'
 export default function () {
     const adminID = GetadminID()
     const {baseURL} = useContext(mycontext)
+    const[highTog,setHighTog]=useState(0)
     const[toggle,setToggle]=useState(0)
     const adminprofile = Getadprofile()
     const[passToggle,setPassToggle]=useState(0)
@@ -24,6 +25,14 @@ console.log("admin",admin)
         fetchAdmin()
     },[])
 
+    const mainToggle = () =>{
+        setHighTog(1)
+    }
+
+    const cancel = () =>{
+        setHighTog(0)
+    }
+
     const subConpass = async() =>{
         try
         {
@@ -37,6 +46,7 @@ console.log("admin",admin)
                 setConpass("")
                 setNewpass("")
             }
+            setHighTog(0)
         }
         catch(error)
         {
@@ -73,6 +83,7 @@ console.log("admin",admin)
         {
             const response = await axios.put(`${baseURL}/Admin/edit/${adminID}`,{username:newUsername,email:newEmail,status:newStat})
             alert(response.data.message)
+            setHighTog(0)
             fetchAdmin()
         }
         catch(err)
@@ -136,6 +147,7 @@ console.log("admin",admin)
       };
     
   return (
+
     <div className='m-2'>
          <div className="img-contain">
               <img className="image" src={`${reqURL}/${adminprofile}`} />
@@ -146,8 +158,32 @@ console.log("admin",admin)
                 </label>
               </div>
             </div>
+
+    <div className='m-2 justify-content-center align-items-center'>
+
         <div className='fs-5' style={{letterSpacing:"2px"}}>
            <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
+                <div >
+
+                            <div className="teacher-data">
+                                {admin.map((data, index) => (
+                                <div className="admin-info" key={index}>
+                                    <h3>{data.username}</h3>
+                                    <p>ID: {data._id}</p>
+                                    <p>Email: {data.email}</p>
+                                    <p>Status: {data.status}</p>
+                                </div>
+                                ))}
+                            </div>
+                            <div>
+                                {!highTog ?(    
+                                <Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{mainToggle()}}>Edit Profile</Button>
+                                ):( 
+                                <></>
+                                )}
+                            </div>
+                </div>
+            {highTog ?(     
             <>
                  <Form>
                  <Form.Group as={Row} className='mt-2'>
@@ -188,8 +224,13 @@ console.log("admin",admin)
                 </Form.Group>
                 <Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{editSave()}}>Update</Button>
                 <Button variant='success' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}className='mt-2 fs-6' onClick={()=>{passChange()}}>Password Update</Button>
+                <Button variant='danger' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}className='mt-2 fs-6 ms-2' onClick={()=>{cancel()}}>Cancel</Button>
             </Form>
             </>
+            ):( 
+                <>
+                </>
+            )}
         </div>
         <div>
             {toggle ?(
@@ -262,6 +303,7 @@ console.log("admin",admin)
                  )}
         </div>
         
+    </div>
     </div>
   )
 }

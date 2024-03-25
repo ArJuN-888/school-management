@@ -10,7 +10,7 @@ import GetTID from './Hooks/Getteacherid';
 import GetTname from './Hooks/Getteachername';
 import GetSID from './Hooks/GetstaffID';
 import GetSname from './Hooks/GetstaffName';
-export default function Broadcasts() {
+export default function TBroadcasts() {
   const [reqURL,] = useState('http://localhost:5000/uploads');
    const teachername = GetTname()
     const teacherID = GetTID()
@@ -128,7 +128,7 @@ catch(error)
     <option value="10B">10B</option>
     <option value="10C">10C</option>
   </select>
-  <Button onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
+  <Button className='mb-4' onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
   </div>}
   <div>
     {parentID && <div>

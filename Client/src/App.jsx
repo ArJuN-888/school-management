@@ -9,6 +9,7 @@ import GetTID from "./Components/Hooks/Getteacherid";
 import GetadminID from "./Components/Hooks/GetadminID";
 import Home from "./Components/Home";
 import axios from "axios";
+import TBroadcasts from "./Components/Broadcasts";
 import { useCallback, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AdminLogin } from "./Components/AdminLogin";
@@ -20,7 +21,6 @@ import GetParentID from "./Components/Hooks/GetParentID";
 import CreateAnnouncements from "./Components/CreateAnnouncements";
 import Classroom from "./Components/Classroom";
 import Leaveletter from "./Components/Leaveletter";
-import Broadcasts from "./Components/Broadcasts";
 import Studentattendence from "./Components/Studentattendence";
 import AttendenceViewing from "./Components/AttendenceViewing";
 import StudentMarklist from "./Components/StudentMarklist";
@@ -42,6 +42,7 @@ import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfile";
 import EoManage from "./Components/EoManage";
+import Staffpro from "./Components/Staffpro";
 
 import AdminProfile from "./Components/AdminProfile";
 import AdminRegister from "./Components/AdminRegister";
@@ -49,6 +50,8 @@ import StudeyMaterial from "./Components/StudyMaterials";
 import StudentHealth from "./Components/StudentHealth";
 import DoctorHealthView from "./Components/DoctorHealthView";
  import { StaffLogin } from "./Components/StaffLogin";
+import UniversalHome from "./Components/UniversalHome";
+
 function App() {
   const adminID = GetadminID();
   const teacherID = GetTID();
@@ -274,6 +277,7 @@ setNotifications(mNotifications)
         <mycontext.Provider value={contextdata}>
           <Navbar />
           <Routes>
+            <Route path="/" element={<UniversalHome/>} />
             <Route path="/Tlogin" element={<Login />} />
             <Route path="/Tregister" element={<Register />} />
             <Route path="/Home" element={<Home />} />
@@ -289,7 +293,7 @@ setNotifications(mNotifications)
             <Route path="/Studentattendence" element={<Studentattendence />} />
             <Route path="/viewattendence" element={<AttendenceViewing />} />
             <Route path="/Classroom" element={<Classroom />} />
-            <Route path="/Broadcasts" element={<Broadcasts />} />
+            <Route path="/Broadcasts" element={<TBroadcasts />} />
             <Route path="/marklist" element={<StudentMarklist/>}/>
             <Route path="/viewmarklist" element={<ViewMarklist/>}/>
             {/* <Route path="/Eregister" element={<ExternalOrganizationRegister/>}/> */}
@@ -312,6 +316,9 @@ setNotifications(mNotifications)
             <Route path="/Health" element={<StudentHealth/>}/>
             <Route path="/Healthview" element={<DoctorHealthView/>}/>
             <Route path="/AdminRegister" element={<AdminRegister/>}/>
+            <Route path="/Staffpro" element={<Staffpro/>}/>
+
+
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>

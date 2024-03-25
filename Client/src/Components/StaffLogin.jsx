@@ -20,6 +20,7 @@ export const StaffLogin = () => {
             alert(response.data.message)
            localStorage.setItem("staffID",response.data.staffID)
            localStorage.setItem("staffName",response.data.staff.username)
+           localStorage.setItem("staffProfile",response.data.staff.filename)
            nav("/Home")
             setEmail("")
             setPassword("")

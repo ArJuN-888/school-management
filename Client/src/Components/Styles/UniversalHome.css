@@ -1,0 +1,79 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-image:url('../Pictures/img.jpg');
+    background-size: cover;
+  }
+  
+  .sh-header-section {
+    
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    width: 350px;
+    float: left;
+    height: 400px;
+    background: #666666;
+    margin-top: 100px;
+    border-radius: 20px;
+   
+  }
+
+  .sh-head{
+    font-weight: 800;
+  }
+
+  .sh-tag{
+    color: rgb(253, 255, 113);
+  }
+  
+  .sh-learn{
+    border-radius: 10px;
+  }
+  .info-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-box .icon {
+    font-size: 2em; /* Adjust size as needed */
+  }
+
+  .sh-buttons-b{
+    background-color: aqua;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  .sh-buttons-a{
+    background-color: red;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  .sh-buttons-c{
+    background-color: greenyellow;
+    border-radius: 5px;
+  }
+  
+  
+  .button {
+    background-color: #FFC107; /* Adjust the color to match the image */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    opacity: 0.8;
+  }

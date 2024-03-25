@@ -145,6 +145,7 @@ export default function Navbar() {
        
          localStorage.removeItem("staffName")
          localStorage.removeItem("staffID")
+         localStorage.removeItem("staffProfile")
          nav("/Tlogin")
         //  location.reload()
       }
@@ -237,7 +238,7 @@ const Sm = (props) => (
 
         <li><Link style={{textDecoration:"none"}} to="/Admprofile"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></li>
 
-        <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></li> 
+        <li><Link style={{border:"none",backgroundColor:"transparent"}} to="/Adminlogin" onClick={()=>{Logadminout()}}><IoLogOutOutline style={{fontSize:"28px",color:"black"}}/></Link></li> 
         </div></>}
         {teacherID &&<>
         <li>Logged in as <label style={{
@@ -291,8 +292,10 @@ const Sm = (props) => (
         }}>{staffName}</label></li>
          <li><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></li>
+        <li><Link state={{textDecoration:"none"}} to="/Staffpro"></Link></li>
         <li><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><Link style={{textDecoration:"none"}} to="/StaffPro"><CgProfile style={{color:"black",fontSize:"23px"}} /></Link></li>
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logstaffstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {parentID &&<>
@@ -327,21 +330,21 @@ const Sm = (props) => (
         <li><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
-      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:""}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
-      <li><Link>About us</Link></li>
-       <li> <Dropdown className='mt-2 me-5' as={ButtonGroup}>
-      <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}} variant="secondary"><u>Login Options</u></Button>
+      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
+      <li><Link className=' '>About us</Link></li>
+       <li> <Dropdown className=' me-5' as={ButtonGroup}>
+      <Button  style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"3px"}} variant="secondary"><u>Login Options</u></Button>
 
       <Dropdown.Toggle style={{borderRadius:"0rem",boxShadow:"0px 0px 4px 0px grey"}} split variant="secondary" id="dropdown-split-basic" />
 
       <Dropdown.Menu className='fs-6 ' style={{letterSpacing:"2px",border:"1px solid grey"}}  >
-        <Dropdown.Item   >  <Link className='text-black'  to="/Tlogin">Teacher</Link></Dropdown.Item>
-        <Dropdown.Item ><Link className='text-black'  to="/Adminlogin">Admin</Link></Dropdown.Item>
-        <Dropdown.Item >  <Link className='text-black'  to="/Dlogin">Doctor</Link></Dropdown.Item>
-        <Dropdown.Item>   <Link className='text-black'  to="/Plogin">Parent</Link></Dropdown.Item>
-        <Dropdown.Item>  <Link className='text-black'  to="/Elogin">External</Link></Dropdown.Item>
+        <Dropdown.Item   >  <Link className='text-black' style={{ textDecoration: 'none' }} to="/Tlogin">Teacher</Link></Dropdown.Item>
+        <Dropdown.Item ><Link className='text-black ' style={{ textDecoration: 'none' }} to="/Adminlogin">Admin</Link></Dropdown.Item>
+        <Dropdown.Item >  <Link className='text-black' style={{ textDecoration: 'none' }} to="/Dlogin">Doctor</Link></Dropdown.Item>
+        <Dropdown.Item>   <Link className='text-black' style={{ textDecoration: 'none' }} to="/Plogin">Parent</Link></Dropdown.Item>
+        <Dropdown.Item>  <Link className='text-black' style={{ textDecoration: 'none' }}  to="/Elogin">External</Link></Dropdown.Item>
         <Dropdown.Divider />
-            <Dropdown.Item eventKey="4">Contact us</Dropdown.Item>
+            <Dropdown.Item eventKey="4" style={{ textDecoration: 'none' }}>Contact us</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown></li>
         </> }

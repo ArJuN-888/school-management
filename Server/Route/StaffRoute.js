@@ -3,13 +3,14 @@ const router=express.Router()
 require("dotenv").config()
 const JWT=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
+const fs = require("fs")
 const {staffModel} =require('../Model/StaffShema')
 const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 const Multerstore = require("../Config/MulterConfig")
-router.post("/register",async(req,res)=>{
+router.post("/register",Multerstore,async(req,res)=>{
     const {username,email,password,status,specialization,batch,phone}=req.body;
     if (!req.file) {
       return res.status(400).json({ message: "Please select a file" });
@@ -112,7 +113,7 @@ router.put("/editpic/:staffID",Multerstore,async(req,res)=> {
     };
     fs.unlink(`public/uploads/${staff.filename}`, callback);
     console.log("req.file.filename", req.file.filename);
-    const data = await parentModel.findByIdAndUpdate(
+    const data = await staffModel.findByIdAndUpdate(
       staffID,
       { filename: req.file.filename },
       { new: "true" }

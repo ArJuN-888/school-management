@@ -3,8 +3,11 @@ import axios from "axios";
 import mycontext from '../Context/Context';
 import { useContext } from 'react';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 
 export default function StaffRegister() {
+  const [selectedfile, setSelectedFile] = useState(null);
+  const [filename, setFilename] = useState("");
   const { baseURL } = useContext(mycontext);
   const [staffObj, setStaffObj] = useState({
     username: "",
@@ -22,10 +25,24 @@ export default function StaffRegister() {
 
   const register = async () => {
     try {
-      const response = await axios.post(`${baseURL}/Staff/register`, staffObj);
+      const formData = new FormData();
+      formData.append("file", selectedfile);
+
+      // Append other form fields to the formData
+      Object.keys(staffObj).forEach((key) => {
+        formData.append(String(key), staffObj[key]);
+      });
+      const response = await axios.post(`${baseURL}/Staff/register`, formData);
       alert(response.data.message);
     } catch (error) {
       alert(error.response.data.message);
+    }
+  };
+  const HandleFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setFilename(file.name);
     }
   };
 
@@ -88,6 +105,17 @@ export default function StaffRegister() {
             <option value="Subject teacher">Subject teacher</option>
           </Form.Select>
         </FormGroup>
+        <div>
+            <label htmlFor="fileUpload" className='hover'>
+              <FaCloudUploadAlt /> Upload File
+              <input
+                id="fileUpload"
+                type='file'
+                onChange={HandleFile}
+                className='ipt'
+              />
+            </label>
+          </div>
         <Button variant="primary" onClick={register}>Register</Button>
       </Form>
     </div>
