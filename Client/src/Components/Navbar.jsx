@@ -406,7 +406,7 @@ const Hr = (props) => (
         <Dropdown.Item>   <Link className='text-black' style={{ textDecoration: 'none' }} to="/Plogin">Parent</Link></Dropdown.Item>
         <Dropdown.Item>  <Link className='text-black' style={{ textDecoration: 'none' }}  to="/Elogin">External</Link></Dropdown.Item>
         <Dropdown.Divider />
-            <Dropdown.Item eventKey="4" style={{ textDecoration: 'none' }}><Link to="/contactus">Contact us</Link></Dropdown.Item>
+            <Dropdown.Item eventKey="4" ><Link to="/contactus" style={{ textDecoration: 'none' }}>Contact us</Link></Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown></li>
         </> }
