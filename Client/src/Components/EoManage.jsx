@@ -271,7 +271,7 @@ export default function EoManage() {
               />
             </label>
           </div>
-          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+          {/* <p className='nm'>{filename ? filename : "No file chosen..."}</p> */}
         </div>
         <Button variant='primary' className=' mt-2'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={handleSubmit}>Submit</Button>
       

@@ -44,8 +44,8 @@ export default function Register() {
   return (
     <div className="mt-5">
       <div>
-          <div className="mb-4 fs-8"><h1 className='text-center'>Teacher</h1></div>
-          <Form>
+          <div className="mb-4 fs-5"><h2 className='ms-2 fs-3' style={{letterSpacing:"3px"}}>Teacher Registration...</h2></div>
+          <Form className='fs-5 m-2' style={{letterSpacing:"2px"}}>
             <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Username:</Form.Label>
                     <Col sm="10">
@@ -173,11 +173,11 @@ export default function Register() {
     
             </div>
             <div className="text-center">
-              <Button variant="primary" onClick={register}>Register</Button>
+              <Button variant="primary" style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}} onClick={register}>Register</Button>
             </div>
           </Form>
         <div className='text-center'>
-          <h6><Link to='/SReg'>Staff Register</Link></h6>
+          <h6><Link to='/SReg' className='fs-5'>Staff Register</Link></h6>
         </div>
       </div>
     </div>

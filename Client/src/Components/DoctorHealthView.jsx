@@ -26,18 +26,18 @@ const DoctorHealthView = () => {
     return (
         <div>
             <div className='heading'>
-                <h3>Health Records of Students</h3>
+                <h4 style={{letterSpacing:"2px"}}>Health Records of Students...</h4>
             </div>
 
             <div className='table'>
-                <Table striped bordered hover variant="blue">
+                <Table striped bordered hover variant="blue" className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
                     <thead>
                         <tr>
-                            <th>Student ID</th>
-                            <th>Student Name</th>
-                            <th>Batch</th>
-                            <th>Age</th>
-                            <th>Health Report</th>
+                            <th className='doc-map-head text-white bg-primary'>Student ID</th>
+                            <th className='doc-map-head text-white bg-primary'>Student Name</th>
+                            <th className='doc-map-head text-white bg-primary'>Batch</th>
+                            <th className='doc-map-head text-white bg-primary'>Age</th>
+                            <th className='doc-map-head text-white bg-primary'>Health Report</th>
                         </tr>
                     </thead>
                     <tbody>
