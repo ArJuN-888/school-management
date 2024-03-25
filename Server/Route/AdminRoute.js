@@ -69,18 +69,18 @@ router.post("/login",async(req,res)=>{
     console.log(admin);
     if(!email || !password)
     {
-        return res.status(200).json({message:"empty fields"})
+        return res.status(400).json({message:"empty fields"})
     }
    
     if(!admin){
-        return res.status(200).json({message:"Invalid Account !!!"})
+        return res.status(400).json({message:"Invalid Account !!!"})
     }
    
     const isPasswordValid= await bcrypt.compare(password,admin.password)
 
     if(!isPasswordValid)
     {
-        return res.status(200).json({message:"Invalid password !!"})
+        return res.status(400).json({message:"Invalid password !!"})
     }
 
     const token = JWT.sign({id : admin._id},process.env.SECRET)

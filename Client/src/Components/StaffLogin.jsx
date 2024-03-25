@@ -6,6 +6,7 @@ import './Styles/AdminLogin.css'
 import { useNavigate,Link } from 'react-router-dom'
 import mycontext from '../Context/Context'
 import { Button } from 'react-bootstrap'
+import {Flip, toast} from "react-toastify"
 export const StaffLogin = () => {
     const {baseURL} =useContext(mycontext)
     const [email,setEmail]=useState("")
@@ -17,7 +18,7 @@ export const StaffLogin = () => {
         try
         {
             const response=await axios.post(`${baseURL}/Staff/login`,{email,password})
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
            localStorage.setItem("staffID",response.data.staffID)
            localStorage.setItem("staffName",response.data.staff.username)
            localStorage.setItem("staffProfile",response.data.staff.filename)
@@ -27,7 +28,7 @@ export const StaffLogin = () => {
         }
         catch(error)
         {
-            alert(error);
+            toast.error(error,{transition:Flip});
         }
     }
 

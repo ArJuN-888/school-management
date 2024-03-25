@@ -11,6 +11,7 @@ import GetTID from './Hooks/Getteacherid';
 import { Link } from 'react-router-dom';
 import GetSID from './Hooks/GetstaffID';
 import GetParentID from './Hooks/GetParentID';
+import {Flip, toast} from "react-toastify"
 export default function StudeyMaterial() {
   const {baseURL} = useContext(mycontext)
   const [selectedfile,setSelectedfile] = useState(null)
@@ -67,7 +68,7 @@ else if(staffID)
 }
 catch(error)
 {
- alert(error.response.data.message)
+ toast.error(error.response.data.message,{transition:Flip})
 }
   }
   const HandleSubmit = async () => {
@@ -97,10 +98,10 @@ catch(error)
        
     getStudymaterials()
     setSelectedfile("")
-     alert(response.data.message);
+     toast.success(response.data.message,{transition:Flip});
     }
      } catch (error) {
-     alert(error.response.data.message)
+     toast.error(error.response.data.message,{transition:Flip})
     }
   };
   const downloadImage = async (url, filename) => {
@@ -120,21 +121,21 @@ catch(error)
     if(!data.note)
      {
        err.note = "note is required..."
-       alert(err.note)
+       toast.error(err.note,{transition:Flip})
      }
      else if(!data.status)
      {
        err.status = "status is required..."
-       alert(err.status)
+       toast.error(err.status ,{transition:Flip})
      }
      else if(!data.subject)
      {
        err.subject = "subject is required..."
-       alert(err.subject)
+       toast.error(err.subject,{transition:Flip})
      }
      else if(!sltfile){
       err.file = "Please select a file..."
-      alert(err.file)
+      toast.error(err.file,{transition:Flip})
      }
    
   

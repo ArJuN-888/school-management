@@ -5,6 +5,7 @@ import { Container, Form, Button, Table } from 'react-bootstrap';
 import './Styles/Leaveletter.css';
 import axios from 'axios';
 import mycontext from '../Context/Context';
+import {Flip, toast} from "react-toastify"
 
 export default function LeaveLetter() {
     const [letters, setLetters] = useState([]);
@@ -37,7 +38,7 @@ export default function LeaveLetter() {
                 grant: false
             });
             console.log("res", response);
-            alert(response.data.message);
+            toast.success(response.data.message,{transition :Flip});
             setSname("");
             setRollno("");
             setDays("");
@@ -51,7 +52,7 @@ export default function LeaveLetter() {
         }
         else
         {
-            alert("Specify Your Classname Correctly")
+            toast.error("Specify Your Classname Correctly",{transition:Flip})
         }
     };
 
@@ -60,7 +61,7 @@ export default function LeaveLetter() {
             const response = await axios.get(`${baseURL}/Leave/getletter/${parentID}`);
             setLetters(response.data);
         } catch (err) {
-            alert(err);
+            toast.error(err,{transition:Flip});
         }
     };
 

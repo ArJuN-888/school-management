@@ -5,7 +5,7 @@ import admin from "../Components/Pictures/admin.jpg"
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { FaUserShield } from "react-icons/fa";
-import {toast} from "react-toastify"
+import {Flip, toast} from "react-toastify"
 export const AdminLogin = () => {
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
@@ -16,7 +16,7 @@ export const AdminLogin = () => {
         try
         {
             const response=await axios.post("http://localhost:5000/Admin/login",{email,password})
-            toast.success(response.data.message)
+            toast.success(response.data.message,{transition: Flip})
             setEmail(" ")
             setPassword(" ")
            localStorage.setItem("adminID",response.data.adminID)
@@ -28,7 +28,7 @@ export const AdminLogin = () => {
         catch(error)
         {
             console.log(error)
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message,{transition: Flip})
         }
     }
 

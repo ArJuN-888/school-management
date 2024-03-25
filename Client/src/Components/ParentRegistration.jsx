@@ -4,6 +4,7 @@ import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
 import GetTname from './Hooks/Getteachername';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import {Flip, toast} from "react-toastify"
 export default function ParentRegistration() {
   const { baseURL } = useContext(mycontext);
   const [batchnumber, setBatchNumber] = useState("");
@@ -59,9 +60,9 @@ export default function ParentRegistration() {
           batchn: batchnumber
         }
       });
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip});
     }
   };
   const HandleFile = (e) => {

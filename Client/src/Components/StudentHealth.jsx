@@ -3,6 +3,7 @@ import mycontext from "../Context/Context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import {Flip, toast} from "react-toastify"
 
 const StudentHealth = () => {
   const { baseURL } = useContext(mycontext);
@@ -36,9 +37,9 @@ const StudentHealth = () => {
     try {
       const response = await axios.post(`${baseURL}/Health/Add`, data);
       setHealth(response.data.message);
-      alert(response.data.message);
+      toast.success(response.data.message,{transition:Flip});
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip});
     }
   };
 

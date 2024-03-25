@@ -5,6 +5,7 @@ import mycontext from '../Context/Context'
 import { FaPlus } from "react-icons/fa";
 import GetEID from './Hooks/GetEID';
 import GetEoprofile from './Hooks/GetEoprofile';
+import {Flip, toast} from "react-toastify"
 const ExternalOrganizationProfile = () => {
     const Externalname=GetEname()
     const eoID = GetEID()
@@ -52,10 +53,10 @@ const ExternalOrganizationProfile = () => {
   
         localStorage.setItem("eoProfile", response.data.eo.filename);
         Externalorganization();
-        alert(response.data.message);
+        toast.success(response.data.message,{transition:Flip});
       } catch (error) {
         
-        alert( error.response.data.message);
+        toast.error( error.response.data.message,{transition:Flip});
       }
     };
   return (

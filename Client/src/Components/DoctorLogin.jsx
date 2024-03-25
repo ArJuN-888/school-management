@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { FaUserMd } from "react-icons/fa";
 import mycontext from '../Context/Context'
+import {Flip, toast} from "react-toastify"
 export default function DoctorLogin() {
   const {baseURL} = useContext(mycontext)
   const [dlogin,setDlogin] = useState({email:"",password:""})
@@ -20,11 +21,11 @@ export default function DoctorLogin() {
     localStorage.setItem("doctorName",response.data.username)
     localStorage.setItem("doctorProfile",response.data.profile)
     nav("/Home")
-    alert(response.data.message)
+    toast.success(response.data.message,{transition:Flip})
   }
  catch(error){
 console.log("Error faced",error)
-alert(error.response.data.message)
+toast.error(error.response.data.message,{transition:Flip})
  }
  }
   return (

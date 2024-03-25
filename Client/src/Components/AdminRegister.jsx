@@ -58,7 +58,7 @@ export default function AdminRegister() {
   };
 
   return (
-    <div className='login-parent'>
+    <div className='login-parent ' style={{padding:"20px"}}>
       <div className='login-frm'>
         <label className='login-title'>Admin Registration</label>
         <input

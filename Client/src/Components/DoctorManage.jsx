@@ -4,6 +4,7 @@ import axios from 'axios'
 import '../Components/Styles/DoctorManage.css'
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { Button,Table ,Form, Col, Row} from 'react-bootstrap'
+import {Flip, toast} from "react-toastify"
 export default function DoctorManage() {
     const {baseURL} = useContext(mycontext)
     const[doctors,setDoctors]=useState([])
@@ -47,7 +48,7 @@ const handleChange = ( key,value)=>{
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -65,7 +66,7 @@ const handleChange = ( key,value)=>{
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 console.log("id",docID);
@@ -94,7 +95,7 @@ console.log("id",docID);
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -102,13 +103,13 @@ console.log("id",docID);
         try
         {
             const response = await axios.delete(`${baseURL}/Doctor/delete/${id}`)
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             fetchDoctors()
             setDocID("")
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -127,7 +128,7 @@ console.log("id",docID);
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -153,7 +154,7 @@ console.log("id",docID);
         try
         {
             const response=await axios.post(`${baseURL}/Doctor/docpassmatch/${docID}`,{password:oldPass})
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             if(response.data.message ==="You can now update your Password")
             {
                 setPassCon(1)
@@ -163,7 +164,7 @@ console.log("id",docID);
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -171,7 +172,7 @@ console.log("id",docID);
         try
         {
             const response=await axios.put(`${baseURL}/Doctor/docpassupdate/${docID}`,{password:newPass,conPass})
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             setOldpass("")
             setDocID("")
             if(response.data.message === "Password Updated successfully")
@@ -182,7 +183,7 @@ console.log("id",docID);
         }
         catch(error)
         {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 

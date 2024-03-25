@@ -7,6 +7,7 @@ import GetdoctorID from '../Hooks/GetdoctorID';
 import GetadminID from '../Hooks/GetadminID';
 import GetEID from '../Hooks/GetEID';
 import GetSID from '../Hooks/GetstaffID';
+import {Flip, toast} from 'react-toastify'
 export default function PotentialChats() {
     const { potentialChats, baseURL, setChat, onlineUsers, userID } = useContext(mycontext);
     const [selectedBatch, setSelectedBatch] = useState(null);
@@ -21,7 +22,7 @@ export default function PotentialChats() {
             const response = await axios.post(`${baseURL}/Chat`, { firstId, secondId });
             setChat((prev) => [...prev, response.data]);
         } catch (error) {
-            alert(error.response.data.message);
+            toast.error(error.response.data.message,{transition:Flip});
         }
     };
 
