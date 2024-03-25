@@ -102,7 +102,7 @@ export default function TeacherClassroom() {
       getStudents();
       setToggle(0);
     } catch (error) {
-      console.log(error);
+     toast.error(error.response.data.message)
     }
   };
   
