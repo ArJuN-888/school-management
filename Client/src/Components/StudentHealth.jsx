@@ -49,11 +49,11 @@ const StudentHealth = () => {
         <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="studentid">
-              <Form.Label>Student ID</Form.Label>
+              <Form.Label> Health ID</Form.Label>
               <Form.Control
                 type="text"
                 name="studentid"
-                placeholder="Enter Student ID"
+                placeholder="Enter Health ID"
                 onChange={handleChange}
               />
             </Form.Group>
