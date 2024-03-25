@@ -3,12 +3,13 @@ import axios from 'axios';
 import mycontext from '../Context/Context';
 import GetTID from './Hooks/Getteacherid';
 import GetTname from './Hooks/Getteachername';
-
+import { FaCloudUploadAlt } from 'react-icons/fa';
 export default function ParentRegistration() {
   const { baseURL } = useContext(mycontext);
   const [batchnumber, setBatchNumber] = useState("");
   const teacherID = GetTID();
-  const teacherName = GetTname();
+  const [selectedfile, setSelectedFile] = useState(null);
+  const [filename, setFilename] = useState("");
   const [Parentregister, setparentRegister] = useState({
     studentname: "",
     parentname: "",
@@ -42,7 +43,17 @@ export default function ParentRegistration() {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(`${baseURL}/Parent/register`, Parentregister, {
+      const formData = new FormData();
+      formData.append("file", selectedfile);
+
+      // Append other form fields to the formData
+      Object.keys(Parentregister).forEach((key) => {
+        formData.append(String(key), Parentregister[key]);
+      });
+      const response = await axios.post(`${baseURL}/Parent/register`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
         params: {
           teacherid: teacherID,
           batchn: batchnumber
@@ -53,7 +64,14 @@ export default function ParentRegistration() {
       alert(error.response.data.message);
     }
   };
-
+  const HandleFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setFilename(file.name);
+    }
+  };
+  
   return (
     <div className="container">
       <form>
@@ -138,6 +156,20 @@ export default function ParentRegistration() {
             <option value="GRANDFATHER">Grandfather</option>
             <option value="GRANDMOTHER">Grandmother</option>
           </select>
+        </div>
+        <div className='hover-grp'>
+          <div>
+            <label htmlFor="fileUpload" className='hover'>
+              <FaCloudUploadAlt /> Upload File
+              <input
+                id="fileUpload"
+                type='file'
+                onChange={HandleFile}
+                className='ipt'
+              />
+            </label>
+          </div>
+          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
         </div>
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Register</button>
       </form>

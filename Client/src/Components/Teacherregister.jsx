@@ -4,23 +4,41 @@ import axios from "axios";
 import mycontext from '../Context/Context';
 import { useContext } from 'react';
 import StaffRegister from './StaffRegister';
-
+import { FaCloudUploadAlt } from 'react-icons/fa';
 export default function Register() {
   const { teacherregisterdata, setteacherRegisterdata } = useContext(mycontext);
-
+  const [selectedfile, setSelectedFile] = useState(null);
+  const [filename, setFilename] = useState("");
   const handleChange = (key, value) => {
     setteacherRegisterdata({ ...teacherregisterdata, [key]: value });
   };
 
   const register = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/Teacher/register", teacherregisterdata);
+      const formData = new FormData();
+      formData.append("file", selectedfile);
+
+      // Append other form fields to the formData
+      Object.keys(teacherregisterdata).forEach((key) => {
+        formData.append(String(key), teacherregisterdata[key]);
+      });
+      const response = await axios.post("http://localhost:5000/Teacher/register", formData,{
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       alert(response.data.message);
     } catch (error) {
       alert(error.response.data.message);
     }
   };
-
+  const HandleFile = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setFilename(file.name);
+    }
+  };
   return (
     <Container className="mt-5">
       <Row>
@@ -97,6 +115,20 @@ export default function Register() {
                 <option value="Class teacher">Class teacher</option>
               </Form.Select>
             </FormGroup>
+            <div className='hover-grp'>
+          <div>
+            <label htmlFor="fileUpload" className='hover'>
+              <FaCloudUploadAlt /> Upload File
+              <input
+                id="fileUpload"
+                type='file'
+                onChange={HandleFile}
+                className='ipt'
+              />
+            </label>
+          </div>
+          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+        </div>
             <div className="text-center">
               <Button variant="primary" onClick={register}>Register</Button>
             </div>

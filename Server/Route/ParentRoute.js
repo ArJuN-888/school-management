@@ -1,5 +1,6 @@
 const express=require("express")
 const router=express.Router()
+const fs =require("fs")
 const JWT=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
 const {parentModel} = require("../Model/ParentShema")
@@ -8,42 +9,68 @@ const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 const phoneregex = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/
-
-router.post("/register", async (req, res) => {
+const Multerstore = require("../Config/MulterConfig")
+router.post("/register",Multerstore, async (req, res) => {
     try {
-        const { studentname, parentname, email, password, batch, status, parentphone, rollno ,address,filename} = req.body;
+        const { studentname, parentname, email, password, batch, status, parentphone, rollno ,address} = req.body;
 
         console.log("req body", req.body);
 
         const teacherid = req.query.teacherid;
         const batchnumber = req.query.batchn;
         console.log("batchnumber", batchnumber, teacherid);
-
-        if (!studentname || !parentname || !email || !batch || !password || !status || !parentphone || !rollno ||!address ||!filename) {
+        if (!req.file) {
+            return res.status(400).json({ message: "Please select a file" });
+          }
+        if (!studentname || !parentname || !email || !batch || !password || !status || !parentphone || !rollno ||!address ) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "Empty Fields!!!" });
         }
         
         const parent = await parentModel.findOne({ email });
         if (parent) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "Email already in use!!!" });
         }
 
         if (!parentphone.match(phoneregex)) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "Enter a 10 digit valid Phone number!!!" });
         }
 
         const isEmailValid = mailformat.test(email) && txt.test(email);
         if (!isEmailValid) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "Enter a valid email" });
         }
 
         if (!password.match(passformat)) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "Password should contain Minimum 8 charactersAt least one uppercase character,At least one lowercase character,At least one digit,At least one special character " });
         }
 
         const classname = await teacherModel.findById(teacherid);
         console.log("classnameteacher", classname.batch, "batchofstd", batch);
         if (classname.batch !== batch) {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "You have no right to add to this provided division" });
         }
 
@@ -52,6 +79,10 @@ router.post("/register", async (req, res) => {
         const studentbatchnumber = await parentModel.findOne({rollno:concatenatedRollno})
         if(studentbatchnumber)
         {
+            const callback = () => {
+                console.log("Removed profile due to invalid registration credentials");
+              };
+              fs.unlink(`public/uploads/${req.file.filename}`, callback);
             return res.status(400).json({ message: "batch number already taken" }); 
         }
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -66,7 +97,7 @@ router.post("/register", async (req, res) => {
             status,
             parentphone: `+91-${parentphone}`,
             rollno: concatenatedRollno, // Store concatenated rollno here
-            filename
+            filename:req.file.filename
         });
 
         await newParent.save();
@@ -99,7 +130,7 @@ router.post("/login",async(req,res)=>{
     }
 
     const token = JWT.sign({id : parent._id},"secret")
-   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id,parentName:parent.parentname,parentClass:parent.batch})
+   return res.status(200).json({message:"Successfully logged-in",token:token,parentID:parent._id,parentName:parent.parentname,parentClass:parent.batch,parentprofile:parent.filename})
 }
 catch(error)
 {
@@ -108,6 +139,37 @@ catch(error)
 
 
 })
+//edit pic
+
+
+router.put("/editpic/:parentID",Multerstore,async(req,res)=> {
+    try {
+     const {parentID} = req.params
+      const parent = await parentModel.findById(parentID)
+      if (!req.file) {
+        return res.status(400).json({ message: "Please select a file" });
+      }
+      console.log("admin", parentID);
+      console.log("userfile", req.file);
+      const callback = (error) => {
+        if (error) {
+          console.log("Unable to delete ", error);
+        } else {
+          console.log("Successfully modified previous profile...");
+        }
+      };
+      fs.unlink(`public/uploads/${parent.filename}`, callback);
+      console.log("req.file.filename", req.file.filename);
+      const data = await parentModel.findByIdAndUpdate(
+        parentID,
+        { filename: req.file.filename },
+        { new: "true" }
+      );
+       res.status(200).json({ message: "profile successfully updated", parent: data });
+    } catch (error) {
+       res.status(400).json({message:"Unable to update profile"})
+    }
+  });
 router.get("/getallparent",async(req,res)=>{
 
     try{

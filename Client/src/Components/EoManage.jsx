@@ -6,6 +6,7 @@ import { Table,Button,Form } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import myContext from '../Context/Context';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 export default function EoManage() {
     useEffect(()=>{
         fetcheo()
@@ -32,6 +33,7 @@ export default function EoManage() {
       console.log("allEo",allEo)
       const [toggle,setToggle] = useState(0)
       const [Ename,setEname] = useState("")
+  
       const [Eid,setEid]= useState("")
       const [passtoggle,setPasstoggle] = useState(false)
       const [prevpassword,setprevpassword] = useState("")
@@ -40,6 +42,8 @@ export default function EoManage() {
         password:"",
         confirmation:""
       })
+      const [filename, setFilename] = useState("");
+      const [selectedfile, setSelectedFile] = useState(null);
       const handleChange = (key,value) =>
       {
         setEOobj({...EOobj,[key]:value})
@@ -142,7 +146,20 @@ export default function EoManage() {
                 }
                 const handleSubmit = async() =>{
                     try{
-             const response = await axios.post(`${baseURL}/Organization/register`,registerEo)
+                      const formData = new FormData();
+                      formData.append("file", selectedfile);
+                
+                      // Append other form fields to the formData
+                      Object.keys(registerEo).forEach((key) => {
+                        formData.append(String(key), registerEo[key]);
+                      });
+             const response = await axios.post(`${baseURL}/Organization/register`,formData,{
+
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+             }
+             )
              alert(response.data.message)
              fetcheo()
                     }
@@ -150,6 +167,13 @@ export default function EoManage() {
             alert(error.response.data.message)
                     }
                 }
+                const HandleFile = (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    setSelectedFile(file);
+                    setFilename(file.name);
+                  }
+                };
   return (
     <div className='fs-5' style={{letterSpacing:"2px"}}>
       <div className='m-2' >
@@ -181,6 +205,10 @@ export default function EoManage() {
         onChange={(e)=> handle1Change("email",e.target.value)}
         />
         </Col>
+       
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+        <Form.Label column sm="2">Phone no:</Form.Label>
         <Col sm="10" >
         <Form.Control
            style={{letterSpacing:"2px"}}
@@ -228,7 +256,20 @@ export default function EoManage() {
         />
         </Col>
         </Form.Group>
-        
+        <div className='hover-grp'>
+          <div>
+            <label htmlFor="fileUpload" className='hover'>
+              <FaCloudUploadAlt /> Upload File
+              <input
+                id="fileUpload"
+                type='file'
+                onChange={HandleFile}
+                className='ipt'
+              />
+            </label>
+          </div>
+          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+        </div>
         <Button variant='primary' className=' mt-2'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={handleSubmit}>Submit</Button>
       
        

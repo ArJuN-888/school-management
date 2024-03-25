@@ -2,26 +2,37 @@ const express=require("express")
 const router=express.Router()
 const JWT=require("jsonwebtoken")
 const bcrypt=require("bcryptjs")
+const fs = require("fs")
 const {teacherModel} = require('../Model/TeacherSchema')
 const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 
-
-router.post("/register", async (req, res) => {
+const Multerstore = require("../Config/MulterConfig")
+router.post("/register",Multerstore, async (req, res) => {
     try {
-      const { username, email, password,batch, status ,specialization,batchnumber,phone,filename} = req.body;
+      const { username, email, password,batch, status ,specialization,batchnumber,phone} = req.body;
 
       console.log("reqbdy", req.body);
-  
-      if (!username || !email || !password||!batch || !status || !specialization||!batchnumber||!phone ||!filename) {
+      if (!req.file) {
+        return res.status(400).json({ message: "Please select a file" });
+      }
+      if (!username || !email || !password||!batch || !status || !specialization||!batchnumber||!phone ) {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({ message: "Empty Fields !!!" });
       }
   
       const teacher = await teacherModel.findOne({ email });
   
       if (teacher) {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({ message: "Email already in use !!!" });
       }
   
@@ -29,23 +40,35 @@ router.post("/register", async (req, res) => {
       console.log("classname", isExistClass);
   
       if (isExistClass) {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({ message: "Classname is already taken" });
       }
   
       const isEmailValid = mailformat.test(email) && txt.test(email);
   
       if (!isEmailValid) {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({ message: "Enter a valid email" });
       }
   
       if (!password.match(passformat)) {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({
           message: "Password should contain at least 8 characters, one uppercase character, one lowercase character, one digit, and one special character",
         });
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
-      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber,phone: `+91-${phone}`,filename});
+      const newTeacher = new teacherModel({ email, password: hashedPassword,batch, username, status ,specialization,batchnumber,phone: `+91-${phone}`,filename:req.file.filename});
       await newTeacher.save();
   
       res.status(200).json({ message: "Faculty Registration Successful" });
@@ -78,7 +101,7 @@ router.post("/login",async(req,res)=>{
     }
 
     const token = JWT.sign({id : teacher._id},"secret")
-    res.status(200).json({message:"Successfully logged-in",token:token,tID:teacher._id,tname:teacher.username,tclass:teacher.batch})
+    res.status(200).json({message:"Successfully logged-in",token:token,tID:teacher._id,tname:teacher.username,tclass:teacher.batch,teacherprofile:teacher.filename})
 }
 catch(error)
 {
@@ -87,6 +110,37 @@ catch(error)
 
 
 })
+//edit pic
+
+
+router.put("/editpic/:teacherID",Multerstore,async(req,res)=> {
+  try {
+   const {teacherID} = req.params
+    const teacher = await teacherModel.findById(teacherID)
+    if (!req.file) {
+      return res.status(400).json({ message: "Please select a file" });
+    }
+    console.log("admin", teacherID);
+    console.log("userfile", req.file);
+    const callback = (error) => {
+      if (error) {
+        console.log("Unable to delete ", error);
+      } else {
+        console.log("Successfully modified previous profile...");
+      }
+    };
+    fs.unlink(`public/uploads/${teacher.filename}`, callback);
+    console.log("req.file.filename", req.file.filename);
+    const data = await teacherModel.findByIdAndUpdate(
+      teacherID,
+      { filename: req.file.filename },
+      { new: "true" }
+    );
+     res.status(200).json({ message: "profile successfully updated", teacher: data });
+  } catch (error) {
+     res.status(400).json({message:"Unable to update profile"})
+  }
+});
 router.get("/getallteachers",async(req,res)=>{
     try{
       if(req.query.parentid)

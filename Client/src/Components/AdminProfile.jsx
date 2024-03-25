@@ -2,19 +2,23 @@ import React, { useEffect, useState,useContext } from 'react'
 import mycontext from '../Context/Context'
 import { Button ,Form, Col, Row} from 'react-bootstrap'
 import axios from 'axios'
-
+import Getadprofile from './Hooks/GetProfile'
+import { FaPlus } from "react-icons/fa";
+import GetadminID from './Hooks/GetadminID'
 export default function () {
+    const adminID = GetadminID()
     const {baseURL} = useContext(mycontext)
     const[toggle,setToggle]=useState(0)
+    const adminprofile = Getadprofile()
     const[passToggle,setPassToggle]=useState(0)
     const[admin,setAdmin]=useState([])
-    const[adminID,setAdminID]=useState("")
     const[newUsername,setNewusername]=useState("")
     const[newEmail,setNewEmail]=useState("")
     const[newStat,setNewStat]=useState("")
     const[oldPass,setOldpass]=useState("")
     const[newPass,setNewpass]=useState("")
     const[conPass,setConpass]=useState("")
+    const [reqURL,] = useState('http://localhost:5000/uploads');
 console.log("admin",admin)
     useEffect(()=>{
         fetchAdmin()
@@ -56,7 +60,7 @@ console.log("admin",admin)
             setNewEmail(response.data.admin[0].email)
             setNewusername(response.data.admin[0].username)
             setNewStat(response.data.admin[0].status)
-            setAdminID(response.data.admin[0]._id)
+
         }
         catch(err)
         {
@@ -101,9 +105,47 @@ console.log("admin",admin)
     const subCanpass = () =>{
         setToggle(0)
     }
-   
+    const HandleFile = async (e) => {
+        const file = e.target.files[0];
+    
+        if (!file) {
+          return;
+        }
+    
+    
+        try {
+          const formData = new FormData();
+          formData.append("file", file); // Use the correct field name
+          console.log("formdata",formData)
+          const response = await axios.put(`${baseURL}/Admin/editpic/${adminID}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data", // Add this header
+              },
+            }
+          );
+    
+          localStorage.setItem("adminProfile", response.data.admin.filename);
+          fetchAdmin();
+          alert(response.data.message);
+        } catch (error) {
+          
+          alert( error.response.data.message);
+        }
+      };
+    
   return (
     <div className='m-2'>
+         <div className="img-contain">
+              <img className="image" src={`${reqURL}/${adminprofile}`} />
+              <div className="file-parent">
+                <label className="lb">
+                  <FaPlus className="pluss" />
+                  <input type="file" className="file" onChange={HandleFile} />
+                </label>
+              </div>
+            </div>
         <div className='fs-5' style={{letterSpacing:"2px"}}>
            <h3 style={{letterSpacing:"3px"}}>Profile...</h3>
             <>

@@ -2,33 +2,43 @@ import React, { useContext,useEffect, useState } from 'react'
 import mycontext from '../Context/Context'
 import axios from 'axios'
 import '../Components/Styles/DoctorManage.css'
+import { FaCloudUploadAlt } from 'react-icons/fa';
 import { Button,Table ,Form, Col, Row} from 'react-bootstrap'
 export default function DoctorManage() {
     const {baseURL} = useContext(mycontext)
     const[doctors,setDoctors]=useState([])
-    const[doctor,setDoctor]=useState([])
     const[docID,setDocID]=useState("")
     const[passCon,setPassCon]=useState(0)
     const[editToggle,setEditToggle]=useState(0)
     const[passtoggle,setPasstoggle]=useState(0)
     const[oldPass,setOldpass]=useState("")
-    const[username,setUsername]=useState("")
-    const[email,setEmail]=useState("")
-    const[password,setPassword]=useState("")
-    const[quali,setQuali]=useState("")
-    const[status,setStatus]=useState("")
+const [doctorObj,setdoctorObj] = useState({
+    username:"",
+    email:"",
+    password:"",
+    qualification:"",
+    status:"",
+    phone:""
+})
+const [status,setStatus] = useState("")
+const [phoneno,setPhoneno] = useState("")
     const[newUsername,setNewusername]=useState("")
     const[newEmail,setNewEmail]=useState("")
     const[newQuali,setNewQuali]=useState("")
     const[conPass,setConpass]=useState("")
     const[newPass,setNewpass]=useState("")
+    //file
+    const [selectedfile, setSelectedFile] = useState(null);
+    const [filename, setFilename] = useState("");
 console.log("hsgh",doctors)
     useEffect(()=>{
 
         fetchDoctors()
 
     },[])
-
+const handleChange = ( key,value)=>{
+    setdoctorObj({...doctorObj,[key]:value})
+}
     const fetchDoctors = async() =>{
         try
         {
@@ -45,13 +55,13 @@ console.log("hsgh",doctors)
         try
         {
             const response = await axios.get(`${baseURL}/Doctor/find/${id}`)
-            setDoctor(response.data.doctor)
             setEditToggle(1)
             setDocID(id)
             setNewusername(response.data.doctor.username)
             setNewEmail(response.data.doctor.email)
             setNewQuali(response.data.doctor.qualification)
-            
+            setPhoneno(response.data.doctor.phone)
+            setStatus(response.data.doctor.status)
         }
         catch(error)
         {
@@ -62,15 +72,25 @@ console.log("id",docID);
     const submitButton = async() =>{
         try
         {
-            const response = await axios.post(`${baseURL}/Doctor/register`,{username,email,password,qualification:quali,status})
+            const formData = new FormData();
+            formData.append("file", selectedfile);
+      
+            // Append other form fields to the formData
+            Object.keys(doctorObj).forEach((key) => {
+              formData.append(String(key), doctorObj[key]);
+            });
+      
+            const response = await axios.post(`${baseURL}/Doctor/register`,formData)
             alert(response.data.message)
             fetchDoctors()
-            setUsername("")
-            setEmail("")
-            setPassword("")
-            setQuali("")
-            setStatus("")
-            setDocID("")
+       setdoctorObj({
+        username:"",
+        email:"",
+        password:"",
+        qualification:"",
+        status:"",
+        phone:""
+    })
         }
         catch(error)
         {
@@ -95,7 +115,8 @@ console.log("id",docID);
     const editSave = async() =>{
         try
         {
-            const response = await axios.put(`${baseURL}/Doctor/edit/${docID}`,{username:newUsername,email:newEmail,qualification:newQuali})
+            const response = await axios.put(`${baseURL}/Doctor/edit/${docID}`,{username:newUsername,
+                email:newEmail,qualification:newQuali,phone:phoneno})
             alert(response.data.message)
             setEditToggle(0)
             fetchDoctors()
@@ -172,6 +193,13 @@ console.log("id",docID);
         setOldpass("")
         setDocID("")
     }
+    const HandleFile = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          setSelectedFile(file);
+          setFilename(file.name);
+        }
+      };
 
   return (
     <div className='m-2 fs-5' style={{letterSpacing:"2px"}}>
@@ -185,9 +213,9 @@ console.log("id",docID);
                     style={{letterSpacing:"2px"}}
                     className='fs-5'
                     type='text'
-                    value={username}
+                    value={doctorObj.username}
                     placeholder='Username...'
-                    onChange={(e)=>setUsername(e.target.value)}
+                    onChange={(e)=>handleChange("username",e.target.value)}
                 />
                  </Col>
                 </Form.Group>
@@ -198,9 +226,9 @@ console.log("id",docID);
                     style={{letterSpacing:"2px"}}
                     className='fs-5'
                     type='text'
-                    value={email}
+                    value={doctorObj.email}
                     placeholder='Email...'
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e)=>handleChange("email",e.target.value)}
                 />
                 
                  </Col>
@@ -212,9 +240,9 @@ console.log("id",docID);
                     style={{letterSpacing:"2px"}}
                     className='fs-5'
                     type='text'
-                    value={password}
+                    value={doctorObj.password}
                     placeholder='Password...'
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e)=>handleChange("password",e.target.value)}
                 />
                  </Col>
                 </Form.Group>
@@ -225,9 +253,22 @@ console.log("id",docID);
                     style={{letterSpacing:"2px"}}
                     className='fs-5 '
                     type='text'
-                    value={quali}
+                    value={doctorObj.qualification}
                     placeholder='Qualification...'
-                    onChange={(e)=>setQuali(e.target.value)}
+                    onChange={(e)=>handleChange("qualification",e.target.value)}
+                />
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Phone no:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
+                    type='text'
+                    value={doctorObj.phone}
+                    placeholder='Phone number...'
+                    onChange={(e)=>handleChange("phone",e.target.value)}
                 />
                  </Col>
                 </Form.Group>
@@ -237,13 +278,27 @@ console.log("id",docID);
 
 <Col sm="10">
 <Form.Select    style={{letterSpacing:"2px"}}
-           className='fs-5 me-2'  onChange={(e)=>setStatus(e.target.value)}>
+           className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
     <option value="" >Status</option>
     <option value="Doctor">Doctor</option>
 
   </Form.Select>
   </Col>
   </Form.Group >
+  <div className='hover-grp'>
+          <div>
+            <label htmlFor="fileUpload" className='hover'>
+              <FaCloudUploadAlt /> Upload File
+              <input
+                id="fileUpload"
+                type='file'
+                onChange={HandleFile}
+                className='ipt'
+              />
+            </label>
+          </div>
+          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+        </div>
                 <div className='sub-button'>
                     <Button variant='primary' className='mb-4'  style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{submitButton()}}>Submit</Button>
                 </div>
@@ -251,9 +306,9 @@ console.log("id",docID);
         </div>
         <div className=''>
             <div>
-            <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Registered Doctors...</h3>
+           {doctors.length !==0 &&  <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Registered Doctors...</h3> }
                 <Table hover responsive striped  className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
-                    <thead>
+                {doctors.length !==0 &&   <thead>
                     <tr>
                         <th className='doc-map-head text-white bg-primary'>sl.No</th>
                         <th className='doc-map-head text-white bg-primary'>Username</th>
@@ -261,7 +316,7 @@ console.log("id",docID);
                         <th className='doc-map-head text-white bg-primary'>Qualification</th>
                         <th className='doc-map-head text-white bg-primary'>Action</th>
                     </tr>
-                    </thead>
+                    </thead>}
                     <tbody>
                     {doctors.map((doc,index)=>(
                     <tr>
@@ -290,7 +345,7 @@ console.log("id",docID);
                     className='fs-5 '
                     type='text'
                     value={newUsername}
-                    placeholder='Status...'
+                    placeholder='Username...'
                     onChange={(e)=>setNewusername(e.target.value)}
                 />
                  </Col>
@@ -303,7 +358,7 @@ console.log("id",docID);
                     className='fs-5 '
                     type='text'
                     value={newEmail}
-                    placeholder='Status...'
+                    placeholder='Email...'
                     onChange={(e)=>setNewEmail(e.target.value)}
                 />
                  </Col>
@@ -316,8 +371,38 @@ console.log("id",docID);
                     className='fs-5 '
                     type='text'
                     value={newQuali}
-                    placeholder='Status...'
+                    placeholder='Qualification...'
                     onChange={(e)=>setNewQuali(e.target.value)}
+                />
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Status:</Form.Label>
+                    <Col sm="10">
+                <Form.Select
+                disabled
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
+                    type='text'
+                    value={status}
+                    placeholder='Status...'
+                    onChange={(e)=>setStatus(e.target.value)}
+                >
+                    <option value="">Status</option>
+                    <option value="Doctor">Doctor</option>
+                </Form.Select>
+                 </Col>
+                </Form.Group>
+                <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Phone no:</Form.Label>
+                    <Col sm="10">
+                <Form.Control
+                    style={{letterSpacing:"2px"}}
+                    className='fs-5 '
+                    type='text'
+                    value={phoneno}
+                    placeholder='Phone no...'
+                    onChange={(e)=>setPhoneno(e.target.value)}
                 />
                  </Col>
                 </Form.Group>

@@ -23,6 +23,7 @@ const [tog,setTog] = useState(false)
       localStorage.setItem("teacherID", response.data.tID);
       localStorage.setItem("teacherName", response.data.tname);
       localStorage.setItem("teacherClass", response.data.tclass);
+      localStorage.setItem("teacherProfile", response.data.teacherprofile);
       nav("/Home");
     } catch (error) {
       alert(error.response.data.message);

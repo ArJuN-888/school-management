@@ -18,6 +18,7 @@ export default function DoctorLogin() {
     const response = await axios.post(`${baseURL}/Doctor/login`,dlogin)
     localStorage.setItem("doctorID",response.data.doctorID)
     localStorage.setItem("doctorName",response.data.username)
+    localStorage.setItem("doctorProfile",response.data.profile)
     nav("/Home")
     alert(response.data.message)
   }

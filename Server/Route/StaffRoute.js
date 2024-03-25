@@ -8,20 +8,35 @@ const { parentModel } = require("../Model/ParentShema")
 const mailformat = /^[a-zA-Z0-9.!#$%&.’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
-
+const Multerstore = require("../Config/MulterConfig")
 router.post("/register",async(req,res)=>{
-    const {username,email,password,status,specialization,batch,filename,phone}=req.body;
-  if(!username || !email || !password || !status || !specialization || !batch ||!filename ||!phone)
+    const {username,email,password,status,specialization,batch,phone}=req.body;
+    if (!req.file) {
+      return res.status(400).json({ message: "Please select a file" });
+    }
+  if(!username || !email || !password || !status || !specialization || !batch  ||!phone)
   {
+    const callback = () => {
+      console.log("Removed profile due to invalid registration credentials");
+    };
+    fs.unlink(`public/uploads/${req.file.filename}`, callback);
     return res.status(400).json({message:"Empty fields..."})
   }
   const isEmailValid = mailformat.test(email) && txt.test(email);
   
   if (!isEmailValid) {
+    const callback = () => {
+      console.log("Removed profile due to invalid registration credentials");
+    };
+    fs.unlink(`public/uploads/${req.file.filename}`, callback);
     return res.status(400).json({ message: "Enter a valid email" });
   }
 
   if (!password.match(passformat)) {
+    const callback = () => {
+      console.log("Removed profile due to invalid registration credentials");
+    };
+    fs.unlink(`public/uploads/${req.file.filename}`, callback);
     return res.status(400).json({
       message: "Password should contain at least 8 characters, one uppercase character, one lowercase character, one digit, and one special character",
     });
@@ -29,11 +44,15 @@ router.post("/register",async(req,res)=>{
     const staff=await staffModel.findOne({email})
 
     if(staff){
+      const callback = () => {
+        console.log("Removed profile due to invalid registration credentials");
+      };
+      fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({message:" email already in use !!!"})
     }
 
     const hashedPassword=await bcrypt.hash(password,10)
-    const newStaff=new staffModel({username,email,password:hashedPassword,status,specialization,batch,filename,phone})
+    const newStaff=new staffModel({username,email,password:hashedPassword,status,specialization,batch,filename:req.file.filename,phone})
     await newStaff.save()
     res.status(200).json({message:"Staff registered successfully!!! "})
 })
@@ -72,6 +91,37 @@ catch(error)
 
 
 })
+//edit pic
+
+
+router.put("/editpic/:staffID",Multerstore,async(req,res)=> {
+  try {
+   const {staffID} = req.params
+    const staff = await staffModel.findById(staffID)
+    if (!req.file) {
+      return res.status(400).json({ message: "Please select a file" });
+    }
+    console.log("admin", staffID);
+    console.log("userfile", req.file);
+    const callback = (error) => {
+      if (error) {
+        console.log("Unable to delete ", error);
+      } else {
+        console.log("Successfully modified previous profile...");
+      }
+    };
+    fs.unlink(`public/uploads/${staff.filename}`, callback);
+    console.log("req.file.filename", req.file.filename);
+    const data = await parentModel.findByIdAndUpdate(
+      staffID,
+      { filename: req.file.filename },
+      { new: "true" }
+    );
+     res.status(200).json({ message: "profile successfully updated", staff: data });
+  } catch (error) {
+     res.status(400).json({message:"Unable to update profile"})
+  }
+});
 router.get("/getstaff",async(req,res)=>{
     try{
       if(req.query.parentid)

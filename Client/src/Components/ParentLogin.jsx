@@ -20,6 +20,7 @@ export default function ParentLogin() {
             localStorage.setItem("parentID",response.data.parentID)
             localStorage.setItem("parentName",response.data.parentName)
             localStorage.setItem("parentClass",response.data.parentClass)
+            localStorage.setItem("parentProfile",response.data.parentprofile)
             nav("/Home")
         }
    catch(error)

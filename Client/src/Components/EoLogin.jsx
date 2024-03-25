@@ -18,6 +18,7 @@ export const EoLogin = () => {
             alert(response.data.message)
            localStorage.setItem("eoID",response.data.eoID)
            localStorage.setItem("eoName",response.data.eoName)
+           localStorage.setItem("eoProfile",response.data.eoprofile)
            alert(response.data.message)
            nav("/Home")
             setEmail("")

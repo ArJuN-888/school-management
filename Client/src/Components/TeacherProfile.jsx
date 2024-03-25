@@ -4,14 +4,16 @@ import GetTID from "./Hooks/Getteacherid";
 import axios from "axios";
 import mycontext from "../Context/Context";
 import "./Styles/TP.css"
+import { FaPlus } from "react-icons/fa";
+import GetTprofile from "./Hooks/GetteacherProfile";
 const TeacherProfile = () => {
   const { baseURL } = useContext(mycontext);
   const [teacher, setTeacher] = useState([]);
+  const [reqURL,] = useState('http://localhost:5000/uploads');
   console.log("teachers", teacher);
-
+ const teacherProfile = GetTprofile()
   const teacherName = GetTname();
   const teacherID = GetTID();
-
   useEffect(() => {
     getTeacher();
   }, []);
@@ -30,8 +32,46 @@ const TeacherProfile = () => {
       console.log(error);
     }
   };
+  const HandleFile = async (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file); // Use the correct field name
+      console.log("formdata",formData)
+      const response = await axios.put(`${baseURL}/Teacher/editpic/${teacherID}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Add this header
+          },
+        }
+      );
+
+      localStorage.setItem("teacherProfile", response.data.teacher.filename);
+      getTeacher();
+      alert(response.data.message);
+    } catch (error) {
+      
+      alert( error.response.data.message);
+    }
+  };
   return (
     <div className="teacher-profile-container">
+       <div className="img-contain">
+              <img className="image" src={`${reqURL}/${teacherProfile}`} />
+              <div className="file-parent">
+                <label className="lb">
+                  <FaPlus className="pluss" />
+                  <input type="file" className="file" onChange={HandleFile} />
+                </label>
+              </div>
+            </div>
       <div className="teacher-profile-heading">
         <h2> Welcome {teacherName} </h2>
       </div>

@@ -54,6 +54,8 @@ export default function Navbar() {
         localStorage.removeItem("teacherID")
         localStorage.removeItem("teacherName")
         localStorage.removeItem("teacherClass")
+        localStorage.removeItem("teacherProfile")
+        
         setPotentialChats([])
         setCurrentChat(null)
         setMessages(null)
@@ -68,6 +70,7 @@ export default function Navbar() {
       {
          localStorage.removeItem("doctorID")
          localStorage.removeItem("doctorName")
+         localStorage.removeItem("doctorProfile")
          setPotentialChats([])
          setCurrentChat(null)
          setMessages(null)
@@ -86,9 +89,10 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
-       
+       localStorage.removeItem("adminProfile")
          localStorage.removeItem("adminName")
          localStorage.removeItem("adminID")
+         localStorage.removeItem("adminProfile")
          nav("/AdminLogin")
         //  location.reload()
       }
@@ -106,6 +110,7 @@ export default function Navbar() {
          localStorage.removeItem("parentName")
          localStorage.removeItem("parentID")
          localStorage.removeItem("parentClass")
+         localStorage.removeItem("parentProfile")
          nav("/Plogin")
         //  location.reload()
       }
@@ -120,7 +125,7 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
-       
+         localStorage.removeItem("eoProfile")
          localStorage.removeItem("eoName")
          localStorage.removeItem("eoID")
          nav("/Plogin")

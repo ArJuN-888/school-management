@@ -2,10 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetEname from './Hooks/GetEName'
 import axios from 'axios'
 import mycontext from '../Context/Context'
+import { FaPlus } from "react-icons/fa";
+import GetEID from './Hooks/GetEID';
+import GetEoprofile from './Hooks/GetEoprofile';
 const ExternalOrganizationProfile = () => {
     const Externalname=GetEname()
+    const eoID = GetEID()
+    const eoProfile = GetEoprofile()
     const {baseURL}=useContext(mycontext)
     const [eo,setEo]=useState([])
+    const [reqURL,] = useState('http://localhost:5000/uploads');
     console.log("eo",eo)
 
 
@@ -23,9 +29,48 @@ const ExternalOrganizationProfile = () => {
             console.log(error)
         }
     }
+    const HandleFile = async (e) => {
+      const file = e.target.files[0];
+  
+      if (!file) {
+        return;
+      }
+  
+  
+      try {
+        const formData = new FormData();
+        formData.append("file", file); // Use the correct field name
+        console.log("formdata",formData)
+        const response = await axios.put(`${baseURL}/Organization/editpic/${eoID}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Add this header
+            },
+          }
+        );
+  
+        localStorage.setItem("eoProfile", response.data.eo.filename);
+        Externalorganization();
+        alert(response.data.message);
+      } catch (error) {
+        
+        alert( error.response.data.message);
+      }
+    };
   return (
     <div><h2>ExternalOrganization</h2>
+     <div className="img-contain">
+              <img className="image" src={`${reqURL}/${eoProfile}`} />
+              <div className="file-parent">
+                <label className="lb">
+                  <FaPlus className="pluss" />
+                  <input type="file" className="file" onChange={HandleFile} />
+                </label>
+              </div>
+            </div>
     <div className="teacher-data">
+   
         {eo.map((data, index) => (
           <div className="teacher-info" key={index}>
             <h3>{data.username}</h3>
