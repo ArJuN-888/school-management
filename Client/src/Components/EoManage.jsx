@@ -181,6 +181,9 @@ export default function EoManage() {
         onChange={(e)=> handle1Change("email",e.target.value)}
         />
         </Col>
+        </Form.Group>
+        <Form.Group as={Row} className='mt-2'>
+        <Form.Label column sm="2">Phone No:</Form.Label>
         <Col sm="10" >
         <Form.Control
            style={{letterSpacing:"2px"}}
