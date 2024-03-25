@@ -215,7 +215,10 @@ router.put("/edit/:id",async(req,res)=>{
         if(!studentname || !parentname || !email || !parentphone  || !status || !batch ||!address){
            return res.status(400).json({message:" All fields  are required"})
         }
-
+        if (!parentphone.match(phoneregex)) {
+          
+            return res.status(400).json({ message: "Enter a 10 digit valid Phone number!!!" });
+        }
         if(!response){
             return res.status(400).json({message:"Parent Not Found"})
         }else{
