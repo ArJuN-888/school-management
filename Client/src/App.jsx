@@ -42,6 +42,7 @@ import ParentProfile from "./Components/ParentProfile";
 import DoctorProfile from "./Components/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfile";
 import EoManage from "./Components/EoManage";
+import Staffpro from "./Components/Staffpro";
 
 import AdminProfile from "./Components/AdminProfile";
 
@@ -313,6 +314,7 @@ setNotifications(mNotifications)
             <Route path="/Studymaterial" element={<StudeyMaterial/>}/>
             <Route path="/Health" element={<StudentHealth/>}/>
             <Route path="/Healthview" element={<DoctorHealthView/>}/>
+            <Route path="/Staffpro" element={<Staffpro/>}/>
 
           </Routes>
         </mycontext.Provider>
