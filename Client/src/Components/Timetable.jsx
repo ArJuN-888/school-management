@@ -80,7 +80,7 @@ console.log("time",timetables);
             </Form.Group>
             {periods.map((period, index) => (
               <div key={index}>
-                <Form.Group>
+                <Form.Group >
                   <Form.Label>{`Period ${index + 1}:`}</Form.Label>
                   <Form.Control type="text" value={period} onChange={(e) => {
                     const newPeriods = [...periods];
