@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
 import mycontext from '../Context/Context'
 import { Button } from 'react-bootstrap'
+import {Flip, toast} from 'react-toastify'
 export default function ParentLogin() {
     const {baseURL}= useContext(mycontext)
     const nav = useNavigate()
@@ -16,7 +17,7 @@ export default function ParentLogin() {
     const Login = async()=>{
         try{
             const response = await axios.post(`${baseURL}/Parent/login`,plogindata)
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             localStorage.setItem("parentID",response.data.parentID)
             localStorage.setItem("parentName",response.data.parentName)
             localStorage.setItem("parentClass",response.data.parentClass)
@@ -25,7 +26,7 @@ export default function ParentLogin() {
         }
    catch(error)
    {
- alert(error.response.data.message)
+ toast.error(error.response.data.message,{transition:Flip})
    }
     }
   return (

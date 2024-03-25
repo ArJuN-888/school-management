@@ -5,7 +5,7 @@ import axios from 'axios'
 import Getadprofile from './Hooks/GetProfile'
 import { FaPlus } from "react-icons/fa";
 import GetadminID from './Hooks/GetadminID'
-import {toast} from "react-toastify"
+import {Flip, toast} from "react-toastify"
 export default function () {
     const adminID = GetadminID()
     const {baseURL} = useContext(mycontext)
@@ -51,7 +51,7 @@ console.log("admin",admin)
         }
         catch(error)
         {
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message,{transition:Flip})
         }
     }
 
@@ -83,7 +83,7 @@ console.log("admin",admin)
         try
         {
             const response = await axios.put(`${baseURL}/Admin/edit/${adminID}`,{username:newUsername,email:newEmail,status:newStat})
-            toast.success(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             setHighTog(0)
             fetchAdmin()
         }
@@ -140,10 +140,10 @@ console.log("admin",admin)
     
           localStorage.setItem("adminProfile", response.data.admin.filename);
           fetchAdmin();
-          toast.success(response.data.message);
+          toast.success(response.data.message,{transition:Flip});
         } catch (error) {
           
-          toast.error( error.response.data.message);
+          toast.error( error.response.data.message,{transition:Flip});
         }
       };
     

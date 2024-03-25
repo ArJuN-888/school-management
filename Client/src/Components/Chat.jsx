@@ -14,6 +14,7 @@ import GetdoctorID from './Hooks/GetdoctorID'
 import GetParentID from './Hooks/GetParentID'
 import GetEID from './Hooks/GetEID'
 import GetSID from './Hooks/GetstaffID'
+import {Flip, toast} from "react-toastify"
 export default function Chat() {
   const teacherID = GetTID()
   const doctorID = GetdoctorID()
@@ -75,7 +76,7 @@ useEffect(()=>{
         }
       catch(error)
       {
-        alert(error.response.data.message)
+       toast.error(error.response.data.message,{transition:Flip})
       }
     }
   //teacher chat 
@@ -88,7 +89,7 @@ useEffect(()=>{
         }
       catch(error)
       {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message,{transition:Flip})
       }
     }
     //admin chat
@@ -101,7 +102,7 @@ useEffect(()=>{
       }
     catch(error)
     {
-      alert(error.response.data.message)
+      toast.error(error.response.data.message,{transition:Flip})
     }
   }
   //doctor chat 
@@ -114,7 +115,7 @@ useEffect(()=>{
     }
   catch(error)
   {
-    alert(error.response.data.message)
+    toast.error(error.response.data.message,{transition:Flip})
   }
 }
 //parent chat 
@@ -127,7 +128,7 @@ const fetchdparentchat = async() =>{
   }
 catch(error)
 {
-  alert(error.response.data.message)
+  toast.error(error.response.data.message,{transition:Flip})
 }
 }
 //organization chat 
@@ -140,7 +141,7 @@ const fetchEchat = async() =>{
   }
 catch(error)
 {
-  alert(error.response.data.message)
+  toast.error(error.response.data.message,{transition:Flip})
 }
 }
     //user current chat
@@ -153,7 +154,7 @@ catch(error)
       }
     catch(error)
     {
-      alert(error.response.data.message)
+      toast.error(error.response.data.message,{transition:Flip})
     }
   }
   const getUsers = async () => {
@@ -248,7 +249,7 @@ catch(error)
       setPotentialChats(pchats);
     
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message,{transition:Flip})
     }
   };
   return (

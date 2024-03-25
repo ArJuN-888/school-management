@@ -3,8 +3,13 @@ import GetSID from './Hooks/GetstaffID';
 import axios from 'axios';
 import mycontext from '../Context/Context';
 import GetStaffprofile from './Hooks/GetStaffproff';
+<<<<<<< HEAD
 import { FaPlus,FaMinus } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
+=======
+import { FaPlus } from "react-icons/fa";
+import {Flip, toast} from "react-toastify"
+>>>>>>> d0b41b77a7eff6489772504fe0e27d41c3761898
 const Staffpro = () => {
     const { baseURL } = useContext(mycontext);
     const staffid = GetSID();
@@ -50,10 +55,10 @@ const Staffpro = () => {
     
           localStorage.setItem("staffProfile", response.data.staff.filename);
           getallStaff();
-          alert(response.data.message);
+          toast.success(response.data.message,{transition:Flip});
         } catch (error) {
           
-          alert( error.response.data.message);
+          toast.error( error.response.data.message,{transition:Flip});
         }
       };
 

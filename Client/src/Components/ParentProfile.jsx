@@ -4,8 +4,13 @@ import mycontext from '../Context/Context'
 import axios from 'axios'
 import GetPprofile from './Hooks/Getparentprof'
 import GetParentID from './Hooks/GetParentID'
+<<<<<<< HEAD
 import { FaPlus,FaMinus } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
+=======
+import { FaPlus } from "react-icons/fa";
+import { Flip } from 'react-toastify'
+>>>>>>> d0b41b77a7eff6489772504fe0e27d41c3761898
 const ParentProfile = () => {
     const [student,setStudent]=useState([])
     console.log("student",student)
@@ -52,10 +57,10 @@ const [reqURL,] = useState('http://localhost:5000/uploads');
   
         localStorage.setItem("teacherProfile", response.data.parent.filename);
         AllStudents()
-        alert(response.data.message);
+        toast.success(response.data.message,{transition:Flip});
       } catch (error) {
         
-        alert( error.response.data.message);
+        toast.error( error.response.data.message,{transition:Flip});
       }
     };
   return (

@@ -3,6 +3,7 @@ import axios from 'axios';
 import GetTclass from "./Hooks/GetTeacherClass";
 import './Styles/Timetable.css'
 import { Form, Button, Table ,Col, Row } from 'react-bootstrap';
+import {Flip, toast} from 'react-toastify'
 
 function TimetableForm() {
   const [day, setDay] = useState('');
@@ -30,7 +31,7 @@ console.log("time...",selectedId);
   const handleAddTimetable = async () => {
     try {
       const response = await axios.post('http://localhost:5000/Timetable/addtable', { day, classN:Tclass, periods });
-      alert(response.data.message)
+      toast.success(response.data.message,{transition:Flip})
       fetchTimetables();
       setDay('');
       setPeriods(Array(8).fill(''));
@@ -42,7 +43,7 @@ console.log("time...",selectedId);
   const handleDeleteTimetable = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:5000/Timetable/delete/${id}`);
-      alert(response.data.message)
+      toast.success(response.data.message,{transition:Flip})
       fetchTimetables();
     } catch (error) {
       console.error('Error deleting timetable:', error);
@@ -58,7 +59,7 @@ console.log("time...",selectedId);
   const handleUpdateTimetable = async () => {
     try {
       const response=await axios.put(`http://localhost:5000/Timetable/updatetable/${selectedId}`, { day, periods});
-      alert(response.data.message)
+      toast.success(response.data.message,{transition:Flip})
       fetchTimetables();
       setDay('');
       setPeriods(Array(8).fill(''));
