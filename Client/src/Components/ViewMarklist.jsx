@@ -90,7 +90,9 @@ const [stname,setStname] = useState("")
             
           </tbody>
         </Table >
+        <div className='text-center'>
         {loggedteacherStudents.length === 0 && <label className='fs-5'>Mark-list is not initiated... </label>} 
+        </div>
         <div className="">
         {mark.length!==0 &&<h3 className='mt-4 mb-4' style={{letterSpacing:"3px"}}>{`Marklist history of ${stname} `}...</h3>}
          <Table className='fs-5' responsive cstriped bordered hover variant="white">

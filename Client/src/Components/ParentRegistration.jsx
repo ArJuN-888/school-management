@@ -172,7 +172,9 @@ export default function ParentRegistration() {
           </div>
           <p className='nm'>{filename ? filename : "No file chosen..."}</p>
         </div>
+        <div className='text-center'>
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Register</button>
+        </div>
       </form>
     </div>
   );

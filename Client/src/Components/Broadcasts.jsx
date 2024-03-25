@@ -90,8 +90,8 @@ catch(error)
   }
   return (
     <div className='brdiv'>
-      <h3 style={{letterSpacing:"2px"}} className='ms-1 mb-3'>Announcements</h3>
-      {broadcast.length === 0  && <div>No latest announcements...</div>}
+      <h3 style={{letterSpacing:"2px"}} className='ms-1 mb-3 text-center'>Announcements</h3>
+      {broadcast.length === 0  && <div className='text-center'>No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld mt-2 flex-wrap' style={{backgroundColor:"transparent"}}>
 <span className='fs-5 text-success' style={{letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
@@ -106,10 +106,11 @@ catch(error)
 ))}
 
 {(teacherID || staffID )&& <div className='d-block  mt-4 m-1 '>
-<h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Broadcast a message</h3>
+<h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1 text-center'>Broadcast a message</h3>
+<div className='text-center'>
   <input
   value={text}
-  className='me-2'
+  className='me-2 '
   style={{
    letterSpacing:"2px",
    width:"50%"
@@ -130,6 +131,7 @@ catch(error)
     <option value="10C">10C</option>
   </select>
   <Button className='' onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
+  </div>
   </div>}
   <div>
     {parentID && <div>
@@ -144,7 +146,10 @@ catch(error)
       ))}
       </div>}
       {notmessage && notmessage}
+     
   </div>
+
     </div>
+  
   )
 }
