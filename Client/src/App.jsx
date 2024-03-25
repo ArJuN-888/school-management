@@ -53,6 +53,7 @@ import StudentHealth from "./Components/StudentHealth";
 import DoctorHealthView from "./Components/DoctorHealthView";
  import { StaffLogin } from "./Components/StaffLogin";
 import UniversalHome from "./Components/UniversalHome";
+import StaffRegister from "./Components/StaffRegister";
 
 function App() {
   const adminID = GetadminID();
@@ -319,7 +320,7 @@ setNotifications(mNotifications)
             <Route path="/Healthview" element={<DoctorHealthView/>}/>
             <Route path="/AdminRegister" element={<AdminRegister/>}/>
             <Route path="/Staffpro" element={<Staffpro/>}/>
-
+            <Route path="/SReg" element={<StaffRegister/>}/>
 
           </Routes>
         </mycontext.Provider>

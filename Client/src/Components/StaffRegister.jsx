@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import mycontext from '../Context/Context';
 import { useContext } from 'react';
-import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormLabel, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 export default function StaffRegister() {
@@ -49,48 +50,114 @@ export default function StaffRegister() {
   return (
     <div>
       <Form>
-        <FormLabel>Staff Account Creation</FormLabel>
-        <FormGroup>
+        <h1 className='text-center'>Staff Account Creation</h1>
+        {/* <FormGroup>
           <FormControl
             type='text'
             value={staffObj.username}
             placeholder='Username...'
             onChange={(e) => handleChange("username", e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Username:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={staffObj.username}
+                            placeholder='Username...'
+                            onChange={(e)=>handleChange("username",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+        {/* <FormGroup>
           <FormControl
             type='text'
             value={staffObj.email}
             placeholder='Email...'
             onChange={(e) => handleChange("email", e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Email:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={staffObj.email}
+                            placeholder='Email...'
+                            onChange={(e)=>handleChange("email",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+        {/* <FormGroup>
           <FormControl
             type='text'
             value={staffObj.phone}
             placeholder='phone...'
             onChange={(e) => handleChange("phone", e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Phone:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='number'
+                            value={staffObj.phone}
+                            placeholder='Phone Number...'
+                            onChange={(e)=>handleChange("phone",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+        {/* <FormGroup>
           <FormControl
             type='password'
             value={staffObj.password}
             placeholder='Password...'
             onChange={(e) => handleChange("password", e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Password:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={staffObj.password}
+                            placeholder='Password...'
+                            onChange={(e)=>handleChange("password",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+        {/* <FormGroup>
           <FormControl
             type='text'
             value={staffObj.specialization}
             placeholder='Specialized in...'
             onChange={(e) => handleChange("specialization", e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Specialization:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={staffObj.specialization}
+                            placeholder='Specialization...'
+                            onChange={(e)=>handleChange("specialization",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+
+        {/* <FormGroup>
           <Form.Control as="select" onChange={(e) => handleChange("batch", e.target.value)}>
             <option value="select">Select your Batch</option>
             <option value="10A">10A</option>
@@ -98,14 +165,47 @@ export default function StaffRegister() {
             <option value="10C">10C</option>
             <option value="10D">10D</option>
           </Form.Control>
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label column sm="2" >Your Batch:</Form.Label>
+                        <Col sm="10">
+                        <Form.Select    style={{letterSpacing:"2px"}}
+                                className='fs-5 me-2'  onChange={(e)=>handleChange("batch",e.target.value)}>
+                            <option value="" >Select Your Batch</option>
+                            <option value="10A">10A</option>
+                            <option value="10B">10B</option>
+                            <option value="10C">10C</option>
+                            <option value="10D">10D</option>
+                            <option value="9A">9A</option>
+                            <option value="9B">9B</option>
+                            <option value="9C">9C</option>
+                            <option value="9D">9D</option>
+                            <option value="8A">8A</option>
+                            <option value="8B">8B</option>
+                            <option value="8C">8C</option>
+                            <option value="8D">8D</option>
+
+                        </Form.Select>
+                        </Col>
+                </Form.Group >
+        {/* <FormGroup>
           <Form.Select as="select" onChange={(e) => handleChange("status", e.target.value)}>
             <option value="Status">Status</option>
             <option value="Subject teacher">Subject teacher</option>
           </Form.Select>
-        </FormGroup>
-        <div>
+        </FormGroup> */}
+        <Form.Group as={Row} className='mt-2'>
+                    <Form.Label column sm="2" >Status:</Form.Label>
+                        <Col sm="10">
+                        <Form.Select    style={{letterSpacing:"2px"}}
+                                className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
+                            <option value="" >Status</option>
+                            <option value="TEACHER">Subject teacher</option>
+
+                        </Form.Select>
+                        </Col>
+                </Form.Group >
+        <div className='text-center m-3'>
             <label htmlFor="fileUpload" className='hover'>
               <FaCloudUploadAlt /> Upload File
               <input
@@ -116,7 +216,12 @@ export default function StaffRegister() {
               />
             </label>
           </div>
-        <Button variant="primary" onClick={register}>Register</Button>
+        <div className='text-center'>
+        <Button variant="primary"  onClick={register}>Register</Button>
+        </div>
+        <div>
+          <p className='text-center'><Link to='/Tregister'>Teacher Register</Link></p>
+        </div>
       </Form>
     </div>
   )

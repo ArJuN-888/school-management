@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, FormLabel, FormControl, Button, Container, Row, Col } from 'react-bootstrap';
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import mycontext from '../Context/Context';
 import { useContext } from 'react';
 import StaffRegister from './StaffRegister';
@@ -40,83 +41,123 @@ export default function Register() {
     }
   };
   return (
-    <Container className="mt-5">
-      <Row>
-        <Col md={6}>
-          <div className="mb-4 fs-5">Teacher</div>
+    <div className="mt-5">
+      <div>
+          <div className="mb-4 fs-8"><h1 className='text-center'>Teacher</h1></div>
           <Form>
-            <FormGroup controlId="formBasicUsername">
-              <FormLabel>Username</FormLabel>
-              <FormControl
-                type="text"
-                value={teacherregisterdata.username}
-                placeholder="Enter username"
-                onChange={(e) => handleChange("username", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicEmail">
-              <FormLabel>Email address</FormLabel>
-              <FormControl
-                type="email"
-                value={teacherregisterdata.email}
-                placeholder="Enter email"
-                onChange={(e) => handleChange("email", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicPassword">
-              <FormLabel>Password</FormLabel>
-              <FormControl
-                type="password"
-                value={teacherregisterdata.password}
-                placeholder="Password"
-                onChange={(e) => handleChange("password", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicSpecialization">
-              <FormLabel>Specialized in</FormLabel>
-              <FormControl
-                type="text"
-                value={teacherregisterdata.specialization}
-                placeholder="Specialized in"
-                onChange={(e) => handleChange("specialization", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicBatch">
-              <FormLabel>Select your Batch</FormLabel>
-              <Form.Select as="select" onChange={(e) => handleChange("batch", e.target.value)}>
-                <option value="select">Select your Batch</option>
-                <option value="10A">10A</option>
-                <option value="10B">10B</option>
-                <option value="10C">10C</option>
-              </Form.Select>
-            </FormGroup>
-            <FormGroup controlId="formBasicBatchNumber">
-              <FormLabel>Class Number</FormLabel>
-              <FormControl
-                type="text"
-                value={teacherregisterdata.batchnumber}
-                placeholder="Batch Number"
-                onChange={(e) => handleChange("batchnumber", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicPhone">
-              <FormLabel>Phone</FormLabel>
-              <FormControl
-                type="number"
-                value={teacherregisterdata.phone}
-                placeholder="Enter phone"
-                onChange={(e) => handleChange("phone", e.target.value)}
-              />
-            </FormGroup>
-            <FormGroup controlId="formBasicStatus">
-              <FormLabel>Status</FormLabel>
-              <Form.Select as="select" onChange={(e) => handleChange("status", e.target.value)}>
-                <option value="Status">Status</option>
-                <option value="Class teacher">Class teacher</option>
-              </Form.Select>
-            </FormGroup>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Username:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={teacherregisterdata.username}
+                            placeholder='Username...'
+                            onChange={(e)=>handleChange("username",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Email Address:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={teacherregisterdata.email}
+                            placeholder='Email...'
+                            onChange={(e)=>handleChange("email",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Password:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={teacherregisterdata.password}
+                            placeholder='Password...'
+                            onChange={(e)=>handleChange("password",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Specialized In:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={teacherregisterdata.specialization}
+                            placeholder='Specialization...'
+                            onChange={(e)=>handleChange("specialization",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label column sm="2" >Your Batch:</Form.Label>
+                        <Col sm="10">
+                        <Form.Select    style={{letterSpacing:"2px"}}
+                                className='fs-5 me-2'  onChange={(e)=>handleChange("batch",e.target.value)}>
+                            <option value="" >Select Your Batch</option>
+                            <option value="10A">10A</option>
+                            <option value="10B">10B</option>
+                            <option value="10C">10C</option>
+                            <option value="10D">10D</option>
+                            <option value="9A">9A</option>
+                            <option value="9B">9B</option>
+                            <option value="9C">9C</option>
+                            <option value="9D">9D</option>
+                            <option value="8A">8A</option>
+                            <option value="8B">8B</option>
+                            <option value="8C">8C</option>
+                            <option value="8D">8D</option>
+
+                        </Form.Select>
+                        </Col>
+                </Form.Group >
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Class Number:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={teacherregisterdata.batchnumber}
+                            placeholder='Batch Number'
+                            onChange={(e)=>handleChange("batchnumber",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label  column sm="2"> Phone Number:</Form.Label>
+                    <Col sm="10">
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='number'
+                            value={teacherregisterdata.phone}
+                            placeholder='Enter Phone'
+                            onChange={(e)=>handleChange("phone",e.target.value)}
+                        />
+                    </Col>
+                </Form.Group>
+            <Form.Group as={Row} className='mt-2'>
+                    <Form.Label column sm="2" >Status:</Form.Label>
+                        <Col sm="10">
+                        <Form.Select    style={{letterSpacing:"2px"}}
+                                className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
+                            <option value="" >Status</option>
+                            <option value="TEACHER">Class teacher</option>
+
+                        </Form.Select>
+                        </Col>
+                </Form.Group >
             <div className='hover-grp'>
-          <div>
+          <div className='text-center m-3' >
             <label htmlFor="fileUpload" className='hover'>
               <FaCloudUploadAlt /> Upload File
               <input
@@ -126,19 +167,18 @@ export default function Register() {
                 className='ipt'
               />
             </label>
+           
           </div>
     
-        </div>
+            </div>
             <div className="text-center">
               <Button variant="primary" onClick={register}>Register</Button>
             </div>
           </Form>
-        </Col>
-        <Col md={6}>
-          <div className="mb-4 fs-5">Staff</div>
-          <StaffRegister />
-        </Col>
-      </Row>
-    </Container>
+        <div className='text-center'>
+          <h6><Link to='/SReg'>Staff Register</Link></h6>
+        </div>
+      </div>
+    </div>
   )
 }
