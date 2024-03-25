@@ -171,11 +171,15 @@ console.log("admin",admin)
                                 <div className="admin-info" key={index}>
                                     <h3>{data.username}</h3>
                                     <p>{data.email}</p>
+                                    {tog &&<>
+                                    <div style={{letterSpacing:"3px"}}>Stat - {data.status}</div>
+                                    </> }  
                                 </div>
                                 ))}
                             </div>
-                            <div>
+                            <div className='d-flex gap-3'>
                             <div className='mt-2'  ><Button style={{boxShadow:"0px 0px 5px 0px grey"}} onClick={()=>setTog(!tog)}>{tog ? <FaMinus/> : <FaPlus/>}</Button></div>
+                            
                                 {!highTog ?(    
                                 <Button variant='primary' className='mt-1 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem"}}  onClick={()=>{mainToggle()}}>Edit Profile</Button>
                                 ):( 
@@ -187,8 +191,8 @@ console.log("admin",admin)
             <>
                  <Form>
                  <Form.Group as={Row} className='mt-2'>
-                    <Form.Label  column sm="2"> Username:</Form.Label>
-                    <Col sm="10">
+                    <Form.Label  column sm="3"> Username:</Form.Label>
+                    <Col sm="9">
                 <Form.Control
                     style={{letterSpacing:"2px"}}
                     className='fs-5 '
@@ -199,8 +203,8 @@ console.log("admin",admin)
                  </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>
-                    <Form.Label  column sm="2"> Email:</Form.Label>
-                    <Col sm="10">
+                    <Form.Label  column sm="3"> Email:</Form.Label>
+                    <Col sm="9">
                 <Form.Control
                     style={{letterSpacing:"2px"}}
                     className='fs-5 '
@@ -211,8 +215,8 @@ console.log("admin",admin)
                  </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>
-                    <Form.Label  column sm="2"> Status:</Form.Label>
-                    <Col sm="10">
+                    <Form.Label  column sm="3"> Status:</Form.Label>
+                    <Col sm="9">
                 <Form.Control
                     style={{letterSpacing:"2px"}}
                     className='fs-5 '

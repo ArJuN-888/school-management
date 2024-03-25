@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetEname from './Hooks/GetEName'
 import axios from 'axios'
 import mycontext from '../Context/Context'
-import { FaPlus } from "react-icons/fa";
 import GetEID from './Hooks/GetEID';
 import GetEoprofile from './Hooks/GetEoprofile';
+import { FaPlus,FaMinus } from "react-icons/fa";
+import { Button } from 'react-bootstrap';
 import {Flip, toast} from "react-toastify"
 const ExternalOrganizationProfile = () => {
     const Externalname=GetEname()
     const eoID = GetEID()
     const eoProfile = GetEoprofile()
+    const [tog,setTog] = useState(false)
     const {baseURL}=useContext(mycontext)
     const [eo,setEo]=useState([])
     const [reqURL,] = useState('http://localhost:5000/uploads');
@@ -60,8 +62,9 @@ const ExternalOrganizationProfile = () => {
       }
     };
   return (
-    <div><h2>ExternalOrganization</h2>
-     <div className="img-contain">
+    <div className="pdiv" >
+          
+            <div className="img-contain mb-2">
               <img className="image" src={`${reqURL}/${eoProfile}`} />
               <div className="file-parent">
                 <label className="lb">
@@ -70,19 +73,30 @@ const ExternalOrganizationProfile = () => {
                 </label>
               </div>
             </div>
-    <div className="teacher-data">
-   
-        {eo.map((data, index) => (
-          <div className="teacher-info" key={index}>
-            <h3>{data.username}</h3>
-            <p>ID: {data._id}</p>
-            <p>Email: {data.email}</p>
-            <p>Organization: {data.organization}</p>
-            <p>Status: {data.status}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+            
+                <div className="">
+                    {eo.length === 0 ? (
+                        <div className="alert alert-info">No staff available</div>
+                    ) : (
+                        eo.map((data, index) => (
+                            <div className="card border-0 fs-5" style={{boxShadow:"0px 0px 1px 0px",borderRadius:"0.2rem"}} key={index}>
+                                <div className="card-body">
+                                    <h3 className="card-title" style={{letterSpacing:"3px"}}>{data.username}</h3>
+                                    <p className="card-text">
+                                       <div style={{letterSpacing:"4px"}}>{data.email}</div> 
+                                       <div className='mt-2'  ><Button style={{boxShadow:"0px 0px 5px 0px grey"}} onClick={()=>setTog(!tog)}>{tog ? <FaMinus/> : <FaPlus/>}</Button></div>
+                                   {tog &&<><div style={{letterSpacing:"4px"}}>Organization - <b style={{letterSpacing:"1px"}}>{data.organization}</b></div>   
+                                    <div style={{letterSpacing:"3px"}}>Stat - {data.status}</div>
+                                    </> }  
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+                </div>
+           
+     
   )
 }
 
