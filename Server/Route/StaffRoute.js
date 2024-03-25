@@ -10,8 +10,8 @@ const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 
 router.post("/register",async(req,res)=>{
-    const {username,email,password,status,specialization,batch}=req.body;
-  if(!username || !email || !password || !status || !specialization || !batch)
+    const {username,email,password,status,specialization,batch,filename}=req.body;
+  if(!username || !email || !password || !status || !specialization || !batch ||!filename)
   {
     return res.status(400).json({message:"Empty fields..."})
   }
@@ -33,7 +33,7 @@ router.post("/register",async(req,res)=>{
     }
 
     const hashedPassword=await bcrypt.hash(password,10)
-    const newStaff=new staffModel({username,email,password:hashedPassword,status,specialization,batch})
+    const newStaff=new staffModel({username,email,password:hashedPassword,status,specialization,batch,filename})
     await newStaff.save()
     res.status(200).json({message:"Staff registered successfully!!! "})
 })

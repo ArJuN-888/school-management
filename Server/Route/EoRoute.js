@@ -9,8 +9,8 @@ const passformat = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 const txt = /.com/;
 
 router.post("/register",async(req,res)=>{
-    const {username,email,password,organization,status}=req.body;
-      if(!username || !email || !password || !organization || !status)
+    const {username,email,password,organization,status,filename}=req.body;
+      if(!username || !email || !password || !organization || !status || !filename)
       {
         return res.status(400).json({message:"empty fields...."})
       }
@@ -32,7 +32,7 @@ router.post("/register",async(req,res)=>{
     }
 
     const hashedPassword=await bcrypt.hash(password,10)
-    const newEO=new eoModel({username,email,password:hashedPassword,status,organization})
+    const newEO=new eoModel({username,email,password:hashedPassword,status,organization,filename})
     await newEO.save()
     res.status(200).json({message:"Organization  registered successfully!!! "})
 })

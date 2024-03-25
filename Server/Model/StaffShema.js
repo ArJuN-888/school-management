@@ -7,7 +7,8 @@ const staffSchema=new mongoose.Schema({
     password:{type:String,required:true},
     batch:{type:String,required:true},
     specialization:{type:String,required:true}, 
-    status:{type:String,required:true}
+    status:{type:String,required:true},
+    filename:{type:String,required:true}
 })
 
 

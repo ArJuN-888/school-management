@@ -22,6 +22,7 @@ const parentSchema=new mongoose.Schema({
     status:String,
     parentphone:{type:String,required:"true"},
     password:{type:String,required:"true"},
+    filename:{type:String,required:true}
 },{strict:true,timestamps:true});
 
 const parentModel=mongoose.model("parents",parentSchema)

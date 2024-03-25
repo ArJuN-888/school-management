@@ -8,6 +8,7 @@ const doctorSchema=new mongoose.Schema({
     status:{type:String,required:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
+    filename:{type:String,required:true}
     
 })
 

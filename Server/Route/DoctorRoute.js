@@ -10,11 +10,11 @@ const txt = /.com/;
 router.post("/register",async(req,res)=>{
 try
 {
-    const {username,email,password,qualification,status}=req.body;
+    const {username,email,password,qualification,status,filename}=req.body;
 
     const doctor=await doctorModel.findOne({email})
 
-    if( !username || !email || !password || !status || !qualification ) 
+    if( !username || !email || !password || !status || !qualification ||! filename ) 
     {
         return res.status(400).json({message:" Empty Fields !!!"})
     }
@@ -30,7 +30,7 @@ try
         return res.status(400).json({message:" Password should contain Minimum 8 characters At least one uppercase character,At least one lowercase character,At least one digit,At least one special character ",});
     }
     const hashedPassword=await bcrypt.hash(password,10)
-    const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status})
+    const newDoctor=new doctorModel({email,password:hashedPassword,username,qualification,status,filename})
     await newDoctor.save()
     res.status(200).json({message:"Doctor Registration Successfull "})
 }

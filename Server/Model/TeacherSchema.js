@@ -9,7 +9,8 @@ const teacherSchema=new mongoose.Schema({
     password:{type:String,required:true},
     specialization:{type:String,required:true}, 
     phone:{type:String,required:"true"},
-    status:{type:String,required:true}
+    status:{type:String,required:true},
+    filename:{type:String,required:true}
 })
 
 
