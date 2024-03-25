@@ -210,15 +210,15 @@ console.log("id",docID);
                 <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Username:</Form.Label>
                     <Col sm="10">
-                <Form.Control
-                    style={{letterSpacing:"2px"}}
-                    className='fs-5'
-                    type='text'
-                    value={doctorObj.username}
-                    placeholder='Username...'
-                    onChange={(e)=>handleChange("username",e.target.value)}
-                />
-                 </Col>
+                        <Form.Control
+                            style={{letterSpacing:"2px"}}
+                            className='fs-5'
+                            type='text'
+                            value={doctorObj.username}
+                            placeholder='Username...'
+                            onChange={(e)=>handleChange("username",e.target.value)}
+                        />
+                    </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Email:</Form.Label>
@@ -274,18 +274,16 @@ console.log("id",docID);
                  </Col>
                 </Form.Group>
                 <Form.Group as={Row} className='mt-2'>
-  
-  <Form.Label column sm="2" >Status:</Form.Label>
+                    <Form.Label column sm="2" >Status:</Form.Label>
+                        <Col sm="10">
+                        <Form.Select    style={{letterSpacing:"2px"}}
+                                className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
+                            <option value="" >Status</option>
+                            <option value="Doctor">Doctor</option>
 
-<Col sm="10">
-<Form.Select    style={{letterSpacing:"2px"}}
-           className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
-    <option value="" >Status</option>
-    <option value="Doctor">Doctor</option>
-
-  </Form.Select>
-  </Col>
-  </Form.Group >
+                        </Form.Select>
+                        </Col>
+                </Form.Group >
   <div className='hover-grp'>
           <div>
             <label htmlFor="fileUpload" className='hover'>
