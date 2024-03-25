@@ -33,7 +33,7 @@ const DoctorHealthView = () => {
                 <Table striped bordered hover variant="blue" className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
                     <thead>
                         <tr>
-                            <th className='doc-map-head text-white bg-primary'>Student ID</th>
+                            <th className='doc-map-head text-white bg-primary'>Health ID</th>
                             <th className='doc-map-head text-white bg-primary'>Student Name</th>
                             <th className='doc-map-head text-white bg-primary'>Batch</th>
                             <th className='doc-map-head text-white bg-primary'>Age</th>
@@ -64,8 +64,8 @@ const DoctorHealthView = () => {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">
-                                    <h3>No Students Available</h3>
+                                <td colSpan="5">
+                                    <h3 className='text-center'>No Students Available</h3>
                                 </td>
                             </tr>
                         )}

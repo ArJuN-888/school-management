@@ -97,7 +97,7 @@ console.log("stat",stat)
             
             
           </tbody>
-          <div>
+          <div className='text-center'>
                {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
               </div>
           </Table>

@@ -143,9 +143,9 @@ catch(error)
 }
 
   return (
-    <div className='m-3 fs-5' style={{letterSpacing:"2px"}}>
+    <div className='m-3 fs-5 text-center' style={{letterSpacing:"2px"}}>
         {teacherID || adminID ||staffID ? <>
-<div><h1 className='fs-3 d-flex mb-4' style={{letterSpacing:"3px"}}>Upload study materials....</h1></div>
+<div className='text-center'><h1 className='fs-3 d-flex mb-4 text-center' style={{letterSpacing:"3px"}}>Upload study materials....</h1></div>
 <Form>
     <Form.Group as={Row} >
         <Form.Label column sm="1">Note:</Form.Label>
@@ -205,10 +205,10 @@ onChange={(e)=>handleChange("link",e.target.value)}
 </Form.Group>
 
 <Button className='me-2 mb-2' style={{letterSpacing:"2px",border:"none",
-    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}}  variant='danger' onClick={()=>setlnktog(!lnktog)}>Close</Button>
+    boxShadow:"0px 0px 5px 0px grey",borderRadius:"5px", margin:"3px"}}  variant='danger' onClick={()=>setlnktog(!lnktog)}>Close</Button>
 </>:
 <Button className='mb-2 mt-2' style={{letterSpacing:"2px",border:"none", 
-    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} variant='success'  onClick={()=>setlnktog(!lnktog)}>Provide a link if Any ?</Button>
+    boxShadow:"0px 0px 5px 0px grey",borderRadius:"5px"}} variant='success'  onClick={()=>setlnktog(!lnktog)}>Provide a link if Any ?</Button>
 }
 <Form.Control
       type='file'
@@ -218,7 +218,7 @@ onChange={(e)=>handleChange("link",e.target.value)}
       />
     
       < Button className='mt-2' style={{letterSpacing:"2px",border:"none",
-    boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
+    boxShadow:"0px 0px 5px 0px grey",borderRadius:"5px"}} onClick={HandleSubmit}>Post</Button>
     </Form>
     <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
     {filterprev.length=== 0 && <h3>No History found...</h3>}

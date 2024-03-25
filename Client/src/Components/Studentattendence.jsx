@@ -153,7 +153,9 @@ const Studentattendence = () => {
             
           </tbody>
         </Table>
-        {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
+        <div className="text-center">
+        {loggedteacherStudents.length === 0 && <label >No student data available</label>} 
+        </div>
       </div>
     </div>
   );
