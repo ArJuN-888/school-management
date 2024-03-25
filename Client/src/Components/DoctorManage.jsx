@@ -82,7 +82,7 @@ console.log("id",docID);
             });
       
             const response = await axios.post(`${baseURL}/Doctor/register`,formData)
-            alert(response.data.message)
+            toast.success(response.data.message,{transition:Flip})
             fetchDoctors()
        setdoctorObj({
         username:"",

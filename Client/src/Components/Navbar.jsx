@@ -332,7 +332,7 @@ const Hr = (props) => (
               
                 </Link></li></OverlayTrigger>
          {/* <li><Link style={{textDecoration:"none"}} to="/TeacherClassroom">Your Classroom</Link></li> */}
-         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Classroom}><Link style={{textDecoration:"none"}} to="/TeacherClassroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
+
          <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sr}><Link style={{textDecoration:"none"}} to="/Pregister"><FaUserPlus style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Bm}><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
@@ -344,6 +344,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Tt}><Link style={{textDecoration:"none"}} to="/timetable"><FaCalendarDays style={{color:"black",fontSize:"25px"}}/></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}} to="/Tpro"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Sm}><Link style={{textDecoration:"none"}} to="/Studymaterial"><ImBook style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
+        <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Classroom}><Link style={{textDecoration:"none"}} to="/TeacherClassroom"><SiGoogleclassroom style={{color:"black",fontSize:"25px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Hr}><Link style={{textDecoration:"none"}} to="/Health"> <RiHealthBookFill style={{color:"black",fontSize:"25px"}}/></Link></OverlayTrigger></li>
         
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 

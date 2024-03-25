@@ -95,7 +95,7 @@ const StudentMarklist = () => {
     return (
         <div className='main'>
             <div className='heading'>
-                <h3>Welcome {teacherName} - Add Marklist of Each Student</h3>
+                <h3 className='mb-4 mt-4' style={{letterSpacing:"3px"}}>Welcome {teacherName} - You can add your student marklist here...</h3>
 
 
 
@@ -132,7 +132,7 @@ const StudentMarklist = () => {
             
           </tbody>
         </Table>
-        {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
+        {loggedteacherStudents.length === 0 && <label style={{letterSpacing:"3px"}}>No student data available</label>} 
       </div>
 
                {toggle===1  && 
@@ -153,14 +153,14 @@ const StudentMarklist = () => {
                    </div>
                    {data.marks.map((mark, index) => (
                        <div className="subject-group" key={index}>
-                           <label htmlFor={`subject${index}`}>Subject {index + 1}:</label>
-                           <input type="text" id={`subject${index}`} name={`subject${index}`} required value={mark.subject} onChange={(e) => handleMarkChange(index, "subject", e.target.value)} />
-                           <input type="number" id={`scoredMark${index}`} name={`scoredMark${index}`} placeholder="Scored Mark" required value={mark.scoredMark} onChange={(e) => handleMarkChange(index, "scoredMark", e.target.value)} />
-                           <input type="number" id={`totalMark${index}`} name={`totalMark${index}`} placeholder="Total Mark" required value={mark.totalMark} onChange={(e) => handleMarkChange(index, "totalMark", e.target.value)} />
+                           <label  htmlFor={`subject${index}`}>Subject {index + 1}:</label>
+                           <input placeholder="Subject..." className='me-2' type="text" id={`subject${index}`} name={`subject${index}`} required value={mark.subject} onChange={(e) => handleMarkChange(index, "subject", e.target.value)} />
+                           <input className='me-2' type="number" id={`scoredMark${index}`} name={`scoredMark${index}`} placeholder="Scored Mark..." required value={mark.scoredMark} onChange={(e) => handleMarkChange(index, "scoredMark", e.target.value)} />
+                           <input type="number" id={`totalMark${index}`} name={`totalMark${index}`} placeholder="Total Mark..." required value={mark.totalMark} onChange={(e) => handleMarkChange(index, "totalMark", e.target.value)} />
                        </div>
                    ))}
-                   <button type="button" onClick={handleAddMark}>Add Mark</button>
-                   <button type="submit">Submit</button>
+                   <Button type="button" variant='danger' className='me-2 mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}} onClick={handleAddMark}>Add Mark</Button>
+                   <Button variant='primary' className='mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}}  type="submit">Submit</Button>
                </form>
                <div id="message"></div>
            </div>} 

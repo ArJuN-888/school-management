@@ -24,12 +24,12 @@ const DoctorHealthView = () => {
     };
 
     return (
-        <div>
+        <div className='m-2'>
             <div className='heading'>
                 <h4 style={{letterSpacing:"2px"}}>Health Records of Students...</h4>
             </div>
 
-            <div className='table'>
+            <div className='table '>
                 <Table striped bordered hover variant="blue" className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
                     <thead>
                         <tr>
