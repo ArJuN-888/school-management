@@ -89,7 +89,7 @@ catch(error)
 }
   }
   return (
-    <div className='brdiv'>
+    <div className='brdiv text-center'>
       <h3 style={{letterSpacing:"2px"}} className='ms-1 mb-3 text-center'>Announcements</h3>
       {broadcast.length === 0  && <div className='text-center'>No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
