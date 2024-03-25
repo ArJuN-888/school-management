@@ -3,11 +3,13 @@ import GetSID from './Hooks/GetstaffID';
 import axios from 'axios';
 import mycontext from '../Context/Context';
 import GetStaffprofile from './Hooks/GetStaffproff';
-import { FaPlus } from "react-icons/fa";
+import { FaPlus,FaMinus } from "react-icons/fa";
+import { Button } from 'react-bootstrap';
 const Staffpro = () => {
     const { baseURL } = useContext(mycontext);
     const staffid = GetSID();
     const staffprofile = GetStaffprofile()
+    const [tog,setTog] = useState(false)
     const [staff, setStaff] = useState([]);
     const [reqURL,] = useState('http://localhost:5000/uploads');
     useEffect(() => {
@@ -77,10 +79,12 @@ const Staffpro = () => {
                                 <div className="card-body">
                                     <h3 className="card-title" style={{letterSpacing:"3px"}}>{data.username}</h3>
                                     <p className="card-text">
-    
                                        <div style={{letterSpacing:"4px"}}>{data.email}</div> 
-                                   <div style={{letterSpacing:"4px"}}>Batch - <b style={{letterSpacing:"1px"}}>{data.batch}</b></div>   
-                                    <div style={{letterSpacing:"3px"}}>Subject - {data.specialization}</div>   
+                                       <div className='mt-2'  ><Button style={{boxShadow:"0px 0px 5px 0px grey"}} onClick={()=>setTog(!tog)}>{tog ? <FaMinus/> : <FaPlus/>}</Button></div>
+                                   {tog &&<><div style={{letterSpacing:"4px"}}>Batch - <b style={{letterSpacing:"1px"}}>{data.batch}</b></div>   
+                                    <div style={{letterSpacing:"3px"}}>Subject - {data.specialization}</div>
+                                    <div style={{letterSpacing:"3px"}}>Stat - {data.status}</div>
+                                    </> }  
                                     </p>
                                 </div>
                             </div>

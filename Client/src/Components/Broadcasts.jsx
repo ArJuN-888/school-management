@@ -129,7 +129,7 @@ catch(error)
     <option value="10B">10B</option>
     <option value="10C">10C</option>
   </select>
-  <Button className='mb-4' onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
+  <Button className='' onClick={postbroadcastmessage} style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}>Post</Button>
   </div>}
   <div>
     {parentID && <div>
