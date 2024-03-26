@@ -101,7 +101,7 @@ const StudentHealth = () => {
               <Form.Label>Height</Form.Label>
               <Form.Control
                 type="text"
-                name="height in cm"
+                name="height"
                 placeholder="Enter Height"
                 onChange={handleChange}
               />
@@ -112,7 +112,7 @@ const StudentHealth = () => {
               <Form.Label>Weight</Form.Label>
               <Form.Control
                 type="text"
-                name="weight in kg"
+                name="weight"
                 placeholder="Enter Weight"
                 onChange={handleChange}
               />
