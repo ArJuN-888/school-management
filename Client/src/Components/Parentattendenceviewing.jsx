@@ -30,10 +30,10 @@ const Parentattendenceviewing = () => {
     }
   return (
     <div>
-      <div className='heading'>helo... {parentName} </div>
+      <div className='heading'><h3 className='text-center'>helo... {parentName} </h3></div>
       <div className='attendence'>
         {attendence.length===0 ?(
-            <div><h3>no record found</h3></div>
+            <div><h5 className='text-center'>no record found</h5 ></div>
         ):(
             <Table>
             <thead>

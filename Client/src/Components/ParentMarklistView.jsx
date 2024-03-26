@@ -45,13 +45,15 @@ const ParentMarklistView = () => {
 
   return (
     <div>
-      <div className="heading">
+      <div className="heading text-center">
+        <h3 className="text-center">
         {parentname} Here is Your children's Marksheet
+        </h3>
       </div>
 
       <div className="marklist">
         {mark.length === 0 ? (
-          <div>No mark list available</div>
+          <div className="text-center"><h5>No mark list available</h5></div>
         ) : (
           mark.map((data, index) => (
             <div key={index}>
