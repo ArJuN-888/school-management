@@ -9,16 +9,17 @@ import { VscClose } from "react-icons/vsc";
 import { PiChalkboardTeacherFill } from "react-icons/pi";
 import { FaUserGraduate } from "react-icons/fa6";
 import {toast} from "react-toastify"
-
+import { FaPlus } from "react-icons/fa";
 export default function Classroom() {
     const { baseURL } = useContext(mycontext);
+    const [reqURL,] = useState('http://localhost:5000/uploads');
     const [teachers, setTeachers] = useState([]);
     const [parents, setParents] = useState([]);
     const [toggle, setToggle] = useState(0);
     const [togid, setTogid] = useState("");
     const [batch, setBatch] = useState("");
     const [ptog, setPtog] = useState(0);
-    const [stafftog,setStafftog] = useState(0)
+    const [stafftog,setStafftog] = useState(false)
 const [staff,setStaff] = useState([])
     useEffect(() => {
         fetchTeachers();
@@ -69,9 +70,10 @@ const [staff,setStaff] = useState([])
         setToggle(0);
         setTogid("")
         setBatch("")
+        setStafftog(false)
     };
 const handleStafftoggle = (sbatch)=>{
-    setStafftog(1)
+    setStafftog(!stafftog)
     setBatch(sbatch)
 }
     const renderTooltip = (props) => (
@@ -112,6 +114,12 @@ const handleStafftoggle = (sbatch)=>{
         {(toggle === 1 && data._id === togid) && (
             <div className=' fs-5' style={{ letterSpacing: "3px" ,textAlign:"center"}}>
               <div className='t-con' style={{backgroundColor:"",border:"3px solid black"}}>
+              <div className="img-contain m-auto  ">
+      <img className="image " src={`${reqURL}/${data.filename}`} />
+      <div className="file-parent">
+     
+      </div>
+    </div>
                 <div>Class Teacher : {data.username}</div>
                 <div>Batch : {data.batch}</div>
                 </div>
@@ -136,7 +144,7 @@ const handleStafftoggle = (sbatch)=>{
                     delay={{ show: 250, hide: 400 }}
                     overlay={renderstaff}
                 >
-                <Button className='fs-6 mt-2' onClick={() => handleStafftoggle(data.batch)} style={{
+                <Button className='fs-6 mt-2' variant='secondary' onClick={() => handleStafftoggle(data.batch)} style={{
                         padding: "8px 12px 10px 12px",
                         border: "none",
                         boxShadow: "0px 0px 4px 0px grey",
@@ -153,20 +161,27 @@ const handleStafftoggle = (sbatch)=>{
         </div>
             ))}
             </div>
-<div className='Staff' style={{backgroundColor:"red"}}>
+{stafftog === true && staff.length!==0 &&<div className='Staff p-2 mt-3 fs-5  border-3 d-flex flex-wrap m-auto ' style={{backgroundColor:"",letterSpacing:"2px",borderRadius:"8px",border:"2px solid black"}}>
+
     {staff.map((data,index)=>(
-        <div key={index}>
-            {(stafftog ===1 && data.batch === batch) && (
+        <div key={index} className=' d-block '>
+            {(stafftog === true  && data.batch === batch) && (
                 <>
-                <div>{data.username}</div>
-                <div>{data.batch}</div>
-                <div>{data.phone}</div>
+                <div className="img-contain m-auto  ">
+      <img className="image " src={`${reqURL}/${data.filename}`} />
+      <div className="file-parent">
+     
+      </div>
+    </div>
+                <div>Subject Teacher : {data.username}</div>
+                <div>Batch : {data.batch}</div>
+                <div>Phone no : {data.phone}</div>
                 </>
             )} 
             </div>
     ))}
  
-</div>
+</div>}
                 <div className=''>
                    <div className='d-flex justify-content-center align-items-center '>{ptog === 1 && <h3 className='ms-2 mt-3 d-flex mb-4 fs-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Classroom - ${batch}`}...</h3>}   {ptog === 1 && <Button className='mb-3mt-2' style={{
                         padding: "6px 10px 8px 10px",
@@ -183,9 +198,14 @@ const handleStafftoggle = (sbatch)=>{
                       
                         {!parents.some((element) => element.batch === batch) && ptog === 1 && <h3 className='mt-3 mb-3' style={{letterSpacing:"3px"}}>No students registered...</h3>}
                             {parents.map((data, index) => (
-                                <div key={index} className='d-inline-flex '  >
-                                    {(ptog === 1 && data.batch === batch) && (
-                                        <div className='d-block me-3 justify-content-center classchild fs-5'   style={{backgroundColor:"yellow",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem",letterSpacing:"2px"}}>
+                                <div key={index} className='d-inline-flex flex-wrap justify-content-center align-items-center '   >
+                                    {(ptog === 1 && data.batch === batch) && (<> <div className="img-contain mb-2 me-1">
+      <img className="image " src={`${reqURL}/${data.filename}`} />
+      <div className="file-parent">
+     
+      </div>
+    </div>
+                                        <div className='d-block me-3 justify-content-center classchild fs-5 mt-3'   style={{backgroundColor:"",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem",letterSpacing:"2px"}}>
                                        
                                             <div>Student : {data.studentname}</div>
                                             <div>Guardian: {data.parentname}</div>
@@ -194,6 +214,7 @@ const handleStafftoggle = (sbatch)=>{
                                             <div>Phone no : {data.parentphone}</div>
                                           
                                         </div>
+                                        </>
                                     )}
                                 </div>
                             ))}
