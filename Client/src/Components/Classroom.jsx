@@ -6,7 +6,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { Button, Table } from 'react-bootstrap';
 import mycontext from '../Context/Context';
 import { VscClose } from "react-icons/vsc";
-
+import { PiChalkboardTeacherFill } from "react-icons/pi";
 import { FaUserGraduate } from "react-icons/fa6";
 import {toast} from "react-toastify"
 
@@ -18,16 +18,18 @@ export default function Classroom() {
     const [togid, setTogid] = useState("");
     const [batch, setBatch] = useState("");
     const [ptog, setPtog] = useState(0);
+    const [stafftog,setStafftog] = useState(0)
 const [staff,setStaff] = useState([])
     useEffect(() => {
         fetchTeachers();
         fetchParents();
         fetchStaff();
     }, []);
+    console.log("staff",staff)
     const fetchStaff = async() =>{
         try{
           const response  = await axios.get(`${baseURL}/Staff/getstaff`)
-        setParents([...parents,...response.data.staff])
+      setStaff(response.data.staff)
         }
       catch(error)
       {
@@ -68,13 +70,21 @@ const [staff,setStaff] = useState([])
         setTogid("")
         setBatch("")
     };
-
+const handleStafftoggle = (sbatch)=>{
+    setStafftog(1)
+    setBatch(sbatch)
+}
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
             View Students
         </Tooltip>
     );
 
+    const renderstaff = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            View Staff
+        </Tooltip>
+    );
     return (
         <div className='' style={{padding:"20px"}}>
             <h3 className=' fs-4' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
@@ -121,14 +131,42 @@ const [staff,setStaff] = useState([])
                    <FaUserGraduate className='fs-5' />
                     </Button>
                 </OverlayTrigger>
-             
+                <OverlayTrigger
+                    placement="right"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={renderstaff}
+                >
+                <Button className='fs-6 mt-2' onClick={() => handleStafftoggle(data.batch)} style={{
+                        padding: "8px 12px 10px 12px",
+                        border: "none",
+                        boxShadow: "0px 0px 4px 0px grey",
+                        margin: "2px",
+                        borderRadius: "0.2rem",
+                        letterSpacing: "2px"
+                    }}>
+                   <PiChalkboardTeacherFill className='fs-5' />
+                    </Button>
+                    </OverlayTrigger>
             </div>
         
         )} 
         </div>
             ))}
             </div>
-
+<div className='Staff' style={{backgroundColor:"red"}}>
+    {staff.map((data,index)=>(
+        <div key={index}>
+            {(stafftog ===1 && data.batch === batch) && (
+                <>
+                <div>{data.username}</div>
+                <div>{data.batch}</div>
+                <div>{data.phone}</div>
+                </>
+            )} 
+            </div>
+    ))}
+ 
+</div>
                 <div className=''>
                    <div className='d-flex justify-content-center align-items-center '>{ptog === 1 && <h3 className='ms-2 mt-3 d-flex mb-4 fs-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Classroom - ${batch}`}...</h3>}   {ptog === 1 && <Button className='mb-3mt-2' style={{
                         padding: "6px 10px 8px 10px",
