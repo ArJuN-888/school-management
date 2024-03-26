@@ -66,14 +66,15 @@ export default function LeaveLetter() {
     };
 
     return (
-        <Container className='leave-container' style={{letterSpacing:'3px'}}>
+        <Container className='leave-container fs-4' style={{letterSpacing:'3px'}}>
             <div className='leave-section'>
                 <h1 className='leave-head' style={{fontFamily:'verdana'}}>Leave Letter</h1>
-                <div className='leave-input-section'>
-                    <Form>
+                <div className='leave-input-section fs-4'>
+                    <Form className='fs-4'>
                         <Form.Group>
                             <Form.Control
-                                className='leave-input'
+                                className='leave-input fs-4'
+                                style={{letterSpacing:"3px"}}
                                 type='text'
                                 placeholder='Student Name'
                                 value={sname}
@@ -82,8 +83,9 @@ export default function LeaveLetter() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Control
-                                className='leave-input'
+                                className='leave-input fs-4'
                                 type='number'
+                                style={{letterSpacing:"3px"}}
                                 placeholder='Student Rollno.'
                                 value={rollno}
                                 onChange={(e) => setRollno(e.target.value)}
@@ -91,8 +93,9 @@ export default function LeaveLetter() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Control
-                                className='leave-input'
+                                className='leave-input fs-4'
                                 type='number'
+                                style={{letterSpacing:"3px"}}
                                 placeholder='Days'
                                 value={days}
                                 onChange={(e) => setDays(e.target.value)}
@@ -100,8 +103,9 @@ export default function LeaveLetter() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Control
-                                className='leave-input'
+                                className='leave-input fs-4'
                                 type='date'
+                                style={{letterSpacing:"3px"}}
                                 placeholder='Starting Date'
                                 value={sdate}
                                 onChange={(e) => setSdate(e.target.value)}
@@ -109,24 +113,34 @@ export default function LeaveLetter() {
                         </Form.Group>
                         <Form.Group>
                             <Form.Control
-                                className='leave-input'
+                                className='leave-input fs-4'
                                 type='text'
+                                style={{letterSpacing:"3px"}}
                                 placeholder='Reason'
                                 value={reason}
                                 onChange={(e) => SetReason(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Control
-                                className='leave-input'
+                            <Form.Select
+                                className='leave-input fs-4'
                                 type='text'
+                                style={{letterSpacing:"3px"}}
                                 placeholder='Batch'
                                 value={sclass}
                                 onChange={(e) => setSclass(e.target.value)}
-                            />
+                            >
+                                <option value="10A">10A</option>
+                                <option value="10B">10B</option>
+                                <option value="10C">10C</option>
+                                <option value="10D">10D</option>
+                                <option value="9A">9A</option>
+                                <option value="9B">9B</option>
+                                <option value="9C">9C</option>
+                            </Form.Select>
                         </Form.Group>
                         <div className='text-center'>
-                        <Button className='leave-button text-center' onClick={leaveSubmit}>Submit</Button>
+                        <Button variant="primary"  style={{borderRadius:"0.2rem",boxShadow:"0px 0px 4px 0px grey",letterSpacing:"2px"}}  className='leave-button text-center' onClick={leaveSubmit}>Submit</Button>
                         </div>
                     </Form>
                 </div>

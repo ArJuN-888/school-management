@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Components/Teacherlogin";
 import mycontext from "./Context/Context";
@@ -275,6 +275,12 @@ setNotifications(mNotifications)
     markNotificationAsRead,
     markthisuserNotificationAsRead
   };
+  const customToastStyle = {
+    fontSize: '20px',
+    letterSpacing:'3px',
+
+    // Adjust the font size as needed
+  };
   return (
     <>
       <BrowserRouter>
@@ -326,7 +332,13 @@ setNotifications(mNotifications)
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
-      <ToastContainer position="top-center" />
+      <ToastContainer
+       position="top-center"
+       style={customToastStyle}
+       transition={Flip}
+       autoClose={3000}
+       theme="light"
+       />
     </>
   );
 }

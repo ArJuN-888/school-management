@@ -28,10 +28,12 @@
 
   .sh-tag{
     color: rgb(253, 255, 113);
+
   }
   
   .sh-learn{
-    border-radius: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px 0px grey;
   }
   .info-section {
     display: flex;
@@ -53,16 +55,22 @@
     background-color: aqua;
     margin-right: 15px;
     border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px grey;
+    padding: 8px;
   }
   .sh-buttons-a{
     background-color: red;
     margin-right: 15px;
     border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px grey;
+    padding: 8px;
   }
   
   .sh-buttons-c{
     background-color: greenyellow;
     border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px grey;
+    padding: 8px;
   }
   
   

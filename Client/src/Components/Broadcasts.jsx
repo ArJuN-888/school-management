@@ -89,9 +89,9 @@ catch(error)
 }
   }
   return (
-    <div className='brdiv text-center' style={{letterSpacing:'3px'}}>
-      <h3 style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown'}} className='ms-1 mb-3 text-center'>Announcements</h3>
-      {broadcast.length === 0  && <div className='text-center' style={{fontFamily:'verdana'}} >No latest announcements...</div>}
+    <div className='brdiv text-center m-2' style={{letterSpacing:'3px'}}>
+      <h3 style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown',textDecoration:"underline"}} className='ms-1 mb-3 text-center'>Announcements</h3>
+      {broadcast.length === 0  && <div className='text-center' style={{fontFamily:'verdana',}} >No latest announcements...</div>}
       { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld mt-2 flex-wrap' style={{backgroundColor:"transparent"}}>
 <span className='fs-5 text-success' style={{letterSpacing:"2px"}}>{moment(an.createdAt).calendar()}</span>
@@ -135,7 +135,7 @@ catch(error)
   </div>}
   <div>
     {parentID && <div>
-      <h3 style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown'}} className='mt-5 ms-1'>Class Routines</h3>
+      <h3 style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown',textDecoration:"underline"}} className='mt-5 ms-1'>Class Routines</h3>
       {broadcastmess && broadcastmess.map((data,index)=>(
         <div key={index} className='routines-parent'>
           <span className='text-success fs-6 me-5 ms-5'  style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
