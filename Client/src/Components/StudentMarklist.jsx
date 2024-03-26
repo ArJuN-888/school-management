@@ -13,7 +13,7 @@ const StudentMarklist = () => {
     console.log("students",loggedteacherStudents)
     const teacherName = GetTname();
     const teacherID=GetTID()
-  
+  const [showsub,setShowsub] = useState(false)
 
     const [toggle,setToggle]=useState(0)
     const [studentroll,setStudentRoll]=useState("")
@@ -55,6 +55,7 @@ const StudentMarklist = () => {
     };
 
     const handleAddMark = () => {
+      setShowsub(true)
         setData({
             ...data,
             marks: [
@@ -77,6 +78,7 @@ const StudentMarklist = () => {
             console.log(response.data);
             toast.success("Added Successfully",{transition:Flip});
             setToggle(0)
+            setShowsub(false)
         } catch (error) {
             console.log(error);
         }
@@ -92,15 +94,18 @@ const StudentMarklist = () => {
     })
     }
 
+const Cancel = ()=>{
+  setToggle(0)
 
+}
     return (
-        <div className='main'>
+        <div className='main fs-4' style={{letterSpacing:"4px"}}>
             <div className='heading'>
-                <h3 className='mb-4 mt-4' style={{letterSpacing:"3px"}}>Welcome {teacherName} - You can add your student marklist here...</h3>
+                <h3 className='mb-4 mt-4' style={{letterSpacing:"4px"}}>Welcome {teacherName} - You can add your student marklist here...</h3>
 
 
 
-                <div className="table fs-5">
+                <div className="table fs-4">
         <Table responsive striped hover variant="white">
          {loggedteacherStudents.length !==0 && <thead style={{ letterSpacing: "4px" }}>
             <tr>
@@ -160,9 +165,13 @@ const StudentMarklist = () => {
                            <input type="number" id={`totalMark${index}`} name={`totalMark${index}`} placeholder="Total Mark..." required value={mark.totalMark} onChange={(e) => handleMarkChange(index, "totalMark", e.target.value)} />
                        </div>
                    ))}
-                   <Button type="button" variant='danger' className='me-2 mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}} onClick={handleAddMark}>Add Mark</Button>
-                   <Button variant='primary' className='mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}}  type="submit">Submit</Button>
+                   <Button type="button" variant='success' className='me-2 mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}} onClick={handleAddMark}>Add Mark</Button>
+                   {showsub &&<Button variant='primary' className='mt-2 me-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}}  type="submit">Submit</Button>}
                </form>
+               {showsub &&<>
+                   
+                  <Button variant='danger' className='mt-2' style={{letterSpacing:"2px",boxShadow:"0px 0px 4px 0px grey",borderRadius:"0.2rem"}} onClick={()=>{Cancel()}} type="submit">Cancel</Button></> 
+                  } 
                <div id="message"></div>
            </div>} 
             </div>

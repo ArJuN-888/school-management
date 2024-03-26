@@ -145,7 +145,7 @@ catch(error)
   return (
     <div className='m-3 fs-5 text-center' style={{letterSpacing:"2px"}}>
         {teacherID || adminID ||staffID ? <>
-<div className='text-center'><h1 className=' mb-4 ' style={{letterSpacing:"3px",fontFamily:'verdana',color:'brown',textDecoration:'underline'}}>SHARE STUDY MATERIALS</h1></div>
+<div className='text-center'><h1 className=' mb-4 fs-4' style={{letterSpacing:"4px",fontFamily:'verdana',color:'brown',textDecoration:'underline'}}>SHARE STUDY MATERIALS</h1></div>
 <Form className='text-center'>
     <Form.Group as={Row} >
         <Form.Label column sm="1">Note:</Form.Label>
@@ -220,7 +220,7 @@ onChange={(e)=>handleChange("link",e.target.value)}
       < Button className='mt-2' style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"5px"}} onClick={HandleSubmit}>Post</Button>
     </Form>
-    <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown'}}>Previous Uploads...</h3>
+    <h3 className='ms-2 mt-4 FS-4 mb-4' style={{letterSpacing:"4px",fontFamily:'verdana',color:'brown',textDecoration:"underline"}}>PREVIOUS UPLOADS</h3>
     {filterprev.length=== 0 && <h3>No History found...</h3>}
 { filterprev && filterprev.map((an,index)=>(
 <div key={index} className='d-flex gap-5 mt-2 p-2' style={{backgroundColor:"transparent",boxShadow:"0px 0px 1px 0px"}} >

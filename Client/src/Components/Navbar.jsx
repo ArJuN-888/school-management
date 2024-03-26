@@ -290,7 +290,7 @@ const Hr = (props) => (
     }}>
   {adminID &&<>
   <div className='d-flex gap-4  justify-content-center'  >
-        <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{adminName}</div></li>
+        <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{adminName}</div></li>
             <OverlayTrigger
                     placement="bottom"
                     delay={{ show: 50, hide: 100 }}
@@ -319,7 +319,7 @@ const Hr = (props) => (
 
         </div></>}
         {teacherID &&<>
-          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{teacherName}</div></li>
+          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{teacherName}</div></li>
 
 <OverlayTrigger
                     placement="bottom"
@@ -350,7 +350,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logststate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 
         </>}
         {doctorID &&<>
-          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{doctorName}</div></li>
+          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{doctorName}</div></li>
          <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}/></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}}  to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Ap}><Link style={{textDecoration:"none"}}  to="/Dpro"><CgProfile  style={{color:"black",fontSize:"25px"}}  /></Link></OverlayTrigger></li>
@@ -360,7 +360,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logdocstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 
         </>}
         {staffID &&<>
-          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{staffName}</div></li>
+          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{staffName}</div></li>
 
 
          <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"28px"}}/></Link></OverlayTrigger></li>
@@ -372,7 +372,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logstaffstate()}}><IoLogOutOutline style={{fontSize:"28px"}}/></button></OverlayTrigger></li> 
         </>}
         {parentID &&<>
-          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{parentName}</div></li>
+          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{parentName}</div></li>
 
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></OverlayTrigger></li>
@@ -386,7 +386,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logparentstate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 
         </>}
         {eoID &&<>
-          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-white'>:-</label> <div className='text-success'>{eoName}</div></li>
+          <li className='d-flex gap-2'><div className='text-danger'>Active </div> <label className='text-black'>:-</label> <div className='text-success'>{eoName}</div></li>
          <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={renderTooltip}><Link style={{textDecoration:"none"}} to="/Home"><BiHomeAlt2  style={{color:"black",fontSize:"23px"}}  /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Chat}><Link style={{textDecoration:"none"}} to="/Chat"><PiChatsLight style={{color:"black",fontSize:"27px"}} /></Link></OverlayTrigger></li>
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={Bm}><Link style={{textDecoration:"none"}} to="/Broadcasts"><BsChatLeftTextFill style={{color:"black",fontSize:"23px"}} /></Link></OverlayTrigger></li>

@@ -89,7 +89,7 @@ const handleStafftoggle = (sbatch)=>{
     );
     return (
         <div className='' style={{padding:"20px"}}>
-            <h3 className=' fs-4' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
+            <h3 className=' fs-4' style={{ letterSpacing: "4px" ,color:'brown',textAlign:"center",fontFamily:"verdana",textDecoration:"underline"}}>REGISTERED CLASSROOMS</h3>
 
             <div className='d-flex justify-content-center'>
              {teachers.map((data, index) => (
@@ -183,7 +183,7 @@ const handleStafftoggle = (sbatch)=>{
  
 </div>}
                 <div className=''>
-                   <div className='d-flex justify-content-center align-items-center '>{ptog === 1 && <h3 className='ms-2 mt-3 d-flex mb-4 fs-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Classroom - ${batch}`}...</h3>}   {ptog === 1 && <Button className='mb-3mt-2' style={{
+                   <div className='d-flex justify-content-center align-items-center '>{ptog === 1 && <h3 className='ms-2 mt-3 d-flex mb-4 fs-4 justify-content-center' style={{ letterSpacing: "4px",fontFamily:"verdana",color:"brown" ,textDecoration:"underline"}}>{`CLASSROOM - ${batch}`}...</h3>}   {ptog === 1 && <Button className='mb-3mt-2' style={{
                         padding: "6px 10px 8px 10px",
                         border: "none",
                         letterSpacing: "2px",

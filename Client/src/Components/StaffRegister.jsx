@@ -51,7 +51,7 @@ export default function StaffRegister() {
   return (
     <div>
       <Form className='fs-5 m-2' style={{letterSpacing:"2px"}}>
-        <h2 className='ms-2 fs-3 mb-4' style={{letterSpacing:"3px"}}>Staff Account Creation...</h2>
+        <h2 className='ms-2 fs-4 mb-4 text-center' style={{letterSpacing:"4px",fontFamily:'verdana',color:'brown',textDecoration:'underline'}}>STAFF ACCOUNT CREATION</h2>
         {/* <FormGroup>
           <FormControl
             type='text'
@@ -207,7 +207,8 @@ export default function StaffRegister() {
                         </Col>
                 </Form.Group >
         <div className='text-center m-3'>
-            <label htmlFor="fileUpload" className='hover'>
+          <Form.Label  sm="2 " className='me-4'>Profile Photo : </Form.Label>
+            <label htmlFor="fileUpload"  className='hover'>
               <FaCloudUploadAlt /> Upload File
               <input
                 id="fileUpload"

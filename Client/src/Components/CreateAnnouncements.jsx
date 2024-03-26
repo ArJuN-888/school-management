@@ -113,7 +113,7 @@ catch(error)
 }
   return (
     <div className='fs-5 m-2 text-center' style={{letterSpacing:"2px"}}>
-<h2 className='fs-3 mb-3  ' style={{letterSpacing:"2px",fontFamily:'verdana',textDecoration:'underline',color:'brown'}}>UPLOAD ANNOUNCEMENTS</h2>
+<h2 className='fs-4 mb-3  ' style={{letterSpacing:"4px",fontFamily:'verdana',textDecoration:'underline',color:'brown'}}>UPLOAD ANNOUNCEMENTS</h2>
 <Form>
 <Form.Group as={Row} className='mt-2'>
   <Form.Label column sm="1" >Note:</Form.Label>
@@ -152,7 +152,7 @@ onChange={(e)=>handleChange("note",e.target.value)}
       </Form>
       < Button  className='mt-2'  style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"0rem"}} onClick={HandleSubmit}>Post</Button>
-    <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown'}}>Previous Uploads...</h3>
+    <h3 className='ms-2 mt-4 fs-4 mb-4' style={{letterSpacing:"4px",fontFamily:'verdana',textDecoration:'underline',color:'brown'}}>PREVIOUS UPLOADS</h3>
 { broadcast && broadcast.map((an,index)=>(
 <div key={index} className='grp-dwld' style={{backgroundColor:"transparent"}} >
 <span className='text-success fs-5' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>

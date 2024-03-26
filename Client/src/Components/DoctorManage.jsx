@@ -207,7 +207,7 @@ console.log("id",docID);
   return (
     <div className='m-2 fs-5' style={{letterSpacing:"2px"}}>
         <div >
-            <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Doctor Registration...</h3>
+            <h3 className='doc-reg-head fs-4 mb-4 text-center' style={{letterSpacing:"4px",color:"brown",textDecoration:"underline",fontFamily:"verdana"}}>DOCTOR REGISTRATION</h3>
             <Form>
                 <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Username:</Form.Label>
@@ -307,7 +307,7 @@ console.log("id",docID);
         </div>
         <div className=''>
             <div>
-           {doctors.length !==0 &&  <h3 className='doc-reg-head mb-4' style={{letterSpacing:"2px"}}>Registered Doctors...</h3> }
+           {doctors.length !==0 &&  <h3 className='doc-reg-head fs-4 mb-4 text-center' style={{letterSpacing:"4px",color:"brown",fontFamily:"verdana",textDecoration:"underline"}}>REGISTERED DOCTORS</h3> }
                 <Table hover responsive striped  className='doc-map-ta fs-5' style={{letterSpacing:"2px"}}>
                 {doctors.length !==0 &&   <thead>
                     <tr>

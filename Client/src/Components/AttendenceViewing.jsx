@@ -60,11 +60,11 @@ console.log("stat",stat)
       setAttendence([])
     }
   return (
-    <div className='m-2' style={{letterSpacing:"2px"}}>
+    <div className='m-2 ' style={{letterSpacing:"3px"}}>
         <div className='heading'>
            <h2>You Can view Student's Attendence Here</h2>
         </div>
-        <div className='table fs-5 '>
+        <div className='table fs-4 '>
         <Table responsive cstriped bordered hover variant="white" className='text-center'>
           {loggedteacherStudents.length !== 0 &&<thead style={{letterSpacing:"4px"}} >
             <tr>
@@ -101,10 +101,10 @@ console.log("stat",stat)
                {loggedteacherStudents.length === 0 && <label>No student data available</label>} 
               </div>
           </Table>
-          <div className='mt-5'>
+          <div className='mt-5 '>
           {attendence.length > 0 ? (
             
-            <Table className='mt-6' responsive cstriped bordered hover variant="white">
+            <Table className='mt-6  ' responsive cstriped bordered hover variant="white">
               <thead style={{letterSpacing:"4px"}} >
               <h3 className='mb-4'>{`Attendence History of ${stname}`}</h3>
                 <tr>

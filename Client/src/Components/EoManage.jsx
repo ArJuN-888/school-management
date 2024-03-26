@@ -181,7 +181,7 @@ export default function EoManage() {
     <div className='fs-5' style={{letterSpacing:"2px"}}>
       <div className='m-2' >
       <div className='Staff-Register mt-2 '>
-  <h3 className='mb-4 text-center' style={{fontFamily:'verdana', color:'brown'}}>External Organization Registration</h3>
+  <h3 className='mb-4 text-center fs-4' style={{fontFamily:'verdana', color:'brown',textDecoration:"underline",letterSpacing:"3px"}}>EXTERNAL ORGANIZATION REGISTRATION</h3>
 
    </div>
       <Form className='text-center'>
@@ -283,7 +283,7 @@ export default function EoManage() {
     </div>
   
     <div className='all-teacher m-2 mt-3' style={{letterSpacing:"2px"}}>
-    {allEo.length !== 0 && <h3 className='doc-reg-head mb-4 text-center' style={{letterSpacing:"3px",fontFamily:'verdana',color:'brown'}}>Registered Organizations...</h3>}
+    {allEo.length !== 0 && <h3 className='doc-reg-head mb-4 fs-4 text-center' style={{letterSpacing:"4px",fontFamily:'verdana',color:'brown',textDecoration:"underline"}}>REGISTERED ORGANIZATIONS</h3>}
       <Table  responsive bordered hover  variant='white'>
        {allEo.length !== 0 &&
         <thead className='fs-5'>

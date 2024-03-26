@@ -47,7 +47,7 @@ export default function Register() {
   return (
     <div className="mt-5">
       <div>
-          <div className="mb-4 fs-5"><h2 className='ms-2 fs-3' style={{letterSpacing:"3px"}}>Teacher Registration...</h2></div>
+          <div className="mb-4 fs-5 text-center"><h2 className='ms-2 fs-4'style={{letterSpacing:"4px",fontFamily:'verdana',color:'brown',textDecoration:'underline'}}>TEACHER REGISTRATION</h2></div>
           <Form className='fs-5 m-2' style={{letterSpacing:"2px"}}>
             <Form.Group as={Row} className='mt-2'>
                     <Form.Label  column sm="2"> Username:</Form.Label>
@@ -162,6 +162,7 @@ export default function Register() {
                 </Form.Group >
             <div className='hover-grp'>
           <div className='text-center m-3' >
+          <Form.Label  sm="2 " className='me-4'>Profile Photo : </Form.Label>
             <label htmlFor="fileUpload" className='hover'>
               <FaCloudUploadAlt /> Upload File
               <input

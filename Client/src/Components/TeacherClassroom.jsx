@@ -168,14 +168,18 @@ export default function TeacherClassroom() {
           toast.error(error.response.data.message,{transition:Flip})
             }
       }
+      const Copy=(id)=>{
+        navigator.clipboard.writeText(id)
+        toast("Copied to Clipboard")
+      }
   return (
-    <div className="main d-block m-2 fs-5" style={{letterSpacing:"2px"}}>
+    <div className="main d-block m-2 fs-4" style={{letterSpacing:"4px"}}>
       <div className="heading">
         <h3 style={{ letterSpacing: "2px" }}>
           Welcome {teachername}, to your classRoom
         </h3>
       </div>
-      <div className="table fs-5" style={{ letterSpacing: "2px" }}>
+      <div className="table fs-4" style={{ letterSpacing: "2px" }}>
       <Table responsive striped bordered hover variant="white">
   {loggedteacherStudents.length !== 0 && (
     <thead style={{ letterSpacing: "4px" }}>
@@ -194,7 +198,7 @@ export default function TeacherClassroom() {
     {loggedteacherStudents.length !== 0 && (
       loggedteacherStudents.map((student, index) => (
         <tr key={index}>
-            <td style={{ padding: '10px', borderSpacing: '12px' }}>{student._id}</td>
+            <td style={{ padding: '10px', borderSpacing: '12px' }}>{student._id}<Button variant="secondary" className="me-1 fs-6 ms-2 " style={{ borderRadius: "0.2rem", boxShadow: "0px 0px 5px 0px grey", letterSpacing: "2px" }} onClick={()=>{Copy(student._id)}}>Copy</Button></td>
           <td style={{ padding: '10px', borderSpacing: '12px' }}>{student.rollno}</td>
           <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.batch}</td>
           <td style={{ padding: '10px', borderSpacing: '10px' }}>{student.studentname}</td>

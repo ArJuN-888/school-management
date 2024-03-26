@@ -61,12 +61,12 @@ console.log("mark",mark);
         setMark([])
       }
   return (
-    <div className='m-2' style={{letterSpacing:"3px"}}>
+    <div className='m-2 ' style={{letterSpacing:"3px"}}>
       <div className="heading">
-        <h3 className='fs-2'> hello {teacherName}... This is your Students Marklist </h3>
+        <h3 className='fs-3'> hello {teacherName}... This is your Students Marklist </h3>
       </div>
-      <div className="table">
-        <Table className='fs-5 text-center' responsive cstriped bordered hover variant="white">
+      <div className="table fs-4 ">
+        <Table className=' text-center' responsive cstriped bordered hover variant="white">
        {loggedteacherStudents.length !==0 && <thead>
             <tr>
               <th className='bg-primary text-white '>Roll no</th>

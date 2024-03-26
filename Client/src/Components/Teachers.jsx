@@ -132,7 +132,7 @@ setPasstoggle(false)
   return (
     <>
       <div className='all-teacher m-2 ' style={{letterSpacing:"3px"}}>
-      <h2 className=' mb-3 text-center' ><u style={{color:'brown',fontFamily:'verdana',}}>CERTIFIED TUTORS</u></h2>
+      <h2 className=' mb-3 text-center fs-4' ><u style={{color:'brown',fontFamily:'verdana',letterSpacing:"4px"}}>CERTIFIED TUTORS</u></h2>
         <Table  responsive bordered hover  variant='white'>
           {Teachers.length === 0 && <h3>No Data Found...</h3>}
         {Teachers.length !==0 &&  <thead className='fs-5'>
