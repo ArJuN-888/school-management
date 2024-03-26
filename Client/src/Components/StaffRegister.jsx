@@ -201,7 +201,7 @@ export default function StaffRegister() {
                         <Form.Select    style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
                             <option value="" >Status</option>
-                            <option value="TEACHER">Subject teacher</option>
+                            <option value="Subject teacher">Subject teacher</option>
 
                         </Form.Select>
                         </Col>
