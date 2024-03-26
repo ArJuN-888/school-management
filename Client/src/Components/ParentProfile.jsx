@@ -52,7 +52,7 @@ const [reqURL,] = useState('http://localhost:5000/uploads');
           }
         );
   
-        localStorage.setItem("teacherProfile", response.data.parent.filename);
+        localStorage.setItem("parentProfile", response.data.parent.filename);
         AllStudents()
         toast.success(response.data.message,{transition:Flip});
       } catch (error) {
