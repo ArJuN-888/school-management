@@ -29,24 +29,24 @@ const Parentattendenceviewing = () => {
         }
     }
   return (
-    <div>
-      <div className='heading'><h3 className='text-center'>helo... {parentName} </h3></div>
+    <div className='m-5' style={{letterSpacing:'3px'}}>
+      <div className='heading'><h1 className='text-center' style={{color:'brown', fontFamily:'monospace', textDecoration:'underline'}}>STUDENT ATTENDENCE</h1></div>
       <div className='attendence'>
         {attendence.length===0 ?(
             <div><h5 className='text-center'>no record found</h5 ></div>
         ):(
             <Table>
             <thead>
-                <th>student-id</th>
-                <th>Date</th>
-                <th>Status</th>
+                <th className='text-center fs-5' >student-id</th>
+                <th className='text-center fs-5'>Date</th>
+                <th className='text-center fs-5'>Status</th>
             </thead>
             <tbody>
                {attendence.map((data,index)=>(
                 <tr key={index}>
-                    <td>{index+1}</td>
-                    <td>{data.date}</td>
-                    <td>{data.status}</td>
+                    <td className='text-center'>{index+1}</td>
+                    <td className='text-center'>{new Date(data.date).toLocaleDateString('en-GB')}</td>
+                    <td style={{color:data.status === "PRESENT" ? "green" : "red"}} className='text-center'>{data.status}</td>
                 </tr>
                ))}
             </tbody>

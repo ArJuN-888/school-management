@@ -62,7 +62,6 @@ const [reqURL,] = useState('http://localhost:5000/uploads');
     };
   return (
     <div className="pdiv" >
-          
     <div className="img-contain mb-2">
       <img className="image" src={`${reqURL}/${parentProfile}`} />
       <div className="file-parent">

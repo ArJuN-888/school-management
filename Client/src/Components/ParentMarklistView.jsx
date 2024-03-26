@@ -44,11 +44,11 @@ const ParentMarklistView = () => {
   };
 
   return (
-    <div>
+    <div className="m-3 " style={{letterSpacing:'3px'}}>
       <div className="heading text-center">
-        <h3 className="text-center">
-        {parentname} Here is Your children's Marksheet
-        </h3>
+        <h2 className="text-center" style={{fontFamily:'monospace',textDecoration:'underline', color:'brown'}}>
+          STUDENT MARKLIST
+        </h2>
       </div>
 
       <div className="marklist">
@@ -57,7 +57,7 @@ const ParentMarklistView = () => {
         ) : (
           mark.map((data, index) => (
             <div key={index}>
-              <h2>Examination: {data.examname}</h2>
+              <h3 className="text-center" style={{color:'magenta', textDecoration:'underline' , fontFamily:'verdana'}}> {data.examname}</h3>
               <Table className="fs-5" striped bordered hover variant="white">
                 <thead>
                   <tr>
@@ -76,9 +76,9 @@ const ParentMarklistView = () => {
                   ))}
                 </tbody>
               </Table>
-              <div>
-                <p >Percentage:<span style={{color:'royalblue'}}> {calculatePercentage(data.marks)}% </span></p>
-                <p>Result:<span style={{color: calculatePercentage(data.marks) > 20 ? 'green' : 'red'}}>{calculatePercentage(data.marks) > 20 ? "Passed" : "Fail"}</span></p>
+              <div className="text-center">
+                <p className="fs-4 mt-3" >Percentage:<span style={{color:'royalblue'}}> {calculatePercentage(data.marks)}% </span></p>
+                <p className="fs-4">Result:<span style={{color: calculatePercentage(data.marks) > 20 ? 'green' : 'red'}}>{calculatePercentage(data.marks) > 20 ? "Passed" : "Fail"}</span></p>
               </div>
             </div>
           ))

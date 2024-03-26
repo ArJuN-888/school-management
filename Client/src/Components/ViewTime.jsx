@@ -26,11 +26,11 @@ export default function ViewTime() {
   console.log("tables", timetables);
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <div className="view-section" style={{borderRadius:'15px'}}>
-            <h2 className="text-center">Your TimeTable</h2>
+    <Container  >
+      <Row className="m-5">
+        <Col >
+          <div className="view-section" style={{borderRadius:'15px',letterSpacing:'3px'}}>
+            <h2 className="text-center" style={{fontFamily:'monospace',color:'brown',textDecoration:'underline'}}>Your TimeTable</h2>
             {timetables.length > 0 ?(        
             <div className="time-section" style={{borderRadius:'5px'}}>
               <Table bordered striped hover responsive variant="dark" style={{borderRadius:'5px'}}>

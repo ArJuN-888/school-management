@@ -66,9 +66,9 @@ export default function LeaveLetter() {
     };
 
     return (
-        <Container className='leave-container'>
+        <Container className='leave-container' style={{letterSpacing:'3px'}}>
             <div className='leave-section'>
-                <h1 className='leave-head'>Leave Letter</h1>
+                <h1 className='leave-head' style={{fontFamily:'verdana'}}>Leave Letter</h1>
                 <div className='leave-input-section'>
                     <Form>
                         <Form.Group>

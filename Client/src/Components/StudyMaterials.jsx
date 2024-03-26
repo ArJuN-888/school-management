@@ -240,6 +240,7 @@ onChange={(e)=>handleChange("link",e.target.value)}
 </>:<>
 {parentId && allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
 <div className='m-5 pt-3'>
+  <h3 className='text-center' style={{color:'brown',textDecoration:'underline', letterSpacing:'3px', fontFamily:'monospace'}}>STUDY MATERIALS FOR YOU</h3>
         <Table striped bordered variant='light' >
           <thead>
             <tr>
