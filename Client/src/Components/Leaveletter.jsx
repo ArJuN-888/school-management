@@ -148,7 +148,7 @@ export default function LeaveLetter() {
                                 {letters.map((a, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{new Date(a.startdate).toLocaleDateString()}</td>
+                                        <td>{new Date(a.startdate).toLocaleDateString('en-GB')}</td>
                                         <td>{a.days}</td>
                                         <td>{a.reason}</td>
                                         <td>{a.grant ? "Approved" : "Pending"}</td>
