@@ -50,8 +50,8 @@ const DoctorHealthView = () => {
                                     <td>{student.age}</td>
                                     <td>
                                         <ul>
-                                            <li><strong>Height:</strong> {student.height}</li>
-                                            <li><strong>Weight:</strong> {student.weight}</li>
+                                            <li><strong>Height:</strong> {student.height} cm</li>
+                                            <li><strong>Weight:</strong> {student.weight} kg</li>
                                             <li><strong>Vision:</strong> {student.Vision}</li>
                                             <li><strong>Mental Health:</strong> {student.MentalHealth}</li>
                                             <li><strong>Immunization:</strong> {student.Immunization}</li>
