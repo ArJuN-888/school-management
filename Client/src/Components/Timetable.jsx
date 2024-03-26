@@ -77,7 +77,15 @@ console.log("time",timetables);
           <Form>
             <Form.Group>
               <Form.Label>Day:</Form.Label>
-              <Form.Control type="text" value={day} onChange={(e) => setDay(e.target.value)} />
+              <Form.Select type="text" value={day} onChange={(e) => setDay(e.target.value)}>
+                  <option value="Select Day">Select Day</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tueday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+              </Form.Select>
             </Form.Group>
             {periods.map((period, index) => (
               <div key={index}>
@@ -94,7 +102,7 @@ console.log("time",timetables);
             {selectedId ? (
               <Button variant='info' className='butto' onClick={handleUpdateTimetable}>Update Timetable</Button>
             ) : (
-              <Button className='butto ' onClick={handleAddTimetable}>Add Timetable</Button>
+              <Button className='butto ' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={handleAddTimetable}>Add Timetable</Button>
             )}
           </Form>
         </Col>
@@ -102,10 +110,10 @@ console.log("time",timetables);
       <h2>Timetables</h2>
       <ul>
         {timetables.map(timetable => (
-          <li key={timetable._id}>
-            <p>{timetable.day}: {timetable.periods.join(', ')}</p>
-            <Button onClick={() => handleEditTimetable(timetable)}>Edit</Button>
-            <Button variant='danger' onClick={() => handleDeleteTimetable(timetable._id)}>Delete</Button>
+          <li key={timetable._id} className='fs-5' style={{listStyle:'none'}}>
+            <p><span style={{color:"blue"}}>{timetable.day}</span>: {timetable.periods.join(', ')}</p>
+            <Button style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} className='me-2' onClick={() => handleEditTimetable(timetable)}>Edit</Button>
+            <Button variant='danger' style={{borderRadius:"0.2rem",boxShadow:"0px 0px 5px 0px grey",letterSpacing:"2px"}} onClick={() => handleDeleteTimetable(timetable._id)}>Delete</Button>
           </li>
         ))}
       </ul>
@@ -113,7 +121,7 @@ console.log("time",timetables);
         <h2 className='overall-head text-center'>Your Class Timetable</h2>
         {timetables.length > 0 ?(     
         <div className="time-section">
-          <Table striped bordered variant='dark'>
+          <Table striped bordered variant='dark' >
             <thead>
               <tr>
                 <th>DAY</th>

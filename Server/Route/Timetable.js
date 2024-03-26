@@ -34,7 +34,7 @@ router.post('/addtable', async (req, res) => {
       const existingTimetable = await StudentTimetable.findOne({ day, classN });
 
       if (existingTimetable) {
-          return res.status(400).json({ message: 'Timetable for this day and class already exists' });
+          return res.status(200).json({ message: 'Timetable for this day and class already exists' });
       }
 
       const newTimetable = new StudentTimetable({ day, classN, periods });

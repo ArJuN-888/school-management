@@ -149,7 +149,6 @@ router.put("/editpic/:parentID",Multerstore,async(req,res)=> {
       if (!req.file) {
         return res.status(400).json({ message: "Please select a file" });
       }
-     
       console.log("admin", parentID);
       console.log("userfile", req.file);
       const callback = (error) => {

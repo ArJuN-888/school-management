@@ -65,7 +65,7 @@ console.log("stat",stat)
            <h2>You Can view Student's Attendence Here</h2>
         </div>
         <div className='table fs-5 '>
-        <Table responsive cstriped bordered hover variant="white">
+        <Table responsive cstriped bordered hover variant="white" className='text-center'>
           {loggedteacherStudents.length !== 0 &&<thead style={{letterSpacing:"4px"}} >
             <tr>
             <th className="bg-primary text-white ">SL no</th>

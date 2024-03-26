@@ -138,10 +138,10 @@ catch(error)
       <h3 style={{letterSpacing:"2px"}} className='mt-5 ms-1'>Class Routines</h3>
       {broadcastmess && broadcastmess.map((data,index)=>(
         <div key={index} className='routines-parent'>
-          <span className='text-success fs-6 me-5'  style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
-         <div style={{letterSpacing:"1px"}}> {data.text}</div>
-         <div><sub className='fs-4 text-danger me-5'>-{data.teachername}</sub> </div>
-          <div className='text-warning'>{data.status}</div>
+          <span className='text-success fs-6 me-5 ms-5'  style={{fontSize:"15px",letterSpacing:"2px"}}>{moment(data.createdAt).calendar()}</span>
+         <div style={{letterSpacing:"1px"}} className='me-5 ms-5'> {data.text}</div>
+         <div><sub className='fs-4 text-primary me-5 ms-5 mb-5'>{data.teachername} </sub> </div>
+          <div className='text-warning me-5 ms-5'>{data.status}</div>
           </div>
       ))}
       </div>}

@@ -12,7 +12,7 @@ router.post("/post",Multerstore,async(req,res)=>{
      }
    const response = new studyModel({userID,filename:req.file.filename,status,note,subject,link})
    await response.save()
-    res.status(200).json({message:"Successfully added an announcement"})
+    res.status(200).json({message:"Successfully Shared Study Material For Studets"})
     }
     catch(error){
      res.status(400).json({message:"Unable to create"})
