@@ -181,10 +181,10 @@ export default function EoManage() {
     <div className='fs-5' style={{letterSpacing:"2px"}}>
       <div className='m-2' >
       <div className='Staff-Register mt-2 '>
-  <h3 className='mb-4'>External Organization Registration...</h3>
+  <h3 className='mb-4 text-center' style={{fontFamily:'verdana', color:'brown'}}>External Organization Registration</h3>
 
    </div>
-      <Form  >
+      <Form className='text-center'>
         <Form.Group as={Row} className='mt-2'>
           <Form.Label column sm="2">Username:</Form.Label>
           <Col sm="10" >
@@ -261,7 +261,7 @@ export default function EoManage() {
         />
         </Col>
         </Form.Group>
-        <div className='hover-grp'>
+        <div className='hover-grp m-3'>
           <div>
             <label htmlFor="fileUpload" className='hover'>
               <FaCloudUploadAlt /> Upload File
@@ -283,7 +283,7 @@ export default function EoManage() {
     </div>
   
     <div className='all-teacher m-2 mt-3' style={{letterSpacing:"2px"}}>
-    {allEo.length !== 0 && <h3 className='doc-reg-head mb-4' style={{letterSpacing:"3px"}}>Registered Organizations...</h3>}
+    {allEo.length !== 0 && <h3 className='doc-reg-head mb-4 text-center' style={{letterSpacing:"3px",fontFamily:'verdana',color:'brown'}}>Registered Organizations...</h3>}
       <Table  responsive bordered hover  variant='white'>
        {allEo.length !== 0 &&
         <thead className='fs-5'>

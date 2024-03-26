@@ -26,7 +26,7 @@ const DoctorHealthView = () => {
     return (
         <div className='m-2'>
             <div className='heading'>
-                <h4 style={{letterSpacing:"2px"}}>Health Records of Students...</h4>
+                <h2 style={{letterSpacing:"2px", fontFamily:'verdana' ,color:"brown" ,textDecoration:'underline'}}>Health Records of Students</h2>
             </div>
 
             <div className='table '>

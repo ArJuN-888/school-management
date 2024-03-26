@@ -145,8 +145,8 @@ catch(error)
   return (
     <div className='m-3 fs-5 text-center' style={{letterSpacing:"2px"}}>
         {teacherID || adminID ||staffID ? <>
-<div className='text-center'><h1 className='fs-3 d-flex mb-4 text-center' style={{letterSpacing:"3px"}}>Upload study materials....</h1></div>
-<Form>
+<div className='text-center'><h1 className=' mb-4 ' style={{letterSpacing:"3px",fontFamily:'verdana',color:'brown',textDecoration:'underline'}}>SHARE STUDY MATERIALS</h1></div>
+<Form className='text-center'>
     <Form.Group as={Row} >
         <Form.Label column sm="1">Note:</Form.Label>
         <Col sm="11">
@@ -220,16 +220,16 @@ onChange={(e)=>handleChange("link",e.target.value)}
       < Button className='mt-2' style={{letterSpacing:"2px",border:"none",
     boxShadow:"0px 0px 5px 0px grey",borderRadius:"5px"}} onClick={HandleSubmit}>Post</Button>
     </Form>
-    <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px"}}>Previous Uploads...</h3>
+    <h3 className='ms-2 mt-4 mb-4' style={{letterSpacing:"2px",fontFamily:'verdana',color:'brown'}}>Previous Uploads...</h3>
     {filterprev.length=== 0 && <h3>No History found...</h3>}
 { filterprev && filterprev.map((an,index)=>(
 <div key={index} className='d-flex gap-5 mt-2 p-2' style={{backgroundColor:"transparent",boxShadow:"0px 0px 1px 0px"}} >
-<span className='text-success fs-5' style={{letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
-<div className=''><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
-<div className=''><label style={{letterSpacing:"2px"}}>{an.subject}</label></div>
+<span className='text-success fs-5 ms-5' style={{letterSpacing:"3px"}}>{moment(an.createdAt).calendar()}</span>
+<div className='ms-5'><label style={{letterSpacing:"2px"}}>{an.note}</label></div>
+<div className='ms-5'><label style={{letterSpacing:"2px"}}>{an.subject}</label></div>
 <div><label className='text-warning fs-5' style={{letterSpacing:"2px"}}>{an.status} !!</label></div>
 {an.link && <>Refer :  <Link style={{color:"blue"}} to={`${an.link}`}>{an.link}</Link></>}
-<button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>
+<button className='req-dwld-btn border-0 bg-transparent ms-5' onClick={() => downloadImage(`${reqURL}/${an.filename}`, an.filename)}>
 <PiDownloadSimpleLight style={{fontSize:"30px"}} />
             </button>
           
