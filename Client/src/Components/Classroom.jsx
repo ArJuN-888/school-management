@@ -6,8 +6,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { Button, Table } from 'react-bootstrap';
 import mycontext from '../Context/Context';
 import { VscClose } from "react-icons/vsc";
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { FaBookBookmark } from "react-icons/fa6";
+
 import { FaUserGraduate } from "react-icons/fa6";
 import {toast} from "react-toastify"
 
@@ -19,12 +18,22 @@ export default function Classroom() {
     const [togid, setTogid] = useState("");
     const [batch, setBatch] = useState("");
     const [ptog, setPtog] = useState(0);
-
+const [staff,setStaff] = useState([])
     useEffect(() => {
         fetchTeachers();
         fetchParents();
+        fetchStaff();
     }, []);
-
+    const fetchStaff = async() =>{
+        try{
+          const response  = await axios.get(`${baseURL}/Staff/getstaff`)
+        setParents([...parents,...response.data.staff])
+        }
+      catch(error)
+      {
+        toast.error(error.response.data.message,{transition:Flip})
+      }
+      }
     const fetchTeachers = async () => {
         try {
             const response = await axios.get(`${baseURL}/Teacher/getallteachers`);
@@ -68,7 +77,7 @@ export default function Classroom() {
 
     return (
         <div className='' style={{padding:"20px"}}>
-            <h3 className=' ' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
+            <h3 className=' fs-4' style={{ letterSpacing: "3px" ,textAlign:"center"}}>Registered Classrooms...</h3>
 
             <div className='d-flex justify-content-center'>
              {teachers.map((data, index) => (
@@ -92,7 +101,7 @@ export default function Classroom() {
     <div  key={index}>
         {(toggle === 1 && data._id === togid) && (
             <div className=' fs-5' style={{ letterSpacing: "3px" ,textAlign:"center"}}>
-              <div className='t-con'>
+              <div className='t-con' style={{backgroundColor:"",border:"3px solid black"}}>
                 <div>Class Teacher : {data.username}</div>
                 <div>Batch : {data.batch}</div>
                 </div>
@@ -121,28 +130,7 @@ export default function Classroom() {
             </div>
 
                 <div className=''>
-                    {ptog === 1 && <h3 className='ms-2 mt-3 mb-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Registered Students in ${batch}`}</h3>}
-                   
-                    
-
-                      
-                        {!parents.some((element) => element.batch === batch) && ptog === 1 && <h3 className='mt-3 mb-3' style={{letterSpacing:"3px"}}>No students registered...</h3>}
-                            {parents.map((data, index) => (
-                                <div key={index}>
-                                    {(ptog === 1 && data.batch === batch) && (
-                                        <>
-                                            <>{data.studentname}</>
-                                            <>{data.parentname}</>
-                                            <>{data.batch}</>
-                                            <>{data.email}</>
-                                            <>{data.parentphone}</>
-                                        </>
-                                    )}
-                                </div>
-                            ))}
-                       
-                 
-                    {ptog === 1 && <Button className='mt-2' style={{
+                   <div className='d-flex justify-content-center align-items-center '>{ptog === 1 && <h3 className='ms-2 mt-3 d-flex mb-4 fs-4 justify-content-center' style={{ letterSpacing: "3px" }}>{`Classroom - ${batch}`}...</h3>}   {ptog === 1 && <Button className='mb-3mt-2' style={{
                         padding: "6px 10px 8px 10px",
                         border: "none",
                         letterSpacing: "2px",
@@ -150,7 +138,30 @@ export default function Classroom() {
                         backgroundColor: "red",
                         margin: "2px",
                         borderRadius: "5px",
-                    }} onClick={Close}>Close</Button>}
+                    }} onClick={Close}><VscClose className='fs-4'/></Button>}</div> 
+                   
+                    
+
+                      
+                        {!parents.some((element) => element.batch === batch) && ptog === 1 && <h3 className='mt-3 mb-3' style={{letterSpacing:"3px"}}>No students registered...</h3>}
+                            {parents.map((data, index) => (
+                                <div key={index} className='d-inline-flex '  >
+                                    {(ptog === 1 && data.batch === batch) && (
+                                        <div className='d-block me-3 justify-content-center classchild fs-5'   style={{backgroundColor:"yellow",boxShadow:"0px 0px 5px 0px grey",borderRadius:"0.2rem",letterSpacing:"2px"}}>
+                                       
+                                            <div>Student : {data.studentname}</div>
+                                            <div>Guardian: {data.parentname}</div>
+                                            <div>Batch : {data.batch}</div>
+                                            <div>Email : {data.email}</div>
+                                            <div>Phone no : {data.parentphone}</div>
+                                          
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                       
+                 
+                 
                 </div>
           </div>
        
