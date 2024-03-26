@@ -11,6 +11,7 @@ export default function Register() {
   const { teacherregisterdata, setteacherRegisterdata } = useContext(mycontext);
   const [selectedfile, setSelectedFile] = useState(null);
   const [filename, setFilename] = useState("");
+  console.log("selectedfile",selectedfile)
   const handleChange = (key, value) => {
     setteacherRegisterdata({ ...teacherregisterdata, [key]: value });
   };
@@ -29,6 +30,7 @@ export default function Register() {
           "Content-Type": "multipart/form-data"
         }
       });
+      setSelectedFile(null)
       toast.success(response.data.message,{transition:Flip});
     } catch (error) {
       toast.error(error.response.data.message,{transition:Flip});

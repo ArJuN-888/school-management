@@ -278,7 +278,7 @@ console.log("id",docID);
                         <Col sm="10">
                         <Form.Select    style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
-                            <option value="" >Status</option>
+                            <option value="Status" >Status</option>
                             <option value="Doctor">Doctor</option>
 
                         </Form.Select>
