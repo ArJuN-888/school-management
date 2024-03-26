@@ -177,20 +177,25 @@ setPasstoggle(false)
         </Col>
         </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
-          <Form.Label column sm="2" className='fs-5' >
-            Batch:
-          </Form.Label>
-          <Col sm="10">
-        <Form.Control
-        className='fs-5'
-        value={teacherObj.batch}
-        disabled
-        style={{letterSpacing:"3px"}}
-        placeholder='Batch...'
-        onChange={(e)=>handleChange("batch",e.target.value)}
-        />
-        </Col>
-        </Form.Group>
+        <Form.Label column sm="2" className='fs-5' >
+          Batch:
+        </Form.Label>
+        <Col sm="10">
+      <Form.Select
+      className='fs-5'
+      value={teacherObj.batch}
+      style={{letterSpacing:"3px"}}
+      placeholder='Batch...'
+      onChange={(e)=>handleChange("batch",e.target.value)}
+      >
+        <option value="">Status</option>
+        <option value="10A">10A</option>
+        <option value="10B">10B</option>
+        <option value="10C">10C</option>
+        <option value="10D">10D</option>
+      </Form.Select>
+      </Col>
+      </Form.Group>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail" >
           <Form.Label column sm="2" className='fs-5'>
             Email:
