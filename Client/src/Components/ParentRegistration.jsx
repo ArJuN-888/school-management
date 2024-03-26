@@ -60,6 +60,8 @@ export default function ParentRegistration() {
           batchn: batchnumber
         }
       });
+      formData.delete("file")
+      setSelectedFile(null)
       toast.success(response.data.message,{transition:Flip});
     } catch (error) {
       toast.error(error.response.data.message,{transition:Flip});

@@ -84,6 +84,8 @@ console.log("id",docID);
             const response = await axios.post(`${baseURL}/Doctor/register`,formData)
             toast.success(response.data.message,{transition:Flip})
             fetchDoctors()
+            formData.delete("file")
+            setSelectedFile(null)
        setdoctorObj({
         username:"",
         email:"",
