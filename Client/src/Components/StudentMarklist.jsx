@@ -76,6 +76,7 @@ const StudentMarklist = () => {
             const response = await axios.post(`${baseURL}/marksheetadd`, data);
             console.log(response.data);
             toast.success("Added Successfully",{transition:Flip});
+            setToggle(0)
         } catch (error) {
             console.log(error);
         }

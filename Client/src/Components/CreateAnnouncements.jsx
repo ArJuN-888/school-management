@@ -112,8 +112,8 @@ catch(error)
   return err
 }
   return (
-    <div className='fs-5 m-2' style={{letterSpacing:"2px"}}>
-<label className='fs-3 mb-3 ' style={{letterSpacing:"2px"}}>Upload announcements...</label>
+    <div className='fs-5 m-2 text-center' style={{letterSpacing:"2px"}}>
+<label className='fs-3 mb-3  ' style={{letterSpacing:"2px"}}>Upload announcements...</label>
 <Form>
 <Form.Group as={Row} className='mt-2'>
   <Form.Label column sm="1" >Note:</Form.Label>
