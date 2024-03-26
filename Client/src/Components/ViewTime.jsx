@@ -29,11 +29,11 @@ export default function ViewTime() {
     <Container>
       <Row>
         <Col>
-          <div className="view-section">
+          <div className="view-section" style={{borderRadius:'15px'}}>
             <h2 className="text-center">Your TimeTable</h2>
             {timetables.length > 0 ?(        
-            <div className="time-section">
-              <Table bordered striped hover responsive variant="dark">
+            <div className="time-section" style={{borderRadius:'5px'}}>
+              <Table bordered striped hover responsive variant="dark" style={{borderRadius:'5px'}}>
                 <thead>
                   <tr>
                     <th>DAY</th>
