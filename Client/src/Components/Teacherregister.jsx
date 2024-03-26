@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 import mycontext from '../Context/Context';
 import { useContext } from 'react';
-import StaffRegister from './StaffRegister';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import {Flip, toast} from 'react-toastify'
 export default function Register() {
@@ -30,6 +29,7 @@ export default function Register() {
         }
       });
       toast.success(response.data.message,{transition:Flip});
+      
     } catch (error) {
       toast.error(error.response.data.message,{transition:Flip});
     }
