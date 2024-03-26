@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import GetadminID from './Hooks/GetadminID'
 import axios from 'axios';
 import moment from "moment"
-import { Button,Form ,Col,Row} from 'react-bootstrap';
+import { Button,Form ,Col,Row, Table} from 'react-bootstrap';
 
 import { PiDownloadSimpleLight } from "react-icons/pi";
 import { saveAs } from 'file-saver';
@@ -239,16 +239,44 @@ onChange={(e)=>handleChange("link",e.target.value)}
 
 </>:<>
 {parentId && allmaterial.length=== 0 && <h3>Materials unavialable...</h3>}
-{allmaterial && allmaterial.map((data,index)=>(
-    <div key={index} className='d-flex gap-3 '>
-        <span className='text-success fs-6' style={{fontSize:"15px",letterSpacing:"3px"}}>{moment(data.createdAt).calendar()}</span>
-        {data.note}
-        {data.status}
-       Refer :  <Link style={{color:"blue"}} to={`${data.link}`}>{data.link}</Link>
-        {data.subject}
-        <button className='req-dwld-btn border-0 bg-transparent' onClick={() => downloadImage(`${reqURL}/${data.filename}`, data.filename)}><PiDownloadSimpleLight style={{fontSize:"30px"}} /></button>
-    </div>
+<div className='m-5 pt-3'>
+        <Table striped bordered variant='light' >
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Note</th>
+              <th>Status</th>
+              <th>Link</th>
+              <th>Subject</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+          {allmaterial && allmaterial.map((data,index)=>(
+            <tr key={index}>
+              <td>{moment(data.createdAt).calendar()}</td>
+              <td >{data.note}</td>
+              <td style={{color:data.status === 'Important' ? 'red' : 'yellow'}}>{data.status}</td>
+              {data.link ?(
+                <>
+                <td><Link style={{textDecoration:'none'}}>{data.link}</Link></td>
+                </>
+              ):(
+              <>
+              <td>No Link Provided</td>
+              </>
+              )}
+              <td>{data.subject}</td>
+              <td>
+              <button className='req-dwld-btn border-0 bg-transparent' style={{color:'blue'}} onClick={() => downloadImage(`${reqURL}/${data.filename}`, data.filename)}><PiDownloadSimpleLight style={{fontSize:"30px"}} /></button>
+              </td>
+            </tr>
+          
 ))}
+</tbody>
+
+</Table>
+</div>
 
 </>
 }

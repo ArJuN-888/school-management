@@ -125,11 +125,13 @@ export default function LeaveLetter() {
                                 onChange={(e) => setSclass(e.target.value)}
                             />
                         </Form.Group>
-                        <Button className='leave-button' onClick={leaveSubmit}>Submit</Button>
+                        <div className='text-center'>
+                        <Button className='leave-button text-center' onClick={leaveSubmit}>Submit</Button>
+                        </div>
                     </Form>
                 </div>
             </div>
-            <div className='map-container'>
+            <div className='map-container mt-5'>
                 {letters.length > 0 ? (
                     <div className='map-section'>
                         <Table striped bordered>
@@ -146,7 +148,7 @@ export default function LeaveLetter() {
                                 {letters.map((a, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
-                                        <td>{a.startdate}</td>
+                                        <td>{new Date(a.startdate).toLocaleDateString('en-GB')}</td>
                                         <td>{a.days}</td>
                                         <td>{a.reason}</td>
                                         <td>{a.grant ? "Approved" : "Pending"}</td>
