@@ -43,6 +43,8 @@ export default function AdminRegister() {
           "Content-Type": "multipart/form-data"
         }
       });
+      formData.delete("file")
+      setSelectedFile(null)
       setFilename("");
       toast(response.data.message, { transition: Flip });
       setAdminobj({
@@ -109,7 +111,7 @@ export default function AdminRegister() {
               />
             </label>
           </div>
-          <p className='nm'>{filename ? filename : "No file chosen..."}</p>
+          {/* <p className='nm'>{filename ? filename : "No file chosen..."}</p> */}
         </div>
         <button className='login-bt' onClick={HandleRegister}>Register</button>
       </div>

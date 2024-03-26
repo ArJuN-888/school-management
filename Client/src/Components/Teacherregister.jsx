@@ -29,6 +29,7 @@ export default function Register() {
           "Content-Type": "multipart/form-data"
         }
       });
+      formData.delete("file")
       setSelectedFile(null)
       toast.success(response.data.message,{transition:Flip});
       

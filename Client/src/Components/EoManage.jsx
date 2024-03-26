@@ -161,6 +161,8 @@ export default function EoManage() {
               }
              }
              )
+             formData.delete("file")
+             setSelectedFile(null)
              toast.success(response.data.message,{transition:Flip})
              fetcheo()
                     }
