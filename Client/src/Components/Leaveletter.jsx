@@ -134,7 +134,7 @@ export default function LeaveLetter() {
             <div className='map-container mt-5'>
                 {letters.length > 0 ? (
                     <div className='map-section'>
-                        <Table striped bordered>
+                        <Table striped bordered variant='warning'>
                             <thead>
                                 <tr>
                                     <th>Sl. No</th>
@@ -151,7 +151,7 @@ export default function LeaveLetter() {
                                         <td>{new Date(a.startdate).toLocaleDateString('en-GB')}</td>
                                         <td>{a.days}</td>
                                         <td>{a.reason}</td>
-                                        <td>{a.grant ? "Approved" : "Pending"}</td>
+                                        <td style={{color:a.grant? 'green' : 'orange'}}>{a.grant ? "Approved" : "Pending"}</td>
                                     </tr>
                                 ))}
                             </tbody>
