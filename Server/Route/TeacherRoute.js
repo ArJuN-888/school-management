@@ -128,9 +128,7 @@ router.put("/editpic/:teacherID",Multerstore,async(req,res)=> {
     if (!req.file) {
       return res.status(400).json({ message: "Please select a file" });
     }
-    if (!phone.match(phoneregex)) {
-      return res.status(400).json({message:"Enter a 10 digit valid Phone number!!! !!!"})
-    }
+   
     console.log("admin", teacherID);
     console.log("userfile", req.file);
     const callback = (error) => {
@@ -149,6 +147,7 @@ router.put("/editpic/:teacherID",Multerstore,async(req,res)=> {
     );
      res.status(200).json({ message: "profile successfully updated", teacher: data });
   } catch (error) {
+    console.log("error",error)
      res.status(400).json({message:"Unable to update profile"})
   }
 });
@@ -168,6 +167,7 @@ router.get("/getallteachers",async(req,res)=>{
     
     }
     catch(error){
+   
         return res.status(400).json({message:"Unable to fetch teachers"})
     }
 })
