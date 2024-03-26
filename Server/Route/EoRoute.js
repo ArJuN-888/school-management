@@ -114,9 +114,7 @@ router.put("/editpic/:eoID",Multerstore,async(req,res)=> {
     if (!req.file) {
       return res.status(400).json({ message: "Please select a file" });
     }
-    if (!phone.match(phoneregex)) {
-      return res.status(400).json({message:"Enter a 10 digit valid Phone number!!! !!!"})
-    }
+
     console.log("admin", eoID);
     console.log("userfile", req.file);
     const callback = (error) => {
