@@ -89,7 +89,7 @@ const Studentattendence = () => {
         <h1 className="fs-3">Record Your Class Attendance Here</h1>
       </div>
       <div className="table fs-5">
-        <Table responsive striped hover variant="white">
+        <Table responsive striped hover variant="white" className='text-center'>
          {loggedteacherStudents.length !==0 && <thead style={{ letterSpacing: "4px" }}>
             <tr>
         

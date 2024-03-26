@@ -66,7 +66,7 @@ console.log("mark",mark);
         <h3 className='fs-2'> hello {teacherName}... This is your Students Marklist </h3>
       </div>
       <div className="table">
-        <Table className='fs-5' responsive cstriped bordered hover variant="white">
+        <Table className='fs-5 text-center' responsive cstriped bordered hover variant="white">
        {loggedteacherStudents.length !==0 && <thead>
             <tr>
               <th className='bg-primary text-white '>Roll no</th>
@@ -95,10 +95,10 @@ console.log("mark",mark);
         </div>
         <div className="">
         {mark.length!==0 &&<h3 className='mt-4 mb-4' style={{letterSpacing:"3px"}}>{`Marklist history of ${stname} `}...</h3>}
-         <Table className='fs-5' responsive cstriped bordered hover variant="white">
+         <Table className='fs-5 ' responsive cstriped bordered hover variant="white">
          {mark.length !==0 &&  <thead>
     
-              <tr>
+              <tr className='text-center'>
                 <th className='bg-primary text-white '>studentid</th>
                 <th className='bg-primary text-white '>Examination Name</th>
                 <th className='bg-primary text-white '>Mark</th>

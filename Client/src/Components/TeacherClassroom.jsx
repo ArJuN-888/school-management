@@ -180,7 +180,7 @@ export default function TeacherClassroom() {
   {loggedteacherStudents.length !== 0 && (
     <thead style={{ letterSpacing: "4px" }}>
       <tr>
-        <th className="bg-primary text-white">Health-id</th>
+        <th className="bg-primary text-white">Health_id</th>
         <th className="bg-primary text-white">Admnumber_no</th>
         <th className="bg-primary text-white">Batch</th>
         <th className="bg-primary text-white">Student_Name</th>
