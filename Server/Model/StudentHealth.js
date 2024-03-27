@@ -13,6 +13,7 @@ const Model= new mongoose.Schema({
     NutritionStatus:String,
     weight:String,
     height:String,
+    teacherreport:String,
     Finalreport:String,
 })
 

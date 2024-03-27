@@ -22,6 +22,7 @@ const StudentHealth = () => {
     PhysicalExamination: "",
     NutritionStatus: "",
     MentalHealth: "",
+    teacherreport:"",
     Finalreport: "",
   });
 
@@ -196,6 +197,17 @@ const StudentHealth = () => {
           </Col>
         </Row>
         <Row>
+          <Col md={6}>
+            <Form.Group controlId="teacherreport">
+              <Form.Label>Teacherreport</Form.Label>
+              <Form.Control
+                type="text"
+                name="teacherreport"
+                placeholder="Teacherreport"
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Col>
           <Col>
             <Form.Group controlId="Finalreport">
               <Form.Label>Final Report</Form.Label>
