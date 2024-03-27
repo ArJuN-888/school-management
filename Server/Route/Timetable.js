@@ -28,10 +28,14 @@ router.get("/gettableP",async (req, res) => {
 
 
 router.post('/addtable', async (req, res) => {
-  const { day, classN, periods } = req.body;
+  
 
   try {
-      const existingTimetable = await StudentTimetable.findOne({ day, classN });
+      const { day, classN, periods } = req.body;
+
+      const caseDay = day.toLowerCase()
+      
+      const existingTimetable = await StudentTimetable.findOne({ day:caseDay , classN });
 
       if (existingTimetable) {
           return res.status(200).json({ message: 'Timetable for this day and class already exists' });
