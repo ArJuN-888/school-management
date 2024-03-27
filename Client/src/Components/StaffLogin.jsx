@@ -22,6 +22,7 @@ export const StaffLogin = () => {
            localStorage.setItem("staffID",response.data.staffID)
            localStorage.setItem("staffName",response.data.staff.username)
            localStorage.setItem("staffProfile",response.data.staff.filename)
+           localStorage.setItem("staffbatch",response.data.staff.batch)
            nav("/Home")
             setEmail("")
             setPassword("")

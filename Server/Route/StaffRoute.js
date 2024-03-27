@@ -89,7 +89,7 @@ router.post("/login",async(req,res)=>{
     }
 
     const token = JWT.sign({id : staff._id},process.env.SECRET)
-   return res.status(200).json({message:"Successfully logged-in",token:token,staffID:staff._id,staff})
+   return res.status(200).json({message:"Successfully logged-in",token:token,staffID:staff._id,staff,staffbatch:staff.batch})
 }
 catch(error)
 {

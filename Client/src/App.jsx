@@ -45,6 +45,7 @@ import DoctorProfile from "./Components/DoctorProfile";
 import ExternalOrganizationProfile from "./Components/ExternalOrganizationProfile";
 import EoManage from "./Components/EoManage";
 import Staffpro from "./Components/Staffpro";
+import Staffmarlistadd from "./Components/Staffmarlistadd";
 
 import AdminProfile from "./Components/AdminProfile";
 import AdminRegister from "./Components/AdminRegister";
@@ -329,6 +330,7 @@ setNotifications(mNotifications)
             <Route path="/Staffpro" element={<Staffpro/>}/>
             <Route path="/SReg" element={<StaffRegister/>}/>
             <Route path="/contactus" element={<Contactus/>}/>
+            <Route path="/Staffmark" element={<Staffmarlistadd/>}/>
           </Routes>
         </mycontext.Provider>
       </BrowserRouter>
