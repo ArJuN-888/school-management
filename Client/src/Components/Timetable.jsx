@@ -71,7 +71,7 @@ console.log("time...",selectedId);
 console.log("time",timetables);
   return (
     <div className="text-center main-time fs-4 m-3" style={{letterSpacing:"2px"}}>
-      <h2 className='overall-head text-center styled-heading'>Add / Edit Timetable</h2>
+      <h2 className='overall-head text-center styled-heading' style={{fontFamily:'verdana',textDecoration:'underline'}}>Add Your Class Timetable</h2>
       <Row className="justify-content-center">
         <Col>
           <Form>

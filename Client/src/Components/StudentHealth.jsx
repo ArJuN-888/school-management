@@ -46,7 +46,7 @@ const StudentHealth = () => {
 
   return (
     <Container className="my-5">
-      <h2 className="text-center mb-4">Record Health of Students</h2>
+      <h2 className="text-center mb-4" style={{fontFamily:"verdana",textDecoration:'underline'}}>Record Health of Students</h2>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Col md={6}>
