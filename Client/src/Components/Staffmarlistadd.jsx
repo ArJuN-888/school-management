@@ -35,16 +35,6 @@ const Staffmarlistadd = () => {
   },[teacherID])
 
 
-//    const Staff=async()=>{
-//     try {
-//         const response= await axios.get(`${baseURL}/Staff/find/getstaff/${teacherID}`)
-//         console.log(response.data.staff)
-
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-//    }
 
     const getStudents = async () => {
         try {
@@ -52,7 +42,7 @@ const Staffmarlistadd = () => {
       
           console.log("parentss",response.data.parent);
           setBatch(response.data.parent)
-          const roll= batch.filter((u)=>u.batch===teacherbatch)
+          const roll= batch.filter((u)=>u.batch=== teacherbatch)
           console.log('roll',roll)
           setLoggedinTeacherStudents(roll)
         } catch (error) {
