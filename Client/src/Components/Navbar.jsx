@@ -149,10 +149,12 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
+    
        
          localStorage.removeItem("staffName")
          localStorage.removeItem("staffID")
          localStorage.removeItem("staffProfile")
+         localStorage.removeItem("staffbatch")
          nav("/Staff")
         //  location.reload()
       }

@@ -1,9 +1,9 @@
 import React, { useContext, useState,useEffect  } from 'react'
-import axios from 'axios';
 import GetSID from './Hooks/GetstaffID';
 import GetSname from './Hooks/GetstaffName';
 import Getstaffbatch from './Hooks/GetStaffbatch';
 import mycontext from '../Context/Context';
+import axios from 'axios';
 import { Table ,Button} from 'react-bootstrap';
 import {toast, Flip} from "react-toastify"
 
@@ -12,8 +12,6 @@ const Staffmarlistadd = () => {
     const { baseURL} = useContext(mycontext)
     const [loggedteacherStudents,setLoggedinTeacherStudents]=useState([])
     console.log('loggedin',loggedteacherStudents)
-    const [batch,setBatch]=useState([])
-    console.log("batches",batch)
     const teacherName = GetSname();
     const teacherID=GetSID()
    const teacherbatch=Getstaffbatch()
@@ -32,7 +30,7 @@ const Staffmarlistadd = () => {
 
   useEffect(()=>{
     getStudents()
-  },[teacherID])
+  },[teacherbatch])
 
 
 
@@ -41,8 +39,8 @@ const Staffmarlistadd = () => {
           const response = await axios.get(`${baseURL}/Parent/getallparent`);
       
           console.log("parentss",response.data.parent);
-          setBatch(response.data.parent)
-          const roll= batch.filter((u)=>u.batch=== teacherbatch)
+          console.log(response.data.parent)
+          const roll= response.data.parent.filter((u)=>u.batch === teacherbatch)
           console.log('roll',roll)
           setLoggedinTeacherStudents(roll)
         } catch (error) {
