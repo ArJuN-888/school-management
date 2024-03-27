@@ -278,9 +278,9 @@ setNotifications(mNotifications)
     markthisuserNotificationAsRead
   };
   const customToastStyle = {
-    fontSize: '20px',
-    letterSpacing:'3px',
-
+    fontSize: '16px',
+    letterSpacing:'2px',
+fontFamily:"verdana"
     // Adjust the font size as needed
   };
   return (

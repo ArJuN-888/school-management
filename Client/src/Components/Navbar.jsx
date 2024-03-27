@@ -38,7 +38,7 @@ import GetSID from './Hooks/GetstaffID';
 import { SiGoogleclassroom } from "react-icons/si";
 import GetSname from './Hooks/GetstaffName';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-
+import { toast } from 'react-toastify';
 import Tooltip from 'react-bootstrap/Tooltip';
 export default function Navbar() {
   const {setCurrentChat,setMessages,setChat,userID,setUserID,setPotentialChats,setNotifications} = useContext(mycontext)
@@ -62,7 +62,7 @@ export default function Navbar() {
         localStorage.removeItem("teacherName")
         localStorage.removeItem("teacherClass")
         localStorage.removeItem("teacherProfile")
-        
+       toast("Successfully logged-out") 
         setPotentialChats([])
         setCurrentChat(null)
         setMessages(null)
@@ -78,6 +78,7 @@ export default function Navbar() {
          localStorage.removeItem("doctorID")
          localStorage.removeItem("doctorName")
          localStorage.removeItem("doctorProfile")
+         toast("Successfully logged-out") 
          setPotentialChats([])
          setCurrentChat(null)
          setMessages(null)
@@ -96,6 +97,7 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
+         toast("Successfully logged-out") 
        localStorage.removeItem("adminProfile")
          localStorage.removeItem("adminName")
          localStorage.removeItem("adminID")
@@ -114,6 +116,7 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
+         toast("Successfully logged-out") 
          localStorage.removeItem("parentName")
          localStorage.removeItem("parentID")
          localStorage.removeItem("parentClass")
@@ -132,6 +135,7 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
+         toast("Successfully logged-out") 
          localStorage.removeItem("eoProfile")
          localStorage.removeItem("eoName")
          localStorage.removeItem("eoID")
@@ -149,7 +153,7 @@ export default function Navbar() {
          setMessages(null)
          setUserID(null)
          setChat([])
-    
+         toast("Successfully logged-out") 
        
          localStorage.removeItem("staffName")
          localStorage.removeItem("staffID")

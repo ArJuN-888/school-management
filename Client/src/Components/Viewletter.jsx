@@ -40,20 +40,20 @@ export default function ViewLetter() {
   };
 
   return (
-    <div className='l-container'>
+    <div className='l-container m-2' style={{letterSpacing:"2px"}}>
       {letters.length > 0 ? (
         <div className='l-section'>
           <h2 className='l-head text-center'>Submitted Leave Letters</h2>
-          <Table striped bordered hover>
+          <Table striped bordered hover className='fs-4 '>
             <thead>
               <tr>
-                <th>Sl.no</th>
-                <th>Roll No.</th>
-                <th>Student Name</th>
-                <th>Start Date</th>
-                <th>No. of Days</th>
-                <th>Reason</th>
-                <th>Action</th>
+                <th className="bg-primary text-white ">Sl.no</th>
+                <th className="bg-primary text-white ">Roll No.</th>
+                <th className="bg-primary text-white ">Student Name</th>
+                <th className="bg-primary text-white ">Start Date</th>
+                <th className="bg-primary text-white ">No. of Days</th>
+                <th className="bg-primary text-white ">Reason</th>
+                <th className="bg-primary text-white ">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -62,12 +62,17 @@ export default function ViewLetter() {
                   <td>{index + 1}</td>
                   <td>{a.rollno}</td>
                   <td>{a.studentname}</td>
-                  <td>{a.startdate}</td>
+                  <td>{new Date(a.startdate).toLocaleDateString()}</td>
                   <td>{a.days}</td>
                   <td>{a.reason}</td>
                   <td>
                   <Button
                     className='l-button'
+                    style={{
+                      borderRadius: "0.2rem",
+                      boxShadow: "0px 0px 5px 0px grey",
+                      letterSpacing: "2px",
+                    }}
                     onClick={() => { grantSubmit(a._id, a.grant) }}
                     variant={a.grant ? "danger" : "success"} // Change variant based on grant status
                   >

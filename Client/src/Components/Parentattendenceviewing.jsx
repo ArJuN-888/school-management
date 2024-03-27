@@ -29,17 +29,17 @@ const Parentattendenceviewing = () => {
         }
     }
   return (
-    <div className='m-5' style={{letterSpacing:'3px'}}>
+    <div className='m-2 fs-5' style={{letterSpacing:'3px'}}>
       <div className='heading'><h1 className='text-center' style={{color:'brown', fontFamily:'monospace', textDecoration:'underline'}}>STUDENT ATTENDENCE</h1></div>
       <div className='attendence'>
         {attendence.length===0 ?(
             <div><h5 className='text-center'>no record found</h5 ></div>
         ):(
-            <Table>
+            <Table bordered hover striped>
             <thead>
-                <th className='text-center fs-5' >student-id</th>
-                <th className='text-center fs-5'>Date</th>
-                <th className='text-center fs-5'>Status</th>
+                <th className='text-center fs-5 bg-primary text-white' >student-id</th>
+                <th className='text-center fs-5 bg-primary text-white'>Date</th>
+                <th className='text-center fs-5 bg-primary text-white'>Status</th>
             </thead>
             <tbody>
                {attendence.map((data,index)=>(

@@ -58,6 +58,7 @@ const DoctorHealthView = () => {
                                             <li><strong>Hearing:</strong> {student.Hearing}</li>
                                             <li><strong>Nutrition Status:</strong> {student.NutritionStatus}</li>
                                             <li><strong>Physical Examination:</strong> {student.PhysicalExamination}</li>
+                                            {student.teacherreport &&<li><strong>Teacher Report</strong>   {student.teacherreport}</li>}
                                         </ul>
                                     </td>
                                 </tr>
