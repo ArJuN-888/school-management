@@ -143,7 +143,7 @@ const getStudents = async () => {
                       </Table>  
                     </td>
                     <td>{calculatePercentage(data.marks)}%</td> {/* Display percentage */}
-                    <td> {calculatePercentage (data.marks) > 20 ? (
+                    <td style={{color:calculatePercentage (data.marks) > 20 ?"green":"red"}}> {calculatePercentage (data.marks) > 20 ? (
                       <div>passed</div>
                     ):(
                    <div>fail</div>

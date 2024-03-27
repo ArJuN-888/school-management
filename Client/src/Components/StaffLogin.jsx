@@ -66,7 +66,9 @@ export const StaffLogin = () => {
             
                letterSpacing:"2px" }}  className='mt-5' onClick={()=>{StaffLogin()}}>Login</Button>
             </div>
-            <Link to="/Tlogin">Teacher Login</Link>
+            <div className='text-center mt-2'>
+            <Link style={{textDecoration:'none'}} to="/Tlogin">Teacher Login</Link>
+            </div>
         </div>
     </div>
   )

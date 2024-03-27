@@ -64,7 +64,9 @@ const [tog,setTog] = useState(false)
                 
                    letterSpacing:"2px" }}  className='mt-5' onClick={()=>{login()}}>Login</Button>
                 </div>
-                <Link to="/Staff">Staff Login</Link>
+                <div className='text-center mt-2'>
+                <Link className='text-center' style={{textDecoration:'none'}} to="/Staff">Staff Login</Link>
+                </div>
             </div>
         </div>
   );

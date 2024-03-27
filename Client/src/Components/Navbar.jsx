@@ -397,7 +397,7 @@ const Hr = (props) => (
         <li><OverlayTrigger placement="bottom" delay={{ show: 50, hide: 100 }} overlay={La}><button style={{border:"none",backgroundColor:"transparent"}} onClick={()=>{Logeostate()}}><IoLogOutOutline style={{fontSize:"25px"}}/></button></OverlayTrigger></li> 
         </>}
         {(!adminID && !teacherID && !doctorID && !parentID && !eoID && !staffID) && <>
-      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/></label><label>S</label>chool-<label>M</label>anagement-<label>S</label>ystem</li>
+      <li className='fs-5 mt-2 flex-grow-1' style={{letterSpacing:"4px",fontFamily:"", color:'black'}}><label className='me-2'><MdSchool className='fs-2'/><label  style={{fontFamily:'monospace',fontSize:'22px',marginLeft:'5px'}}>EduWorld</label></label></li>
       <li> <Link className='fs-5' to="/contactus" style={{letterSpacing:"2px",textDecoration:'none',color:"black"}}>Contact Us</Link></li>
        <li> <Dropdown className=' me-5' as={ButtonGroup}>
  
