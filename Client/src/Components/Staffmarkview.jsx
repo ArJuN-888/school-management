@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GetSname from './Hooks/GetstaffName'
 import GetSID from './Hooks/GetstaffID'
+import Getstaffbatch from './Hooks/GetStaffbatch'
 import mycontext from '../Context/Context'
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
@@ -10,6 +11,7 @@ import { Button, Table } from 'react-bootstrap'
 const Staffmarkview = () => {
     const teacherName=GetSname()
     const teacherID=GetSID()
+    const teacherbatch=Getstaffbatch()
     const { baseURL, loggedteacherStudents, setLoggedinTeacherStudents} = useContext(mycontext)
     const [mark,setMark]=useState([])
 const [stat,setStat] = useState("")
@@ -21,15 +23,20 @@ const [stname,setStname] = useState("")
       }, [teacherID]);
 
 console.log("mark",mark);
-    const getStudents = async () => {
-        const response = await axios.get(`${baseURL}/Parent/getallparent`,{
-          params:{
-            teacherid:teacherID
-          }
-        });
-        console.log("all Students", response.data.parent);
-        setLoggedinTeacherStudents(response.data.parent)
-      };
+const getStudents = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/Parent/getallparent`);
+  
+      console.log("parentss",response.data.parent);
+      console.log(response.data.parent)
+      const roll= response.data.parent.filter((u)=>u.batch === teacherbatch)
+      console.log('roll',roll)
+      setLoggedinTeacherStudents(roll)
+    } catch (error) {
+      console.error("Error fetching students:", error);
+      // Handle error gracefully, display an error message to the user, or retry fetching.
+    }
+  };
 
       const handleview = async (studentid,sname) => {
         try {
