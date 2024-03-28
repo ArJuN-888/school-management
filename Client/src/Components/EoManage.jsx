@@ -161,6 +161,14 @@ export default function EoManage() {
               }
              }
              )
+             setregisterEo({
+              email:"",
+              username:"",
+              organization:"",
+              password:"",
+              status:"",
+              phone: ""
+             })
              formData.delete("file")
              setSelectedFile(null)
              toast.success(response.data.message,{transition:Flip})

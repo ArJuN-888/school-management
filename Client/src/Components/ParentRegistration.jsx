@@ -60,6 +60,17 @@ export default function ParentRegistration() {
           batchn: batchnumber
         }
       });
+      setparentRegister({
+        studentname: "",
+        parentname: "",
+        email: "",
+        batch: "",
+        password: "",
+        parentphone: "",
+        address: "",
+        status: "",
+        rollno: "",
+      })
       formData.delete("file")
       setSelectedFile(null)
       toast.success(response.data.message,{transition:Flip});
@@ -111,7 +122,7 @@ export default function ParentRegistration() {
           />
         </div>
         <div className="form-group">
-          <select className="form-control" onChange={(e) => handleChange("batch", e.target.value)}>
+          <select className="form-control" value={Parentregister.batch} onChange={(e) => handleChange("batch", e.target.value)}>
             <option value="Select a Batch">Select a Batch</option>
             <option value="10A">10A</option>
             <option value="10B">10B</option>
@@ -150,7 +161,7 @@ export default function ParentRegistration() {
           />
         </div>
         <div className="form-group">
-          <select className="form-control" onChange={(e) => handleChange("status", e.target.value)}>
+          <select value={Parentregister.status} className="form-control" onChange={(e) => handleChange("status", e.target.value)}>
             <option value="status">Status</option>
             <option value="MOTHER">Mother</option>
             <option value="FATHER">Father</option>

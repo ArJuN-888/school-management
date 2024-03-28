@@ -26,6 +26,14 @@ router.post("/register",Multerstore, async (req, res) => {
         fs.unlink(`public/uploads/${req.file.filename}`, callback);
         return res.status(400).json({ message: "Empty Fields !!!" });
       }
+      if(batchnumber.length !== 3)
+      {
+        const callback = () => {
+          console.log("Removed profile due to invalid registration credentials");
+        };
+        fs.unlink(`public/uploads/${req.file.filename}`, callback);
+        return res.status(400).json({ message: "A Three digit batch number is mandatory  !!!" });
+      }
       if (!phone.match(phoneregex)) {
         const callback = () => {
             console.log("Removed profile due to invalid registration credentials");

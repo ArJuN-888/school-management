@@ -35,6 +35,17 @@ export default function StaffRegister() {
         formData.append(String(key), staffObj[key]);
       });
       const response = await axios.post(`${baseURL}/Staff/register`, formData);
+      setStaffObj({
+        username: "",
+        email: "",
+        status: "",
+        password: "",
+        batch: "",
+        specialization: "",
+        phone:""
+      })
+      formData.delete("file")
+      setSelectedFile(null)
       toast.success(response.data.message,{transition:Flip});
     } catch (error) {
       toast.error(error.response.data.message,{transition:Flip});
@@ -170,7 +181,7 @@ export default function StaffRegister() {
         <Form.Group as={Row} className='mt-2'>
                     <Form.Label column sm="2" >Your Batch:</Form.Label>
                         <Col sm="10">
-                        <Form.Select    style={{letterSpacing:"2px"}}
+                        <Form.Select  value={staffObj.batch}   style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("batch",e.target.value)}>
                             <option value="" >Select Your Batch</option>
                             <option value="10A">10A</option>
@@ -198,7 +209,7 @@ export default function StaffRegister() {
         <Form.Group as={Row} className='mt-2'>
                     <Form.Label column sm="2" >Status:</Form.Label>
                         <Col sm="10">
-                        <Form.Select    style={{letterSpacing:"2px"}}
+                        <Form.Select  value={staffObj.status}   style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
                             <option value="" >Status</option>
                             <option value="Subject teacher">Subject teacher</option>

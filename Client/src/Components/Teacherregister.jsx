@@ -31,6 +31,17 @@ export default function Register() {
       });
       formData.delete("file")
       setSelectedFile(null)
+      setteacherRegisterdata({
+        username: "",
+        classname: "",
+        email: "",
+        password: "",
+        batch: "",
+        batchnumber:"",
+        status: "",
+        phone:"",
+        specialization:""
+      })
       toast.success(response.data.message,{transition:Flip});
       
     } catch (error) {
@@ -104,7 +115,7 @@ export default function Register() {
             <Form.Group as={Row} className='mt-2'>
                     <Form.Label column sm="2" >Your Batch:</Form.Label>
                         <Col sm="10">
-                        <Form.Select    style={{letterSpacing:"2px"}}
+                        <Form.Select value={teacherregisterdata.batch}    style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("batch",e.target.value)}>
                             <option value="" >Select Your Batch</option>
                             <option value="10A">10A</option>
@@ -129,7 +140,7 @@ export default function Register() {
                         <Form.Control
                             style={{letterSpacing:"2px"}}
                             className='fs-5'
-                            type='text'
+                            type='number'
                             value={teacherregisterdata.batchnumber}
                             placeholder='Batch Number'
                             onChange={(e)=>handleChange("batchnumber",e.target.value)}
@@ -152,7 +163,7 @@ export default function Register() {
             <Form.Group as={Row} className='mt-2'>
                     <Form.Label column sm="2" >Status:</Form.Label>
                         <Col sm="10">
-                        <Form.Select    style={{letterSpacing:"2px"}}
+                        <Form.Select value={teacherregisterdata.status}   style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
                             <option value="" >Status</option>
                             <option value="TEACHER">Class teacher</option>

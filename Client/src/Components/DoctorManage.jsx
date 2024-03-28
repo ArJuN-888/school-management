@@ -84,6 +84,7 @@ console.log("id",docID);
             const response = await axios.post(`${baseURL}/Doctor/register`,formData)
             toast.success(response.data.message,{transition:Flip})
             fetchDoctors()
+       
             formData.delete("file")
             setSelectedFile(null)
        setdoctorObj({
@@ -278,7 +279,7 @@ console.log("id",docID);
                 <Form.Group as={Row} className='mt-2'>
                     <Form.Label column sm="2" >Status:</Form.Label>
                         <Col sm="10">
-                        <Form.Select    style={{letterSpacing:"2px"}}
+                        <Form.Select value={doctorObj.status}    style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
                             <option value="Status" >Status</option>
                             <option value="Doctor">Doctor</option>
