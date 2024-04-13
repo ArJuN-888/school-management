@@ -29,8 +29,6 @@ export default function Register() {
           "Content-Type": "multipart/form-data"
         }
       });
-      formData.delete("file")
-      setSelectedFile(null)
       setteacherRegisterdata({
         username: "",
         classname: "",
