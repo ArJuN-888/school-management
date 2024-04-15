@@ -77,7 +77,7 @@ const ParentMarklistView = () => {
                 </tbody>
               </Table>
               <div className="text-center">
-                <p className="fs-4 mt-3" >Percentage:<span style={{color:'royalblue'}}> {calculatePercentage(data.marks)}% </span></p>
+                <p className="fs-4 mt-3" >Percentage:<span style={{color:'royalblue'}}> {Math.floor(calculatePercentage(data.marks))}% </span></p>
                 <p className="fs-4">Result:<span style={{color: calculatePercentage(data.marks) > 20 ? 'green' : 'red'}}>{calculatePercentage(data.marks) > 20 ? "Passed" : "Fail"}</span></p>
               </div>
             </div>
