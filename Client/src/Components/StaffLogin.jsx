@@ -29,7 +29,7 @@ export const StaffLogin = () => {
         }
         catch(error)
         {
-            toast.error(error,{transition:Flip});
+            toast.error(error.response.data.message,{transition:Flip});
         }
     }
 

@@ -164,7 +164,7 @@ export default function Register() {
                         <Form.Select value={teacherregisterdata.status}   style={{letterSpacing:"2px"}}
                                 className='fs-5 me-2'  onChange={(e)=>handleChange("status",e.target.value)}>
                             <option value="" >Status</option>
-                            <option value="TEACHER">Class teacher</option>
+                            <option value="Class teacher">Class teacher</option>
 
                         </Form.Select>
                         </Col>
